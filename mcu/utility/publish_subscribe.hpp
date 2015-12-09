@@ -1,0 +1,108 @@
+// 1 TAB = 8 SPACES //
+
+      /**
+	*	ID:	publish_subscribe.hpp
+	*   EDITED:	08-10-2015
+	*   AUTHOR:	Andres Gongora
+	*
+	*	+------ Description: -----------------------------------------------------------+
+	*	|										|
+	*	|										|
+	*	+-------------------------------------------------------------------------------+
+	*	
+	**/
+
+       /*
+	* Copyright (C) 2015 Andres Gongora
+	* Machine Perception and Intelligent Robotics (MAPIR)
+	* University of Malaga (SPAIN)
+	* <https://http://mapir.isa.uma.es/mapirwebsite/>
+	*
+	* This program is free software: you can redistribute it and/or modify
+	* it under the terms of the GNU General Public License as published by
+	* the Free Software Foundation, either version 3 of the License, or
+	* (at your option) any later version.
+	*
+	* This program is distributed in the hope that it will be useful,
+	* but WITHOUT ANY WARRANTY; without even the implied warranty of
+	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	* GNU General Public License for more details.
+	*
+	* You should have received a copy of the GNU General Public License
+	* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	*/
+
+
+#ifndef __PUBLISH_SUBSCRIBE_HPP_INCLUDED__
+#define __PUBLISH_SUBSCRIBE_HPP_INCLUDED__
+
+
+/** --- INCLUDE -------------------------------------------------------------------------------- **/
+#include <cstdlib>
+#include "linked_list.hpp"
+
+
+
+/** --- NAMESPACE ------------------------------------------------------------------------------ **/
+namespace mcu{ namespace utility
+{
+	template <typename T_MSG> class Publisher;
+	template <typename T_MSG> class Subscriber;
+}}
+
+
+
+/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+ **	utility::Publisher
+ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+
+template <typename T_MSG>
+class hal::utility::Publisher
+{
+public:
+	void			subscribe(hal::utility::Subscriber<T_MSG>& newSubscriber)
+				{
+					_subscribers.pushBack(newSubscriber);
+				}
+
+	void			publish(T_MSG message) const
+				{
+					std::size_t size = _subscribers.size();
+					std::size_t i;
+
+					for(i=0; i<size; i++)
+					{
+						_subscribers[i]->notify(message);
+					}
+				}
+
+
+private:
+				// PRIVATE VARIABLES
+	hal::utility::LinkedList<hal::utility::Subscriber<T_MSG> >	_subscribers;
+};
+
+
+
+/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+ **	hal::utility::SignalHandler
+ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+
+template <typename T_MSG>
+class hal::utility::Subscriber : public hal::utility::LinkedListNode<Subscriber<T_MSG> >
+{
+public:
+				// CONSTRUCTOR & DESTRUCTOR
+				Subscriber(void)		{}
+	virtual			~Subscriber(void)		{}
+
+private:
+				// FRONT END ACCESIBLE ONLY BY PUBLISHER
+	friend class		hal::utility::Publisher<T_MSG>;
+	virtual void		notify(T_MSG message) = 0;
+};
+
+
+
+/** ============================================================================================ **/
+#endif 	// __PUBLISH_SUBSCRIBE_HPP_INCLUDED__

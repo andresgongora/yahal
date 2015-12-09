@@ -1,0 +1,123 @@
+// 1 TAB = 8 SPACES //
+
+      /**
+	*	ID:
+	*   EDITED:
+	*   AUTHOR:	Andres Gongora
+	*
+	*	+------ Description: -----------------------------------------------------------+
+	*	|										|
+	*	|										|
+	*	+-------------------------------------------------------------------------------+
+	*	
+	**/
+
+       /*
+	* Copyright (C) 2015 Andres Gongora
+	* Machine Perception and Intelligent Robotics (MAPIR)
+	* University of Malaga (SPAIN)
+	* <https://http://mapir.isa.uma.es/mapirwebsite/>
+	*
+	* This program is free software: you can redistribute it and/or modify
+	* it under the terms of the GNU General Public License as published by
+	* the Free Software Foundation, either version 3 of the License, or
+	* (at your option) any later version.
+	*
+	* This program is distributed in the hope that it will be useful,
+	* but WITHOUT ANY WARRANTY; without even the implied warranty of
+	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	* GNU General Public License for more details.
+	*
+	* You should have received a copy of the GNU General Public License
+	* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	*/
+
+	//TODO: Use a flag to enable TX and RX, and check if thos eare enabled when calling IRQ routines. User may call them by accident
+
+
+#ifndef __MCU_I2C_MULTIMASTER_HPP_INCLUDED__
+#define __MCU_I2C_MULTIMASTER_HPP_INCLUDED__
+
+
+/** --- INCLUDE -------------------------------------------------------------------------------- **/
+#include <stdint.h>
+#include <cstddef>
+#include "i2c_master.hpp"
+#include "i2c_slave.hpp"
+
+
+
+/** --- NAMESPACE ------------------------------------------------------------------------------ **/
+namespace mcu{
+	class I2C_multimaster;
+}
+
+
+
+/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+ **	mcu::I2C_multimaster
+ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+
+class mcu::I2C_multimaster : public mcu::I2C_master, public mcu::I2C_slave
+{
+protected:			// CONTRUSTOR & DESTRUCTOR
+				I2C_multimaster(void);
+	virtual			~I2C_multimaster(void);
+
+
+protected:			// I2C PROTOCOL -> IMPLEMENT
+	virtual bool		isMaster(void) = 0;
+	virtual void		configureAsMaster(void) = 0;
+
+
+
+	void			setMasterCallbacks(void);
+	void			setSlaveCallbacks(void);
+
+
+public:				// WRITE & READ & POLL
+	bool virtual 		writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size);
+	bool virtual		write(uint8_t slaveAddress, uint8_t* data, std::size_t size);
+	bool virtual		readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size);
+	bool virtual		read(uint8_t slaveAddress, uint8_t* data, std::size_t size);
+	bool virtual		isSlavePresent(uint8_t slaveAddress);
+
+
+
+//protected:			// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
+	void			handleArbitrationLost(void);
+	void			handleReceivedStart(void);
+	void			handleReceivedStop(void);
+	void			handleReceivedNack(void);
+	void			handleBufferTXEmpty(void);
+	void			handleBufferRXFull(void);
+
+
+
+/*
+private:
+	void			handleMasterReceivedNack(void);
+	void			handleMasterBufferTXEmpty(void);
+	void			handleMasterBufferRXFull(void);
+	void			handleSlaveReceivedStart(void);
+	void			handleSlaveReceivedStop(void);
+	void			handleSlaveBufferTXEmpty(void);
+	void			handleSlaveBufferRXFull(void);
+
+
+
+
+
+
+private:			// EVENT CALLBACKS
+	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleReceivedStart;
+	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleReceivedStop;
+	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleReceivedNack;
+	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleBufferTXEmpty;
+	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleBufferRXFull;*/
+};
+
+
+
+/** ============================================================================================ **/
+#endif 	// __MCU_I2C_MULTIMASTER_HPP_INCLUDED__

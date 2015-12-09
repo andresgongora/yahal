@@ -1,0 +1,101 @@
+// 1 TAB = 8 SPACES //
+
+       /*
+	* Copyright (C) 2015 Andres Gongora
+	* Machine Perception and Intelligent Robotics (MAPIR)
+	* University of Malaga (SPAIN)
+	* <https://http://mapir.isa.uma.es/mapirwebsite/>
+	*
+	* This program is free software: you can redistribute it and/or modify
+	* it under the terms of the GNU General Public License as published by
+	* the Free Software Foundation, either version 3 of the License, or
+	* (at your option) any later version.
+	*
+	* This program is distributed in the hope that it will be useful,
+	* but WITHOUT ANY WARRANTY; without even the implied warranty of
+	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	* GNU General Public License for more details.
+	*
+	* You should have received a copy of the GNU General Public License
+	* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	*/
+
+#include "i2c_slave.hpp"
+
+/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+ **	DEFINITION::I2C_SLAVE
+ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+
+/** =================================================================== CONSTRUCTOR & DESTRUCTOR **/
+mcu::I2C_slave::I2C_slave(void){}
+mcu::I2C_slave::~I2C_slave(void){}
+
+
+
+/** ================================================================================= I2C EVENTS **/
+
+void mcu::I2C_slave::handleReceivedStart(void)
+{
+	if(isIncommingWrite())	{_callbackStart.run(DIRECTION::WRITE);}
+	else			{_callbackStart.run(DIRECTION::READ);}
+}
+
+
+
+void mcu::I2C_slave::handleReceivedStop(void)
+{
+	_callbackStop.run();
+}
+
+
+
+void mcu::I2C_slave::handleBufferTXEmpty(void)
+{
+	uint8_t byteToSend;	// If callback fails, set to 0xFF (default value)
+	if(not _callbackByteRequested.run(byteToSend)){byteToSend = 0xFF;}
+
+	// MASTER IS READING US -> Send next byte
+	writeBufferTX(byteToSend);
+}
+
+
+
+void mcu::I2C_slave::handleBufferRXFull(void)
+{
+	volatile uint8_t receivedByte = readBufferRX();	// Read to free input buffer (if it exists)
+	_callbackByteReceived.run(receivedByte);// Deliver byte to callback function
+}
+
+
+
+/** ================================================================================== SET HOOKS **/
+
+void mcu::I2C_slave::setCallbackReceivedStart(void(*fpCallOnEvent)(DIRECTION::type))
+{
+	_callbackStart.setCallBackFunction(fpCallOnEvent);
+}
+
+
+
+void mcu::I2C_slave::setCallbackReceivedStop(void(*fpCallOnEvent)(void))
+{
+	_callbackStop.setCallBackFunction(fpCallOnEvent);
+}
+
+
+
+void mcu::I2C_slave::setCallbackByteReceived(void(*fpCallOnEvent)(uint8_t))
+{
+	_callbackByteReceived.setCallBackFunction(fpCallOnEvent);
+}
+
+
+
+void mcu::I2C_slave::setCallbackByteRequested(void(*fpCallOnEvent)(uint8_t&))
+{
+	_callbackByteRequested.setCallBackFunction(fpCallOnEvent);
+}
+
+
+
+/** ============================================================================================ **/

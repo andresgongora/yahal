@@ -1,0 +1,103 @@
+// 1 TAB = 8 SPACES //
+
+      /**
+	*	ID:
+	*   EDITED:
+	*   AUTHOR:	Andres Gongora
+	*
+	*	+------ Description: -----------------------------------------------------------+
+	*	|										|
+	*	|										|
+	*	+-------------------------------------------------------------------------------+
+	*	
+	**/
+
+       /*
+	* Copyright (C) 2015 Andres Gongora
+	* Machine Perception and Intelligent Robotics (MAPIR)
+	* University of Malaga (SPAIN)
+	* <https://http://mapir.isa.uma.es/mapirwebsite/>
+	*
+	* This program is free software: you can redistribute it and/or modify
+	* it under the terms of the GNU General Public License as published by
+	* the Free Software Foundation, either version 3 of the License, or
+	* (at your option) any later version.
+	*
+	* This program is distributed in the hope that it will be useful,
+	* but WITHOUT ANY WARRANTY; without even the implied warranty of
+	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	* GNU General Public License for more details.
+	*
+	* You should have received a copy of the GNU General Public License
+	* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	*/
+
+	//TODO: Use a flag to enable TX and RX, and check if thos eare enabled when calling IRQ routines. User may call them by accident
+
+
+#ifndef __MCU_I2C_COMMON_HPP_INCLUDED__
+#define __MCU_I2C_COMMON_HPP_INCLUDED__
+
+
+/** --- INCLUDE -------------------------------------------------------------------------------- **/
+#include <stdint.h>
+#include <cstddef>
+#include "../generic_module.hpp"
+
+
+
+/** --- NAMESPACE ------------------------------------------------------------------------------ **/
+namespace mcu{
+	class I2C_common;
+}
+
+
+
+/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+ **	mcu::I2C_master
+ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+
+class mcu::I2C_common : public mcu::GenericModule
+{
+public:				// CONFIGURATION VALUES
+				struct DIRECTION{ enum type{
+					READ,
+					WRITE,
+				};};
+
+
+
+public:				// ERROR CODE
+				struct ERROR{ enum type{
+					NONE = NO_ERROR,
+
+					NOT_INITIALIZED = 10,
+
+					SLAVE_ADDRESS_NOT_7_BIT =21,
+					SLAVE_NOT_REACHABLE = 22,
+					SLAVE_DATA_NACK = 23,
+
+					INVALID_MESSAGE_BUFFER = 31,
+					READ_OVERFLOW_ATTEMPT = 32,
+					ZERO_SIZE_MESSAGE = 33,
+
+					TRANSMISSION_PREMATURELY_ENDED = 41,
+
+				};};
+
+
+protected:			// I2C PROTOCOL -> IMPLEMENT
+	virtual void		writeBufferTX(uint8_t byte) = 0;
+	virtual uint8_t		readBufferRX(void) = 0;
+
+
+
+protected:			// CONSTRUCTOR & DESTRUCTOR
+				I2C_common(void)	{}
+	virtual			~I2C_common(void)	{}
+};
+
+
+
+/** ============================================================================================ **/
+#endif 	// __MCU_I2C_COMMON_HPP_INCLUDED__
