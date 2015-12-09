@@ -1,56 +1,29 @@
-// 1 TAB = 8 SPACES //
+// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //
 
-      /**
-	*	ID:
-	*   EDITED:
-	*    AUTOR:	Andres Gongora
-	*
-	*	+------ Description: -----------------------------------------------------------+
-	*	|										|
-	*	|	SOURCES:________________________________________________________	|
-	*	|	ACLK:	Auxiliary clock. ACLK is SW selectable as LFXT1CLK or VLOCLK.	|
-	*	|		ACLK is divided by 1, 2, 4, or 8.				|
-	*	|		ACLK is software selectable for individual peripheral modules	|
-	*	|										|
-	*	|	MCLK:	Master clock. MCLK is software selectable as			|
-	*	|		LFXT1CLK, VLOCLK, XT2CLK (if available onchip), or DCOCLK.	|
-	*	|		MCLK is divided by 1,2,4,or8. MCLK is used by the CPU and system|
-	*	|										|
-	*	|	SMCLK:	Sub-main clock. SMCLK is software selectable as			|
-	*	|		LFXT1CLK, VLOCLK, XT2CLK (if available on-chip), or DCOCLK.	|
-	*	|		SMCLK is divided by 1, 2, 4, or 8.				|
-	*	|		SMCLK is software selectable for individual peripheral modules.	|
-	*	|										|
-	*	|										|
-	*	|										|
-	*	|	CLOCKS:_________________________________________________________	|
-	*	|	LFXT1CLK:	Low-frequency/high-frequency oscillator			|
-	*	|	DCOCLK: 	Internal digitally controlled oscillator (DCO).		|
-	*	|	VLOCLK: 	Internal very low power, low frequency 12-kHz typical	|
-	*	|										|
-	*	+-------------------------------------------------------------------------------+
-	*	
-	**/
+/*	+-----------------------------------------------------------------------+
+	|	    Yet Another Hardware Abstraction Layer (YAHAL)		|
+	|		https://github.com/andresgongora/yahal 			|
+	|									|
+	|									|
+	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| 									|
+	| This program is free software: you can redistribute it and/or modify	|
+	| it under the terms of the GNU General Public License as published by	|
+	| the Free Software Foundation, either version 2 of the License, or	|
+	| (at your option) any later version.					|
+	|									|
+	| This program is distributed in the hope that it will be useful,	|
+	| but WITHOUT ANY WARRANTY; without even the implied warranty of	|
+	| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		|
+	| GNU General Public License for more details.				|
+	|									|
+	| You should have received a copy of the GNU General Public License	|
+	| along with this program.  If not, see <http://www.gnu.org/licenses/>. |
+	|									|
+	+-----------------------------------------------------------------------+	*/
 
-       /*
-	* Copyright (C) 2015 Andres Gongora
-	* Machine Perception and Intelligent Robotics (MAPIR)
-	* University of Malaga (SPAIN)
-	* <https://http://mapir.isa.uma.es/mapirwebsite/>
-	*
-	* This program is free software: you can redistribute it and/or modify
-	* it under the terms of the GNU General Public License as published by
-	* the Free Software Foundation, either version 3 of the License, or
-	* (at your option) any later version.
-	*
-	* This program is distributed in the hope that it will be useful,
-	* but WITHOUT ANY WARRANTY; without even the implied warranty of
-	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	* GNU General Public License for more details.
-	*
-	* You should have received a copy of the GNU General Public License
-	* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	*/
+
+
 
 #ifndef __MSP430F2132_CLK_HPP_INCLUDED__
 #define __MSP430F2132_CLK_HPP_INCLUDED__

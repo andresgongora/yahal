@@ -1,42 +1,27 @@
-// 1 TAB = 8 SPACES //
+// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //
 
-      /**
-	*	ID:	trap.hpp
-	*   EDITED:	2015.05.15
-	*   AUTHOR:	Andres Gongora
-	*
-	*	+------ Description: -----------------------------------------------------------+
-	*	|										|
-	*	|	Example of use:								|
-	*	|	error::TRAP("In FOO class", __LINE__, getErrorCode());			|
-	*	|										|
-	*	|	Expects:	- const char	description				|
-	*	|			- long int	line where trap wass called		|
-	*	|			- long int	error code				|
-	*	|										|
-	*	+-------------------------------------------------------------------------------+
-	*	
-	**/
+/*	+-----------------------------------------------------------------------+
+	|	    Yet Another Hardware Abstraction Layer (YAHAL)		|
+	|		https://github.com/andresgongora/yahal 			|
+	|									|
+	|									|
+	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| 									|
+	| This program is free software: you can redistribute it and/or modify	|
+	| it under the terms of the GNU General Public License as published by	|
+	| the Free Software Foundation, either version 2 of the License, or	|
+	| (at your option) any later version.					|
+	|									|
+	| This program is distributed in the hope that it will be useful,	|
+	| but WITHOUT ANY WARRANTY; without even the implied warranty of	|
+	| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		|
+	| GNU General Public License for more details.				|
+	|									|
+	| You should have received a copy of the GNU General Public License	|
+	| along with this program.  If not, see <http://www.gnu.org/licenses/>. |
+	|									|
+	+-----------------------------------------------------------------------+	*/
 
-       /*
-	* Copyright (C) 2015 Andres Gongora
-	* Machine Perception and Intelligent Robotics (MAPIR)
-	* University of Malaga (SPAIN)
-	* <https://http://mapir.isa.uma.es/mapirwebsite/>
-	*
-	* This program is free software: you can redistribute it and/or modify
-	* it under the terms of the GNU General Public License as published by
-	* the Free Software Foundation, either version 3 of the License, or
-	* (at your option) any later version.
-	*
-	* This program is distributed in the hope that it will be useful,
-	* but WITHOUT ANY WARRANTY; without even the implied warranty of
-	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	* GNU General Public License for more details.
-	*
-	* You should have received a copy of the GNU General Public License
-	* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	*/
 
 
 #ifndef __TRAP_HPP_INCLUDED
