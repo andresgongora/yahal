@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -30,7 +30,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "../msp430f5309_config.hpp"
 #ifdef __MCU_MSP430F5309_GPIO_ENABLED__
 
@@ -39,20 +39,20 @@
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace targets{ namespace msp430f5309{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	class Gpio;
 }}}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	GPIO
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
-class mcu::targets::msp430f5309::Gpio : public mcu::Gpio
+/* ============================================================================================== */
+ *	GPIO
+ * ============================================================================================== */
+class yahal::mcu::targets::msp430f5309::Gpio : public yahal::mcu::Gpio
 {
 public:				// PORT ACCESS -----------------------------------------------------
- 	mcu::Gpio::Port&	port(uint8_t portNumber);
+ 	yahal::mcu::Gpio::Port&	port(uint8_t portNumber);
 
 
 private:			// INITIALIZATION
@@ -61,11 +61,11 @@ private:			// INITIALIZATION
 
 private:
  				// PORT 1 ----------------------------------------------------------
- 	class 			Port1 : public mcu::Gpio::Port
+ 	class 			Port1 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::type direction =DIRECTION::INPUT,
-							RESISTOR::type resistor =RESISTOR::DISABLED,
+					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
+							RESISTOR::Type resistor =RESISTOR::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -75,11 +75,11 @@ private:
 
 
  				// PORT 2 ----------------------------------------------------------
- 	class 			Port2 : public mcu::Gpio::Port
+ 	class 			Port2 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::type direction =DIRECTION::INPUT,
-							RESISTOR::type resistor =RESISTOR::DISABLED,
+					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
+							RESISTOR::Type resistor =RESISTOR::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -89,11 +89,11 @@ private:
 
 
  				// PORT 3 ----------------------------------------------------------
- 	class 			Port3 : public mcu::Gpio::Port
+ 	class 			Port3 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::type direction =DIRECTION::INPUT,
-							RESISTOR::type resistor =RESISTOR::DISABLED,
+					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
+							RESISTOR::Type resistor =RESISTOR::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -103,11 +103,11 @@ private:
 
 
  				// PORT 4 ----------------------------------------------------------
- 	class 			Port4 : public mcu::Gpio::Port
+ 	class 			Port4 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::type direction =DIRECTION::INPUT,
-							RESISTOR::type resistor =RESISTOR::DISABLED,
+					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
+							RESISTOR::Type resistor =RESISTOR::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -117,11 +117,11 @@ private:
 
 
  				// PORT 5 ----------------------------------------------------------
- 	class 			Port5 : public mcu::Gpio::Port
+ 	class 			Port5 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::type direction =DIRECTION::INPUT,
-							RESISTOR::type resistor =RESISTOR::DISABLED,
+					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
+							RESISTOR::Type resistor =RESISTOR::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -131,11 +131,11 @@ private:
 
 
  				// PORT 6 ----------------------------------------------------------
- 	class 			Port6 : public mcu::Gpio::Port
+ 	class 			Port6 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::type direction =DIRECTION::INPUT,
-							RESISTOR::type resistor =RESISTOR::DISABLED,
+					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
+							RESISTOR::Type resistor =RESISTOR::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -155,16 +155,16 @@ private:
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Gpio :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Gpio :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
-namespace mcu{
-	extern mcu::targets::msp430f5309::Gpio gpio;
+namespace yahal{ namespace mcu{
+	extern yahal::mcu::targets::msp430f5309::Gpio gpio;
 }
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MCU_MSP430F5309_GPIO_ENABLED__
 #endif // __MCU_MSP430F5309_GPIO_HPP_INCLUDED__

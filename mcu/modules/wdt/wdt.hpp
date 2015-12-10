@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -30,24 +30,24 @@
 #define __MCU_WDT_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
-#include "../generic_module.hpp"
+/* ---------------------------------------------------------------------------------------------- */
+#include "../base_module.hpp"
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{
 	class Wdt;
 }
 
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION	mcu::Wdt
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DECLARATION	yahal::mcu::Wdt
+ * ============================================================================================== */
 
-class mcu::Wdt : public mcu::GenericModule
+class yahal::mcu::Wdt : public yahal::mcu::BaseModule
 {
 protected:			// CONSTRUCTOR & DESTRUCTOR ----------------------------------------
 				Wdt(void) {}
@@ -59,5 +59,5 @@ protected:			// CONSTRUCTOR & DESTRUCTOR ---------------------------------------
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	//__MCU_WDT_HPP_INCLUDED__

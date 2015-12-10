@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -26,7 +26,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "i2c_multimaster.hpp"
 #ifdef __MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
 
@@ -34,19 +34,19 @@
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::I2C_multimaster
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcutargets::msp430f5309::I2C_multimaster
+ * ============================================================================================== */
 
 /** ================================================================================ CONSTRUCTOR **/
-mcu::targets::msp430f5309::I2C_multimaster::I2C_multimaster(uint8_t ownAddress) :
+yahal::mcutargets::msp430f5309::I2C_multimaster::I2C_multimaster(uint8_t ownAddress) :
 	_ownAddress(ownAddress)
 {}
 
 
 
 /** ============================================================================= INITIALIZATION **/
-void mcu::targets::msp430f5309::I2C_multimaster::doInit(void)
+void yahal::mcutargets::msp430f5309::I2C_multimaster::doInit(void)
 {
 	UCB1CTL1 |= UCSWRST;				// Enable SW reset while we configure the module
 	P4SEL |= BIT1 + BIT2;				// Assign I2C pins to USCI_B0
@@ -64,7 +64,7 @@ void mcu::targets::msp430f5309::I2C_multimaster::doInit(void)
 
 /** ====================================================================== MODULE IMPLEMENTATION **/
 
-void mcu::targets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress, DIRECTION::type direction)
+void yahal::mcutargets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress, DIRECTION::Type direction)
 {
 	while(UCB1STAT & UCBBUSY);					// Recommended to check
 
@@ -78,7 +78,7 @@ void mcu::targets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress, DIR
 
 
 
-void mcu::targets::msp430f5309::I2C_multimaster::stop(void)
+void yahal::mcutargets::msp430f5309::I2C_multimaster::stop(void)
 {
 	if(not(UCB1CTL1 & UCTR))
 	{
@@ -89,21 +89,21 @@ void mcu::targets::msp430f5309::I2C_multimaster::stop(void)
 
 
 
-void mcu::targets::msp430f5309::I2C_multimaster::writeBufferTX(uint8_t byte)
+void yahal::mcutargets::msp430f5309::I2C_multimaster::writeBufferTX(uint8_t byte)
 {
 	UCB1TXBUF = byte;
 }
 
 
 
-uint8_t mcu::targets::msp430f5309::I2C_multimaster::readBufferRX(void)
+uint8_t yahal::mcutargets::msp430f5309::I2C_multimaster::readBufferRX(void)
 {
 	return UCB1RXBUF;
 }
 
 
 
-void mcu::targets::msp430f5309::I2C_multimaster::awaitTransmissionEnd(void)
+void yahal::mcutargets::msp430f5309::I2C_multimaster::awaitTransmissionEnd(void)
 {
 	while(UCB1STAT & UCBBUSY);
 	UCB1CTL1 &= ~(UCTR + UCTXNACK + UCTXSTP + UCTXSTT);
@@ -112,19 +112,19 @@ void mcu::targets::msp430f5309::I2C_multimaster::awaitTransmissionEnd(void)
 
 
 
-bool mcu::targets::msp430f5309::I2C_multimaster::isIncommingWrite(void)
+bool yahal::mcutargets::msp430f5309::I2C_multimaster::isIncommingWrite(void)
 {
 	return (UCB1CTL1 & UCTR);
 }
 
 
-bool mcu::targets::msp430f5309::I2C_multimaster::isMaster(void)
+bool yahal::mcutargets::msp430f5309::I2C_multimaster::isMaster(void)
 {
 	return (UCB1CTL0 & UCMST);
 }
 
 
-void mcu::targets::msp430f5309::I2C_multimaster::configureAsMaster(void)
+void yahal::mcutargets::msp430f5309::I2C_multimaster::configureAsMaster(void)
 {
 	awaitTransmissionEnd();
 
@@ -137,5 +137,5 @@ void mcu::targets::msp430f5309::I2C_multimaster::configureAsMaster(void)
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif	// __MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__

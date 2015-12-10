@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -29,19 +29,19 @@
 #define __MCU_TARGETS_HPP_INCLUDED__
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	TEXAS INSTRUMENT :: MSP
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	TEXAS INSTRUMENT :: MSP
+ * ============================================================================================== */
 #include "msp430f2132/msp430f2132.hpp"
 #include "msp430f5309/msp430f5309.hpp"
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	TEXAS INSTRUMENT :: PIC
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	TEXAS INSTRUMENT :: PIC
+ * ============================================================================================== */
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif	// __MCU_TARGETS_HPP_INCLUDED__

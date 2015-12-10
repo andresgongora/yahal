@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -29,23 +29,23 @@
 
 //TODO: Poder indicar source, error verbose, etc. http://programmers.stackexchange.com/questions/262019/is-it-good-practice-to-rely-on-headers-being-included-transitively
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "../rtos/rtos.hpp"
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace error{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace error{
 	class ErrorCode;
 }}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	error::ErrorCode
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	error::ErrorCode
+ * ============================================================================================== */
 
-class mcu::error::ErrorCode
+class yahal::mcu::error::ErrorCode
 {
 public:				// CONST -----------------------------------------------------------
 	static const
@@ -97,5 +97,5 @@ private:			// PRIVATE VARIABLES -----------------------------------------------
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	//__ERROR_CODE_HPP_INCLUDED__

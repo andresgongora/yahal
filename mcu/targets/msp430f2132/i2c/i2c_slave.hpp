@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -30,7 +30,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "hal/mcu/virtual/i2c/i2c_slave.hpp"
 #include "hal/mcu/devices/msp430f2132/msp430f2132.hpp"
 
@@ -38,9 +38,9 @@
 
 /** --- DEFINE --------------------------------------------------------------------------------- **/
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION::I2C::SLAVE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DECLARATION::I2C::SLAVE
+ * ============================================================================================== */
 
 class hal::uc::msp430f2132::I2c_slave : public hal::uc::I2C_slave
 {
@@ -59,5 +59,5 @@ private:
 };
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	//__M430F2132_I2C_SLAVE_HPP_INCLUDED__

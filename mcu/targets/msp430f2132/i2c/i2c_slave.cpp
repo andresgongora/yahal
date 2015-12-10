@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -25,15 +25,15 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <hal/error/error_code.hpp>
 #include <mcu/targets/msp430f2132/i2c/i2c_slave.hpp>
 #include <msp430f2132.h>
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DEFINITION::M430F2132_I2C_SLAVE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DEFINITION::M430F2132_I2C_SLAVE
+ * ============================================================================================== */
 
 /** ============================================================================= INITIALIZATION **/
 
@@ -86,4 +86,4 @@ uint8_t hal::uc::msp430f2132::I2c_slave::receiveByte(void)	{return UCB0RXBUF;}
 bool 	hal::uc::msp430f2132::I2c_slave::isIncommingWrite(void)	{return (!(UCB0CTL1 & UCTR));}
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */

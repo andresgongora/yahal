@@ -1,0 +1,132 @@
+\hypertarget{longjmp__exception_8hpp}{}\section{/home/andy/\+Documentos/\+Source/yahal/mcu/error/longjmp\+\_\+exception.hpp File Reference}
+\label{longjmp__exception_8hpp}\index{/home/andy/\+Documentos/\+Source/yahal/mcu/error/longjmp\+\_\+exception.\+hpp@{/home/andy/\+Documentos/\+Source/yahal/mcu/error/longjmp\+\_\+exception.\+hpp}}
+{\ttfamily \#include $<$setjmp.\+h$>$}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{longjmp__exception_8hpp_ad2746371528bdf15c3910b7bf217dac0}{T\+R\+Y}
+\begin{DoxyCompactList}\small\item\em \begin{DoxyVerb}ID: LONGJMP_EXCEPTION
+\end{DoxyVerb}
+ E\+D\+I\+T\+E\+D\+: 21-\/04-\/2015 A\+U\+T\+H\+O\+R\+: Andres Gongora \end{DoxyCompactList}\item 
+\#define \hyperlink{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}{C\+A\+T\+C\+H}~\} else \{
+\item 
+\#define \hyperlink{longjmp__exception_8hpp_a4071a24a0245b51c00c9bfcf103f9c0f}{E\+N\+D\+T\+R\+Y}
+\item 
+\#define \hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W}(val)~do\{longjmp(ex\+\_\+buf\+\_\+\+\_\+, val);\}while(0)
+\item 
+\#define \hyperlink{longjmp__exception_8hpp_a70195a6405d6a11e6aff66ca1b6c53d7}{T\+E\+S\+T}(testvalue)~do\{if(testvalue == false) \hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W}(-\/1);\}while(0);
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!C\+A\+T\+C\+H@{C\+A\+T\+C\+H}}
+\index{C\+A\+T\+C\+H@{C\+A\+T\+C\+H}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
+\subsubsection[{C\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+T\+C\+H~\} else \{}\label{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}
+
+
+Definition at line 104 of file longjmp\+\_\+exception.\+hpp.
+
+\hypertarget{longjmp__exception_8hpp_a4071a24a0245b51c00c9bfcf103f9c0f}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!E\+N\+D\+T\+R\+Y@{E\+N\+D\+T\+R\+Y}}
+\index{E\+N\+D\+T\+R\+Y@{E\+N\+D\+T\+R\+Y}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
+\subsubsection[{E\+N\+D\+T\+R\+Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+N\+D\+T\+R\+Y}\label{longjmp__exception_8hpp_a4071a24a0245b51c00c9bfcf103f9c0f}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\}                                                       \(\backslash\)
+                                \}\textcolor{keywordflow}{while}(0);
+\end{DoxyCode}
+
+
+Definition at line 105 of file longjmp\+\_\+exception.\+hpp.
+
+\hypertarget{longjmp__exception_8hpp_a70195a6405d6a11e6aff66ca1b6c53d7}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!T\+E\+S\+T@{T\+E\+S\+T}}
+\index{T\+E\+S\+T@{T\+E\+S\+T}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
+\subsubsection[{T\+E\+S\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+E\+S\+T(
+\begin{DoxyParamCaption}
+\item[{}]{testvalue}
+\end{DoxyParamCaption}
+)~do\{if(testvalue == false) {\bf T\+H\+R\+O\+W}(-\/1);\}while(0);}\label{longjmp__exception_8hpp_a70195a6405d6a11e6aff66ca1b6c53d7}
+
+
+Definition at line 114 of file longjmp\+\_\+exception.\+hpp.
+
+\hypertarget{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!T\+H\+R\+O\+W@{T\+H\+R\+O\+W}}
+\index{T\+H\+R\+O\+W@{T\+H\+R\+O\+W}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
+\subsubsection[{T\+H\+R\+O\+W}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+H\+R\+O\+W(
+\begin{DoxyParamCaption}
+\item[{}]{val}
+\end{DoxyParamCaption}
+)~do\{longjmp(ex\+\_\+buf\+\_\+\+\_\+, val);\}while(0)}\label{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}
+
+
+Definition at line 110 of file longjmp\+\_\+exception.\+hpp.
+
+\hypertarget{longjmp__exception_8hpp_ad2746371528bdf15c3910b7bf217dac0}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!T\+R\+Y@{T\+R\+Y}}
+\index{T\+R\+Y@{T\+R\+Y}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
+\subsubsection[{T\+R\+Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+Y}\label{longjmp__exception_8hpp_ad2746371528bdf15c3910b7bf217dac0}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do}\{                                                             \(\backslash\)
+                                        jmp\_buf ex\_buf\_\_;                                       \(\backslash\)
+                                        int16\_t THROW\_VAL;                                      \(\backslash\)
+                                        if( (THROW\_VAL = setjmp(ex\_buf\_\_)) == 0)                \(\backslash\)
+                                        \{
+\end{DoxyCode}
+
+
+\begin{DoxyVerb}ID: LONGJMP_EXCEPTION
+\end{DoxyVerb}
+ E\+D\+I\+T\+E\+D\+: 21-\/04-\/2015 A\+U\+T\+H\+O\+R\+: Andres Gongora 
+
++-\/-\/-\/--- Description\+: -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---+ $\vert$ $\vert$ \begin{TabularC}{1}
+\hline
+\rowcolor{lightgray}{\bf Error handling implementation similar to C++ exceptions in C style  }\\\cline{1-1}
+Implements\+: \\\cline{1-1}
+-\/ T\+R\+Y\+: Start the try. Can T\+H\+R\+O\+W inside it \\\cline{1-1}
+-\/ C\+A\+T\+C\+H\+: Handles the throw \\\cline{1-1}
+-\/ E\+N\+D\+T\+R\+Y\+: Ends the try-\/catch clause \\\cline{1-1}
+-\/ \hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W(val)}\+: Throws with value \char`\"{}val\char`\"{}. Usefull to pass an error code \\\cline{1-1}
+-\/ T\+H\+R\+O\+W\+: Throws with default value -\/1 \\\cline{1-1}
+-\/ T\+H\+R\+O\+W\+\_\+\+V\+A\+L\+: int16\+\_\+t that contains the throw value \\\cline{1-1}
+\\\cline{1-1}
+N\+O\+T\+E\+: braces are optional. Not using them ensures that you dont \\\cline{1-1}
+forget to use E\+N\+D\+T\+R\+Y \\\cline{1-1}
+\\\cline{1-1}
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-1}
+\\\cline{1-1}
+Example 1\+: \char`\"{}ignoring T\+H\+R\+O\+W\+\_\+\+V\+A\+L\char`\"{} and \char`\"{}no braces\char`\"{} \\\cline{1-1}
+T\+R\+Y \\\cline{1-1}
+foo1(); // Do something \\\cline{1-1}
+\hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W(1)}; // Throws with value 1. \\\cline{1-1}
+foo2(); // Never reaches this point \\\cline{1-1}
+C\+A\+T\+C\+H \\\cline{1-1}
+// Handle error. The \char`\"{}1\char`\"{} is ignored \\\cline{1-1}
+E\+N\+D\+T\+R\+Y \\\cline{1-1}
+\\\cline{1-1}
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-1}
+\\\cline{1-1}
+Example 2\+: \char`\"{}throwing a value\char`\"{} \\\cline{1-1}
+T\+R\+Y \\\cline{1-1}
+\{ \\\cline{1-1}
+foo1(); // Do something \\\cline{1-1}
+\hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W(3)}; // Throws with value 3 \\\cline{1-1}
+foo2(); // Never reaches this point \\\cline{1-1}
+\} \\\cline{1-1}
+C\+A\+T\+C\+H \\\cline{1-1}
+\{ \\\cline{1-1}
+// T\+H\+R\+O\+W\+\_\+\+V\+A\+L can be used to pass an error code \\\cline{1-1}
+switch(\+T\+H\+R\+O\+W\+\_\+\+V\+A\+L) \\\cline{1-1}
+\{ \\\cline{1-1}
+case 1\+: error\+\_\+handler\+\_\+1(); break; \\\cline{1-1}
+case 2\+: error\+\_\+handler\+\_\+2(); break; \\\cline{1-1}
+case 3\+: error\+\_\+handler\+\_\+3(); break; \\\cline{1-1}
+default\+: break; \\\cline{1-1}
+\} \\\cline{1-1}
+\} \\\cline{1-1}
+E\+N\+D\+T\+R\+Y; \\\cline{1-1}
+\\\cline{1-1}
+\end{TabularC}
++-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---+ 
+
+Definition at line 99 of file longjmp\+\_\+exception.\+hpp.
+

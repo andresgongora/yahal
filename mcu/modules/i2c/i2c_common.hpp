@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -28,25 +28,25 @@
 #define __MCU_I2C_COMMON_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
-#include "../generic_module.hpp"
+#include "../base_module.hpp"
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{
 	class I2C_common;
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::I2C_master
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::I2C_master
+ * ============================================================================================== */
 
-class mcu::I2C_common : public mcu::GenericModule
+class yahal::mcu::I2C_common : public yahal::mcu::BaseModule
 {
 public:				// CONFIGURATION VALUES
 				struct DIRECTION{ enum type{
@@ -88,5 +88,5 @@ protected:			// CONSTRUCTOR & DESTRUCTOR
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	// __MCU_I2C_COMMON_HPP_INCLUDED__

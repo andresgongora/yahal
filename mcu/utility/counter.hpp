@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -29,13 +29,13 @@
 #define __COUNTER_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <limits>
 //#include "hal/utility/embedded_mutex.hpp"
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
+/* ---------------------------------------------------------------------------------------------- */
 namespace hal{ namespace utility
 {
 	template <typename T> class Counter;
@@ -43,9 +43,9 @@ namespace hal{ namespace utility
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	utility::Counter
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	utility::Counter
+ * ============================================================================================== */
 
 template <typename T>
 class hal::utility::Counter
@@ -109,5 +109,5 @@ private:
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	// __COUNTER_HPP_INCLUDED__

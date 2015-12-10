@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -33,18 +33,18 @@
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace rtos{ namespace api{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace rtos{ namespace api{
 	class Mutex;
 }}}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DECLARATION
+ * ============================================================================================== */
 
-class mcu::rtos::api::Mutex
+class yahal::mcu::rtos::api::Mutex
 {
 public:
 				// CONSTRUTOR & DESTRUCTOR
@@ -60,5 +60,5 @@ public:
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif	// __MCU_RTOS_API_MUTEX_HPP_INCLUDED__

@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -29,14 +29,14 @@
 #define __PUBLISH_SUBSCRIBE_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <cstdlib>
 #include "linked_list.hpp"
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace utility
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace utility
 {
 	template <typename T_MSG> class Publisher;
 	template <typename T_MSG> class Subscriber;
@@ -44,9 +44,9 @@ namespace mcu{ namespace utility
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	utility::Publisher
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	utility::Publisher
+ * ============================================================================================== */
 
 template <typename T_MSG>
 class hal::utility::Publisher
@@ -76,9 +76,9 @@ private:
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::utility::SignalHandler
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::utility::SignalHandler
+ * ============================================================================================== */
 
 template <typename T_MSG>
 class hal::utility::Subscriber : public hal::utility::LinkedListNode<Subscriber<T_MSG> >
@@ -96,5 +96,5 @@ private:
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	// __PUBLISH_SUBSCRIBE_HPP_INCLUDED__

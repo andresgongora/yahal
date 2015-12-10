@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -43,9 +43,9 @@ namespace hal{ namespace utility{
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::utility::MessageStack
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::utility::MessageStack
+ * ============================================================================================== */
 
 template <class T_data, std::size_t T_stackSize>
 class hal::utility::MessageStack : public error::ErrorCode
@@ -134,11 +134,11 @@ public:				// BYTE ACCESS -----------------------------------------------------
 				{
 					if(done())
 					{
-						setErrorCode(ERROR::PUSH_OVERFLOW_ATTEMPT);
+						setErrorCode(Error::PUSH_OVERFLOW_ATTEMPT);
 					}
 					else if(_direction == DIRECTION::OUTGOING)
 					{
-						setErrorCode(ERROR::PUSH_OUTGOING_STACK_ATTEMPT);
+						setErrorCode(Error::PUSH_OUTGOING_STACK_ATTEMPT);
 					}
 					else
 					{
@@ -153,11 +153,11 @@ public:				// BYTE ACCESS -----------------------------------------------------
 
 					if(done())
 					{
-						setErrorCode(ERROR::PULL_OVERFLOW_ATTEMPT);
+						setErrorCode(Error::PULL_OVERFLOW_ATTEMPT);
 					}
 					else if(_direction == DIRECTION::INCOMING)
 					{
-						setErrorCode(ERROR::PULL_INCOMING_STACK_ATTEMPT);
+						setErrorCode(Error::PULL_INCOMING_STACK_ATTEMPT);
 					}
 					else
 					{
@@ -175,15 +175,15 @@ public:				// ACCESS FINISHED INCOMING TRANSMISSION ---------------------------
 				{
 					if(pDestiny == 0)
 					{
-						setErrorCode(ERROR::MESSAGE_DATA_DESTINY_NULL_POINTER);
+						setErrorCode(Error::MESSAGE_DATA_DESTINY_NULL_POINTER);
 					}
 					else if(_direction == DIRECTION::OUTGOING)
 					{
-						setErrorCode(ERROR::UNLOAD_OUTGOING_STACK_ATTEMPT);
+						setErrorCode(Error::UNLOAD_OUTGOING_STACK_ATTEMPT);
 					}
 					else if(done())
 					{
-						setErrorCode(ERROR::UNLOAD_UNFINISHED_RX_ATTEMPT);
+						setErrorCode(Error::UNLOAD_UNFINISHED_RX_ATTEMPT);
 					}
 					else
 					{
@@ -211,7 +211,7 @@ private:			// DEFAULT VALUES --------------------------------------------------
 
 					if(_MAX_SIZE < sizeof(T_data))
 					{
-						setErrorCode(ERROR::STACK_MAX_SIZE_TOO_SMALL);
+						setErrorCode(Error::STACK_MAX_SIZE_TOO_SMALL);
 					}
 					else
 					{
@@ -230,11 +230,11 @@ private:			// SET I/O SIZE ----------------------------------------------------
 				{
 					if(size > _MAX_SIZE)
 					{
-						setErrorCode(ERROR::MESSAGE_SIZE_OVER_MAX_SIZE);
+						setErrorCode(Error::MESSAGE_SIZE_OVER_MAX_SIZE);
 					}
 					else if(size == 0)
 					{
-						setErrorCode(ERROR::MESSAGE_SIZE_ZERO);
+						setErrorCode(Error::MESSAGE_SIZE_ZERO);
 					}
 					else
 					{
@@ -256,11 +256,11 @@ private:			// INITIALIZE STACK DATA -------------------------------------------
 				{
 					if(pSource == 0)
 					{
-						setErrorCode(ERROR::MESSAGE_DATA_SOURCE_NULL_POINTER);
+						setErrorCode(Error::MESSAGE_DATA_SOURCE_NULL_POINTER);
 					}
 					else if(_direction == DIRECTION::INCOMING)
 					{
-						setErrorCode(ERROR::LOAD_INCOMING_STACK_ATTEMPT);
+						setErrorCode(Error::LOAD_INCOMING_STACK_ATTEMPT);
 					}
 					else
 					{
@@ -280,5 +280,5 @@ private:			// PRIVATE VARIABLES -----------------------------------------------
 };
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	//__MESSAGESTACK_HPP_INCLUDED__

@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -24,24 +24,23 @@
 
 
 
-
 #ifndef __MCU_MSP430F5309_HPP_INCLUDED__
 #define __MCU_MSP430F5309_HPP_INCLUDED__
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
-#include "../../mcu_config.hpp"
+/* ---------------------------------------------------------------------------------------------- */
+#include "../../config/mcu_config.hpp"
 #if MCU_DEVICE == MCU_MSP430F5309
 
-#include <msp430f5309.h>
 
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	MODULES
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+
+/* ============================================================================================== */
+ *	MODULES
+ * ============================================================================================== */
 
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
@@ -58,6 +57,6 @@
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif	// MCU_DEVICE == MCU_MSP430F5309
 #endif	// __MCU_MSP430F5309_HPP_INCLUDED__

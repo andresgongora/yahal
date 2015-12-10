@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -28,23 +28,23 @@
 #define __MCU_UTILITY_NONCOPYABLE_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace utility
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace utility
 {
 	class Noncopyable;
 }}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	utility::Counter
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	utility::Counter
+ * ============================================================================================== */
 
-class mcu::utility::Noncopyable
+class yahal::mcu::utility::Noncopyable
 {
 protected:			// CONSTRUCTOR & DESTRUCTOR ----------------------------------------
 				Noncopyable()	{}
@@ -60,5 +60,5 @@ protected:			// CONSTRUCTOR & DESTRUCTOR ---------------------------------------
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	// __MCU_UTILITY_NONCOPYABLE_HPP_INCLUDED__

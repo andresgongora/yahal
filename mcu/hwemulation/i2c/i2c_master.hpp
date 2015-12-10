@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -28,7 +28,7 @@
 #define __MCU_HWEMULATION_I2C_MASTER_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "../hwemulation_config.hpp"
 #ifdef __MCU_HWEMULATION_I2C_MASTER_ENABLED__
 
@@ -38,18 +38,18 @@
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace hwemulation{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace hwemulation{
 	class I2C_master;
-}}
+}}}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION::I2C_MASTER
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DECLARATION::I2C_MASTER
+ * ============================================================================================== */
 
-class mcu::hwemulation::I2C_master : public mcu::I2C_master
+class yahal::mcu::hwemulation::I2C_master : public yahal::mcu::I2C_master
 {
 public:
 				// CONSTRUCTOR -----------------------------------------------------
@@ -61,7 +61,7 @@ public:
 
 
 private:			// MODULE IMPLEMENTATION -------------------------------------------
-	void			start(uint8_t slaveAddress, DIRECTION::type direction);
+	void			start(uint8_t slaveAddress, DIRECTION::Type direction);
 	void			stop(void);
 	void			acknowledge(bool ack);
 	void			writeBufferTX(uint8_t byte);
@@ -130,17 +130,17 @@ private:			// PIN -------------------------------------------------------------
 
 				// HW EMULATION
 	uint8_t			_slaveAddress;
-	DIRECTION::type		_direction;
+	DIRECTION::Type		_direction;
 	uint8_t 		_bufferTX;
 	uint8_t			_bufferRX;
 	bool			_sendStart;
 	bool			_sendStop;
-	BUFFER_STATUS::type	_bufferTXStatus;
-	BUFFER_STATUS::type	_bufferRXStatus;
+	BUFFER_STATUS::Type	_bufferTXStatus;
+	BUFFER_STATUS::Type	_bufferRXStatus;
 	bool			_receivedNack;
 };
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MCU_HWEMULATION_I2C_MASTER_ENABLED__
 #endif // __MCU_HWEMULATION_I2C_MASTER_HPP_INCLUDED__

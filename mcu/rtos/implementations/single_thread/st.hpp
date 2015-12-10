@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -32,12 +32,12 @@
 /** ---- INCLUDE ------------------------------------------------------------------------------- **/
 #include "../../rtos.hpp"
 #if MCU_RTOS == MCU_RTOS_SINGLE_THREAD
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 
 #include "st_mutex.hpp"
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif	// MCU_RTOS == MCU_RTOS_SINGLE_THREAD
 #endif	// __MCU_RTOS_ST_MUTEX_HPP_INCLUDED__

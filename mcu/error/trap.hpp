@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -28,11 +28,11 @@
 #define __TRAP_HPP_INCLUDED
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
+/* ---------------------------------------------------------------------------------------------- */
 namespace error{
 
 
@@ -41,9 +41,9 @@ namespace error{
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DECLARATION
+ * ============================================================================================== */
 
 
 void TRAP(const char* description, long int line, int errorCode)
@@ -57,7 +57,7 @@ void TRAP(const char* description, long int line, int errorCode)
 }
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 }	// namespace error
 #endif 	//__TRAP_HPP_INCLUDED
 

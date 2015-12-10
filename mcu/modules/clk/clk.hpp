@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -28,24 +28,23 @@
 #define __MCU_CLK_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
-#include "../generic_module.hpp"
+#include "../base_module.hpp"
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{
 	class Clk;
-}
+}}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::Clk
- ** WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
-
-class mcu::Clk : public mcu::GenericModule
+/***********************************************************************************************//**
+ * Base class for all system clock handling modules.
+ **************************************************************************************************/
+class yahal::mcu::Clk : public yahal::mcu::BaseModule
 {
 public:
 				struct ERROR{ enum type{
@@ -55,11 +54,11 @@ public:
 				};};
 
 
-protected:			// CONSTRUCTOR & DESTRUCTOR ----------------------------------------
+protected:
 	virtual			~Clk(void){}
 
 
-public:				// CONFIGURATION ---------------------------------------------------
+public:
 	virtual bool		setFrequencyHz(uint32_t desiredFrequencyHz) = 0;
 	virtual	uint32_t	getFrequencyHz(void) = 0;
 
@@ -70,5 +69,5 @@ public:				// CONFIGURATION ---------------------------------------------------
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	//__MCU_CLK_HPP_INCLUDED__

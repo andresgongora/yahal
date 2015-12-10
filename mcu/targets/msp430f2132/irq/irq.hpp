@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -29,7 +29,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "hal/mcu/devices/msp430f2132/msp430f2132.hpp"
 #if MCU_DEVICE == MCU_MSP430F2132
 
@@ -37,9 +37,9 @@
 #include "hal/mcu/virtual/irq/irq.hpp"
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Irq
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Irq
+ * ============================================================================================== */
 class hal::uc::msp430f2132::Irq : public hal::uc::Irq
 {
 public:
@@ -50,22 +50,22 @@ public:
 
 
 	// PUBLISHERS
-	utility::Publisher<hal::uc::Irq::I2C::type>	i2c;
-	utility::Publisher<hal::uc::Irq::UART::type>	uart;
-	utility::Publisher<hal::uc::Irq::GPIO::type>	gpio;
+	utility::Publisher<hal::uc::Irq::I2C::Type>	i2c;
+	utility::Publisher<hal::uc::Irq::UART::Type>	uart;
+	utility::Publisher<hal::uc::Irq::GPIO::Type>	gpio;
 };
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Irq :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Irq :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
 namespace hal{namespace uc{namespace msp430f2132{
 	extern hal::uc::msp430f2132::Irq irq;
 }}}
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // MCU_DEVICE == MCU_MSP430F2132
 #endif //__MSP430F2132_IRQ_HPP_INCLUDED__

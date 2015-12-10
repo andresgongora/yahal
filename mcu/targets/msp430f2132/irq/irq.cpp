@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -26,16 +26,16 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <mcu/targets/msp430f2132/irq/irq.hpp>
 #if MCU_DEVICE == MCU_MSP430F2132
 
 #include <msp430f2132.h>
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Irq
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Irq
+ * ============================================================================================== */
 
 void hal::uc::msp430f2132::Irq::enableGlobalInterrupts(void) const
 {
@@ -52,9 +52,9 @@ void hal::uc::msp430f2132::Irq::disableGlobalInterrupts(void) const
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Irq :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Irq :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
 namespace hal{namespace uc{namespace msp430f2132{
 	hal::uc::msp430f2132::Irq irq;
@@ -63,9 +63,9 @@ namespace hal{namespace uc{namespace msp430f2132{
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	INTERRUPT SERVICE ROUTINES
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	INTERRUPT SERVICE ROUTINES
+ * ============================================================================================== */
 
 #pragma vector = USCIAB0RX_VECTOR
 __interrupt void USCIAB0RX_ISR(void)
@@ -122,5 +122,5 @@ __interrupt void USCIAB0TX_ISR(void)
 }
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // MCU_DEVICE == MCU_MSP430F2132

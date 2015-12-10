@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -32,7 +32,7 @@
 #define __MCU_I2C_MULTIMASTER_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
 #include "i2c_master.hpp"
@@ -40,18 +40,18 @@
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{
 	class I2C_multimaster;
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::I2C_multimaster
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::I2C_multimaster
+ * ============================================================================================== */
 
-class mcu::I2C_multimaster : public mcu::I2C_master, public mcu::I2C_slave
+class yahal::mcu::I2C_multimaster : public yahal::mcu::I2C_master, public yahal::mcu::I2C_slave
 {
 protected:			// CONTRUSTOR & DESTRUCTOR
 				I2C_multimaster(void);
@@ -103,14 +103,14 @@ private:
 
 
 private:			// EVENT CALLBACKS
-	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleReceivedStart;
-	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleReceivedStop;
-	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleReceivedNack;
-	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleBufferTXEmpty;
-	mcu::utility::Callback<mcu::I2C_multimaster,void> _callbackHandleBufferRXFull;*/
+	yahal::mcu::utility::Callback<yahal::mcu::I2C_multimaster,void> _callbackHandleReceivedStart;
+	yahal::mcu::utility::Callback<yahal::mcu::I2C_multimaster,void> _callbackHandleReceivedStop;
+	yahal::mcu::utility::Callback<yahal::mcu::I2C_multimaster,void> _callbackHandleReceivedNack;
+	yahal::mcu::utility::Callback<yahal::mcu::I2C_multimaster,void> _callbackHandleBufferTXEmpty;
+	yahal::mcu::utility::Callback<yahal::mcu::I2C_multimaster,void> _callbackHandleBufferRXFull;*/
 };
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	// __MCU_I2C_MULTIMASTER_HPP_INCLUDED__

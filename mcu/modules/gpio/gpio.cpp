@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -25,28 +25,28 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "gpio.hpp"
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::Gpio
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::Gpio
+ * ============================================================================================== */
 
 
-mcu::Gpio::Port& mcu::Gpio::operator[](uint8_t portNumber)
+yahal::mcu::Gpio::Port& yahal::mcu::Gpio::operator[](uint8_t portNumber)
 {
 	return port(portNumber);
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::Gpio::Port
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::Gpio::Port
+ * ============================================================================================== */
 
-void mcu::Gpio::Port::toggle(uint8_t times, uint8_t mask)
+void yahal::mcu::Gpio::Port::toggle(uint8_t times, uint8_t mask)
 {
 	for(; times; times--)
 	{
@@ -55,7 +55,7 @@ void mcu::Gpio::Port::toggle(uint8_t times, uint8_t mask)
 }
 
 
-mcu::Gpio::Port::Pin mcu::Gpio::Port::pin(uint8_t pinNumber)
+yahal::mcu::Gpio::Port::Pin yahal::mcu::Gpio::Port::pin(uint8_t pinNumber)
 {
 	if(pinNumber >= 8)
 	{
@@ -63,56 +63,56 @@ mcu::Gpio::Port::Pin mcu::Gpio::Port::pin(uint8_t pinNumber)
 	}
 
 
-	mcu::Gpio::Port::Pin pin(*this, pinNumber);
+	yahal::mcu::Gpio::Port::Pin pin(*this, pinNumber);
 	return pin;
 }
 
 
-mcu::Gpio::Port::Pin mcu::Gpio::Port::operator[](uint8_t pinNumber)
+yahal::mcu::Gpio::Port::Pin yahal::mcu::Gpio::Port::operator[](uint8_t pinNumber)
 {
 	return pin(pinNumber);
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::Gpio::Port::Pin
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::Gpio::Port::Pin
+ * ============================================================================================== */
 
-mcu::Gpio::Port::Pin::Pin(mcu::Gpio::Port& port, uint8_t pinNumber) :
+yahal::mcu::Gpio::Port::Pin::Pin(yahal::mcu::Gpio::Port& port, uint8_t pinNumber) :
 	_port(port),
 	_pinNumber(pinNumber)
 {}
 
 
-bool mcu::Gpio::Port::Pin::config(DIRECTION::type direction, RESISTOR::type resistor)
+bool yahal::mcu::Gpio::Port::Pin::config(DIRECTION::Type direction, RESISTOR::Type resistor)
 {
 	return _port.config(direction, resistor, (1<<_pinNumber));
 }
 
 
-void mcu::Gpio::Port::Pin::set(bool b)
+void yahal::mcu::Gpio::Port::Pin::set(bool b)
 {
 	_port.set((b<<_pinNumber), (1<<_pinNumber));
 }
 
 
-bool mcu::Gpio::Port::Pin::get() const
+bool yahal::mcu::Gpio::Port::Pin::get() const
 {
 	return _port.get((1<<_pinNumber));
 }
 
 
-bool mcu::Gpio::Port::Pin::getOutput() const
+bool yahal::mcu::Gpio::Port::Pin::getOutput() const
 {
 	return _port.getOutput((1<<_pinNumber));
 }
 
 
-void mcu::Gpio::Port::Pin::toggle(uint8_t times)
+void yahal::mcu::Gpio::Port::Pin::toggle(uint8_t times)
 {
 	_port.toggle(times, (1<<_pinNumber));
 }
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */

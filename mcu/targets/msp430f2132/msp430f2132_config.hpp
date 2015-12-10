@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -30,15 +30,15 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "../../targets/msp430f2132/msp430f2132.hpp"
 #if MCU_DEVICE == MCU_MSP430F2132
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	CONFIGURATION
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	CONFIGURATION
+ * ============================================================================================== */
 
 #define __MSP430F2132_CLK_ENABLED__
 #define __MSP430F2132_WDT_ENABLED__
@@ -46,6 +46,6 @@
 #define __MSP430F2132_I2C_MASTER_ENABLED__
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // MCU_DEVICE == MCU_MSP430F2132
 #endif //__MSP430F2132_CONFIGHPP_INCLUDED__

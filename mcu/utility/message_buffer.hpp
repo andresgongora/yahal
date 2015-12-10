@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -42,9 +42,9 @@ namespace hal{ namespace utility{
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::utility::MessageBuffer
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::utility::MessageBuffer
+ * ============================================================================================== */
 
 template <class T_data, std::size_t T_bufferSize>
 class hal::utility::MessageBuffer : public error::ErrorCode
@@ -99,7 +99,7 @@ public:				// INITIALIZATION --------------------------------------------------
 
 					if(T_bufferSize < sizeof(T_data))
 					{
-						setErrorCode(ERROR::STACKT_BUFFER_SIZE_TOO_SMALL);
+						setErrorCode(Error::STACKT_BUFFER_SIZE_TOO_SMALL);
 					}
 					else
 					{
@@ -117,7 +117,7 @@ public:				// PUSH & POP ------------------------------------------------------
 				{
 					if(allPushed())
 					{
-						setErrorCode(ERROR::PUSH_OVERFLOW_ATTEMPT);
+						setErrorCode(Error::PUSH_OVERFLOW_ATTEMPT);
 					}
 					else
 					{
@@ -130,7 +130,7 @@ public:				// PUSH & POP ------------------------------------------------------
 				{
 					if(pSource == 0)
 					{
-						setErrorCode(ERROR::MESSAGE_DATA_SOURCE_NULL_POINTER);
+						setErrorCode(Error::MESSAGE_DATA_SOURCE_NULL_POINTER);
 					}
 					else
 					{
@@ -146,11 +146,11 @@ public:				// PUSH & POP ------------------------------------------------------
 
 					if(allPushed()==false)
 					{
-						setErrorCode(ERROR::POP_NOT_FULLY_PUSHED_BUFFER_ATTEMPT);
+						setErrorCode(Error::POP_NOT_FULLY_PUSHED_BUFFER_ATTEMPT);
 					}
 					else if(allPopped())
 					{
-						setErrorCode(ERROR::POP_OVERFLOW_ATTEMPT);
+						setErrorCode(Error::POP_OVERFLOW_ATTEMPT);
 					}
 					else
 					{
@@ -164,7 +164,7 @@ public:				// PUSH & POP ------------------------------------------------------
 				{
 					if(pDestiny == 0)
 					{
-						setErrorCode(ERROR::MESSAGE_DATA_DESTINY_NULL_POINTER);
+						setErrorCode(Error::MESSAGE_DATA_DESTINY_NULL_POINTER);
 					}
 					else
 					{
@@ -190,11 +190,11 @@ private:			// SET I/O SIZE ----------------------------------------------------
 				{
 					if(size > T_bufferSize)
 					{
-						setErrorCode(ERROR::MESSAGE_SIZE_OVERT_BUFFER_SIZE);
+						setErrorCode(Error::MESSAGE_SIZE_OVERT_BUFFER_SIZE);
 					}
 					else if(size == 0)
 					{
-						setErrorCode(ERROR::MESSAGE_SIZE_ZERO);
+						setErrorCode(Error::MESSAGE_SIZE_ZERO);
 					}
 					else
 					{
@@ -222,5 +222,5 @@ private:			// PRIVATE VARIABLES -----------------------------------------------
 };
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	//__MESSAGE_BUFFER_HPP_INCLUDED__

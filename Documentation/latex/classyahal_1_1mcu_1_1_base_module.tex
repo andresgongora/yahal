@@ -1,0 +1,136 @@
+\hypertarget{classyahal_1_1mcu_1_1_base_module}{}\section{yahal\+:\+:mcu\+:\+:Base\+Module Class Reference}
+\label{classyahal_1_1mcu_1_1_base_module}\index{yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}}
+
+
+Base class for all M\+C\+U modules.  
+
+
+
+
+{\ttfamily \#include $<$base\+\_\+module.\+hpp$>$}
+
+Inheritance diagram for yahal\+:\+:mcu\+:\+:Base\+Module\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classyahal_1_1mcu_1_1_base_module}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classyahal_1_1mcu_1_1_base_module_ac2f9ef6ef85ac6cabe1f1f4837c15ef5}{init} (void)
+\begin{DoxyCompactList}\small\item\em Public initialization method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classyahal_1_1mcu_1_1_base_module_a195c83d8bc809e4d251b667f99a4c743}{Base\+Module} (void)
+\item 
+virtual \hyperlink{classyahal_1_1mcu_1_1_base_module_a4172f456ed518f9a75053c3749882d95}{$\sim$\+Base\+Module} (void)
+\item 
+void \hyperlink{classyahal_1_1mcu_1_1_base_module_a01542ca9289d485181f2600ffbfb8d16}{open} (void)
+\begin{DoxyCompactList}\small\item\em Prepare module for exclusive operation. \end{DoxyCompactList}\item 
+void \hyperlink{classyahal_1_1mcu_1_1_base_module_a1bb5f4e1f70eac7eee3aba55b46dd7f0}{close} (void)
+\begin{DoxyCompactList}\small\item\em Releases module. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classyahal_1_1mcu_1_1_base_module_a8416501d52480b5d617115b1e248b471}{do\+Init} (void)=0
+\begin{DoxyCompactList}\small\item\em Must be implemented by each module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base class for all M\+C\+U modules. 
+
+This class implements all methods that are common to all modules. It also inherits from noncopyable, prohibiting the copy of any class, as they are asociated to physical resources. 
+
+Definition at line 54 of file base\+\_\+module.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classyahal_1_1mcu_1_1_base_module_a195c83d8bc809e4d251b667f99a4c743}{}\index{yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}!Base\+Module@{Base\+Module}}
+\index{Base\+Module@{Base\+Module}!yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}}
+\subsubsection[{Base\+Module(void)}]{\setlength{\rightskip}{0pt plus 5cm}yahal\+::mcu\+::\+Base\+Module\+::\+Base\+Module (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classyahal_1_1mcu_1_1_base_module_a195c83d8bc809e4d251b667f99a4c743}
+
+
+Definition at line 57 of file base\+\_\+module.\+hpp.
+
+\hypertarget{classyahal_1_1mcu_1_1_base_module_a4172f456ed518f9a75053c3749882d95}{}\index{yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}!````~Base\+Module@{$\sim$\+Base\+Module}}
+\index{````~Base\+Module@{$\sim$\+Base\+Module}!yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}}
+\subsubsection[{$\sim$\+Base\+Module(void)}]{\setlength{\rightskip}{0pt plus 5cm}virtual yahal\+::mcu\+::\+Base\+Module\+::$\sim$\+Base\+Module (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{classyahal_1_1mcu_1_1_base_module_a4172f456ed518f9a75053c3749882d95}
+
+
+Definition at line 58 of file base\+\_\+module.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classyahal_1_1mcu_1_1_base_module_a1bb5f4e1f70eac7eee3aba55b46dd7f0}{}\index{yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}!close@{close}}
+\index{close@{close}!yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}}
+\subsubsection[{close(void)}]{\setlength{\rightskip}{0pt plus 5cm}void yahal\+::mcu\+::\+Base\+Module\+::close (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classyahal_1_1mcu_1_1_base_module_a1bb5f4e1f70eac7eee3aba55b46dd7f0}
+
+
+Releases module. 
+
+
+
+Definition at line 85 of file base\+\_\+module.\+hpp.
+
+\hypertarget{classyahal_1_1mcu_1_1_base_module_a8416501d52480b5d617115b1e248b471}{}\index{yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}!do\+Init@{do\+Init}}
+\index{do\+Init@{do\+Init}!yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}}
+\subsubsection[{do\+Init(void)=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void yahal\+::mcu\+::\+Base\+Module\+::do\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{classyahal_1_1mcu_1_1_base_module_a8416501d52480b5d617115b1e248b471}
+
+
+Must be implemented by each module. 
+
+\hypertarget{classyahal_1_1mcu_1_1_base_module_ac2f9ef6ef85ac6cabe1f1f4837c15ef5}{}\index{yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}!init@{init}}
+\index{init@{init}!yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}}
+\subsubsection[{init(void)}]{\setlength{\rightskip}{0pt plus 5cm}bool yahal\+::mcu\+::\+Base\+Module\+::init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classyahal_1_1mcu_1_1_base_module_ac2f9ef6ef85ac6cabe1f1f4837c15ef5}
+
+
+Public initialization method. 
+
+It calls do\+Init. \begin{DoxySeeAlso}{See also}
+\hyperlink{classyahal_1_1mcu_1_1_base_module_a8416501d52480b5d617115b1e248b471}{do\+Init()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 68 of file base\+\_\+module.\+hpp.
+
+\hypertarget{classyahal_1_1mcu_1_1_base_module_a01542ca9289d485181f2600ffbfb8d16}{}\index{yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}!open@{open}}
+\index{open@{open}!yahal\+::mcu\+::\+Base\+Module@{yahal\+::mcu\+::\+Base\+Module}}
+\subsubsection[{open(void)}]{\setlength{\rightskip}{0pt plus 5cm}void yahal\+::mcu\+::\+Base\+Module\+::open (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classyahal_1_1mcu_1_1_base_module_a01542ca9289d485181f2600ffbfb8d16}
+
+
+Prepare module for exclusive operation. 
+
+
+
+Definition at line 78 of file base\+\_\+module.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andy/\+Documentos/\+Source/yahal/mcu/modules/\hyperlink{base__module_8hpp}{base\+\_\+module.\+hpp}\end{DoxyCompactItemize}

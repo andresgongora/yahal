@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -26,7 +26,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "i2c_master.hpp"
 #if defined(__MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__MCU_MSP430F5309_I2C_MASTER_ENABLED__)
 
@@ -34,12 +34,12 @@
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::I2C_master
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::I2C_master
+ * ============================================================================================== */
 
 /** ============================================================================= INITIALIZATION **/
-void mcu::targets::msp430f5309::I2C_master::doInit(void)
+void yahal::mcu::targets::msp430f5309::I2C_master::doInit(void)
 {
 	UCB1CTL1 |= UCSWRST;			// Enable SW reset while we configure the module
 	P4SEL |= BIT1 + BIT2;			// Assign I2C pins to USCI_B0
@@ -56,7 +56,7 @@ void mcu::targets::msp430f5309::I2C_master::doInit(void)
 
 
 /** ====================================================================== MODULE IMPLEMENTATION **/
-void mcu::targets::msp430f5309::I2C_master::start(uint8_t slaveAddress, DIRECTION::type direction)
+void yahal::mcu::targets::msp430f5309::I2C_master::start(uint8_t slaveAddress, DIRECTION::Type direction)
 {
 	while(UCB1STAT & UCBBUSY);					// Recommended to check
 
@@ -69,7 +69,7 @@ void mcu::targets::msp430f5309::I2C_master::start(uint8_t slaveAddress, DIRECTIO
 
 
 
-void mcu::targets::msp430f5309::I2C_master::stop(void)
+void yahal::mcu::targets::msp430f5309::I2C_master::stop(void)
 {
 	while(UCB1CTL1 & UCTXSTT);	// Wait if START in progress
 	UCB1CTL1 |= UCTXSTP;
@@ -77,21 +77,21 @@ void mcu::targets::msp430f5309::I2C_master::stop(void)
 
 
 
-void mcu::targets::msp430f5309::I2C_master::writeBufferTX(uint8_t byte)
+void yahal::mcu::targets::msp430f5309::I2C_master::writeBufferTX(uint8_t byte)
 {
 	UCB1TXBUF = byte;
 }
 
 
 
-uint8_t mcu::targets::msp430f5309::I2C_master::readBufferRX(void)
+uint8_t yahal::mcu::targets::msp430f5309::I2C_master::readBufferRX(void)
 {
 	return UCB1RXBUF;
 }
 
 
 
-void mcu::targets::msp430f5309::I2C_master::awaitTransmissionEnd(void)
+void yahal::mcu::targets::msp430f5309::I2C_master::awaitTransmissionEnd(void)
 {
 	while(UCB1STAT & UCBBUSY);
 //	UCB1CTL1 &= ~(UCTR + UCTXNACK + UCTXSTP + UCTXSTT);
@@ -99,5 +99,5 @@ void mcu::targets::msp430f5309::I2C_master::awaitTransmissionEnd(void)
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif	// defined(__MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__MCU_MSP430F5309_I2C_MASTER_ENABLED__)

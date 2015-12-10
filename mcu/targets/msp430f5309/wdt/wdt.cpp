@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -26,39 +26,39 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "wdt.hpp"
 #ifdef __MCU_MSP430F5309_WDT_ENABLED__
 
 #include <msp430f5309.h>
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DEFINITION::WDT
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DEFINITION::WDT
+ * ============================================================================================== */
 
 /** ============================================================================= INITIALIZATION **/
 
-void mcu::targets::msp430f5309::Wdt::doInit(void)
+void yahal::mcu::targets::msp430f5309::Wdt::doInit(void)
 {
 	WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
 }
 
 
-void mcu::targets::msp430f5309::Wdt::reset(void)
+void yahal::mcu::targets::msp430f5309::Wdt::reset(void)
 {
 	init();
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Wdt :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Wdt :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
-namespace mcu{
-	mcu::targets::msp430f5309::Wdt wdt;
+namespace yahal{ namespace mcu{
+	yahal::mcu::targets::msp430f5309::Wdt wdt;
 }
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MCU_MSP430F5309_WDT_ENABLED__

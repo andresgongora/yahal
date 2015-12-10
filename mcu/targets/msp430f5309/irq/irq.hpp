@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -63,7 +63,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "../msp430f5309.hpp"
 #include "hal/utility/publish_subscribe.hpp"
 
@@ -74,9 +74,9 @@
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Irq
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Irq
+ * ============================================================================================== */
 class hal::uc::msp430f2132::Irq : public hal::uc::Irq
 {
 public:
@@ -87,21 +87,21 @@ public:
 
 
 	// PUBLISHERS
-	utility::Publisher<hal::uc::Irq::Code::I2C::type>	i2c;
-	utility::Publisher<hal::uc::Irq::Code::UART::type>	uart;
-	utility::Publisher<hal::uc::Irq::Code::GPIO::type>	gpio;
+	utility::Publisher<hal::uc::Irq::Code::I2C::Type>	i2c;
+	utility::Publisher<hal::uc::Irq::Code::UART::Type>	uart;
+	utility::Publisher<hal::uc::Irq::Code::GPIO::Type>	gpio;
 };
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Irq :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Irq :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
 namespace hal{namespace uc{namespace msp430f2132{
 	extern hal::uc::msp430f2132::Irq irq;
 }}}
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	//__MSP430F2132_IRQ_HPP_INCLUDED__

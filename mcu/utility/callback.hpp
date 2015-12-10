@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -28,25 +28,25 @@
 #define __MCU_CALLBACK_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace utility{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace utility{
 	template <typename T_ARGUMENT> class Callback;
 }}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	utility::Callback
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	utility::Callback
+ * ============================================================================================== */
 
 /** ============================================================================== WITH ARGUMENT **/
 
 template <typename T_ARGUMENT>
-class mcu::utility::Callback
+class yahal::mcu::utility::Callback
 {
 public:				// CONSTRUCTOR & DESTRUCTOR
 				Callback() : _fpCallBackFunction(NULL)	{}
@@ -79,7 +79,7 @@ private:			// PRIVATE VARIABLES
 /** =========================================================================== WITHOUT ARGUMENT **/
 
 template <>
-class mcu::utility::Callback<void>
+class yahal::mcu::utility::Callback<void>
 {
 public:				// CONSTRUCTOR & DESTRUCTOR
 				Callback() : _fpCallBackFunction(NULL)	{}
@@ -110,5 +110,5 @@ private:			// PRIVATE VARIABLES
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	// __MCU_CALLBACK_HPP_INCLUDED__

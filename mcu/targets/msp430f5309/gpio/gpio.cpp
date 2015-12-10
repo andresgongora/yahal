@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -25,7 +25,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "gpio.hpp"
 #ifdef __MCU_MSP430F5309_GPIO_ENABLED__
 
@@ -33,11 +33,11 @@
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Gpio
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Gpio
+ * ============================================================================================== */
 
-void mcu::targets::msp430f5309::Gpio::doInit(void)
+void yahal::mcu::targets::msp430f5309::Gpio::doInit(void)
 {
 	bool success = true;
 
@@ -50,11 +50,11 @@ void mcu::targets::msp430f5309::Gpio::doInit(void)
 	success &= _port5.config(DIRECTION::INPUT, RESISTOR::DISABLED);
 	success &= _port6.config(DIRECTION::INPUT, RESISTOR::DISABLED);
 
-	if(!success)	this->setErrorCode(ERROR::COULD_NOT_INITIALIZE_PORT);
+	if(!success)	this->setErrorCode(Error::COULD_NOT_INITIALIZE_PORT);
 }
 
 
-mcu::Gpio::Port& mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
+yahal::mcu::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
 {
 	switch(portNumber)
 	{
@@ -65,19 +65,19 @@ mcu::Gpio::Port& mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
 	case 5: return _port5;
 	case 6: return _port6;
 	default:
-		this->setErrorCode(ERROR::TRYING_TO_ACCESS_NON_EXISTANT_PORT);
+		this->setErrorCode(Error::TRYING_TO_ACCESS_NON_EXISTANT_PORT);
 		for(;;);	//TODO: TRAP
 	}
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Gpio::Port1
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Gpio::Port1
+ * ============================================================================================== */
 
-bool mcu::targets::msp430f5309::Gpio::Port1::config(	DIRECTION::type direction,
-						RESISTOR::type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port1::config(	DIRECTION::Type direction,
+						RESISTOR::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
@@ -104,7 +104,7 @@ bool mcu::targets::msp430f5309::Gpio::Port1::config(	DIRECTION::type direction,
 	return true;
 }
 
-void mcu::targets::msp430f5309::Gpio::Port1::set(uint8_t value, uint8_t mask)
+void yahal::mcu::targets::msp430f5309::Gpio::Port1::set(uint8_t value, uint8_t mask)
 {
 	// AUXILIAR VARIABLES
 	uint8_t oldRegOut = P1OUT;
@@ -116,17 +116,17 @@ void mcu::targets::msp430f5309::Gpio::Port1::set(uint8_t value, uint8_t mask)
 	P1OUT = ( oldRegOut & andMask ) | orMask;
 }
 
-uint8_t	mcu::targets::msp430f5309::Gpio::Port1::get(uint8_t mask)const {return P1IN & mask;}
-uint8_t	mcu::targets::msp430f5309::Gpio::Port1::getOutput(uint8_t mask)const {return P1OUT & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::get(uint8_t mask)const {return P1IN & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::getOutput(uint8_t mask)const {return P1OUT & mask;}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Gpio::Port2
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Gpio::Port2
+ * ============================================================================================== */
 
-bool mcu::targets::msp430f5309::Gpio::Port2::config(	DIRECTION::type direction,
-						RESISTOR::type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port2::config(	DIRECTION::Type direction,
+						RESISTOR::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
@@ -153,7 +153,7 @@ bool mcu::targets::msp430f5309::Gpio::Port2::config(	DIRECTION::type direction,
 	return true;
 }
 
-void mcu::targets::msp430f5309::Gpio::Port2::set(uint8_t value, uint8_t mask)
+void yahal::mcu::targets::msp430f5309::Gpio::Port2::set(uint8_t value, uint8_t mask)
 {
 	// AUXILIAR VARIABLES
 	uint8_t oldRegOut = P2OUT;
@@ -165,17 +165,17 @@ void mcu::targets::msp430f5309::Gpio::Port2::set(uint8_t value, uint8_t mask)
 	P2OUT = ( oldRegOut & andMask ) | orMask;
 }
 
-uint8_t	mcu::targets::msp430f5309::Gpio::Port2::get(uint8_t mask)const {return P2IN & mask;}
-uint8_t	mcu::targets::msp430f5309::Gpio::Port2::getOutput(uint8_t mask)const {return P2OUT & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port2::get(uint8_t mask)const {return P2IN & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port2::getOutput(uint8_t mask)const {return P2OUT & mask;}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Gpio::Port3
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Gpio::Port3
+ * ============================================================================================== */
 
-bool mcu::targets::msp430f5309::Gpio::Port3::config(	DIRECTION::type direction,
-						RESISTOR::type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port3::config(	DIRECTION::Type direction,
+						RESISTOR::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
@@ -202,7 +202,7 @@ bool mcu::targets::msp430f5309::Gpio::Port3::config(	DIRECTION::type direction,
 	return true;
 }
 
-void mcu::targets::msp430f5309::Gpio::Port3::set(uint8_t value, uint8_t mask)
+void yahal::mcu::targets::msp430f5309::Gpio::Port3::set(uint8_t value, uint8_t mask)
 {
 	// AUXILIAR VARIABLES
 	uint8_t oldRegOut = P3OUT;
@@ -214,17 +214,17 @@ void mcu::targets::msp430f5309::Gpio::Port3::set(uint8_t value, uint8_t mask)
 	P3OUT = ( oldRegOut & andMask ) | orMask;
 }
 
-uint8_t	mcu::targets::msp430f5309::Gpio::Port3::get(uint8_t mask)const {return P3IN & mask;}
-uint8_t	mcu::targets::msp430f5309::Gpio::Port3::getOutput(uint8_t mask)const {return P3OUT & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port3::get(uint8_t mask)const {return P3IN & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port3::getOutput(uint8_t mask)const {return P3OUT & mask;}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Gpio::Port4
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Gpio::Port4
+ * ============================================================================================== */
 
-bool mcu::targets::msp430f5309::Gpio::Port4::config(	DIRECTION::type direction,
-						RESISTOR::type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port4::config(	DIRECTION::Type direction,
+						RESISTOR::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
@@ -251,7 +251,7 @@ bool mcu::targets::msp430f5309::Gpio::Port4::config(	DIRECTION::type direction,
 	return true;
 }
 
-void mcu::targets::msp430f5309::Gpio::Port4::set(uint8_t value, uint8_t mask)
+void yahal::mcu::targets::msp430f5309::Gpio::Port4::set(uint8_t value, uint8_t mask)
 {
 	// AUXILIAR VARIABLES
 	uint8_t oldRegOut = P4OUT;
@@ -263,17 +263,17 @@ void mcu::targets::msp430f5309::Gpio::Port4::set(uint8_t value, uint8_t mask)
 	P4OUT = ( oldRegOut & andMask ) | orMask;
 }
 
-uint8_t	mcu::targets::msp430f5309::Gpio::Port4::get(uint8_t mask)const {return P4IN & mask;}
-uint8_t	mcu::targets::msp430f5309::Gpio::Port4::getOutput(uint8_t mask)const {return P4OUT & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port4::get(uint8_t mask)const {return P4IN & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port4::getOutput(uint8_t mask)const {return P4OUT & mask;}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Gpio::Port5
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Gpio::Port5
+ * ============================================================================================== */
 
-bool mcu::targets::msp430f5309::Gpio::Port5::config(	DIRECTION::type direction,
-					 	RESISTOR::type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port5::config(	DIRECTION::Type direction,
+					 	RESISTOR::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
@@ -300,7 +300,7 @@ bool mcu::targets::msp430f5309::Gpio::Port5::config(	DIRECTION::type direction,
 	return true;
 }
 
-void mcu::targets::msp430f5309::Gpio::Port5::set(uint8_t value, uint8_t mask)
+void yahal::mcu::targets::msp430f5309::Gpio::Port5::set(uint8_t value, uint8_t mask)
 {
 	// AUXILIAR VARIABLES
 	uint8_t oldRegOut = P5OUT;
@@ -312,17 +312,17 @@ void mcu::targets::msp430f5309::Gpio::Port5::set(uint8_t value, uint8_t mask)
 	P5OUT = ( oldRegOut & andMask ) | orMask;
 }
 
-uint8_t	mcu::targets::msp430f5309::Gpio::Port5::get(uint8_t mask)const {return P5IN & mask;}
-uint8_t	mcu::targets::msp430f5309::Gpio::Port5::getOutput(uint8_t mask)const {return P5OUT & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port5::get(uint8_t mask)const {return P5IN & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port5::getOutput(uint8_t mask)const {return P5OUT & mask;}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Gpio::Port6
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Gpio::Port6
+ * ============================================================================================== */
 
-bool mcu::targets::msp430f5309::Gpio::Port6::config(	DIRECTION::type direction,
-						RESISTOR::type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port6::config(	DIRECTION::Type direction,
+						RESISTOR::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
@@ -349,7 +349,7 @@ bool mcu::targets::msp430f5309::Gpio::Port6::config(	DIRECTION::type direction,
 	return true;
 }
 
-void mcu::targets::msp430f5309::Gpio::Port6::set(uint8_t value, uint8_t mask)
+void yahal::mcu::targets::msp430f5309::Gpio::Port6::set(uint8_t value, uint8_t mask)
 {
 	// AUXILIAR VARIABLES
 	uint8_t oldRegOut = P6OUT;
@@ -361,18 +361,18 @@ void mcu::targets::msp430f5309::Gpio::Port6::set(uint8_t value, uint8_t mask)
 	P6OUT = ( oldRegOut & andMask ) | orMask;
 }
 
-uint8_t	mcu::targets::msp430f5309::Gpio::Port6::get(uint8_t mask)const {return P6IN & mask;}
-uint8_t	mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)const {return P6OUT & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::get(uint8_t mask)const {return P6IN & mask;}
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)const {return P6OUT & mask;}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Gpio :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Gpio :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
-namespace mcu{
-	mcu::targets::msp430f5309::Gpio gpio;
+namespace yahal{ namespace mcu{
+	yahal::mcu::targets::msp430f5309::Gpio gpio;
 }
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MCU_MSP430F5309_GPIO_ENABLED__

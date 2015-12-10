@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -27,7 +27,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "i2c_slave.hpp"
 #if defined(__MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__MCU_MSP430F5309_I2C_SLAVE_ENABLED__)
 
@@ -35,13 +35,13 @@
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DEFINITION::M430F5309_I2C_SLAVE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DEFINITION::M430F5309_I2C_SLAVE
+ * ============================================================================================== */
 
 /** ============================================================================= INITIALIZATION **/
 
-mcu::targets::msp430f5309::I2C_slave::I2C_slave(uint8_t ownAddress) :
+yahal::mcu::targets::msp430f5309::I2C_slave::I2C_slave(uint8_t ownAddress) :
 	_ownAddress(ownAddress)
 {
 
@@ -49,7 +49,7 @@ mcu::targets::msp430f5309::I2C_slave::I2C_slave(uint8_t ownAddress) :
 
 
 
-void mcu::targets::msp430f5309::I2C_slave::doInit(void)
+void yahal::mcu::targets::msp430f5309::I2C_slave::doInit(void)
 {
 	UCB1CTL1 |= UCSWRST;				// Enable SW reset
 
@@ -65,26 +65,26 @@ void mcu::targets::msp430f5309::I2C_slave::doInit(void)
 
 
 /** =============================================================================== I2C PROTOCOL **/
-void mcu::targets::msp430f5309::I2C_slave::writeBufferTX(uint8_t byte)
+void yahal::mcu::targets::msp430f5309::I2C_slave::writeBufferTX(uint8_t byte)
 {
 	UCB1TXBUF = byte;
 }
 
 
 
-uint8_t mcu::targets::msp430f5309::I2C_slave::readBufferRX(void)
+uint8_t yahal::mcu::targets::msp430f5309::I2C_slave::readBufferRX(void)
 {
 	return UCB1RXBUF;
 }
 
 
 
-bool mcu::targets::msp430f5309::I2C_slave::isIncommingWrite(void)
+bool yahal::mcu::targets::msp430f5309::I2C_slave::isIncommingWrite(void)
 {
 	return (UCB1CTL1 & UCTR);
 }
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif	// defined(__MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__MCU_MSP430F5309_I2C_SLAVE_ENABLED__)

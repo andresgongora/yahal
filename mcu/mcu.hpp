@@ -1,3 +1,26 @@
+	/* 	TODO:
+	 * 	- 	Error Code global y con indicacion de origen del error y
+	 * 		formato legible (pero que sea opcional)
+	 *
+	 * 	- 	IRQ con publish_subscribe pero con RTOS (cola de mensajes etc)
+	 *
+	 *	-	Crear una carpeta config, que contiene mcu_config y una subcarpeta
+	 *		target_config con la config de cada placa. De esta forma el usuario
+	 *		solo debe tocar una carpeta
+	 *
+	 *	-	Dar direccion de I2C_MASTER y opcion a habilitar GENERAL CALL
+	 *		en el contrustror virtual, no en la implementacion,
+	 *		ya que esto son dos parametros que no dependen del mcu.
+	 *
+	 *	- 	Prohibir OWNADDRESS = 0x00 en I2C, ya que es la general call address
+	 *
+	 *	-	En MASTER_I2C: en write poner los punteros a la pila de salida como CONST. No modificamos esos datos
+	 *
+	 *	- BASE MODULE: //TODO: Añadir metodo para solicitar dispositivo (mutex), y al hacerlo borrar codigos de error viejos, comprobar que esta inicializado y todo. La interfaz para comprobar la salud de un modulo deberia estar aqui
+	 *
+	*/
+
+
 // 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //
 
 /*	+-----------------------------------------------------------------------+
@@ -5,7 +28,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -24,37 +47,16 @@
 
 
 
-
-	/* 	TODO:
-	 * 	- 	Error Code global y con indicacion de origen del error y
-	 * 		formato legible (pero que sea opcional)
-	 *
-	 * 	- 	IRQ con publish_subscribe pero con RTOS (cola de mensajes etc)
-	 *
-	 *	-	Crear una carpeta config, que contiene mcu_config y una subcarpeta
-	 *		target_config con la config de cada placa. De esta forma el usuario
-	 *		solo debe tocar una carpeta
-	 *
-	 *	-	Dar direccion de I2C_MASTER y opcion a habilitar GENERAL CALL
-	 *		en el contrustror virtual, no en la implementacion,
-	 *		ya que esto son dos parametros que no dependen del mcu.
-	 *
-	 *	- 	Prohibir OWNADDRESS = 0x00 en I2C, ya que es la general call address
-	 *
-	 *	-	En MASTER_I2C: en write poner los punteros a la pila de salida como CONST. No modificamos esos datos
-	*/
-
 #ifndef __MCU_HPP_INCLUDED__
 #define __MCU_HPP_INCLUDED__
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+// LOAD MCU CONFIGURATION
+#include "config/mcu_config.hpp"
 
 
-
-
-#include "mcu_config.hpp"
+// LOAD CODE
 #include "modules/modules.hpp"
 #include "rtos/rtos.hpp"
 #include "targets/targets.hpp"
@@ -62,7 +64,5 @@
 
 
 
-
-
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif	// __MCU_HPP_INCLUDED__

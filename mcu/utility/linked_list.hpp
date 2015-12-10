@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -28,12 +28,12 @@
 #define __MCU_LINKED_LIST_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <cstdlib>
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace utility
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace utility
 {
 	template <typename T> class LinkedList;
 	template <typename T> class LinkedListNode;
@@ -41,11 +41,9 @@ namespace mcu{ namespace utility
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	utility::LinkedList
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
 template <typename T_NODE>
-class mcu::utility::LinkedList
+class yahal::mcu::utility::LinkedList
 {
 public:				// CONSTRUCTOR & DESTRUCTOR
 				LinkedList()	: _pFirstNode(0), _size(0)	{}
@@ -110,11 +108,11 @@ private:			// PRIVATE VARIABLES
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	utility::LinkedListNode
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+
+
+/* ============================================================================================== */
 template <typename T_NODE>
-class mcu::utility::LinkedListNode
+class yahal::mcu::utility::LinkedListNode
 {
 public:
 				// CONSTRUCTOR & DESTRUCTOR
@@ -139,5 +137,5 @@ private:
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	// __MCU_LINKED_LIST_HPP_INCLUDED__

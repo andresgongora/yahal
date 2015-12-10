@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -30,28 +30,27 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
-#include "../msp430f5309_config.hpp"
+/* ---------------------------------------------------------------------------------------------- */
+#include "../../../config/targets/msp430f5309_config.hpp"
 #ifdef __MCU_MSP430F5309_CLK_ENABLED__
 
 #include "../../../modules/clk/clk.hpp"
 
 
-
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace targets{ namespace msp430f5309{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	class Clk;
-}}}
+}}}}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION::CLK
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
-class mcu::targets::msp430f5309::Clk : public mcu::Clk
+/* ============================================================================================== */
+ *	DECLARATION::CLK
+ * ============================================================================================== */
+class yahal::mcu::targets::msp430f5309::Clk : public yahal::mcu::Clk
 {
 public:
-	struct Frequency{enum type{
+	struct Frequency{enum Type{
 		DCO_1MHz = 1000000,
 		DCO_2MHz = 2000000,
 		DCO_4MHz = 4000000,
@@ -84,15 +83,15 @@ private:
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Clk :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Clk :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
-namespace mcu{
-	extern mcu::targets::msp430f5309::Clk clk;
+namespace yahal{ namespace mcu{
+	extern yahal::mcu::targets::msp430f5309::Clk clk;
 }
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MCU_MSP430F5309_CLK_ENABLED__
 #endif // __MCU_MSP430F5309_CLK_HPP_INCLUDED__

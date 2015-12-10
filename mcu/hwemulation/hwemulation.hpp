@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -29,9 +29,11 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
-#include "hwemulation_config.hpp"
+// LOAD CONFIGURATION
+#include "../config/hwemulation_config.hpp"
 
+
+// LOAD EMULATED MODULES
 #include "i2c/i2c_master.hpp"
 
 
@@ -40,5 +42,5 @@
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __SOFTWARE_HPP_INCLUDED__

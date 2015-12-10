@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -28,44 +28,43 @@
 #define __MCU_GPIO_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
-#include "../generic_module.hpp"
+#include "../base_module.hpp"
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{
 	class Gpio;
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION	mcu::Gpio
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
-
-class mcu::Gpio : public mcu::GenericModule
+/***********************************************************************************************//**
+ * Base class for GPIO modules.
+ **************************************************************************************************/
+class yahal::mcu::Gpio : public yahal::mcu::BaseModule
 {
 public:				// CONFIGURATION VALUES --------------------------------------------
-				struct DIRECTION{enum type{
+				struct Direction{enum Type{
 					INPUT = false,
 					OUTPUT = true
 				};};
 
-				struct RESISTOR{enum type{
+				struct Resistor{enum Type{
 					DISABLED,
 					PULLUP,
 					PULLDOWN
 				};};
 
-				struct ERROR{enum type{
+				struct ERROR{enum Type{
 					NONE = 0,
 					TRYING_TO_ACCESS_NON_EXISTANT_PORT,
 					TRYING_TO_ACCESS_NON_EXISTANT_PIN,
 					COULD_NOT_INITIALIZE_PORT,
-					PULLUP_RESISTOR_NOT_AVAILABLE,
-					PULLDOWN_RESISTOR_NOT_AVAILABLE,
+					PULLUP_Resistor_NOT_AVAILABLE,
+					PULLDOWN_Resistor_NOT_AVAILABLE,
 					OTHER
 				};};
 
@@ -78,11 +77,11 @@ public:				// PORT ACCESS -----------------------------------------------------
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION	mcu::Port
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
-
-class mcu::Gpio::Port
+/***********************************************************************************************//**
+ * Base class for all GPIO Ports.
+ * Declared inside Gpio.
+ **************************************************************************************************/
+class yahal::mcu::Gpio::Port
 {
 
 protected:			// CONSTRUCTOR & DESTRUCTOR ----------------------------------------
@@ -90,8 +89,8 @@ protected:			// CONSTRUCTOR & DESTRUCTOR ---------------------------------------
 
 
 public:				// CONFIGURATION ---------------------------------------------------
-	virtual bool		config(	DIRECTION::type direction = DIRECTION::INPUT,
-					RESISTOR::type resistor = RESISTOR::DISABLED,
+	virtual bool		config(	Direction::Type direction = Direction::INPUT,
+					Resistor::Type resistor = Resistor::DISABLED,
 					uint8_t mask = 0xFF) = 0;
 
 
@@ -99,7 +98,7 @@ public:				// CONTROL ---------------------------------------------------------
 	virtual void		set(uint8_t value, uint8_t mask=0xFF) = 0;
 	virtual uint8_t		get(uint8_t mask=0xFF)const = 0;
 	virtual uint8_t		getOutput(uint8_t mask=0xFF)const = 0;
-	virtual void		toggle(uint8_t times = 1, uint8_t mask=0xFF);
+	virtual void		toggle(uint8_t mask=0xFF);
 
 
 public:				// PIN ACCESS ------------------------------------------------------
@@ -110,34 +109,34 @@ public:				// PIN ACCESS ------------------------------------------------------
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION	mcu::Pin
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
-
-class mcu::Gpio::Port::Pin
+/***********************************************************************************************//**
+ * Base class for all GPIO Pins.
+ * Declared inside Gpio::Port
+ **************************************************************************************************/
+class yahal::mcu::Gpio::Port::Pin
 {
 public:
 				// CONSTRUCTOR & COPY ----------------------------------------------
-				Pin(mcu::Gpio::Port& port, uint8_t pinNumber);
+				Pin(yahal::mcu::Gpio::Port& port, uint8_t pinNumber);
 
 
 				// CONFIGURATION ---------------------------------------------------
-	bool			config(	DIRECTION::type direction = DIRECTION::INPUT,
-					RESISTOR::type resistor = RESISTOR::DISABLED);
+	bool			config(	Direction::Type direction = Direction::INPUT,
+					Resistor::Type resistor = Resistor::DISABLED);
 
 
 				// CONTROL
 	void			set(bool b);
 	bool			get() const;
 	bool			getOutput() const;
-	void			toggle(uint8_t times = 1);
+	void			toggle(void);
 
 private:
 				// PRIVATE VARIABLES
-	mcu::Gpio::Port&	_port;
+	yahal::mcu::Gpio::Port&	_port;
 	const uint8_t		_pinNumber;
 };
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	//__MCU_GPIO_HPP_INCLUDED__

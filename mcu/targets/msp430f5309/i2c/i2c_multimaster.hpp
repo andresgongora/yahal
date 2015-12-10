@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -30,7 +30,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "../msp430f5309_config.hpp"
 #ifdef __MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
 
@@ -41,18 +41,18 @@
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace targets{ namespace msp430f5309{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	class I2C_multimaster;
 }}}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION::I2C_MASTER
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DECLARATION::I2C_MASTER
+ * ============================================================================================== */
 
-class mcu::targets::msp430f5309::I2C_multimaster : public mcu::I2C_multimaster
+class yahal::mcu::targets::msp430f5309::I2C_multimaster : public yahal::mcu::I2C_multimaster
 {
 public:				// CONTRUSTOR & DESTRUCTOR
 				I2C_multimaster(uint8_t ownAddress);
@@ -65,7 +65,7 @@ private:			// INITIALIZATION
 
 public:
 //private:			// MODULE IMPLEMENTATION
-	virtual void		start(uint8_t slaveAddress, DIRECTION::type direction);
+	virtual void		start(uint8_t slaveAddress, DIRECTION::Type direction);
 	virtual void		stop(void);
 	virtual void		writeBufferTX(uint8_t byte);
 	virtual uint8_t		readBufferRX(void);
@@ -81,6 +81,6 @@ private:			// PRIVATE VARIABLES
 };
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
 #endif // __MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__

@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -25,7 +25,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "clk.hpp"
 #ifdef __MCU_MSP430F5309_CLK_ENABLED__
 
@@ -35,19 +35,19 @@
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DEFINITION::CLK
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DEFINITION::CLK
+ * ============================================================================================== */
 
 /** ============================================================================= INITIALIZATION **/
 
-mcu::targets::msp430f5309::Clk::Clk() :
+yahal::mcu::targets::msp430f5309::Clk::Clk() :
 	_frequencyHz(Frequency::DCO_8MHz)
 {}
 
 
 
-void mcu::targets::msp430f5309::Clk::doInit(void)
+void yahal::mcu::targets::msp430f5309::Clk::doInit(void)
 {
 	if(setFrequencyHz(_frequencyHz))	// Set default frequency
 	{
@@ -88,7 +88,7 @@ void SetVCoreUp (unsigned int level)
 }
 
 
-bool mcu::targets::msp430f5309::Clk::setFrequencyHz(uint32_t desiredFrequencyHz)
+bool yahal::mcu::targets::msp430f5309::Clk::setFrequencyHz(uint32_t desiredFrequencyHz)
 {
 	bool success = true;
 	this->clearErrorCode();
@@ -117,7 +117,7 @@ bool mcu::targets::msp430f5309::Clk::setFrequencyHz(uint32_t desiredFrequencyHz)
 
 	default:
 		success = false;
-		this->setErrorCode(ERROR::FREQUENCY_NOT_AVAILABLE);
+		this->setErrorCode(Error::FREQUENCY_NOT_AVAILABLE);
 		break;
 	}
 
@@ -145,20 +145,20 @@ bool mcu::targets::msp430f5309::Clk::setFrequencyHz(uint32_t desiredFrequencyHz)
 
 
 
-uint32_t mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
+uint32_t yahal::mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
 {
 	return _frequencyHz;
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Clk :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Clk :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
-namespace mcu{
-	mcu::targets::msp430f5309::Clk clk;
+namespace yahal{ namespace mcu{
+	yahal::mcu::targets::msp430f5309::Clk clk;
 }
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MCU_MSP430F5309_CLK_ENABLED__

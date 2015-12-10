@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -25,7 +25,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <mcu/targets/msp430f2132/i2c/i2c_master.hpp>
 #ifdef __MSP430F2132_I2C_MASTER_ENABLED__
 
@@ -35,9 +35,9 @@
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DEFINITION::M430F2132_I2C_MASTER
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DEFINITION::M430F2132_I2C_MASTER
+ * ============================================================================================== */
 
 /** ============================================================================= INITIALIZATION **/
 
@@ -72,7 +72,7 @@ bool hal::uc::msp430f2132::I2c_master::init(uint8_t ownAddress)
 	msp430f2132::irq.i2c.subscribe(*this);	// Subscribe to IRQ notifications
 
 
-	setErrorCode(ERROR::NONE);
+	setErrorCode(Error::NONE);
 	setInitialized();
 	return true;
 }
@@ -81,7 +81,7 @@ bool hal::uc::msp430f2132::I2c_master::init(uint8_t ownAddress)
 
 /** =============================================================================== I2C PROTOCOL **/
 
-void hal::uc::msp430f2132::I2c_master::start(uint8_t slaveAddress, DIRECTION::type direction)
+void hal::uc::msp430f2132::I2c_master::start(uint8_t slaveAddress, DIRECTION::Type direction)
 {
 	if(direction == DIRECTION::WRITE)	{UCB0CTL1 |= UCTR;}
 	else					{UCB0CTL1 &= ~UCTR;}
@@ -121,7 +121,7 @@ void hal::uc::msp430f2132::I2c_master::awaitTransmissionEnd(void)
 
 
 
-void hal::uc::msp430f2132::I2c_master::notify(hal::uc::Irq::I2C::type message)
+void hal::uc::msp430f2132::I2c_master::notify(hal::uc::Irq::I2C::Type message)
 {
 	switch(message)
 	{
@@ -144,9 +144,9 @@ void hal::uc::msp430f2132::I2c_master::notify(hal::uc::Irq::I2C::type message)
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::I2c_master :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::I2c_master :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
 namespace hal{namespace uc{namespace msp430f2132{
 	hal::uc::msp430f2132::I2c_master i2c_master;
@@ -154,5 +154,5 @@ namespace hal{namespace uc{namespace msp430f2132{
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MSP430F2132_I2C_MASTER_ENABLED__

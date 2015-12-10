@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -27,13 +27,13 @@
 
 #include "i2c_master.hpp"
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DEFINITION::I2C_MASTER
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DEFINITION::I2C_MASTER
+ * ============================================================================================== */
 
 /** ====================================================================================== WRITE **/
 
-bool mcu::I2C_master::writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::I2C_master::writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -50,7 +50,7 @@ bool mcu::I2C_master::writeRegister(uint8_t slaveAddress, uint8_t registerAddres
 }
 
 
-bool mcu::I2C_master::write(uint8_t slaveAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::I2C_master::write(uint8_t slaveAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -69,7 +69,7 @@ bool mcu::I2C_master::write(uint8_t slaveAddress, uint8_t* data, std::size_t siz
 
 /** ======================================================================================= READ **/
 
-bool mcu::I2C_master::readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::I2C_master::readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -86,7 +86,7 @@ bool mcu::I2C_master::readRegister(uint8_t slaveAddress, uint8_t registerAddress
 }
 
 
-bool mcu::I2C_master::read(uint8_t slaveAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::I2C_master::read(uint8_t slaveAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -106,7 +106,7 @@ bool mcu::I2C_master::read(uint8_t slaveAddress, uint8_t* data, std::size_t size
 /** ==================================================================================== UTILITY **/
 
 
-bool mcu::I2C_master::isSlavePresent(uint8_t slaveAddress)
+bool yahal::mcu::I2C_master::isSlavePresent(uint8_t slaveAddress)
 {
 	uint8_t dummy;
 	write(slaveAddress, &dummy, 0);		/* This is the least invasive way to poll a slave.
@@ -118,7 +118,7 @@ bool mcu::I2C_master::isSlavePresent(uint8_t slaveAddress)
 
 /** ======================================================================================== IRQ **/
 
-void mcu::I2C_master::handleBufferTXEmpty(void)
+void yahal::mcu::I2C_master::handleBufferTXEmpty(void)
 {
 	// This fuction might be entered because
 	// - Need to send register address, regardless if it is Write or Read 	-> Send RegAddr
@@ -152,7 +152,7 @@ void mcu::I2C_master::handleBufferTXEmpty(void)
 
 
 
-void mcu::I2C_master::handleBufferRXFull(void)
+void yahal::mcu::I2C_master::handleBufferRXFull(void)
 {
 	// STORE DATA IN CASE ANOTHER IRQ HAPPENS
 	uint8_t currentTransmission = _numTransmitted;
@@ -169,7 +169,7 @@ void mcu::I2C_master::handleBufferRXFull(void)
 
 	if(currentTransmission >= _numTransmissions)
 	{
-		setErrorCode(ERROR::READ_OVERFLOW_ATTEMPT);
+		setErrorCode(Error::READ_OVERFLOW_ATTEMPT);
 	}
 	else
 	{
@@ -179,13 +179,13 @@ void mcu::I2C_master::handleBufferRXFull(void)
 
 
 
-void mcu::I2C_master::handleReceivedNack(void)
+void yahal::mcu::I2C_master::handleReceivedNack(void)
 {
 	if(pendingTransmissions() == _numTransmissions)
-		{setErrorCode(ERROR::SLAVE_NOT_REACHABLE);}
+		{setErrorCode(Error::SLAVE_NOT_REACHABLE);}
 
 	else
-		{setErrorCode(ERROR::SLAVE_DATA_NACK);}
+		{setErrorCode(Error::SLAVE_DATA_NACK);}
 
 	stop();	// Either case, stop transmission
 }
@@ -194,12 +194,12 @@ void mcu::I2C_master::handleReceivedNack(void)
 
 /** =============================================================================== TRANSMISSION **/
 
-bool mcu::I2C_master::transmit(void)
+bool yahal::mcu::I2C_master::transmit(void)
 {
 	// CHECK FOR ERRORS
-	if     (_slaveAddress & 0x80)			{setErrorCode(ERROR::SLAVE_ADDRESS_NOT_7_BIT);}
-	else if(_numTransmissions>0 && _pBuffer == 0)	{setErrorCode(ERROR::INVALID_MESSAGE_BUFFER);}
-//	else if(_numTransmissions==0)			{setErrorCode(ERROR::ZERO_SIZE_MESSAGE);}
+	if     (_slaveAddress & 0x80)			{setErrorCode(Error::SLAVE_ADDRESS_NOT_7_BIT);}
+	else if(_numTransmissions>0 && _pBuffer == 0)	{setErrorCode(Error::INVALID_MESSAGE_BUFFER);}
+//	else if(_numTransmissions==0)			{setErrorCode(Error::ZERO_SIZE_MESSAGE);}
 
 
 	else // TRANSMISSION HAS NO ERRORS
@@ -214,7 +214,7 @@ bool mcu::I2C_master::transmit(void)
 
 		// CHECK FOR ERRORS OCCURRED DURING TRANSMISSION
 		if(this->hasError())			{} // Avoid overwriting error code
-		else if(pendingTransmissions() > 0)	{setErrorCode(ERROR::TRANSMISSION_PREMATURELY_ENDED);}
+		else if(pendingTransmissions() > 0)	{setErrorCode(Error::TRANSMISSION_PREMATURELY_ENDED);}
 	}
 
 
@@ -222,7 +222,7 @@ bool mcu::I2C_master::transmit(void)
 }
 
 
-void mcu::I2C_master::sendStart(void)
+void yahal::mcu::I2C_master::sendStart(void)
 {
 	// READ WITHOUT PREVIOUS WRITE
 	if(_direction == DIRECTION::READ && not _sendRegisterAddressPending)
@@ -240,7 +240,7 @@ void mcu::I2C_master::sendStart(void)
 
 
 
-std::size_t mcu::I2C_master::pendingTransmissions(void)
+std::size_t yahal::mcu::I2C_master::pendingTransmissions(void)
 {
 	return _numTransmissions - _numTransmitted;
 }
@@ -249,5 +249,5 @@ std::size_t mcu::I2C_master::pendingTransmissions(void)
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 

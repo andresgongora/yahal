@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -29,7 +29,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "hal/mcu/devices/msp430f2132/msp430f2132.hpp"
 #ifdef __MSP430F2132_GPIO_ENABLED__
 
@@ -38,15 +38,15 @@
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
+/* ---------------------------------------------------------------------------------------------- */
 namespace hal{namespace uc{namespace msp430f2132{
 	class Gpio;
 }}}
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	GPIO
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	GPIO
+ * ============================================================================================== */
 class hal::uc::msp430f2132::Gpio : public hal::uc::Gpio
 {
 public:
@@ -59,8 +59,8 @@ private:
  	class 			Port1 : public hal::uc::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::type direction =DIRECTION::INPUT,
-							RESISTOR::type resistor =RESISTOR::DISABLED,
+					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
+							RESISTOR::Type resistor =RESISTOR::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -73,8 +73,8 @@ private:
  	class 			Port2 : public hal::uc::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::type direction =DIRECTION::INPUT,
-							RESISTOR::type resistor =RESISTOR::DISABLED,
+					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
+							RESISTOR::Type resistor =RESISTOR::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -87,8 +87,8 @@ private:
  	class 			Port3 : public hal::uc::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::type direction =DIRECTION::INPUT,
-							RESISTOR::type resistor =RESISTOR::DISABLED,
+					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
+							RESISTOR::Type resistor =RESISTOR::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -107,15 +107,15 @@ private:
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Gpio :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Gpio :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
 namespace hal{namespace uc{namespace msp430f2132{
 	extern hal::uc::msp430f2132::Gpio gpio;
 }}}
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MSP430F2132_GPIO_ENABLED__
 #endif // __MSP430F2132_GPIO_HPP_INCLUDED__

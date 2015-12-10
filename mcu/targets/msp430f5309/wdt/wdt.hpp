@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -30,7 +30,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include "../msp430f5309_config.hpp"
 #ifdef __MCU_MSP430F5309_WDT_ENABLED__
 
@@ -38,17 +38,17 @@
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{ namespace targets{ namespace msp430f5309{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	class Wdt;
 }}}
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION::WDT
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
-class mcu::targets::msp430f5309::Wdt : public mcu::Wdt
+/* ============================================================================================== */
+ *	DECLARATION::WDT
+ * ============================================================================================== */
+class yahal::mcu::targets::msp430f5309::Wdt : public yahal::mcu::Wdt
 {
 private:			// INITIALIZATION
 	void			doInit(void);
@@ -59,16 +59,16 @@ public:
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::targets::msp430f5309::Wdt :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::targets::msp430f5309::Wdt :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
-namespace mcu{
-	extern mcu::targets::msp430f5309::Wdt wdt;
+namespace yahal{ namespace mcu{
+	extern yahal::mcu::targets::msp430f5309::Wdt wdt;
 }
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MCU_MSP430F5309_WDT_ENABLED__
 #endif // __MCU_MSP430F5309_WDT_HPP_INCLUDED__

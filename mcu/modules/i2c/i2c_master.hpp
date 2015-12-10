@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -30,25 +30,25 @@
 #define __MCU_I2C_MASTER_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
 #include "i2c_common.hpp"
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{
 	class I2C_master;
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	mcu::I2C_master
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	yahal::mcu::I2C_master
+ * ============================================================================================== */
 
-class mcu::I2C_master : virtual public mcu::I2C_common
+class yahal::mcu::I2C_master : virtual public yahal::mcu::I2C_common
 {
 protected:			// CONSTRUCTOR & DESTRUCTOR
 				I2C_master(void)	{}
@@ -57,7 +57,7 @@ protected:			// CONSTRUCTOR & DESTRUCTOR
 
 
 protected:			// I2C PROTOCOL -> IMPLEMENT
-	virtual void		start(uint8_t slaveAddress, DIRECTION::type direction) = 0;
+	virtual void		start(uint8_t slaveAddress, DIRECTION::Type direction) = 0;
 	virtual void		stop(void) = 0;
 	virtual void		awaitTransmissionEnd(void) = 0;
 
@@ -115,7 +115,7 @@ private:			// PRIVATE VARIABLES
 	bool			_sendRegisterAddress;
 	std::size_t		_numTransmissions;
 	uint8_t*		_pBuffer;
-	DIRECTION::type		_direction;
+	DIRECTION::Type		_direction;
 
 	volatile std::size_t	_numTransmitted;		// Might be changed by ISR
 	volatile bool		_sendRegisterAddressPending;	//
@@ -123,5 +123,5 @@ private:			// PRIVATE VARIABLES
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	// __MCU_I2C_MASTER_HPP_INCLUDED__

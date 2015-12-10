@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -30,7 +30,7 @@
 #define __MCU_I2C_SLAVE_HPP_INCLUDED__
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
 #include "i2c_common.hpp"
@@ -38,19 +38,19 @@
 
 
 
-/** --- NAMESPACE ------------------------------------------------------------------------------ **/
-namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{
 	class I2C_slave;
 }
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DECLARATION::I2C
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DECLARATION::I2C
+ * ============================================================================================== */
 
 
-class mcu::I2C_slave : virtual public mcu::I2C_common
+class yahal::mcu::I2C_slave : virtual public yahal::mcu::I2C_common
 {
 protected:			// CONSTRUCTOR & DESTRUCTOR
 				I2C_slave(void);
@@ -72,7 +72,7 @@ public:
 
 
 public:				// SET CALLBACK FUNCTIONS FOR HOOKS
-	void			setCallbackReceivedStart(void(*fpCallOnEvent)(DIRECTION::type));
+	void			setCallbackReceivedStart(void(*fpCallOnEvent)(DIRECTION::Type));
 	void			setCallbackReceivedStop(void(*fpCallOnEvent)(void));
 	void			setCallbackByteReceived(void(*fpCallOnEvent)(uint8_t));
 	void			setCallbackByteRequested(void(*fpCallOnEvent)(uint8_t&));
@@ -80,12 +80,12 @@ public:				// SET CALLBACK FUNCTIONS FOR HOOKS
 
 
 private:			// PRIVATE VARIABLES
-	mcu::utility::Callback<DIRECTION::type> _callbackStart;
-	mcu::utility::Callback<void>		_callbackStop;
-	mcu::utility::Callback<uint8_t>		_callbackByteReceived;
-	mcu::utility::Callback<uint8_t&>	_callbackByteRequested;
+	yahal::mcu::utility::Callback<DIRECTION::Type> _callbackStart;
+	yahal::mcu::utility::Callback<void>		_callbackStop;
+	yahal::mcu::utility::Callback<uint8_t>		_callbackByteReceived;
+	yahal::mcu::utility::Callback<uint8_t&>	_callbackByteRequested;
 };
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif 	// __MCU_I2C_SLAVE_HPP_INCLUDED__

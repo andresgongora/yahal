@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -26,7 +26,7 @@
 
 
 
-/** --- INCLUDE -------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <mcu/targets/msp430f2132/gpio/gpio.hpp>
 #ifdef __MSP430F2132_GPIO_ENABLED__
 
@@ -34,9 +34,9 @@
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Gpio
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Gpio
+ * ============================================================================================== */
 
 bool hal::uc::msp430f2132::Gpio::init(void)
 {
@@ -49,7 +49,7 @@ bool hal::uc::msp430f2132::Gpio::init(void)
 	success &= _port2.config(DIRECTION::INPUT, RESISTOR::DISABLED);
 	success &= _port3.config(DIRECTION::INPUT, RESISTOR::DISABLED);
 
-	if(!success)	this->setErrorCode(ERROR::COULD_NOT_INITIALIZE_PORT);
+	if(!success)	this->setErrorCode(Error::COULD_NOT_INITIALIZE_PORT);
 	else		this->setInitialized();
 	return success;
 }
@@ -63,7 +63,7 @@ hal::uc::Gpio::Port& hal::uc::msp430f2132::Gpio::port(uint8_t portNumber)
 	case 2: return _port2;
 	case 3: return _port3;
 	default:
-		this->setErrorCode(ERROR::TRYING_TO_ACCESS_NON_EXISTANT_PORT);
+		this->setErrorCode(Error::TRYING_TO_ACCESS_NON_EXISTANT_PORT);
 		for(;;);	//TODO: TRAP
 	}
 
@@ -71,12 +71,12 @@ hal::uc::Gpio::Port& hal::uc::msp430f2132::Gpio::port(uint8_t portNumber)
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Gpio::Port1
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Gpio::Port1
+ * ============================================================================================== */
 
-bool hal::uc::msp430f2132::Gpio::Port1::config(	DIRECTION::type direction,
-						RESISTOR::type resistor,
+bool hal::uc::msp430f2132::Gpio::Port1::config(	DIRECTION::Type direction,
+						RESISTOR::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
@@ -131,12 +131,12 @@ uint8_t	hal::uc::msp430f2132::Gpio::Port1::getOutput(uint8_t mask)const
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Gpio::Port2
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Gpio::Port2
+ * ============================================================================================== */
 
-bool hal::uc::msp430f2132::Gpio::Port2::config(	DIRECTION::type direction,
-						RESISTOR::type resistor,
+bool hal::uc::msp430f2132::Gpio::Port2::config(	DIRECTION::Type direction,
+						RESISTOR::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
@@ -190,12 +190,12 @@ uint8_t	hal::uc::msp430f2132::Gpio::Port2::getOutput(uint8_t mask)const
 }
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Gpio::Port3
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Gpio::Port3
+ * ============================================================================================== */
 
-bool hal::uc::msp430f2132::Gpio::Port3::config(	DIRECTION::type direction,
-						RESISTOR::type resistor,
+bool hal::uc::msp430f2132::Gpio::Port3::config(	DIRECTION::Type direction,
+						RESISTOR::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
@@ -255,13 +255,13 @@ uint8_t	hal::uc::msp430f2132::Gpio::Port3::getOutput(uint8_t mask)const
 
 
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	hal::uc::msp430f2132::Gpio :: GLOBAL VARIABLE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	hal::uc::msp430f2132::Gpio :: GLOBAL VARIABLE
+ * ============================================================================================== */
 
 namespace hal{namespace uc{namespace msp430f2132{
 	hal::uc::msp430f2132::Gpio gpio;
 }}}
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
 #endif // __MSP430F2132_GPIO_ENABLED__

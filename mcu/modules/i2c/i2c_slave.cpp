@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -27,19 +27,19 @@
 
 #include "i2c_slave.hpp"
 
-/**MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- **	DEFINITION::I2C_SLAVE
- WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
+/* ============================================================================================== */
+ *	DEFINITION::I2C_SLAVE
+ * ============================================================================================== */
 
 /** =================================================================== CONSTRUCTOR & DESTRUCTOR **/
-mcu::I2C_slave::I2C_slave(void){}
-mcu::I2C_slave::~I2C_slave(void){}
+yahal::mcu::I2C_slave::I2C_slave(void){}
+yahal::mcu::I2C_slave::~I2C_slave(void){}
 
 
 
 /** ================================================================================= I2C EVENTS **/
 
-void mcu::I2C_slave::handleReceivedStart(void)
+void yahal::mcu::I2C_slave::handleReceivedStart(void)
 {
 	if(isIncommingWrite())	{_callbackStart.run(DIRECTION::WRITE);}
 	else			{_callbackStart.run(DIRECTION::READ);}
@@ -47,14 +47,14 @@ void mcu::I2C_slave::handleReceivedStart(void)
 
 
 
-void mcu::I2C_slave::handleReceivedStop(void)
+void yahal::mcu::I2C_slave::handleReceivedStop(void)
 {
 	_callbackStop.run();
 }
 
 
 
-void mcu::I2C_slave::handleBufferTXEmpty(void)
+void yahal::mcu::I2C_slave::handleBufferTXEmpty(void)
 {
 	uint8_t byteToSend;	// If callback fails, set to 0xFF (default value)
 	if(not _callbackByteRequested.run(byteToSend)){byteToSend = 0xFF;}
@@ -65,7 +65,7 @@ void mcu::I2C_slave::handleBufferTXEmpty(void)
 
 
 
-void mcu::I2C_slave::handleBufferRXFull(void)
+void yahal::mcu::I2C_slave::handleBufferRXFull(void)
 {
 	volatile uint8_t receivedByte = readBufferRX();	// Read to free input buffer (if it exists)
 	_callbackByteReceived.run(receivedByte);// Deliver byte to callback function
@@ -75,32 +75,32 @@ void mcu::I2C_slave::handleBufferRXFull(void)
 
 /** ================================================================================== SET HOOKS **/
 
-void mcu::I2C_slave::setCallbackReceivedStart(void(*fpCallOnEvent)(DIRECTION::type))
+void yahal::mcu::I2C_slave::setCallbackReceivedStart(void(*fpCallOnEvent)(DIRECTION::Type))
 {
 	_callbackStart.setCallBackFunction(fpCallOnEvent);
 }
 
 
 
-void mcu::I2C_slave::setCallbackReceivedStop(void(*fpCallOnEvent)(void))
+void yahal::mcu::I2C_slave::setCallbackReceivedStop(void(*fpCallOnEvent)(void))
 {
 	_callbackStop.setCallBackFunction(fpCallOnEvent);
 }
 
 
 
-void mcu::I2C_slave::setCallbackByteReceived(void(*fpCallOnEvent)(uint8_t))
+void yahal::mcu::I2C_slave::setCallbackByteReceived(void(*fpCallOnEvent)(uint8_t))
 {
 	_callbackByteReceived.setCallBackFunction(fpCallOnEvent);
 }
 
 
 
-void mcu::I2C_slave::setCallbackByteRequested(void(*fpCallOnEvent)(uint8_t&))
+void yahal::mcu::I2C_slave::setCallbackByteRequested(void(*fpCallOnEvent)(uint8_t&))
 {
 	_callbackByteRequested.setCallBackFunction(fpCallOnEvent);
 }
 
 
 
-/** ============================================================================================ **/
+/* ---------------------------------------------------------------------------------------------- */
