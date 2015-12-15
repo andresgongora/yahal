@@ -24,70 +24,37 @@
 
 
 
-#ifndef __MCU_I2C_COMMON_HPP_INCLUDED__
-#define __MCU_I2C_COMMON_HPP_INCLUDED__
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include <stdint.h>
-#include <cstddef>
-#include "../base_module.hpp"
+#ifndef __MCU_UTILITY_NONCOPYABLE_HPP_INCLUDED__
+#define __MCU_UTILITY_NONCOPYABLE_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace detail{
-	class I2C_common;
-}}}
+namespace yahal{ namespace utility{ namespace oop
+{
+	class Noncopyable;
+}}
 
 
 
 /***********************************************************************************************//**
- * Base class for all I2C modules.
- * This virtual class implements all common elements to all I2C operation modes.
+ * Non copyable base class.
+ * Each class that inherits from this class can not be copied.
+ * Its constructor and asignment operator are protected and private respectively. *
  **************************************************************************************************/
-class yahal::mcu::detail::I2C_common : public yahal::mcu::detail::BaseModule
+class yahal:utility::oop::Noncopyable
 {
-public:
-				/**
-				 * I/O operation direction
-				 */
-				struct Direction{ enum Type{
-					READ,
-					WRITE,
-				};};
+protected:			// CONSTRUCTOR & DESTRUCTOR
+				Noncopyable()	{}
+	virtual			~Noncopyable()	{}
 
 
-
-public:
-				/**
-				 * Error codes for I2C.
-				 */
-				struct Error{ enum Type{
-					NONE = NO_ERROR,
-					SLAVE_ADDRESS_NOT_7_BIT,
-					SLAVE_NOT_REACHABLE,
-					SLAVE_DATA_NACK,
-					INVALID_MESSAGE_BUFFER,
-					READ_OVERFLOW_ATTEMPT,
-					ZERO_SIZE_MESSAGE,
-					TRANSMISSION_PREMATURELY_ENDED,
-				};};
-
-
-
-protected:
-				// VIRTUAL FUNCTIONS
-	virtual void		writeBufferTX(uint8_t byte) = 0;	/**< Prepare write.*/
-	virtual uint8_t		readBufferRX(void) = 0;			/**< Finish read.*/
-
-
-				// CONSTRUCTOR & DESTRUCTOR
-				I2C_common(void)	{}
-	virtual			~I2C_common(void)	{}
+private:			// PROHIBIT COPY
+	explicit		Noncopyable(const Noncopyable&);
+				Noncopyable& operator=(const Noncopyable&);
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __MCU_I2C_COMMON_HPP_INCLUDED__
+#endif 	// __MCU_UTILITY_NONCOPYABLE_HPP_INCLUDED__

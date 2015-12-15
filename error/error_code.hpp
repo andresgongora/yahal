@@ -24,70 +24,78 @@
 
 
 
-#ifndef __MCU_I2C_COMMON_HPP_INCLUDED__
-#define __MCU_I2C_COMMON_HPP_INCLUDED__
+#ifndef __ERROR_CODE_HPP_INCLUDED__
+#define __ERROR_CODE_HPP_INCLUDED__
+
+//TODO: Poder indicar source, error verbose, etc. http://programmers.stackexchange.com/questions/262019/is-it-good-practice-to-rely-on-headers-being-included-transitively
+
+/* ---------------------------------------------------------------------------------------------- */
+#include "../rtos/rtos.hpp"
+
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include <stdint.h>
-#include <cstddef>
-#include "../base_module.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace detail{
-	class I2C_common;
-}}}
+namespace yahal{ namespace error{
+	class ErrorCode;
+}}
 
 
 
 /***********************************************************************************************//**
- * Base class for all I2C modules.
- * This virtual class implements all common elements to all I2C operation modes.
+ * Error code
  **************************************************************************************************/
-class yahal::mcu::detail::I2C_common : public yahal::mcu::detail::BaseModule
+
+class yahal::error::ErrorCode
 {
-public:
-				/**
-				 * I/O operation direction
-				 */
-				struct Direction{ enum Type{
-					READ,
-					WRITE,
-				};};
+public:				// CONST -----------------------------------------------------------
+	static const
+	unsigned int		NO_ERROR = 0;
 
 
 
-public:
-				/**
-				 * Error codes for I2C.
-				 */
-				struct Error{ enum Type{
-					NONE = NO_ERROR,
-					SLAVE_ADDRESS_NOT_7_BIT,
-					SLAVE_NOT_REACHABLE,
-					SLAVE_DATA_NACK,
-					INVALID_MESSAGE_BUFFER,
-					READ_OVERFLOW_ATTEMPT,
-					ZERO_SIZE_MESSAGE,
-					TRANSMISSION_PREMATURELY_ENDED,
-				};};
+protected:			// CONSTRUCTOR & DESTRUCTOR ----------------------------------------
+				ErrorCode(void) : _errorCode(NO_ERROR)	{}
+	virtual			~ErrorCode(void)			{}
 
 
 
-protected:
-				// VIRTUAL FUNCTIONS
-	virtual void		writeBufferTX(uint8_t byte) = 0;	/**< Prepare write.*/
-	virtual uint8_t		readBufferRX(void) = 0;			/**< Finish read.*/
+public:				// PUBLIC API ------------------------------------------------------
+	unsigned int		getErrorCode(void) const
+				{
+					_errorMutex.lock();
+					unsigned int temp = _errorCode;
+					_errorMutex.unlock();
+					return temp;
+				}
+
+	bool			hasError(void) const
+				{
+					return (getErrorCode() != NO_ERROR);
+				}
 
 
-				// CONSTRUCTOR & DESTRUCTOR
-				I2C_common(void)	{}
-	virtual			~I2C_common(void)	{}
+
+protected:			// PROTECTED API ---------------------------------------------------
+	void			setErrorCode(unsigned int newErrorCode)
+				{
+					_errorMutex.lock();
+					_errorCode = newErrorCode;
+					_errorMutex.unlock();
+				}
+
+	void			clearErrorCode(void)
+				{
+					setErrorCode(NO_ERROR);	// Clears code and count
+				}
+
+
+
+private:			// PRIVATE VARIABLES -----------------------------------------------
+	volatile unsigned int	 _errorCode;
+	mutable	mcu::rtos::Mutex _errorMutex;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __MCU_I2C_COMMON_HPP_INCLUDED__
+#endif 	//__ERROR_CODE_HPP_INCLUDED__

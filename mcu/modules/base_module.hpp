@@ -32,16 +32,16 @@
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
-#include "../error/error_code.hpp"
-#include "../utility/noncopyable.hpp"
+#include "../../utility/oop/noncopyable.hpp"
+#include "../../error/error_code.hpp"
 #include "../rtos/rtos.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
+namespace yahal{ namespace mcu{ namespace detail{
 	class BaseModule;
-}}
+}}}
 
 
 
@@ -51,7 +51,9 @@ namespace yahal{ namespace mcu{
  * It also inherits from noncopyable, prohibiting the copy of any class, as they are asociated
  * to physical resources.
  **************************************************************************************************/
-class yahal::mcu::BaseModule : public yahal::mcu::error::ErrorCode, private yahal::mcu::utility::Noncopyable
+class yahal::mcu::detail::BaseModule :
+	public yahal::error::ErrorCode,
+	private yahal::utility::oop::Noncopyable
 {
 protected:
 				BaseModule(void)	{}
