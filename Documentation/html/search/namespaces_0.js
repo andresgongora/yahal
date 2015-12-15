@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error',['error',['../namespaceerror.html',1,'']]]
+  ['hal',['hal',['../namespacehal.html',1,'']]]
 ];

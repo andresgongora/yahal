@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['frequency_5fnot_5favailable',['FREQUENCY_NOT_AVAILABLE',['../structyahal_1_1mcu_1_1_clk_1_1_e_r_r_o_r.html#a951027d8ffd3221fcc9e1f68421485d9a34c7a6ac0b66d930ca5a053fa16effa6',1,'yahal::mcu::Clk::ERROR']]]
+  ['i2c_5fcommon',['I2C_common',['../classyahal_1_1mcu_1_1detail_1_1_i2_c__common.html',1,'yahal::mcu::detail']]],
+  ['init',['init',['../classyahal_1_1mcu_1_1detail_1_1_base_module.html#aba9c940189444ede5e0c4308172ae0e6',1,'yahal::mcu::detail::BaseModule']]],
+  ['input',['INPUT',['../structhal_1_1sensors_1_1_ads1115_1_1_i_n_p_u_t.html',1,'hal::sensors::Ads1115']]]
 ];

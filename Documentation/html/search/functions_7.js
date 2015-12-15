@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setfrequencyhz',['setFrequencyHz',['../classyahal_1_1mcu_1_1_clk.html#a6623c951307778c2e48a096bb5c4804a',1,'yahal::mcu::Clk']]]
+  ['writebuffertx',['writeBufferTX',['../classyahal_1_1mcu_1_1detail_1_1_i2_c__common.html#a9757d8b018eb9cf9c2f4f39db1a3fa91',1,'yahal::mcu::detail::I2C_common']]]
 ];

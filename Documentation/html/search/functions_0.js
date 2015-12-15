@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_5fpinnumber',['_pinNumber',['../modules_2gpio_2gpio_8cpp.html#a72d32aa01618b4ba1a8ec26690ea5c1f',1,'gpio.cpp']]]
+  ['ads1115',['Ads1115',['../classhal_1_1sensors_1_1_ads1115.html#a62a405ae1a3d8c663aea92f52387ab72',1,'hal::sensors::Ads1115']]]
 ];

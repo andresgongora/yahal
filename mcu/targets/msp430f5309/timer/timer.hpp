@@ -31,7 +31,7 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../msp430f5309.hpp"
+#include "../../../config/targets/msp430f5309_config.hpp"
 #ifdef __YAHAL_MCU_MSP430F5309_TIMER_ENABLED__
 
 #include <stdint.h>

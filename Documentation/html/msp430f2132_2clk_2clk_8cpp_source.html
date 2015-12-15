@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">clk.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="msp430f2132_2clk_2clk_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*      +-----------------------------------------------------------------------+</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">        |           Yet Another Hardware Abstraction Layer (YAHAL)              |</span></div>
@@ -119,7 +119,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="targets_2msp430f2132_2clk_2clk_8hpp.html">mcu/targets/msp430f2132/clk/clk.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;mcu/targets/msp430f2132/clk/clk.hpp&gt;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;msp430f2132.h&gt;</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifdef __MSP430F2132_CLK_ENABLED__</span></div>
@@ -154,7 +154,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">bool</span> hal::uc::msp430f2132::Clk::setFrequencyHz(uint32_t desiredFrequencyHz)</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">bool</span> success = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        this-&gt;clearErrorCode();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        this-&gt;<a class="code" href="classyahal_1_1error_1_1_error_code.html#a6dcccae993641509661b2f92c702b714">clearErrorCode</a>();</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">switch</span>(desiredFrequencyHz)</div>
@@ -179,7 +179,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">default</span>:</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                success = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                this-&gt;setErrorCode(Error::FREQUENCY_NOT_AVAILABLE);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                this-&gt;<a class="code" href="classyahal_1_1error_1_1_error_code.html#acc2142f7c7fad8b06e9933611e8a5a31">setErrorCode</a>(Error::FREQUENCY_NOT_AVAILABLE);</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
@@ -211,8 +211,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif // __MSP430F2132_CLK_ENABLED__</span></div>
-<div class="ttc" id="namespacehal_html"><div class="ttname"><a href="namespacehal.html">hal</a></div><div class="ttdoc">-— INCLUDE -------------------------------------------------------------------------—— ...</div><div class="ttdef"><b>Definition:</b> <a href="counter_8hpp_source.html#l00039">counter.hpp:39</a></div></div>
-<div class="ttc" id="targets_2msp430f2132_2clk_2clk_8hpp_html"><div class="ttname"><a href="targets_2msp430f2132_2clk_2clk_8hpp.html">clk.hpp</a></div></div>
+<div class="ttc" id="classyahal_1_1error_1_1_error_code_html_a6dcccae993641509661b2f92c702b714"><div class="ttname"><a href="classyahal_1_1error_1_1_error_code.html#a6dcccae993641509661b2f92c702b714">yahal::error::ErrorCode::clearErrorCode</a></div><div class="ttdeci">void clearErrorCode(void)</div><div class="ttdoc">Clear error code. </div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00098">error_code.hpp:98</a></div></div>
+<div class="ttc" id="namespacehal_html"><div class="ttname"><a href="namespacehal.html">hal</a></div><div class="ttdoc">ID:  EDITED: AUTHOR: Andres Gongora </div><div class="ttdef"><b>Definition:</b> <a href="ads1115_8hpp_source.html#l00048">ads1115.hpp:48</a></div></div>
+<div class="ttc" id="classyahal_1_1error_1_1_error_code_html_acc2142f7c7fad8b06e9933611e8a5a31"><div class="ttname"><a href="classyahal_1_1error_1_1_error_code.html#acc2142f7c7fad8b06e9933611e8a5a31">yahal::error::ErrorCode::setErrorCode</a></div><div class="ttdeci">void setErrorCode(unsigned int newErrorCode)</div><div class="ttdoc">Set new error code. </div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00086">error_code.hpp:86</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -24,16 +24,15 @@
 
 
 
-#ifndef __YAHAL_UTILITY_NONCOPYABLE_HPP_INCLUDED__
-#define __YAHAL_UTILITY_NONCOPYABLE_HPP_INCLUDED__
+#ifndef __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__
+#define __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace utility{ namespace oop
-{
+namespace yahal{ namespace utility{ namespace oop{
 	class Noncopyable;
-}}
+}}}
 
 
 
@@ -42,7 +41,7 @@ namespace yahal{ namespace utility{ namespace oop
  * Each class that inherits from this class can not be copied.
  * Its constructor and asignment operator are protected and private respectively. *
  **************************************************************************************************/
-class yahal:utility::oop::Noncopyable
+class yahal::utility::oop::Noncopyable
 {
 protected:			// CONSTRUCTOR & DESTRUCTOR
 				Noncopyable()	{}
@@ -57,4 +56,4 @@ private:			// PROHIBIT COPY
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_UTILITY_NONCOPYABLE_HPP_INCLUDED__
+#endif 	// __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__

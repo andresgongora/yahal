@@ -44,11 +44,11 @@ namespace yahal{ namespace mcu{
 /***********************************************************************************************//**
  * Base class for all system clock handling modules.
  **************************************************************************************************/
-class yahal::mcu::Clk : public yahal::mcu::BaseModule
+class yahal::mcu::Clk : public yahal::mcu::details::BaseModule
 {
 public:
 				struct ERROR{ enum type{
-					NONE = 0,
+					NO_ERROR = NO_ERROR_CODE,
 					FREQUENCY_NOT_AVAILABLE,
 					OTHER
 				};};
@@ -56,15 +56,6 @@ public:
 
 protected:
 	virtual			~Clk(void){}
-
-
-public:
-	virtual bool		setFrequencyHz(uint32_t desiredFrequencyHz) = 0;
-	virtual	uint32_t	getFrequencyHz(void) = 0;
-
-//	virtual inline uint8_t	getFreqMHzPeripherals(void) = 0;
-
-
 };
 
 

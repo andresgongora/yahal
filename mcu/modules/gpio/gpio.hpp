@@ -37,14 +37,15 @@
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Gpio;
-}
+}}
 
 
 
 /***********************************************************************************************//**
  * Base class for GPIO modules.
  **************************************************************************************************/
-class yahal::mcu::Gpio : public yahal::mcu::BaseModule
+class yahal::mcu::Gpio :
+		public yahal::mcu::details::BaseModule
 {
 public:				// CONFIGURATION VALUES --------------------------------------------
 				struct Direction{enum Type{
@@ -59,7 +60,7 @@ public:				// CONFIGURATION VALUES --------------------------------------------
 				};};
 
 				struct ERROR{enum Type{
-					NONE = 0,
+					NO_ERROR = 0,
 					TRYING_TO_ACCESS_NON_EXISTANT_PORT,
 					TRYING_TO_ACCESS_NON_EXISTANT_PIN,
 					COULD_NOT_INITIALIZE_PORT,

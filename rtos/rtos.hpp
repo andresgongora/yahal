@@ -30,7 +30,7 @@
 #define __YAHAL_RTOS_HPP_INCLUDED__
 
 /** ---- INCLUDE ------------------------------------------------------------------------------- **/
-#include "../mcu_config.hpp"
+#include "config/rtos_config.hpp"
 
 
 
@@ -40,7 +40,7 @@
 
 
 /** ---- IMPLEMENTATIONS ----------------------------------------------------------------------- **/
-#include "implementations/single_thread/st.hpp"
+#include "implementations/empty/empty.hpp"
 
 
 

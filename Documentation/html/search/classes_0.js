@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['basemodule',['BaseModule',['../classyahal_1_1mcu_1_1_base_module.html',1,'yahal::mcu']]]
+  ['ads1115',['Ads1115',['../classhal_1_1sensors_1_1_ads1115.html',1,'hal::sensors']]]
 ];

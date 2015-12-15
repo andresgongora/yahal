@@ -29,22 +29,9 @@
 #include "gpio.hpp"
 
 
-
-/* ============================================================================================== */
- *	yahal::mcu::Gpio
- * ============================================================================================== */
-
-
-yahal::mcu::Gpio::Port& yahal::mcu::Gpio::operator[](uint8_t portNumber)
-{
-	return port(portNumber);
-}
-
-
-
-/* ============================================================================================== */
- *	yahal::mcu::Gpio::Port
- * ============================================================================================== */
+/* =================================================================================================
+	PORT
+================================================================================================= */
 
 void yahal::mcu::Gpio::Port::toggle(uint8_t times, uint8_t mask)
 {
@@ -59,7 +46,7 @@ yahal::mcu::Gpio::Port::Pin yahal::mcu::Gpio::Port::pin(uint8_t pinNumber)
 {
 	if(pinNumber >= 8)
 	{
-		for(;;);	//TODO:: trap
+		for(;;);	///< @warning
 	}
 
 
@@ -68,16 +55,10 @@ yahal::mcu::Gpio::Port::Pin yahal::mcu::Gpio::Port::pin(uint8_t pinNumber)
 }
 
 
-yahal::mcu::Gpio::Port::Pin yahal::mcu::Gpio::Port::operator[](uint8_t pinNumber)
-{
-	return pin(pinNumber);
-}
 
-
-
-/* ============================================================================================== */
- *	yahal::mcu::Gpio::Port::Pin
- * ============================================================================================== */
+/* =================================================================================================
+	PIN
+================================================================================================= */
 
 yahal::mcu::Gpio::Port::Pin::Pin(yahal::mcu::Gpio::Port& port, uint8_t pinNumber) :
 	_port(port),
@@ -85,7 +66,7 @@ yahal::mcu::Gpio::Port::Pin::Pin(yahal::mcu::Gpio::Port& port, uint8_t pinNumber
 {}
 
 
-bool yahal::mcu::Gpio::Port::Pin::config(DIRECTION::Type direction, RESISTOR::Type resistor)
+bool yahal::mcu::Gpio::Port::Pin::config(Direction::Type direction, Resistor::Type resistor)
 {
 	return _port.config(direction, resistor, (1<<_pinNumber));
 }

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['error',['ERROR',['../structyahal_1_1mcu_1_1_clk_1_1_e_r_r_o_r.html',1,'yahal::mcu::Clk']]]
+  ['clk',['Clk',['../classyahal_1_1mcu_1_1_clk.html',1,'yahal::mcu']]],
+  ['counter',['Counter',['../classhal_1_1utility_1_1_counter.html',1,'hal::utility']]]
 ];

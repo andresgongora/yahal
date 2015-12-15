@@ -42,11 +42,10 @@ namespace yahal{ namespace mcu{
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::Irq
- ** WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW**/
-
-class yahal::mcu::Irq : public yahal::mcu::BaseModule
+/***********************************************************************************************//**
+ * @brief	Base class for all IRQ handlers.
+ **************************************************************************************************/
+class yahal::mcu::Irq : public yahal::mcu::details::BaseModule
 {
 public:
 				// CONSTRUCTOR & DESTRUCTOR
@@ -86,7 +85,7 @@ public:
 
 
 		struct ERROR {enum type {
-			NONE = 0,
+			NO_ERROR = 0,
 			OTHER
 		};};
 };

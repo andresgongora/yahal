@@ -72,7 +72,7 @@ bool hal::uc::msp430f2132::I2c_master::init(uint8_t ownAddress)
 	msp430f2132::irq.i2c.subscribe(*this);	// Subscribe to IRQ notifications
 
 
-	setErrorCode(Error::NONE);
+	setErrorCode(Error::NO_ERROR);
 	setInitialized();
 	return true;
 }

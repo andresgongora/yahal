@@ -34,10 +34,8 @@
 
 
 /* ============================================================================================== */
- *	CONFIGURATION
- * ============================================================================================== */
 
-/** ======================================================================================== CLK **/
+
 //	+---------------------------------------------------------------+
 #define	__YAHAL_MCU_MSP430F5309_CLK_ENABLED__	// Comment to disable
 //	+---------------------------------------------------------------+
@@ -50,13 +48,13 @@
 
 
 
-/** ======================================================================================== WDT **/
+
 #define __YAHAL_MCU_MSP430F5309_WDT_ENABLED__	// Comment to disable
 
 
 
 
-/** ======================================================================================= GPIO **/
+
 #define __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__	// Comment to disable
 
 
@@ -64,9 +62,9 @@
 
 
 
-#define __YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__
-#define __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
-#define __YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__
+//#define __YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__
+//#define __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+//#define __YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__
 
 
 

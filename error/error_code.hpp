@@ -22,14 +22,13 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+#ifndef __YAHAL_ERROR_ERROR_CODE_HPP_INCLUDED__
+#define __YAHAL_ERROR_ERROR_CODE_HPP_INCLUDED__
 
 
-#ifndef __ERROR_CODE_HPP_INCLUDED__
-#define __ERROR_CODE_HPP_INCLUDED__
-
-//TODO: Poder indicar source, error verbose, etc. http://programmers.stackexchange.com/questions/262019/is-it-good-practice-to-rely-on-headers-being-included-transitively
 
 /* ---------------------------------------------------------------------------------------------- */
+#include <cstddef>
 #include "../rtos/rtos.hpp"
 
 
@@ -42,25 +41,22 @@ namespace yahal{ namespace error{
 
 
 /***********************************************************************************************//**
- * Error code
- **************************************************************************************************/
-
+ * @brief	Base class for error code handling.
+ *
+ * 	This class stores the last error code that happened to a derived class.
+ * 	It two public methods to check the existence and value of the last error code
+ *	and two protected methods to set and clear the code.
+ *	This base class also defines NO_ERROR_CODE (value = NULL) to signal a no error condition.
+ *
+ *@note		For performance reasons, the error code is stored size_t.
+  **************************************************************************************************/
 class yahal::error::ErrorCode
 {
-public:				// CONST -----------------------------------------------------------
-	static const
-	unsigned int		NO_ERROR = 0;
-
-
-
-protected:			// CONSTRUCTOR & DESTRUCTOR ----------------------------------------
-				ErrorCode(void) : _errorCode(NO_ERROR)	{}
-	virtual			~ErrorCode(void)			{}
-
-
-
-public:				// PUBLIC API ------------------------------------------------------
-	unsigned int		getErrorCode(void) const
+public:
+				/**
+				 * @return last error code.
+				 */
+	std::size_t		getErrorCode(void) const
 				{
 					_errorMutex.lock();
 					unsigned int temp = _errorCode;
@@ -68,34 +64,55 @@ public:				// PUBLIC API ------------------------------------------------------
 					return temp;
 				}
 
+				/**
+				 * @return true if last error is not equal to NO_ERROR_CODE.
+				 */
 	bool			hasError(void) const
 				{
-					return (getErrorCode() != NO_ERROR);
+					return (getErrorCode() != NO_ERROR_CODE);
 				}
 
 
 
-protected:			// PROTECTED API ---------------------------------------------------
-	void			setErrorCode(unsigned int newErrorCode)
+protected:
+	static const
+	std::size_t		NO_ERROR_CODE = 0;	/**< No error condition code.*/
+
+
+				// CONSTRUCTOR & DESTRUCTOR
+				ErrorCode(void) : _errorCode(NO_ERROR_CODE)	{}
+	virtual			~ErrorCode(void)			{}
+
+				/**
+				 * Set new error code.
+				 * Allows derived classes to set a new error code.
+				 * @param newErrorCode new error code to store.
+				 */
+	void			setErrorCode(std::size_t newErrorCode)
 				{
 					_errorMutex.lock();
 					_errorCode = newErrorCode;
 					_errorMutex.unlock();
 				}
 
+				/**
+				 * Clear error code.
+				 * Identical to "setErrorCode(NO_ERROR_CODE)".
+				 * @see setErrorCode.
+				 */
 	void			clearErrorCode(void)
 				{
-					setErrorCode(NO_ERROR);	// Clears code and count
+					setErrorCode(NO_ERROR_CODE);	// Clears code and count
 				}
 
 
 
-private:			// PRIVATE VARIABLES -----------------------------------------------
-	volatile unsigned int	 _errorCode;
-	mutable	mcu::rtos::Mutex _errorMutex;
+private:
+	volatile std::size_t	_errorCode;	/**< Store last error code .*/
+	mutable	yahal::rtos::Mutex _errorMutex;	/**< Thread safety to modify error code .*/
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__ERROR_CODE_HPP_INCLUDED__
+#endif 	// __YAHAL_ERROR_ERROR_CODE_HPP_INCLUDED__

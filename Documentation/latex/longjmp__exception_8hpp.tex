@@ -1,32 +1,73 @@
-\hypertarget{longjmp__exception_8hpp}{}\section{/home/andy/\+Documentos/\+Source/yahal/mcu/error/longjmp\+\_\+exception.hpp File Reference}
-\label{longjmp__exception_8hpp}\index{/home/andy/\+Documentos/\+Source/yahal/mcu/error/longjmp\+\_\+exception.\+hpp@{/home/andy/\+Documentos/\+Source/yahal/mcu/error/longjmp\+\_\+exception.\+hpp}}
+\hypertarget{longjmp__exception_8hpp}{}\section{/home/andy/\+Documentos/\+Source/yahal/error/longjmp\+\_\+exception.hpp File Reference}
+\label{longjmp__exception_8hpp}\index{/home/andy/\+Documentos/\+Source/yahal/error/longjmp\+\_\+exception.\+hpp@{/home/andy/\+Documentos/\+Source/yahal/error/longjmp\+\_\+exception.\+hpp}}
 {\ttfamily \#include $<$setjmp.\+h$>$}\\*
 {\ttfamily \#include $<$stdint.\+h$>$}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{longjmp__exception_8hpp_ad2746371528bdf15c3910b7bf217dac0}{T\+R\+Y}
-\begin{DoxyCompactList}\small\item\em \begin{DoxyVerb}ID: LONGJMP_EXCEPTION
-\end{DoxyVerb}
- E\+D\+I\+T\+E\+D\+: 21-\/04-\/2015 A\+U\+T\+H\+O\+R\+: Andres Gongora \end{DoxyCompactList}\item 
-\#define \hyperlink{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}{C\+A\+T\+C\+H}~\} else \{
-\item 
-\#define \hyperlink{longjmp__exception_8hpp_a4071a24a0245b51c00c9bfcf103f9c0f}{E\+N\+D\+T\+R\+Y}
-\item 
-\#define \hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W}(val)~do\{longjmp(ex\+\_\+buf\+\_\+\+\_\+, val);\}while(0)
-\item 
-\#define \hyperlink{longjmp__exception_8hpp_a70195a6405d6a11e6aff66ca1b6c53d7}{T\+E\+S\+T}(testvalue)~do\{if(testvalue == false) \hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W}(-\/1);\}while(0);
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Start exception handling. \end{DoxyCompactList}\item 
+\hypertarget{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}{}\#define \hyperlink{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}{C\+A\+T\+C\+H}~\} else \{\label{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}
 
+\begin{DoxyCompactList}\small\item\em Handles the throw. \end{DoxyCompactList}\item 
+\#define \hyperlink{longjmp__exception_8hpp_a4071a24a0245b51c00c9bfcf103f9c0f}{E\+N\+D\+T\+R\+Y}
+\begin{DoxyCompactList}\small\item\em Ends the try-\/catch clause. \end{DoxyCompactList}\item 
+\#define \hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W}(val)~do\{longjmp(ex\+\_\+buf\+\_\+\+\_\+, val);\}while(0)
+\begin{DoxyCompactList}\small\item\em Throws with value \char`\"{}val\char`\"{}. \end{DoxyCompactList}\item 
+\hypertarget{longjmp__exception_8hpp_a70195a6405d6a11e6aff66ca1b6c53d7}{}\#define \hyperlink{longjmp__exception_8hpp_a70195a6405d6a11e6aff66ca1b6c53d7}{T\+E\+S\+T}(testvalue)~do\{if(testvalue == false) \hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W}(-\/1);\}while(0);\label{longjmp__exception_8hpp_a70195a6405d6a11e6aff66ca1b6c53d7}
+
+\begin{DoxyCompactList}\small\item\em Test if condition == T\+R\+U\+E, else throw -\/1, Handy if you ignore T\+H\+R\+O\+W\+\_\+\+V\+A\+L. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\begin{DoxyAuthor}{Author}
+Andres Gongora. Error handling implementation similar to C++ exceptions in C style.
+\end{DoxyAuthor}
+Stores all registers and allows their restoration if something goes wrong.
+
+\begin{DoxyNote}{Note}
+Braces are optional. Not using them ensures that you dont forget to use E\+N\+D\+T\+R\+Y
+\end{DoxyNote}
+
+\begin{DoxyCode}
+\textcolor{comment}{//Example 1: "ignoring THROW\_VAL" and "no braces"}
+\hyperlink{longjmp__exception_8hpp_ad2746371528bdf15c3910b7bf217dac0}{TRY}
+foo1();         \textcolor{comment}{// Do something}
+\hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{THROW}(1);               \textcolor{comment}{// Throws with value 1.}
+foo2();         \textcolor{comment}{// Never reaches this point}
+\hyperlink{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}{CATCH}
+        \textcolor{comment}{// Handle error here. The "1" is ignored}
+\hyperlink{longjmp__exception_8hpp_a4071a24a0245b51c00c9bfcf103f9c0f}{ENDTRY}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+\textcolor{comment}{//Example 2: "throwing a value"}
+\hyperlink{longjmp__exception_8hpp_ad2746371528bdf15c3910b7bf217dac0}{TRY}
+\{
+        foo1();         \textcolor{comment}{// Do something}
+        \hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{THROW}(3);       \textcolor{comment}{// Throws with value 3}
+        foo2();         \textcolor{comment}{// Never reaches this point}
+\}
+\hyperlink{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}{CATCH}
+\{
+        \textcolor{comment}{// THROW\_VAL can be used to pass an error code}
+        \textcolor{keywordflow}{switch}(THROW\_VAL)
+        \{
+                \textcolor{keywordflow}{case} 1: error\_handler\_1(); \textcolor{keywordflow}{break};
+                \textcolor{keywordflow}{case} 2: error\_handler\_2(); \textcolor{keywordflow}{break};
+                \textcolor{keywordflow}{case} 3: error\_handler\_3(); \textcolor{keywordflow}{break};
+                \textcolor{keywordflow}{default}: \textcolor{keywordflow}{break};
+        \}
+\}
+\hyperlink{longjmp__exception_8hpp_a4071a24a0245b51c00c9bfcf103f9c0f}{ENDTRY};
+\end{DoxyCode}
+ 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!C\+A\+T\+C\+H@{C\+A\+T\+C\+H}}
-\index{C\+A\+T\+C\+H@{C\+A\+T\+C\+H}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
-\subsubsection[{C\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+T\+C\+H~\} else \{}\label{longjmp__exception_8hpp_ae30f5c713cfa6a69c6b26492c992052b}
-
-
-Definition at line 104 of file longjmp\+\_\+exception.\+hpp.
-
 \hypertarget{longjmp__exception_8hpp_a4071a24a0245b51c00c9bfcf103f9c0f}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!E\+N\+D\+T\+R\+Y@{E\+N\+D\+T\+R\+Y}}
 \index{E\+N\+D\+T\+R\+Y@{E\+N\+D\+T\+R\+Y}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
 \subsubsection[{E\+N\+D\+T\+R\+Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+N\+D\+T\+R\+Y}\label{longjmp__exception_8hpp_a4071a24a0245b51c00c9bfcf103f9c0f}
@@ -37,18 +78,11 @@ Definition at line 104 of file longjmp\+\_\+exception.\+hpp.
 \end{DoxyCode}
 
 
-Definition at line 105 of file longjmp\+\_\+exception.\+hpp.
-
-\hypertarget{longjmp__exception_8hpp_a70195a6405d6a11e6aff66ca1b6c53d7}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!T\+E\+S\+T@{T\+E\+S\+T}}
-\index{T\+E\+S\+T@{T\+E\+S\+T}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
-\subsubsection[{T\+E\+S\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+E\+S\+T(
-\begin{DoxyParamCaption}
-\item[{}]{testvalue}
-\end{DoxyParamCaption}
-)~do\{if(testvalue == false) {\bf T\+H\+R\+O\+W}(-\/1);\}while(0);}\label{longjmp__exception_8hpp_a70195a6405d6a11e6aff66ca1b6c53d7}
+Ends the try-\/catch clause. 
 
 
-Definition at line 114 of file longjmp\+\_\+exception.\+hpp.
+
+Definition at line 102 of file longjmp\+\_\+exception.\+hpp.
 
 \hypertarget{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!T\+H\+R\+O\+W@{T\+H\+R\+O\+W}}
 \index{T\+H\+R\+O\+W@{T\+H\+R\+O\+W}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
@@ -59,7 +93,11 @@ Definition at line 114 of file longjmp\+\_\+exception.\+hpp.
 )~do\{longjmp(ex\+\_\+buf\+\_\+\+\_\+, val);\}while(0)}\label{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}
 
 
-Definition at line 110 of file longjmp\+\_\+exception.\+hpp.
+Throws with value \char`\"{}val\char`\"{}. 
+
+It is stored as an int16\+\_\+t in T\+H\+R\+O\+W\+\_\+\+V\+A\+L 
+
+Definition at line 117 of file longjmp\+\_\+exception.\+hpp.
 
 \hypertarget{longjmp__exception_8hpp_ad2746371528bdf15c3910b7bf217dac0}{}\index{longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}!T\+R\+Y@{T\+R\+Y}}
 \index{T\+R\+Y@{T\+R\+Y}!longjmp\+\_\+exception.\+hpp@{longjmp\+\_\+exception.\+hpp}}
@@ -74,59 +112,9 @@ Definition at line 110 of file longjmp\+\_\+exception.\+hpp.
 \end{DoxyCode}
 
 
-\begin{DoxyVerb}ID: LONGJMP_EXCEPTION
-\end{DoxyVerb}
- E\+D\+I\+T\+E\+D\+: 21-\/04-\/2015 A\+U\+T\+H\+O\+R\+: Andres Gongora 
+Start exception handling. 
 
-+-\/-\/-\/--- Description\+: -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---+ $\vert$ $\vert$ \begin{TabularC}{1}
-\hline
-\rowcolor{lightgray}{\bf Error handling implementation similar to C++ exceptions in C style  }\\\cline{1-1}
-Implements\+: \\\cline{1-1}
--\/ T\+R\+Y\+: Start the try. Can T\+H\+R\+O\+W inside it \\\cline{1-1}
--\/ C\+A\+T\+C\+H\+: Handles the throw \\\cline{1-1}
--\/ E\+N\+D\+T\+R\+Y\+: Ends the try-\/catch clause \\\cline{1-1}
--\/ \hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W(val)}\+: Throws with value \char`\"{}val\char`\"{}. Usefull to pass an error code \\\cline{1-1}
--\/ T\+H\+R\+O\+W\+: Throws with default value -\/1 \\\cline{1-1}
--\/ T\+H\+R\+O\+W\+\_\+\+V\+A\+L\+: int16\+\_\+t that contains the throw value \\\cline{1-1}
-\\\cline{1-1}
-N\+O\+T\+E\+: braces are optional. Not using them ensures that you dont \\\cline{1-1}
-forget to use E\+N\+D\+T\+R\+Y \\\cline{1-1}
-\\\cline{1-1}
--\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-1}
-\\\cline{1-1}
-Example 1\+: \char`\"{}ignoring T\+H\+R\+O\+W\+\_\+\+V\+A\+L\char`\"{} and \char`\"{}no braces\char`\"{} \\\cline{1-1}
-T\+R\+Y \\\cline{1-1}
-foo1(); // Do something \\\cline{1-1}
-\hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W(1)}; // Throws with value 1. \\\cline{1-1}
-foo2(); // Never reaches this point \\\cline{1-1}
-C\+A\+T\+C\+H \\\cline{1-1}
-// Handle error. The \char`\"{}1\char`\"{} is ignored \\\cline{1-1}
-E\+N\+D\+T\+R\+Y \\\cline{1-1}
-\\\cline{1-1}
--\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-1}
-\\\cline{1-1}
-Example 2\+: \char`\"{}throwing a value\char`\"{} \\\cline{1-1}
-T\+R\+Y \\\cline{1-1}
-\{ \\\cline{1-1}
-foo1(); // Do something \\\cline{1-1}
-\hyperlink{longjmp__exception_8hpp_a32b511cadb5acde1de32c0fbf8f583c4}{T\+H\+R\+O\+W(3)}; // Throws with value 3 \\\cline{1-1}
-foo2(); // Never reaches this point \\\cline{1-1}
-\} \\\cline{1-1}
-C\+A\+T\+C\+H \\\cline{1-1}
-\{ \\\cline{1-1}
-// T\+H\+R\+O\+W\+\_\+\+V\+A\+L can be used to pass an error code \\\cline{1-1}
-switch(\+T\+H\+R\+O\+W\+\_\+\+V\+A\+L) \\\cline{1-1}
-\{ \\\cline{1-1}
-case 1\+: error\+\_\+handler\+\_\+1(); break; \\\cline{1-1}
-case 2\+: error\+\_\+handler\+\_\+2(); break; \\\cline{1-1}
-case 3\+: error\+\_\+handler\+\_\+3(); break; \\\cline{1-1}
-default\+: break; \\\cline{1-1}
-\} \\\cline{1-1}
-\} \\\cline{1-1}
-E\+N\+D\+T\+R\+Y; \\\cline{1-1}
-\\\cline{1-1}
-\end{TabularC}
-+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---+ 
+Stores current system status in \char`\"{}ex\+\_\+buf\+\_\+\+\_\+\char`\"{} 
 
-Definition at line 99 of file longjmp\+\_\+exception.\+hpp.
+Definition at line 96 of file longjmp\+\_\+exception.\+hpp.
 

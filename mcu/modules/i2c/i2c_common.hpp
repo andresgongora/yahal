@@ -36,7 +36,7 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace detail{
+namespace yahal{ namespace mcu{ namespace details{
 	class I2C_common;
 }}}
 
@@ -46,7 +46,7 @@ namespace yahal{ namespace mcu{ namespace detail{
  * Base class for all I2C modules.
  * This virtual class implements all common elements to all I2C operation modes.
  **************************************************************************************************/
-class yahal::mcu::detail::I2C_common : public yahal::mcu::detail::BaseModule
+class yahal::mcu::details::I2C_common : public yahal::mcu::details::BaseModule
 {
 public:
 				/**
@@ -64,7 +64,7 @@ public:
 				 * Error codes for I2C.
 				 */
 				struct Error{ enum Type{
-					NONE = NO_ERROR,
+					NO_ERROR = NO_ERROR_CODE,
 					SLAVE_ADDRESS_NOT_7_BIT,
 					SLAVE_NOT_REACHABLE,
 					SLAVE_DATA_NACK,

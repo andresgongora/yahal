@@ -1,0 +1,71 @@
+\hypertarget{classyahal_1_1mcu_1_1detail_1_1_i2_c__common}{}\section{yahal\+:\+:mcu\+:\+:detail\+:\+:I2\+C\+\_\+common Class Reference}
+\label{classyahal_1_1mcu_1_1detail_1_1_i2_c__common}\index{yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common@{yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common}}
+
+
+Base class for all I2\+C modules.  
+
+
+
+
+{\ttfamily \#include $<$i2c\+\_\+common.\+hpp$>$}
+
+Inheritance diagram for yahal\+:\+:mcu\+:\+:detail\+:\+:I2\+C\+\_\+common\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classyahal_1_1mcu_1_1detail_1_1_i2_c__common}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structyahal_1_1mcu_1_1detail_1_1_i2_c__common_1_1_direction}{Direction}
+\begin{DoxyCompactList}\small\item\em I/\+O operation direction. \end{DoxyCompactList}\item 
+struct \hyperlink{structyahal_1_1mcu_1_1detail_1_1_i2_c__common_1_1_error}{Error}
+\begin{DoxyCompactList}\small\item\em \hyperlink{structyahal_1_1mcu_1_1detail_1_1_i2_c__common_1_1_error}{Error} codes for I2\+C. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classyahal_1_1mcu_1_1detail_1_1_i2_c__common_a9757d8b018eb9cf9c2f4f39db1a3fa91}{write\+Buffer\+T\+X} (uint8\+\_\+t byte)=0
+\begin{DoxyCompactList}\small\item\em Prepare write. \end{DoxyCompactList}\item 
+virtual uint8\+\_\+t \hyperlink{classyahal_1_1mcu_1_1detail_1_1_i2_c__common_a9dcb01b9325bafad2234c711b1448cc9}{read\+Buffer\+R\+X} (void)=0
+\begin{DoxyCompactList}\small\item\em Finish read. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Base class for all I2\+C modules. 
+
+This virtual class implements all common elements to all I2\+C operation modes. 
+
+Definition at line 49 of file i2c\+\_\+common.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classyahal_1_1mcu_1_1detail_1_1_i2_c__common_a9dcb01b9325bafad2234c711b1448cc9}{}\index{yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common@{yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common}!read\+Buffer\+R\+X@{read\+Buffer\+R\+X}}
+\index{read\+Buffer\+R\+X@{read\+Buffer\+R\+X}!yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common@{yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common}}
+\subsubsection[{read\+Buffer\+R\+X(void)=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual uint8\+\_\+t yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common\+::read\+Buffer\+R\+X (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{classyahal_1_1mcu_1_1detail_1_1_i2_c__common_a9dcb01b9325bafad2234c711b1448cc9}
+
+
+Finish read. 
+
+\hypertarget{classyahal_1_1mcu_1_1detail_1_1_i2_c__common_a9757d8b018eb9cf9c2f4f39db1a3fa91}{}\index{yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common@{yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common}!write\+Buffer\+T\+X@{write\+Buffer\+T\+X}}
+\index{write\+Buffer\+T\+X@{write\+Buffer\+T\+X}!yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common@{yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common}}
+\subsubsection[{write\+Buffer\+T\+X(uint8\+\_\+t byte)=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void yahal\+::mcu\+::detail\+::\+I2\+C\+\_\+common\+::write\+Buffer\+T\+X (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{byte}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{classyahal_1_1mcu_1_1detail_1_1_i2_c__common_a9757d8b018eb9cf9c2f4f39db1a3fa91}
+
+
+Prepare write. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andy/\+Documentos/\+Source/yahal/mcu/modules/i2c/i2c\+\_\+common.\+hpp\end{DoxyCompactItemize}

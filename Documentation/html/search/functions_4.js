@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getfrequencyhz',['getFrequencyHz',['../classyahal_1_1mcu_1_1_clk.html#a402906c8635bdbf999d4b13895e42ff2',1,'yahal::mcu::Clk']]]
+  ['open',['open',['../classyahal_1_1mcu_1_1detail_1_1_base_module.html#a3638ef4cd8297b77346db4a0e78034c1',1,'yahal::mcu::detail::BaseModule']]]
 ];

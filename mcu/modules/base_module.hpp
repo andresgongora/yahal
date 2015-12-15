@@ -34,12 +34,12 @@
 #include <cstddef>
 #include "../../utility/oop/noncopyable.hpp"
 #include "../../error/error_code.hpp"
-#include "../rtos/rtos.hpp"
+#include "../../rtos/rtos.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace detail{
+namespace yahal{ namespace mcu{ namespace details{
 	class BaseModule;
 }}}
 
@@ -51,7 +51,7 @@ namespace yahal{ namespace mcu{ namespace detail{
  * It also inherits from noncopyable, prohibiting the copy of any class, as they are asociated
  * to physical resources.
  **************************************************************************************************/
-class yahal::mcu::detail::BaseModule :
+class yahal::mcu::details::BaseModule :
 	public yahal::error::ErrorCode,
 	private yahal::utility::oop::Noncopyable
 {
@@ -68,7 +68,7 @@ public:
 				 * @see doInit()
 				 */
 	bool			init(void){
-					this->setErrorCode(NO_ERROR);
+					this->setErrorCode(NO_ERROR_CODE);
 					doInit();
 					return not this->hasError();
 				}
@@ -79,8 +79,7 @@ protected:
 				/** Prepare module for exclusive operation */
 	void			open(void){
 					_mutex.lock();
-					this->setErrorCode(NO_ERROR);
-					if(not isInitialized()){init();}	// Try to init
+					this->setErrorCode(NO_ERROR_CODE);
 				}
 
 				/** Releases module */
@@ -94,7 +93,7 @@ protected:
 
 
 private:
-	yahal::mcu::rtos::Mutex	_mutex;	/**< Mutex for exclusive access to each derived module */
+	yahal::rtos::Mutex	_mutex;	/**< Mutex for exclusive access to each derived module */
 };
 
 

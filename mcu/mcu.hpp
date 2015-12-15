@@ -45,8 +45,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
 #ifndef __YAHAL_MCU_HPP_INCLUDED__
 #define __YAHAL_MCU_HPP_INCLUDED__
 
@@ -58,7 +56,6 @@
 
 // LOAD CODE
 #include "modules/modules.hpp"
-#include "rtos/rtos.hpp"
 #include "targets/targets.hpp"
 #include "hwemulation/hwemulation.hpp"
 

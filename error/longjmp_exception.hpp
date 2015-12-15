@@ -23,78 +23,74 @@
 	+-----------------------------------------------------------------------+	*/
 
 
+/***********************************************************************************************//**
+ * @file longjmp_exception.hpp.
+ * @brief Error handling implementation similar to C++ exceptions in C style.
+ *
+ * Stores all registers and allows their restoration if something goes wrong.
+ *
+ * @note Braces are optional. Not using them ensures that you dont forget to use ENDTRY
+ *
+ * @code
+ * //Example 1: "ignoring THROW_VAL" and "no braces"
+ * TRY
+ * foo1();		// Do something
+ * THROW(1);		// Throws with value 1.
+ * foo2();		// Never reaches this point
+ * CATCH
+ * 	// Handle error here. The "1" is ignored
+ * ENDTRY
+ * @endcode
+ *
+ * @code
+ * //Example 2: "throwing a value"
+ * TRY
+ * {
+ * 	foo1();		// Do something
+ * 	THROW(3);	// Throws with value 3
+ * 	foo2();		// Never reaches this point
+ * }
+ * CATCH
+ * {
+ * 	// THROW_VAL can be used to pass an error code
+ * 	switch(THROW_VAL)
+ * 	{
+ * 		case 1: error_handler_1(); break;
+ * 		case 2: error_handler_2(); break;
+ * 		case 3: error_handler_3(); break;
+ * 		default: break;
+ * 	}
+ * }
+ * ENDTRY;
+ * @endcode
+ **************************************************************************************************/
+
+#ifndef __YAHAL_ERROR_LONGJMP_EXCEPTION_HPP_INCLUDED
+#define __YAHAL_ERROR_LONGJMP_EXCEPTION_HPP_INCLUDED
 
 
-      /**
-	*	ID:	LONGJMP_EXCEPTION
-	*   EDITED:	21-04-2015
-	*   AUTHOR:	Andres Gongora
-	*
-	*	+------ Description: -----------------------------------------------------------+
-	*	|										|
-	*	|	Error handling implementation similar to C++ exceptions in C style	|
-	*	|										|
-	*	|	Implements:								|
-	*	|	- TRY:		Start the try. Can THROW inside it			|
-	*	|	- CATCH:	Handles the throw					|
-	*	|	- ENDTRY:	Ends the try-catch clause				|
-	*	|	- THROW(val):	Throws with value "val". Usefull to pass an error code	|
-	*	|	- THROW:	Throws with default value -1				|
-	*	|	- THROW_VAL:	int16_t that contains the throw value			|
-	*	|										|
-	*	|	NOTE:	braces are optional. Not using them ensures that you dont	|
-	*	|		forget to use ENDTRY						|
-	*	|										|
-	*	|	-----------------------------------------------------------------	|
-	*	|										|
-	*	|	Example 1: "ignoring THROW_VAL" and "no braces"				|
-	*	|	TRY									|
-	*	|		foo1();		// Do something					|
-	*	|		THROW(1);	// Throws with value 1.				|
-	*	|		foo2();		// Never reaches this point			|
-	*	|	CATCH									|
-	*	|		// Handle error. The "1" is ignored				|
-	*	|	ENDTRY									|
-	*	|										|
-	*	|	-----------------------------------------------------------------	|
-	*	|										|
-	*	|	Example 2: "throwing a value"						|
-	*	|	TRY									|
-	*	|	{									|
-	*	|		foo1();		// Do something					|
-	*	|		THROW(3);	// Throws with value 3				|
-	*	|		foo2();		// Never reaches this point			|
-	*	|	}									|
-	*	|	CATCH									|
-	*	|	{									|
-	*	|		// THROW_VAL can be used to pass an error code			|
-	*	|		switch(THROW_VAL)						|
-	*	|		{								|
-	*	|			case 1: error_handler_1(); break;			|
-	*	|			case 2: error_handler_2(); break;			|
-	*	|			case 3: error_handler_3(); break;			|
-	*	|			default: break;						|
-	*	|		}								|
-	*	|	}									|
-	*	|	ENDTRY;									|
-	*	|										|
-	*	+-------------------------------------------------------------------------------+
-	*	
-	**/
-
-
-
-#ifndef __LONGJMP_EXCEPTION_HPP_INCLUDED
-#define __LONGJMP_EXCEPTION_HPP_INCLUDED
-
-
-//----- INCLUDE ------------------------------------------------------------------------------------
+/* ---------------------------------------------------------------------------------------------- */
 #include <setjmp.h>
 #include <stdint.h>
 
 
 
-//----- DEFINE -------------------------------------------------------------------------------------
+/* ---------------------------------------------------------------------------------------------- */
+
+/***********************************************************************************************//**
+ * @def		TRY
+ * @brief	Start exception handling. Stores current system status in "ex_buf__"
+ **************************************************************************************************/
+
+/***********************************************************************************************//**
+ * @def		CATCH
+ * @brief	Handles the throw.
+ **************************************************************************************************/
+
+/***********************************************************************************************//**
+ * @def		ENDTRY
+ * @brief	Ends the try-catch clause.
+ **************************************************************************************************/
 
 #define TRY 			do{								\
 					jmp_buf ex_buf__;					\
@@ -107,6 +103,16 @@
 
 
 
+/***********************************************************************************************//**
+ * @def		THROW(val)
+ * @brief	Throws with value "val". It is stored as an int16_t in THROW_VAL
+ **************************************************************************************************/
+
+/***********************************************************************************************//**
+ * @def		TEST(testvalue)
+ * @brief	Test if condition == TRUE, else throw -1, Handy if you ignore THROW_VAL.
+ **************************************************************************************************/
+
 #define THROW(val) 		do{longjmp(ex_buf__, val);}while(0) 	// Throw with value
 
 
@@ -114,6 +120,6 @@
 #define TEST(testvalue)		do{if(testvalue == false) THROW(-1);}while(0);
 
 
-#endif //__LONGJMP_EXCEPTION_HPP_INCLUDED
 
-
+/* ---------------------------------------------------------------------------------------------- */
+#endif // __YAHAL_ERROR_LONGJMP_EXCEPTION_HPP_INCLUDED

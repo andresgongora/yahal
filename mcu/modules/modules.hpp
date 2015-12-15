@@ -22,8 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
 #ifndef __YAHAL_MCU_MODULES_HPP_INCLUDED__
 #define __YAHAL_MCU_MODULES_HPP_INCLUDED__
 

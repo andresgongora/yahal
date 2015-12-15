@@ -43,17 +43,19 @@ namespace yahal{ namespace mcu{
 
 
 
-/* ============================================================================================== */
- *	DECLARATION	yahal::mcu::Wdt
- * ============================================================================================== */
-
-class yahal::mcu::Wdt : public yahal::mcu::BaseModule
+/***********************************************************************************************//**
+ * @brief	Base class for all Watch Dog Timers.
+ **************************************************************************************************/
+class yahal::mcu::Wdt : public yahal::mcu::details::BaseModule
 {
-protected:			// CONSTRUCTOR & DESTRUCTOR ----------------------------------------
+protected:
 				Wdt(void) {}
 	virtual			~Wdt(void){}
 
-
+public:
+				/**
+				 * Reset watch dog timer count.
+				 */
 	virtual void		reset(void) = 0;
 };
 
