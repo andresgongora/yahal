@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "timer.hpp"
-#ifdef __MCU_MSP430F5309_TIMER_ENABLED__
+#ifdef __YAHAL_MCU_MSP430F5309_TIMER_ENABLED__
 
 #include <msp430f5309.h>
 
@@ -54,4 +54,4 @@ namespace hal{namespace uc{namespace msp430f5309{
 }}}
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __MCU_MSP430F5309_GPIO_ENABLED__
+#endif // __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__

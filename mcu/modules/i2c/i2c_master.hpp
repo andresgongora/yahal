@@ -26,8 +26,8 @@
 
 
 
-#ifndef __MCU_I2C_MASTER_HPP_INCLUDED__
-#define __MCU_I2C_MASTER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_I2C_MASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_I2C_MASTER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -124,4 +124,4 @@ private:			// PRIVATE VARIABLES
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __MCU_I2C_MASTER_HPP_INCLUDED__
+#endif 	// __YAHAL_MCU_I2C_MASTER_HPP_INCLUDED__

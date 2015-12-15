@@ -25,14 +25,14 @@
 
 
 
-#ifndef __MCU_M430F5309_GPIO_HPP_INCLUDED__
-#define __MCU_M430F5309_GPIO_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_M430F5309_GPIO_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_GPIO_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../msp430f5309_config.hpp"
-#ifdef __MCU_MSP430F5309_GPIO_ENABLED__
+#ifdef __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__
 
 #include <stdint.h>
 #include "../../../modules/gpio/gpio.hpp"
@@ -166,5 +166,5 @@ namespace yahal{ namespace mcu{
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __MCU_MSP430F5309_GPIO_ENABLED__
-#endif // __MCU_MSP430F5309_GPIO_HPP_INCLUDED__
+#endif // __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__
+#endif // __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__

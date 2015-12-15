@@ -24,13 +24,13 @@
 
 
 
-#ifndef __MCU_HWEMULATION_I2C_MASTER_HPP_INCLUDED__
-#define __MCU_HWEMULATION_I2C_MASTER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_HWEMULATION_I2C_MASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_HWEMULATION_I2C_MASTER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../hwemulation_config.hpp"
-#ifdef __MCU_HWEMULATION_I2C_MASTER_ENABLED__
+#ifdef __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__
 
 #include <stdint.h>
 #include "../../modules/i2c/i2c_master.hpp"
@@ -142,5 +142,5 @@ private:			// PIN -------------------------------------------------------------
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __MCU_HWEMULATION_I2C_MASTER_ENABLED__
-#endif // __MCU_HWEMULATION_I2C_MASTER_HPP_INCLUDED__
+#endif // __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__
+#endif // __YAHAL_MCU_HWEMULATION_I2C_MASTER_HPP_INCLUDED__

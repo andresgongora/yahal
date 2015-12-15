@@ -24,8 +24,8 @@
 
 
 
-#ifndef __MCU_CONFIG_HPP_INCLUDED__
-#define __MCU_CONFIG_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_CONFIG_HPP_INCLUDED__
+#define __YAHAL_MCU_CONFIG_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -52,4 +52,4 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif //__MCU_CONFIG_HPP_INCLUDED__
+#endif //__YAHAL_MCU_CONFIG_HPP_INCLUDED__

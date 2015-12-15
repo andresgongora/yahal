@@ -25,14 +25,14 @@
 
 
 
-#ifndef __MCU_M430F5309_TIMER_HPP_INCLUDED__
-#define __MCU_M430F5309_TIMER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_M430F5309_TIMER_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_TIMER_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../msp430f5309.hpp"
-#ifdef __MCU_MSP430F5309_TIMER_ENABLED__
+#ifdef __YAHAL_MCU_MSP430F5309_TIMER_ENABLED__
 
 #include <stdint.h>
 
@@ -71,5 +71,5 @@ namespace hal{namespace uc{namespace msp430f5309{
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __MCU_MSP430F5309_TIMER_ENABLED__
-#endif // __MCU_MSP430F5309_TIMER_HPP_INCLUDED__
+#endif // __YAHAL_MCU_MSP430F5309_TIMER_ENABLED__
+#endif // __YAHAL_MCU_MSP430F5309_TIMER_HPP_INCLUDED__

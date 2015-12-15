@@ -26,7 +26,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "i2c_master.hpp"
-#ifdef __MCU_HWEMULATION_I2C_MASTER_ENABLED__
+#ifdef __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__
 
 
 

@@ -27,7 +27,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "gpio.hpp"
-#ifdef __MCU_MSP430F5309_GPIO_ENABLED__
+#ifdef __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__
 
 #include <msp430f5309.h>
 
@@ -375,4 +375,4 @@ namespace yahal{ namespace mcu{
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __MCU_MSP430F5309_GPIO_ENABLED__
+#endif // __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__

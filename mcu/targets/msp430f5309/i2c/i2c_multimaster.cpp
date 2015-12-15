@@ -28,7 +28,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "i2c_multimaster.hpp"
-#ifdef __MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+#ifdef __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
 
 #include <msp430f5309.h>
 
@@ -138,4 +138,4 @@ void yahal::mcutargets::msp430f5309::I2C_multimaster::configureAsMaster(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+#endif	// __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__

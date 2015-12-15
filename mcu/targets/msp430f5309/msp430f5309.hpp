@@ -24,8 +24,8 @@
 
 
 
-#ifndef __MCU_MSP430F5309_HPP_INCLUDED__
-#define __MCU_MSP430F5309_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MSP430F5309_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_HPP_INCLUDED__
 
 
 
@@ -59,4 +59,4 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// MCU_DEVICE == MCU_MSP430F5309
-#endif	// __MCU_MSP430F5309_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_MSP430F5309_HPP_INCLUDED__

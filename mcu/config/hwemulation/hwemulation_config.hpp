@@ -36,7 +36,7 @@
  *	CONFIGURATION
  * ============================================================================================== */
 
-#define __MCU_HWEMULATION_I2C_MASTER_ENABLED__
+#define __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__
 
 
 

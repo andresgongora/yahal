@@ -24,8 +24,8 @@
 
 
 
-#ifndef __MCU_MODULES_HPP_INCLUDED__
-#define __MCU_MODULES_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_HPP_INCLUDED__
 
 
 // LOAD BASE MODULE
@@ -44,4 +44,4 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __MCU_MODULES_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_MODULES_HPP_INCLUDED__

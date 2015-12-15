@@ -33,8 +33,8 @@
 	* along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 
-#ifndef __MCU_CONFIG_HPP_INCLUDED__
-#define __MCU_CONFIG_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_CONFIG_HPP_INCLUDED__
+#define __YAHAL_MCU_CONFIG_HPP_INCLUDED__
 
 
 /** --- INCLUDE -------------------------------------------------------------------------------- **/
@@ -61,4 +61,4 @@
 
 
 /** ============================================================================================ **/
-#endif //__MCU_CONFIG_HPP_INCLUDED__
+#endif //__YAHAL_MCU_CONFIG_HPP_INCLUDED__

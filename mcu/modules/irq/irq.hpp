@@ -26,8 +26,8 @@
 
 
 
-#ifndef __MCU_IRQ_HPP_INCLUDED__
-#define __MCU_IRQ_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_IRQ_HPP_INCLUDED__
+#define __YAHAL_MCU_IRQ_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -94,4 +94,4 @@ public:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__MCU_IRQ_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_IRQ_HPP_INCLUDED__

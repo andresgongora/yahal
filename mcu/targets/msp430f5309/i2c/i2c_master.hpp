@@ -25,13 +25,13 @@
 
 
 
-#ifndef __MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__
-#define __MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../msp430f5309_config.hpp"
-#if defined(__MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__MCU_MSP430F5309_I2C_MASTER_ENABLED__)
+#if defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__)
 
 #include <stdint.h>
 #include <cstddef>
@@ -68,5 +68,5 @@ private:			// MODULE IMPLEMENTATION
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// defined(__MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__MCU_MSP430F5309_I2C_MASTER_ENABLED__)
-#endif	// __MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__
+#endif	// defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__)
+#endif	// __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__

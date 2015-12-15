@@ -33,8 +33,8 @@
 	* along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 
-#ifndef __MCU_MSP430F5309_CONFIG_HPP_INCLUDED__
-#define __MCU_MSP430F5309_CONFIG_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MSP430F5309_CONFIG_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_CONFIG_HPP_INCLUDED__
 
 
 #if MCU_DEVICE == MCU_MSP430F5309
@@ -47,39 +47,39 @@
 
 /** ======================================================================================== CLK **/
 //	+---------------------------------------------------------------+
-#define	__MCU_MSP430F5309_CLK_ENABLED__	// Comment to disable
+#define	__YAHAL_MCU_MSP430F5309_CLK_ENABLED__	// Comment to disable
 //	+---------------------------------------------------------------+
 
-#ifdef	__MCU_MSP430F5309_CLK_ENABLED__
-#define __MCU_MSP430F5309_CLK_INSTANCE_NAME__		clk
-#define __MCU_MSP430F5309_CLK_FREQUENCY__			1000000
-#define __MCU_MSP430F5309_CLK_FREQUENCY2__			20000
+#ifdef	__YAHAL_MCU_MSP430F5309_CLK_ENABLED__
+#define __YAHAL_MCU_MSP430F5309_CLK_INSTANCE_NAME__		clk
+#define __YAHAL_MCU_MSP430F5309_CLK_FREQUENCY__			1000000
+#define __YAHAL_MCU_MSP430F5309_CLK_FREQUENCY2__			20000
 #endif
 
 
 
 /** ======================================================================================== WDT **/
-#define __MCU_MSP430F5309_WDT_ENABLED__	// Comment to disable
+#define __YAHAL_MCU_MSP430F5309_WDT_ENABLED__	// Comment to disable
 
 
 
 
 /** ======================================================================================= GPIO **/
-#define __MCU_MSP430F5309_GPIO_ENABLED__	// Comment to disable
+#define __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__	// Comment to disable
 
 
 
 
 
 
-#define __MCU_MSP430F5309_I2C_MASTER_ENABLED__
-#define __MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
-#define __MCU_MSP430F5309_I2C_SLAVE_ENABLED__
+#define __YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__
+#define __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+#define __YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__
 
 
 
 
-//#define __MCU_MSP430F5309_TIMER_ENABLED__
+//#define __YAHAL_MCU_MSP430F5309_TIMER_ENABLED__
 
 
 
@@ -96,4 +96,4 @@
 
 /** ============================================================================================ **/
 #endif // MCU_DEVICE == MCU_MSP430F5309
-#endif //__MCU_MSP430F5309_CONFIGHPP_INCLUDED__
+#endif //__YAHAL_MCU_MSP430F5309_CONFIGHPP_INCLUDED__

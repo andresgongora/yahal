@@ -25,14 +25,14 @@
 
 
 
-#ifndef __MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__
-#define __MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../msp430f5309_config.hpp"
-#ifdef __MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+#ifdef __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
 
 #include <stdint.h>
 #include <cstddef>
@@ -82,5 +82,5 @@ private:			// PRIVATE VARIABLES
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
-#endif // __MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__
+#endif // __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+#endif // __YAHAL_MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__

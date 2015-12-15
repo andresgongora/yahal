@@ -25,8 +25,8 @@
 
 
 
-#ifndef __MCU_TARGETS_UID_HPP_INCLUDED__
-#define __MCU_TARGETS_UID_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_TARGETS_UID_HPP_INCLUDED__
+#define __YAHAL_MCU_TARGETS_UID_HPP_INCLUDED__
 
 
 /* ============================================================================================== */
@@ -53,4 +53,4 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __MCU_TARGETS_UID_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_TARGETS_UID_HPP_INCLUDED__

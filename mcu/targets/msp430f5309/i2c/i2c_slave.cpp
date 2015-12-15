@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "i2c_slave.hpp"
-#if defined(__MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__MCU_MSP430F5309_I2C_SLAVE_ENABLED__)
+#if defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__)
 
 #include <msp430f5309.h>
 
@@ -87,4 +87,4 @@ bool yahal::mcu::targets::msp430f5309::I2C_slave::isIncommingWrite(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// defined(__MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__MCU_MSP430F5309_I2C_SLAVE_ENABLED__)
+#endif	// defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__)
