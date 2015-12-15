@@ -59,7 +59,7 @@ public:				// CONFIGURATION VALUES --------------------------------------------
 					PULLDOWN
 				};};
 
-				struct ERROR{enum Type{
+				struct Error{enum Type{
 					NO_ERROR = 0,
 					TRYING_TO_ACCESS_NON_EXISTANT_PORT,
 					TRYING_TO_ACCESS_NON_EXISTANT_PIN,

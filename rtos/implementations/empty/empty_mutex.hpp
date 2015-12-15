@@ -47,13 +47,8 @@ namespace yahal{namespace rtos{
 class yahal::rtos::Mutex : public yahal::rtos::api::Mutex
 {
 public:
-				// CONSTRUTOR & DESTRUCTOR
-				Mutex(void) : _locked(false)	{}
-
-
-				// Mutex
 	void			lock(void)	{}
-	bool			try_lock(void) 	{return true}
+	bool			try_lock(void) 	{return true;}
 	void			unlock(void)	{}
 };
 

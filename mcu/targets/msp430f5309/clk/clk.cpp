@@ -149,7 +149,9 @@ uint32_t yahal::mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	yahal::mcu::targets::msp430f5309::Clk clk;
-}
+}}
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif // __YAHAL_MCU_MSP430F5309_CLK_ENABLED__

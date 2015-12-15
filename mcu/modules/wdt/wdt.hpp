@@ -38,7 +38,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Wdt;
-}
+}}
 
 
 
@@ -48,6 +48,13 @@ namespace yahal{ namespace mcu{
  **************************************************************************************************/
 class yahal::mcu::Wdt : public yahal::mcu::details::BaseModule
 {
+public:
+				struct Error {enum Type {
+					NO_ERROR = 0,
+					OTHER
+				};};
+
+
 protected:
 				Wdt(void) {}
 	virtual			~Wdt(void){}

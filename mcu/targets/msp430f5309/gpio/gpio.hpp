@@ -64,8 +64,8 @@ private:
  	class 			Port1 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
-							RESISTOR::Type resistor =RESISTOR::DISABLED,
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -78,8 +78,8 @@ private:
  	class 			Port2 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
-							RESISTOR::Type resistor =RESISTOR::DISABLED,
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -92,8 +92,8 @@ private:
  	class 			Port3 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
-							RESISTOR::Type resistor =RESISTOR::DISABLED,
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -106,8 +106,8 @@ private:
  	class 			Port4 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
-							RESISTOR::Type resistor =RESISTOR::DISABLED,
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -120,8 +120,8 @@ private:
  	class 			Port5 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
-							RESISTOR::Type resistor =RESISTOR::DISABLED,
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -134,8 +134,8 @@ private:
  	class 			Port6 : public yahal::mcu::Gpio::Port
 				{
 				public:
-					bool	config(	DIRECTION::Type direction =DIRECTION::INPUT,
-							RESISTOR::Type resistor =RESISTOR::DISABLED,
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
 							uint8_t mask = 0xFF);
 
 					void	set(uint8_t value, uint8_t mask=0xFF);
@@ -158,7 +158,7 @@ private:
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	extern yahal::mcu::targets::msp430f5309::Gpio gpio;
-}
+}}
 
 
 

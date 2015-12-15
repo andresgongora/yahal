@@ -56,7 +56,7 @@ protected:			// CONSTRUCTOR & DESTRUCTOR
 
 
 protected:			// I2C PROTOCOL -> IMPLEMENT
-	virtual void		start(uint8_t slaveAddress, DIRECTION::Type direction) = 0;
+	virtual void		start(uint8_t slaveAddress, Direction::Type direction) = 0;
 	virtual void		stop(void) = 0;
 	virtual void		awaitTransmissionEnd(void) = 0;
 
@@ -114,7 +114,7 @@ private:			// PRIVATE VARIABLES
 	bool			_sendRegisterAddress;
 	std::size_t		_numTransmissions;
 	uint8_t*		_pBuffer;
-	DIRECTION::Type		_direction;
+	Direction::Type		_direction;
 
 	volatile std::size_t	_numTransmitted;		// Might be changed by ISR
 	volatile bool		_sendRegisterAddressPending;	//

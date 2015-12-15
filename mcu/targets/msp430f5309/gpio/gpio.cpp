@@ -33,9 +33,9 @@
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::targets::msp430f5309::Gpio
- * ============================================================================================== */
+/* =================================================================================================
+	GPIO
+================================================================================================= */
 
 void yahal::mcu::targets::msp430f5309::Gpio::doInit(void)
 {
@@ -43,12 +43,12 @@ void yahal::mcu::targets::msp430f5309::Gpio::doInit(void)
 
 	P1OUT = P2OUT = P3OUT = P4OUT = P5OUT = P6OUT = 0;	// Clear outputs
 
-	success &= _port1.config(DIRECTION::INPUT, RESISTOR::DISABLED);
-	success &= _port2.config(DIRECTION::INPUT, RESISTOR::DISABLED);
-	success &= _port3.config(DIRECTION::INPUT, RESISTOR::DISABLED);
-	success &= _port4.config(DIRECTION::INPUT, RESISTOR::DISABLED);
-	success &= _port5.config(DIRECTION::INPUT, RESISTOR::DISABLED);
-	success &= _port6.config(DIRECTION::INPUT, RESISTOR::DISABLED);
+	success &= _port1.config(Direction::INPUT, Resistor::DISABLED);
+	success &= _port2.config(Direction::INPUT, Resistor::DISABLED);
+	success &= _port3.config(Direction::INPUT, Resistor::DISABLED);
+	success &= _port4.config(Direction::INPUT, Resistor::DISABLED);
+	success &= _port5.config(Direction::INPUT, Resistor::DISABLED);
+	success &= _port6.config(Direction::INPUT, Resistor::DISABLED);
 
 	if(!success)	this->setErrorCode(Error::COULD_NOT_INITIALIZE_PORT);
 }
@@ -72,26 +72,26 @@ yahal::mcu::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t por
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::targets::msp430f5309::Gpio::Port1
- * ============================================================================================== */
+/* =================================================================================================
+	PORT 1
+================================================================================================= */
 
-bool yahal::mcu::targets::msp430f5309::Gpio::Port1::config(	DIRECTION::Type direction,
-						RESISTOR::Type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port1::config(	Direction::Type direction,
+						Resistor::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P1SEL  &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P1DIR   = (direction == DIRECTION::OUTPUT ? P1DIR|mask : P1DIR & (~mask));
+	P1DIR   = (direction == Direction::OUTPUT ? P1DIR|mask : P1DIR & (~mask));
 
 
 	// RESISTOR
-	if(resistor == RESISTOR::PULLUP && direction == DIRECTION::INPUT)
+	if(resistor == Resistor::PULLUP && direction == Direction::INPUT)
 	{
 		P1REN |= mask;		// Enable resistor
 		P1OUT |= mask; 		// Configure as pullup
 	}
-	else if(resistor == RESISTOR::PULLDOWN && direction == DIRECTION::INPUT)
+	else if(resistor == Resistor::PULLDOWN && direction == Direction::INPUT)
 	{
 		P1REN |= mask;		// Enable resistor
 		P1OUT &= (~mask);	// Configure as pulldown
@@ -121,26 +121,26 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::getOutput(uint8_t mask)co
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::targets::msp430f5309::Gpio::Port2
- * ============================================================================================== */
+/* =================================================================================================
+	PORT 2
+================================================================================================= */
 
-bool yahal::mcu::targets::msp430f5309::Gpio::Port2::config(	DIRECTION::Type direction,
-						RESISTOR::Type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port2::config(	Direction::Type direction,
+						Resistor::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P2SEL  &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P2DIR   = (direction == DIRECTION::OUTPUT ? P2DIR|mask : P2DIR & (~mask));
+	P2DIR   = (direction == Direction::OUTPUT ? P2DIR|mask : P2DIR & (~mask));
 
 
 	// RESISTOR
-	if(resistor == RESISTOR::PULLUP && direction == DIRECTION::INPUT)
+	if(resistor == Resistor::PULLUP && direction == Direction::INPUT)
 	{
 		P2REN |= mask;		// Enable resistor
 		P2OUT |= mask; 		// Configure as pullup
 	}
-	else if(resistor == RESISTOR::PULLDOWN && direction == DIRECTION::INPUT)
+	else if(resistor == Resistor::PULLDOWN && direction == Direction::INPUT)
 	{
 		P2REN |= mask;		// Enable resistor
 		P2OUT &= (~mask);	// Configure as pulldown
@@ -170,26 +170,26 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port2::getOutput(uint8_t mask)co
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::targets::msp430f5309::Gpio::Port3
- * ============================================================================================== */
+/* =================================================================================================
+	PORT 3
+================================================================================================= */
 
-bool yahal::mcu::targets::msp430f5309::Gpio::Port3::config(	DIRECTION::Type direction,
-						RESISTOR::Type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port3::config(	Direction::Type direction,
+						Resistor::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P3SEL  &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P3DIR   = (direction == DIRECTION::OUTPUT ? P3DIR|mask : P3DIR & (~mask));
+	P3DIR   = (direction == Direction::OUTPUT ? P3DIR|mask : P3DIR & (~mask));
 
 
 	// RESISTOR
-	if(resistor == RESISTOR::PULLUP && direction == DIRECTION::INPUT)
+	if(resistor == Resistor::PULLUP && direction == Direction::INPUT)
 	{
 		P3REN |= mask;		// Enable resistor
 		P3OUT |= mask; 		// Configure as pullup
 	}
-	else if(resistor == RESISTOR::PULLDOWN && direction == DIRECTION::INPUT)
+	else if(resistor == Resistor::PULLDOWN && direction == Direction::INPUT)
 	{
 		P3REN |= mask;		// Enable resistor
 		P3OUT &= (~mask);	// Configure as pulldown
@@ -219,26 +219,26 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port3::getOutput(uint8_t mask)co
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::targets::msp430f5309::Gpio::Port4
- * ============================================================================================== */
+/* =================================================================================================
+	PORT 4
+================================================================================================= */
 
-bool yahal::mcu::targets::msp430f5309::Gpio::Port4::config(	DIRECTION::Type direction,
-						RESISTOR::Type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port4::config(	Direction::Type direction,
+						Resistor::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P4SEL  &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P4DIR   = (direction == DIRECTION::OUTPUT ? P4DIR|mask : P4DIR & (~mask));
+	P4DIR   = (direction == Direction::OUTPUT ? P4DIR|mask : P4DIR & (~mask));
 
 
 	// RESISTOR
-	if(resistor == RESISTOR::PULLUP && direction == DIRECTION::INPUT)
+	if(resistor == Resistor::PULLUP && direction == Direction::INPUT)
 	{
 		P4REN |= mask;		// Enable resistor
 		P4OUT |= mask; 		// Configure as pullup
 	}
-	else if(resistor == RESISTOR::PULLDOWN && direction == DIRECTION::INPUT)
+	else if(resistor == Resistor::PULLDOWN && direction == Direction::INPUT)
 	{
 		P4REN |= mask;		// Enable resistor
 		P4OUT &= (~mask);	// Configure as pulldown
@@ -268,26 +268,26 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port4::getOutput(uint8_t mask)co
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::targets::msp430f5309::Gpio::Port5
- * ============================================================================================== */
+/* =================================================================================================
+	PORT 5
+================================================================================================= */
 
-bool yahal::mcu::targets::msp430f5309::Gpio::Port5::config(	DIRECTION::Type direction,
-					 	RESISTOR::Type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port5::config(	Direction::Type direction,
+					 	Resistor::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P5SEL  &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P5DIR   = (direction == DIRECTION::OUTPUT ? P5DIR|mask : P5DIR & (~mask));
+	P5DIR   = (direction == Direction::OUTPUT ? P5DIR|mask : P5DIR & (~mask));
 
 
 	// RESISTOR
-	if(resistor == RESISTOR::PULLUP && direction == DIRECTION::INPUT)
+	if(resistor == Resistor::PULLUP && direction == Direction::INPUT)
 	{
 		P5REN |= mask;		// Enable resistor
 		P5OUT |= mask; 		// Configure as pullup
 	}
-	else if(resistor == RESISTOR::PULLDOWN && direction == DIRECTION::INPUT)
+	else if(resistor == Resistor::PULLDOWN && direction == Direction::INPUT)
 	{
 		P5REN |= mask;		// Enable resistor
 		P5OUT &= (~mask);	// Configure as pulldown
@@ -317,26 +317,26 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port5::getOutput(uint8_t mask)co
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::targets::msp430f5309::Gpio::Port6
- * ============================================================================================== */
+/* =================================================================================================
+	PORT 6
+================================================================================================= */
 
-bool yahal::mcu::targets::msp430f5309::Gpio::Port6::config(	DIRECTION::Type direction,
-						RESISTOR::Type resistor,
+bool yahal::mcu::targets::msp430f5309::Gpio::Port6::config(	Direction::Type direction,
+						Resistor::Type resistor,
 						uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P6SEL  &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P6DIR   = (direction == DIRECTION::OUTPUT ? P6DIR|mask : P6DIR & (~mask));
+	P6DIR   = (direction == Direction::OUTPUT ? P6DIR|mask : P6DIR & (~mask));
 
 
 	// RESISTOR
-	if(resistor == RESISTOR::PULLUP && direction == DIRECTION::INPUT)
+	if(resistor == Resistor::PULLUP && direction == Direction::INPUT)
 	{
 		P6REN |= mask;		// Enable resistor
 		P6OUT |= mask; 		// Configure as pullup
 	}
-	else if(resistor == RESISTOR::PULLDOWN && direction == DIRECTION::INPUT)
+	else if(resistor == Resistor::PULLDOWN && direction == Direction::INPUT)
 	{
 		P6REN |= mask;		// Enable resistor
 		P6OUT &= (~mask);	// Configure as pulldown
@@ -369,7 +369,7 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)co
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	yahal::mcu::targets::msp430f5309::Gpio gpio;
-}
+}}
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif // __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__

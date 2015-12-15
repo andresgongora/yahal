@@ -47,7 +47,7 @@ namespace yahal{ namespace mcu{
 class yahal::mcu::Clk : public yahal::mcu::details::BaseModule
 {
 public:
-				struct ERROR{ enum type{
+				struct Error{ enum Type{
 					NO_ERROR = NO_ERROR_CODE,
 					FREQUENCY_NOT_AVAILABLE,
 					OTHER

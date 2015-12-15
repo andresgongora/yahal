@@ -38,7 +38,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Irq;
-}
+}}
 
 
 
@@ -84,7 +84,7 @@ public:
 
 
 
-		struct ERROR {enum type {
+		struct Error {enum Type {
 			NO_ERROR = 0,
 			OTHER
 		};};

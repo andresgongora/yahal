@@ -90,9 +90,9 @@ bool yahal::mcu::Gpio::Port::Pin::getOutput() const
 }
 
 
-void yahal::mcu::Gpio::Port::Pin::toggle(uint8_t times)
+void yahal::mcu::Gpio::Port::Pin::toggle(void)
 {
-	_port.toggle(times, (1<<_pinNumber));
+	_port.toggle((1<<_pinNumber));
 }
 
 

@@ -70,7 +70,7 @@ public:
 
 
 public:				// SET CALLBACK FUNCTIONS FOR HOOKS
-	void			setCallbackReceivedStart(void(*fpCallOnEvent)(DIRECTION::Type));
+	void			setCallbackReceivedStart(void(*fpCallOnEvent)(Direction::Type));
 	void			setCallbackReceivedStop(void(*fpCallOnEvent)(void));
 	void			setCallbackByteReceived(void(*fpCallOnEvent)(uint8_t));
 	void			setCallbackByteRequested(void(*fpCallOnEvent)(uint8_t&));
@@ -78,7 +78,7 @@ public:				// SET CALLBACK FUNCTIONS FOR HOOKS
 
 
 private:			// PRIVATE VARIABLES
-	yahal::mcu::utility::Callback<DIRECTION::Type> _callbackStart;
+	yahal::mcu::utility::Callback<Direction::Type> _callbackStart;
 	yahal::mcu::utility::Callback<void>		_callbackStop;
 	yahal::mcu::utility::Callback<uint8_t>		_callbackByteReceived;
 	yahal::mcu::utility::Callback<uint8_t&>	_callbackByteRequested;

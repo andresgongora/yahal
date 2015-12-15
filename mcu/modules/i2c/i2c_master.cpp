@@ -28,8 +28,6 @@
 #include "i2c_master.hpp"
 
 /* ============================================================================================== */
- *	DEFINITION::I2C_MASTER
- * ============================================================================================== */
 
 /** ====================================================================================== WRITE **/
 
@@ -42,7 +40,7 @@ bool yahal::mcu::I2C_master::writeRegister(uint8_t slaveAddress, uint8_t registe
 	_sendRegisterAddress 	= true;
 	_numTransmissions	= size;
 	_pBuffer		= data;
-	_direction 		= DIRECTION::WRITE;
+	_direction 		= Direction::WRITE;
 
 	bool success = transmit();
 	this->close();
@@ -59,7 +57,7 @@ bool yahal::mcu::I2C_master::write(uint8_t slaveAddress, uint8_t* data, std::siz
 	_sendRegisterAddress 	= false;
 	_numTransmissions	= size;
 	_pBuffer		= data;
-	_direction 		= DIRECTION::WRITE;
+	_direction 		= Direction::WRITE;
 
 	bool success = transmit();
 	this->close();
@@ -78,7 +76,7 @@ bool yahal::mcu::I2C_master::readRegister(uint8_t slaveAddress, uint8_t register
 	_sendRegisterAddress 	= true;
 	_numTransmissions	= size;
 	_pBuffer		= data;
-	_direction 		= DIRECTION::READ;
+	_direction 		= Direction::READ;
 
 	bool success = transmit();
 	this->close();
@@ -95,7 +93,7 @@ bool yahal::mcu::I2C_master::read(uint8_t slaveAddress, uint8_t* data, std::size
 	_sendRegisterAddress 	= false;
 	_numTransmissions	= size;
 	_pBuffer		= data;
-	_direction 		= DIRECTION::READ;
+	_direction 		= Direction::READ;
 
 	bool success = transmit();
 	this->close();
@@ -131,7 +129,7 @@ void yahal::mcu::I2C_master::handleBufferTXEmpty(void)
 		_sendRegisterAddressPending = false;
 		writeBufferTX(_registerAddress);
 	}
-	else if(_direction == DIRECTION::READ)
+	else if(_direction == Direction::READ)
 	{
 		sendStart(); //restart
 	}
@@ -225,16 +223,16 @@ bool yahal::mcu::I2C_master::transmit(void)
 void yahal::mcu::I2C_master::sendStart(void)
 {
 	// READ WITHOUT PREVIOUS WRITE
-	if(_direction == DIRECTION::READ && not _sendRegisterAddressPending)
+	if(_direction == Direction::READ && not _sendRegisterAddressPending)
 	{
-		start(_slaveAddress, DIRECTION::READ);		// Sends START and starts receiving first byte
+		start(_slaveAddress, Direction::READ);		// Sends START and starts receiving first byte
 		if(pendingTransmissions() <= 1) {stop();} 	// Stop inmediately after first byte received
 	}
 
 	// WRITE OR READ WITH REGISTER ADDREESS
 	else
 	{
-		start(_slaveAddress, DIRECTION::WRITE);
+		start(_slaveAddress, Direction::WRITE);
 	}
 }
 

@@ -25,6 +25,9 @@
 #ifndef __YAHAL_RTOS_API_MUTEX_HPP_INCLUDED__
 #define __YAHAL_RTOS_API_MUTEX_HPP_INCLUDED__
 
+/* ---------------------------------------------------------------------------------------------- */
+#include "../../utility/oop/noncopyable.hpp"
+
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{namespace rtos{ namespace api{
@@ -36,7 +39,7 @@ namespace yahal{namespace rtos{ namespace api{
 /***********************************************************************************************//**
  * @brief	Base class for all MUTEX
  **************************************************************************************************/
-class yahal::rtos::api::Mutex
+class yahal::rtos::api::Mutex : private yahal::utility::oop::Noncopyable
 {
 public:
 				// CONSTRUTOR & DESTRUCTOR
