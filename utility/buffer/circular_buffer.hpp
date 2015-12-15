@@ -24,8 +24,8 @@
 
 
 
-#ifndef __MCU_CIRCULAR_BUFFER_HPP_INCLUDED__
-#define __MCU_CIRCULAR_BUFFER_HPP_INCLUDED__
+#ifndef __YAHAL_CIRCULAR_BUFFER_HPP_INCLUDED__
+#define __YAHAL_CIRCULAR_BUFFER_HPP_INCLUDED__
 
 
 /** ---- INCLUDE ------------------------------------------------------------------------------- **/
@@ -116,4 +116,4 @@ private:			// PRIVATE VARIABLES -----------------------------------------------
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__MCU_CIRCULAR_BUFFER_HPP_INCLUDED__
+#endif 	//__YAHAL_CIRCULAR_BUFFER_HPP_INCLUDED__

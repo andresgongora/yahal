@@ -24,8 +24,8 @@
 
 
 
-#ifndef __MCU_CALLBACK_HPP_INCLUDED__
-#define __MCU_CALLBACK_HPP_INCLUDED__
+#ifndef __YAHAL_CALLBACK_HPP_INCLUDED__
+#define __YAHAL_CALLBACK_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -46,7 +46,7 @@ namespace yahal{ namespace mcu{ namespace utility{
 /** ============================================================================== WITH ARGUMENT **/
 
 template <typename T_ARGUMENT>
-class yahal::mcu::utility::Callback
+class yahal::utility::Callback
 {
 public:				// CONSTRUCTOR & DESTRUCTOR
 				Callback() : _fpCallBackFunction(NULL)	{}
@@ -79,7 +79,7 @@ private:			// PRIVATE VARIABLES
 /** =========================================================================== WITHOUT ARGUMENT **/
 
 template <>
-class yahal::mcu::utility::Callback<void>
+class yahal::utility::Callback<void>
 {
 public:				// CONSTRUCTOR & DESTRUCTOR
 				Callback() : _fpCallBackFunction(NULL)	{}
@@ -111,4 +111,4 @@ private:			// PRIVATE VARIABLES
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __MCU_CALLBACK_HPP_INCLUDED__
+#endif 	// __YAHAL_CALLBACK_HPP_INCLUDED__

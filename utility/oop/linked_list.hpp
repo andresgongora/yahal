@@ -24,8 +24,8 @@
 
 
 
-#ifndef __MCU_LINKED_LIST_HPP_INCLUDED__
-#define __MCU_LINKED_LIST_HPP_INCLUDED__
+#ifndef __YAHAL_LINKED_LIST_HPP_INCLUDED__
+#define __YAHAL_LINKED_LIST_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -43,7 +43,7 @@ namespace yahal{ namespace mcu{ namespace utility
 
 /* ============================================================================================== */
 template <typename T_NODE>
-class yahal::mcu::utility::LinkedList
+class yahal::utility::LinkedList
 {
 public:				// CONSTRUCTOR & DESTRUCTOR
 				LinkedList()	: _pFirstNode(0), _size(0)	{}
@@ -112,7 +112,7 @@ private:			// PRIVATE VARIABLES
 
 /* ============================================================================================== */
 template <typename T_NODE>
-class yahal::mcu::utility::LinkedListNode
+class yahal::utility::LinkedListNode
 {
 public:
 				// CONSTRUCTOR & DESTRUCTOR
@@ -138,4 +138,4 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __MCU_LINKED_LIST_HPP_INCLUDED__
+#endif 	// __YAHAL_LINKED_LIST_HPP_INCLUDED__

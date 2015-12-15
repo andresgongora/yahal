@@ -24,8 +24,8 @@
 
 
 
-#ifndef __MCU_UTILITY_NONCOPYABLE_HPP_INCLUDED__
-#define __MCU_UTILITY_NONCOPYABLE_HPP_INCLUDED__
+#ifndef __YAHAL_UTILITY_NONCOPYABLE_HPP_INCLUDED__
+#define __YAHAL_UTILITY_NONCOPYABLE_HPP_INCLUDED__
 
 
 
@@ -57,4 +57,4 @@ private:			// PROHIBIT COPY
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __MCU_UTILITY_NONCOPYABLE_HPP_INCLUDED__
+#endif 	// __YAHAL_UTILITY_NONCOPYABLE_HPP_INCLUDED__
