@@ -33,20 +33,19 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace utility{
+namespace yahal{ namespace utility{ namespace oop{
 	template <typename T_ARGUMENT> class Callback;
-}}
+}}}
 
 
 
 /* ============================================================================================== */
- *	utility::Callback
- * ============================================================================================== */
+
 
 /** ============================================================================== WITH ARGUMENT **/
 
 template <typename T_ARGUMENT>
-class yahal::utility::Callback
+class yahal::utility::oop::Callback
 {
 public:				// CONSTRUCTOR & DESTRUCTOR
 				Callback() : _fpCallBackFunction(NULL)	{}
@@ -79,7 +78,7 @@ private:			// PRIVATE VARIABLES
 /** =========================================================================== WITHOUT ARGUMENT **/
 
 template <>
-class yahal::utility::Callback<void>
+class yahal::utility::oop::Callback<void>
 {
 public:				// CONSTRUCTOR & DESTRUCTOR
 				Callback() : _fpCallBackFunction(NULL)	{}

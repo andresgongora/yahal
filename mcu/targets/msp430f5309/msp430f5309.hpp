@@ -36,18 +36,16 @@
 
 
 
-
-
-/* ============================================================================================== */
- *	MODULES
- * ============================================================================================== */
+/* =================================================================================================
+	MODULES
+================================================================================================= */
 
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
 #include "gpio/gpio.hpp"
-#include "i2c/i2c_master.hpp"
-#include "i2c/i2c_slave.hpp"
-#include "i2c/i2c_multimaster.hpp"
+//#include "i2c/i2c_master.hpp"
+//#include "i2c/i2c_slave.hpp"
+//#include "i2c/i2c_multimaster.hpp"
 //#include "hal/mcu/devices/msp430f5309/i2c/i2c_master.hpp"
 //#include "hal/mcu/devices/msp430f5309/i2c/i2c_slave.hpp"
 //#include "hal/mcu/devices/msp430f5309/irq/irq.hpp"

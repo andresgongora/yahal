@@ -34,6 +34,9 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace error{
+	void TRAP(const char* description, long int line, int errorCode);
+}}
+
 
 /** --- DEFINE --------------------------------------------------------------------------------- **/
 #define __DEBUG
@@ -45,7 +48,7 @@ namespace yahal{ namespace error{
  * ============================================================================================== */
 
 
-void TRAP(const char* description, long int line, int errorCode)
+void yahal::error::TRAP(const char* description, long int line, int errorCode)
 {
 	#ifdef __DEBUG
 		if(errorCode)
@@ -57,7 +60,4 @@ void TRAP(const char* description, long int line, int errorCode)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-}}	// namespace yahal::error
 #endif 	//__TRAP_HPP_INCLUDED
-
-

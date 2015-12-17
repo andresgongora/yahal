@@ -50,14 +50,15 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 class yahal::mcu::targets::msp430f5309::Clk : public yahal::mcu::Clk
 {
 public:
-	struct Frequency{enum Type{
-		DCO_1MHz = 1000000,
-		DCO_2MHz = 2000000,
-		DCO_4MHz = 4000000,
-		DCO_8MHz = 8000000,
-		DCO_16MHz = 16000000,
-		DCO_32MHz = 32000000
-	};};
+				struct Frequency{enum Type{
+					DCO_1MHz = 1000000,
+					DCO_2MHz = 2000000,
+					DCO_4MHz = 4000000,
+					DCO_8MHz = 8000000,
+					DCO_16MHz = 16000000,
+					DCO_32MHz = 32000000
+				};};
+
 
 				// CONSTRUCTOR
 				Clk(void);
@@ -74,8 +75,6 @@ private:			// INITIALIZATION
 	uint32_t		getFrequencyHz(void);
 
 
-
-private:
 				// CONFIGURATION
 	uint32_t		_frequencyHz;
 //	uint32_t		_freqMHzPeripherals;

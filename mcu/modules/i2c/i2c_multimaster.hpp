@@ -47,10 +47,10 @@ namespace yahal{ namespace mcu{
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::I2C_multimaster
- * ============================================================================================== */
 
+/**
+ * I2C Multimaster base class
+ */
 class yahal::mcu::I2C_multimaster : public yahal::mcu::I2C_master, public yahal::mcu::I2C_slave
 {
 protected:			// CONTRUSTOR & DESTRUCTOR

@@ -34,7 +34,7 @@
 #include <stdint.h>
 #include <cstddef>
 #include "i2c_common.hpp"
-#include "../../utility/callback.hpp"
+#include "../../../utility/oop/callback.hpp"
 
 
 
@@ -78,10 +78,10 @@ public:				// SET CALLBACK FUNCTIONS FOR HOOKS
 
 
 private:			// PRIVATE VARIABLES
-	yahal::mcu::utility::Callback<Direction::Type> _callbackStart;
-	yahal::mcu::utility::Callback<void>		_callbackStop;
-	yahal::mcu::utility::Callback<uint8_t>		_callbackByteReceived;
-	yahal::mcu::utility::Callback<uint8_t&>	_callbackByteRequested;
+	yahal::utility::oop::Callback<Direction::Type>	_callbackStart;
+	yahal::utility::oop::Callback<void>		_callbackStop;
+	yahal::utility::oop::Callback<uint8_t>		_callbackByteReceived;
+	yahal::utility::oop::Callback<uint8_t&>		_callbackByteRequested;
 };
 
 
