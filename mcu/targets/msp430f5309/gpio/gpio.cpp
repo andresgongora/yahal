@@ -22,10 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
 #include "gpio.hpp"
 #ifdef __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__
 
@@ -58,12 +54,12 @@ yahal::mcu::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t por
 {
 	switch(portNumber)
 	{
-	case 1: return _port1;
-	case 2: return _port2;
-	case 3: return _port3;
-	case 4: return _port4;
-	case 5: return _port5;
-	case 6: return _port6;
+	case 1:	return _port1;
+	case 2:	return _port2;
+	case 3:	return _port3;
+	case 4:	return _port4;
+	case 5:	return _port5;
+	case 6:	return _port6;
 	default:
 		this->setErrorCode(Error::TRYING_TO_ACCESS_NON_EXISTANT_PORT);
 		for(;;);	//TODO: TRAP

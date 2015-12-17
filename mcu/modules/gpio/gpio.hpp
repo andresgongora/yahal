@@ -47,18 +47,28 @@ namespace yahal{ namespace mcu{
 class yahal::mcu::Gpio :
 		public yahal::mcu::details::BaseModule
 {
-public:				// CONFIGURATION VALUES --------------------------------------------
+public:
+				/**
+				 * Direction of GPIO pins
+				 */
 				struct Direction{enum Type{
 					INPUT = false,
 					OUTPUT = true
 				};};
 
+
+				/**
+				 * Pull-up and pull-down resistor configuration
+				 */
 				struct Resistor{enum Type{
 					DISABLED,
 					PULLUP,
 					PULLDOWN
 				};};
 
+				/**
+				 * GPIO errors
+				 */
 				struct Error{enum Type{
 					NO_ERROR = 0,
 					TRYING_TO_ACCESS_NON_EXISTANT_PORT,
@@ -70,10 +80,19 @@ public:				// CONFIGURATION VALUES --------------------------------------------
 				};};
 
 
-public:				// PORT ACCESS -----------------------------------------------------
+public:				// PORT ACCESS
 	class 			Port;
+
+				/**
+				 * Return reference to port.
+				 */
 	virtual Port&		port(uint8_t portNumber) = 0;
-	Port&			operator[](uint8_t portNumber);
+
+				/**
+				 * Inline wrapper for function port(uint8_t portNumber).
+				 * For less verbose code.
+				 */
+	inline Port&		operator[](uint8_t portNumber) {return port(portNumber);}
 };
 
 

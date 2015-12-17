@@ -23,8 +23,6 @@
 	+-----------------------------------------------------------------------+	*/
 
 
-
-
 #ifndef __YAHAL_MCU_M430F5309_GPIO_HPP_INCLUDED__
 #define __YAHAL_MCU_M430F5309_GPIO_HPP_INCLUDED__
 
@@ -56,8 +54,6 @@ public:
 				 * Return reference to port.
 				 */
  	yahal::mcu::Gpio::Port&	port(uint8_t portNumber);
-
-
 
 
 private:

@@ -33,12 +33,9 @@
 	PORT
 ================================================================================================= */
 
-void yahal::mcu::Gpio::Port::toggle(uint8_t times, uint8_t mask)
+void yahal::mcu::Gpio::Port::toggle(uint8_t mask)
 {
-	for(; times; times--)
-	{
-		set(~getOutput(), mask);
-	}
+	set(~getOutput(), mask);
 }
 
 
