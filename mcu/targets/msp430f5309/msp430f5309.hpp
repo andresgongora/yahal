@@ -59,8 +59,30 @@
 #include "../../config/targets/msp430f5309_config.hpp"
 
 
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 
-class
+	#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
+		msp430f5309::Clk clk(msp430f5309::config::clk);
+	#endif
+
+	#if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true
+		msp430f5309::Wdt wdt(msp430f5309::config::wdt);
+	#endif
+
+	void init(void)
+	{
+		#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
+			clk.init();
+		#endif
+
+		#if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true
+			wdt.init();
+		#endif
+	}
+}}}}
+
+
+
 
 
 /* ---------------------------------------------------------------------------------------------- */

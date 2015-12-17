@@ -60,13 +60,13 @@ public:
 				};};
 
 				struct ClockSource{ enum Type{
-					VLP;
+					VLP,
 				};};
 
 				struct Configuration
 				{
 					Frequency::Type	frequency;
-					ClockSource::type clockSource;
+					ClockSource::Type clockSource;
 				};
 
 

@@ -44,14 +44,10 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 ================================================================================================= */
 
 #define	__YAHAL_MCU_MSP430F5309_CLK_ENABLED__	true		///< Create instance
-#define	__YAHAL_MCU_MSP430F5309_CLK_NAME__	clk		///< Instance name
 
-/**
- * Configuration
- */
 static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
-	/* Frequency	*/ msp430f5309::Clk::Frequency::DCO_8MHz,
-	/* Clock Source */ msp430f5309::Clk::ClockSource::VLP,
+/* Frequency	*/ msp430f5309::Clk::Frequency::DCO_8MHz,
+/* Clock Source */ msp430f5309::Clk::ClockSource::VLP,
 };
 
 
@@ -60,12 +56,19 @@ static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 	WDT
 ================================================================================================= */
 
+#define	__YAHAL_MCU_MSP430F5309_WDT_ENABLED__	true		///< Create instance
 
+// CONFIGURATION
+static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
+/* Nothing	*/
+};
 
 
 /* =================================================================================================
 	GPIO
 ================================================================================================= */
+
+
 
 
 /* =================================================================================================
@@ -88,20 +91,7 @@ static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 /* ============================================================================================== */
 
 
-//	+---------------------------------------------------------------+
-#define	__YAHAL_MCU_MSP430F5309_CLK_ENABLED__	// Comment to disable
-//	+---------------------------------------------------------------+
 
-#ifdef	__YAHAL_MCU_MSP430F5309_CLK_ENABLED__
-#define __YAHAL_MCU_MSP430F5309_CLK_INSTANCE_NAME__		clk
-#define __YAHAL_MCU_MSP430F5309_CLK_FREQUENCY__			1000000
-#define __YAHAL_MCU_MSP430F5309_CLK_FREQUENCY2__			20000
-#endif
-
-
-
-
-#define __YAHAL_MCU_MSP430F5309_WDT_ENABLED__	// Comment to disable
 
 
 

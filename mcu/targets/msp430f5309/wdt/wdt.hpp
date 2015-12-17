@@ -50,6 +50,14 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::Wdt : public yahal::mcu::Wdt
 {
+public:
+				struct Configuration
+				{
+				};
+
+				// CONSTRUCTOR
+				Wdt(const Configuration& configuration);
+
 private:
 	void			doInit(void);
 
@@ -58,6 +66,9 @@ public:
 				 * Reset WDT counter if WDT enabled.
 				 */
 	void			reset(void);
+
+private:
+	const Configuration&	_configuration;
 };
 
 
