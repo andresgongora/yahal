@@ -59,10 +59,14 @@ public:
 					DCO_32MHz = 32000000
 				};};
 
+				struct ClockSource{ enum Type{
+					VLP;
+				};};
+
 				struct Configuration
 				{
 					Frequency::Type	frequency;
-					int num;
+					ClockSource::type clockSource;
 				};
 
 

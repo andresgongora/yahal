@@ -59,6 +59,10 @@
 #include "../../config/targets/msp430f5309_config.hpp"
 
 
+
+class
+
+
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// MCU_DEVICE == MCU_MSP430F5309
 #endif	// __YAHAL_MCU_MSP430F5309_HPP_INCLUDED__
