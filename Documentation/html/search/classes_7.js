@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['scale',['SCALE',['../structhal_1_1sensors_1_1_ads1115_1_1_s_c_a_l_e.html',1,'hal::sensors::Ads1115']]],
-  ['slidingwindow',['SlidingWindow',['../classhal_1_1utility_1_1_sliding_window.html',1,'hal::utility']]]
+  ['messagebuffer',['MessageBuffer',['../classhal_1_1utility_1_1_message_buffer.html',1,'hal::utility']]],
+  ['messagestack',['MessageStack',['../classhal_1_1utility_1_1_message_stack.html',1,'hal::utility']]],
+  ['mutex',['Mutex',['../classyahal_1_1rtos_1_1api_1_1_mutex.html',1,'yahal::rtos::api']]],
+  ['mutex',['Mutex',['../classyahal_1_1rtos_1_1_mutex.html',1,'yahal::rtos']]]
 ];

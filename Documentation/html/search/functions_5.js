@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readbufferrx',['readBufferRX',['../classyahal_1_1mcu_1_1detail_1_1_i2_c__common.html#a9dcb01b9325bafad2234c711b1448cc9',1,'yahal::mcu::detail::I2C_common']]]
+  ['errorcode',['ErrorCode',['../classyahal_1_1error_1_1_error_code.html#a89ee21c5424ac262953b171e06db259e',1,'yahal::error::ErrorCode']]]
 ];

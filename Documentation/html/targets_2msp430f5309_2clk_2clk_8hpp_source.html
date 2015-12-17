@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">clk.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //</span></div>
+<a href="targets_2msp430f5309_2clk_2clk_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*      +-----------------------------------------------------------------------+</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">        |           Yet Another Hardware Abstraction Layer (YAHAL)              |</span></div>
@@ -131,65 +131,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceyahal.html">yahal</a>{ <span class="keyword">namespace </span><a class="code" href="namespaceyahal.html">yahal</a>{ <span class="keyword">namespace </span>mcu{ <span class="keyword">namespace </span>targets{ <span class="keyword">namespace </span>msp430f5309{</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">class </span>Clk;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html">   41</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceyahal.html">yahal</a>{ <span class="keyword">namespace </span>mcu{ <span class="keyword">namespace </span>targets{ <span class="keyword">namespace </span>msp430f5309{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">class </span><a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk.html">Clk</a>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}}}}</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/* ============================================================================================== */</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; *      DECLARATION::CLK</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; * ============================================================================================== */</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">class </span>yahal::mcu::targets::msp430f5309::Clk : <span class="keyword">public</span> <a class="code" href="classyahal_1_1mcu_1_1_clk.html">yahal::mcu::Clk</a></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/***********************************************************************************************/</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk.html">   50</a></span>&#160;<span class="keyword">class </span><a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk.html">yahal::mcu::targets::msp430f5309::Clk</a> : <span class="keyword">public</span> <a class="code" href="classyahal_1_1mcu_1_1_clk.html">yahal::mcu::Clk</a></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">struct </span>Frequency{<span class="keyword">enum</span> Type{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                DCO_1MHz = 1000000,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                DCO_2MHz = 2000000,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                DCO_4MHz = 4000000,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                DCO_8MHz = 8000000,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                DCO_16MHz = 16000000,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                DCO_32MHz = 32000000</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        };};</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26">   53</a></span>&#160;                                <span class="keyword">struct </span><a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html">Frequency</a>{<span class="keyword">enum</span> <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26">Type</a>{</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a6f1ca2e0ec7f6cfa45134741d82f76d5">   54</a></span>&#160;                                        <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a6f1ca2e0ec7f6cfa45134741d82f76d5">DCO_1MHz</a> = 1000000,</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a31ae8cb72e10da4b1e07bbebae515c24">   55</a></span>&#160;                                        <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a31ae8cb72e10da4b1e07bbebae515c24">DCO_2MHz</a> = 2000000,</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a3ef4a28b1e6bf1a39b967791ffdb6bb7">   56</a></span>&#160;                                        <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a3ef4a28b1e6bf1a39b967791ffdb6bb7">DCO_4MHz</a> = 4000000,</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26afe003a1648f8e5fab5d85f53f93fb5ce">   57</a></span>&#160;                                        <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26afe003a1648f8e5fab5d85f53f93fb5ce">DCO_8MHz</a> = 8000000,</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26af8d1230da5ecd3fa8b684ffcf46adde9">   58</a></span>&#160;                                        <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26af8d1230da5ecd3fa8b684ffcf46adde9">DCO_16MHz</a> = 16000000,</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a3e93ceee68ba80b7fffca539f7d1d5ae">   59</a></span>&#160;                                        <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a3e93ceee68ba80b7fffca539f7d1d5ae">DCO_32MHz</a> = 32000000</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                };};</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                <span class="comment">// CONSTRUCTOR</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                Clk(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                <span class="comment">// CONSTRUCTOR</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk.html#a6f39a3bcd96bf461183136d0a93cb056">Clk</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">private</span>:                        <span class="comment">// INITIALIZATION</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordtype">void</span>                    doInit(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">private</span>:                        <span class="comment">// INITIALIZATION</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span>                    doInit(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                                <span class="comment">// CONFIGURATION</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">bool</span>                    setFrequencyHz(uint32_t desiredFrequencyHz);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        uint32_t                getFrequencyHz(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                <span class="comment">// CONFIGURATION</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">bool</span>                    setFrequencyHz(uint32_t desiredFrequencyHz);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        uint32_t                getFrequencyHz(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                                <span class="comment">// CONFIGURATION</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        uint32_t                _frequencyHz;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//      uint32_t                _freqMHzPeripherals;</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                                <span class="comment">// CONFIGURATION</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        uint32_t                _frequencyHz;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//      uint32_t                _freqMHzPeripherals;</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">/* ============================================================================================== */</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; *      yahal::mcu::targets::msp430f5309::Clk :: GLOBAL VARIABLE</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; * ============================================================================================== */</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceyahal.html">yahal</a>{ <span class="keyword">namespace </span>mcu{</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">extern</span> yahal::mcu::targets::msp430f5309::Clk clk;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif // __YAHAL_MCU_MSP430F5309_CLK_ENABLED__</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif // __YAHAL_MCU_MSP430F5309_CLK_HPP_INCLUDED__</span></div>
-<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00038">error_code.hpp:38</a></div></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif // __YAHAL_MCU_MSP430F5309_CLK_ENABLED__</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif // __YAHAL_MCU_MSP430F5309_CLK_HPP_INCLUDED__</span></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html">yahal::mcu::targets::msp430f5309::Clk::Frequency</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00053">clk.hpp:53</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html_a32962c9ff596c457b230044a7f209b26a6f1ca2e0ec7f6cfa45134741d82f76d5"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a6f1ca2e0ec7f6cfa45134741d82f76d5">yahal::mcu::targets::msp430f5309::Clk::Frequency::DCO_1MHz</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00054">clk.hpp:54</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk.html">yahal::mcu::targets::msp430f5309::Clk</a></div><div class="ttdoc"> </div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00050">clk.hpp:50</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html_a32962c9ff596c457b230044a7f209b26a3ef4a28b1e6bf1a39b967791ffdb6bb7"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a3ef4a28b1e6bf1a39b967791ffdb6bb7">yahal::mcu::targets::msp430f5309::Clk::Frequency::DCO_4MHz</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00056">clk.hpp:56</a></div></div>
+<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00037">error_code.hpp:37</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_html_a6f39a3bcd96bf461183136d0a93cb056"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk.html#a6f39a3bcd96bf461183136d0a93cb056">yahal::mcu::targets::msp430f5309::Clk::Clk</a></div><div class="ttdeci">Clk(void)</div><div class="ttdef"><b>Definition:</b> <a href="msp430f5309_2clk_2clk_8cpp_source.html#l00039">clk.cpp:39</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html_a32962c9ff596c457b230044a7f209b26af8d1230da5ecd3fa8b684ffcf46adde9"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26af8d1230da5ecd3fa8b684ffcf46adde9">yahal::mcu::targets::msp430f5309::Clk::Frequency::DCO_16MHz</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00058">clk.hpp:58</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html_a32962c9ff596c457b230044a7f209b26a31ae8cb72e10da4b1e07bbebae515c24"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a31ae8cb72e10da4b1e07bbebae515c24">yahal::mcu::targets::msp430f5309::Clk::Frequency::DCO_2MHz</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00055">clk.hpp:55</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html_a32962c9ff596c457b230044a7f209b26"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26">yahal::mcu::targets::msp430f5309::Clk::Frequency::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00053">clk.hpp:53</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html_a32962c9ff596c457b230044a7f209b26afe003a1648f8e5fab5d85f53f93fb5ce"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26afe003a1648f8e5fab5d85f53f93fb5ce">yahal::mcu::targets::msp430f5309::Clk::Frequency::DCO_8MHz</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00057">clk.hpp:57</a></div></div>
 <div class="ttc" id="classyahal_1_1mcu_1_1_clk_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1_clk.html">yahal::mcu::Clk</a></div><div class="ttdoc">Base class for all system clock handling modules. </div><div class="ttdef"><b>Definition:</b> <a href="modules_2clk_2clk_8hpp_source.html#l00047">clk.hpp:47</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html_a32962c9ff596c457b230044a7f209b26a3e93ceee68ba80b7fffca539f7d1d5ae"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a3e93ceee68ba80b7fffca539f7d1d5ae">yahal::mcu::targets::msp430f5309::Clk::Frequency::DCO_32MHz</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00059">clk.hpp:59</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

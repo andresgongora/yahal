@@ -24,10 +24,8 @@
 
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
 #include "clk.hpp"
-#ifdef __YAHAL_MCU_MSP430F5309_CLK_ENABLED__
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <msp430f5309.h>
 
@@ -36,15 +34,15 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::Clk::Clk() :
-	_frequencyHz(Frequency::DCO_8MHz)
+yahal::mcu::targets::msp430f5309::Clk::Clk(const Configuration& configuration) :
+	_configuration(configuration)
 {}
 
 
 
 void yahal::mcu::targets::msp430f5309::Clk::doInit(void)
 {
-	if(setFrequencyHz(_frequencyHz))	// Set default frequency
+	if(setFrequencyHz(_configuration.frequency))	// Set default frequency
 	{
 	}
 	else
@@ -141,10 +139,10 @@ bool yahal::mcu::targets::msp430f5309::Clk::setFrequencyHz(uint32_t desiredFrequ
 
 uint32_t yahal::mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
 {
-	return _frequencyHz;
+	return 0;
 }
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __YAHAL_MCU_MSP430F5309_CLK_ENABLED__
+#endif // MCU_DEVICE == MCU_MSP430F5309

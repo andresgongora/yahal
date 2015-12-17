@@ -31,8 +31,8 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/targets/msp430f5309_config.hpp"
-#ifdef __YAHAL_MCU_MSP430F5309_CLK_ENABLED__
+#include "../../../config/mcu_config.hpp"
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include "../../../modules/clk/clk.hpp"
 
@@ -59,9 +59,15 @@ public:
 					DCO_32MHz = 32000000
 				};};
 
+				struct Configuration
+				{
+					Frequency::Type	frequency;
+					int num;
+				};
+
 
 				// CONSTRUCTOR
-				Clk(void);
+				Clk(const Configuration& configuration);
 
 
 
@@ -76,12 +82,11 @@ private:			// INITIALIZATION
 
 
 				// CONFIGURATION
-	uint32_t		_frequencyHz;
-//	uint32_t		_freqMHzPeripherals;
+	const Configuration&	_configuration;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __YAHAL_MCU_MSP430F5309_CLK_ENABLED__
+#endif // MCU_DEVICE == MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_CLK_HPP_INCLUDED__

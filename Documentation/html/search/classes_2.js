@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['clk',['Clk',['../classyahal_1_1mcu_1_1_clk.html',1,'yahal::mcu']]],
-  ['counter',['Counter',['../classhal_1_1utility_1_1_counter.html',1,'hal::utility']]]
+  ['direction',['Direction',['../structyahal_1_1mcu_1_1_gpio_1_1_direction.html',1,'yahal::mcu::Gpio']]],
+  ['direction',['Direction',['../structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction.html',1,'yahal::mcu::details::I2C_common']]]
 ];

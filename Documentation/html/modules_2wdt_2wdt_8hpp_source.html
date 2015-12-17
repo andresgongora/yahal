@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">wdt.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //</span></div>
+<a href="modules_2wdt_2wdt_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*      +-----------------------------------------------------------------------+</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">        |           Yet Another Hardware Abstraction Layer (YAHAL)              |</span></div>
@@ -131,30 +131,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceyahal.html">yahal</a>{ <span class="keyword">namespace </span>mcu{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">class </span>Wdt;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}}</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/* ============================================================================================== */</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; *      DECLARATION     yahal::mcu::Wdt</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; * ============================================================================================== */</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">class </span>yahal::mcu::Wdt : <span class="keyword">public</span> yahal::mcu::BaseModule</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">protected</span>:                      <span class="comment">// CONSTRUCTOR &amp; DESTRUCTOR ----------------------------------------</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                Wdt(<span class="keywordtype">void</span>) {}</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">virtual</span>                 ~Wdt(<span class="keywordtype">void</span>){}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/***********************************************************************************************/</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_wdt.html">   49</a></span>&#160;<span class="keyword">class </span><a class="code" href="classyahal_1_1mcu_1_1_wdt.html">yahal::mcu::Wdt</a> : <span class="keyword">public</span> <a class="code" href="classyahal_1_1mcu_1_1details_1_1_base_module.html">yahal::mcu::details::BaseModule</a></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1_wdt_1_1_error.html#aca128594025d015df655e4e9c311e5b2">   52</a></span>&#160;                                <span class="keyword">struct </span><a class="code" href="structyahal_1_1mcu_1_1_wdt_1_1_error.html">Error</a> {<span class="keyword">enum</span> <a class="code" href="structyahal_1_1mcu_1_1_wdt_1_1_error.html#aca128594025d015df655e4e9c311e5b2">Type</a> {</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1_wdt_1_1_error.html#aca128594025d015df655e4e9c311e5b2a0b765d57d46e762b4b730264bffe4392">   53</a></span>&#160;                                        <a class="code" href="structyahal_1_1mcu_1_1_wdt_1_1_error.html#aca128594025d015df655e4e9c311e5b2a0b765d57d46e762b4b730264bffe4392">NO_ERROR</a> = 0,</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1_wdt_1_1_error.html#aca128594025d015df655e4e9c311e5b2a15d3680641edfb8a00897cbafc4260cd">   54</a></span>&#160;                                        <a class="code" href="structyahal_1_1mcu_1_1_wdt_1_1_error.html#aca128594025d015df655e4e9c311e5b2a15d3680641edfb8a00897cbafc4260cd">OTHER</a></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                };};</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            reset(<span class="keywordtype">void</span>) = 0;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_wdt.html#a786126a1d909d22e2ea91c3101a8776b">   59</a></span>&#160;                                <a class="code" href="classyahal_1_1mcu_1_1_wdt.html#a786126a1d909d22e2ea91c3101a8776b">Wdt</a>(<span class="keywordtype">void</span>) {}</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_wdt.html#a66c2db0831be46e919017d943b3fa6d9">   60</a></span>&#160;        <span class="keyword">virtual</span>                 <a class="code" href="classyahal_1_1mcu_1_1_wdt.html#a66c2db0831be46e919017d943b3fa6d9">~Wdt</a>(<span class="keywordtype">void</span>){}</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif  //__YAHAL_MCU_WDT_HPP_INCLUDED__</span></div>
-<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00038">error_code.hpp:38</a></div></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1_wdt.html#a147a40273f928037437c8fefa58ed388">reset</a>(<span class="keywordtype">void</span>) = 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif  //__YAHAL_MCU_WDT_HPP_INCLUDED__</span></div>
+<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00037">error_code.hpp:37</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1_wdt_1_1_error_html"><div class="ttname"><a href="structyahal_1_1mcu_1_1_wdt_1_1_error.html">yahal::mcu::Wdt::Error</a></div><div class="ttdef"><b>Definition:</b> <a href="modules_2wdt_2wdt_8hpp_source.html#l00052">wdt.hpp:52</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1details_1_1_base_module_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1details_1_1_base_module.html">yahal::mcu::details::BaseModule</a></div><div class="ttdoc">Base class for all MCU modules. </div><div class="ttdef"><b>Definition:</b> <a href="base__module_8hpp_source.html#l00054">base_module.hpp:54</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1_wdt_1_1_error_html_aca128594025d015df655e4e9c311e5b2a15d3680641edfb8a00897cbafc4260cd"><div class="ttname"><a href="structyahal_1_1mcu_1_1_wdt_1_1_error.html#aca128594025d015df655e4e9c311e5b2a15d3680641edfb8a00897cbafc4260cd">yahal::mcu::Wdt::Error::OTHER</a></div><div class="ttdef"><b>Definition:</b> <a href="modules_2wdt_2wdt_8hpp_source.html#l00054">wdt.hpp:54</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_wdt_html_a147a40273f928037437c8fefa58ed388"><div class="ttname"><a href="classyahal_1_1mcu_1_1_wdt.html#a147a40273f928037437c8fefa58ed388">yahal::mcu::Wdt::reset</a></div><div class="ttdeci">virtual void reset(void)=0</div><div class="ttdoc">Reset watch dog timer count. </div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_wdt_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1_wdt.html">yahal::mcu::Wdt</a></div><div class="ttdoc">Base class for all Watch Dog Timers. </div><div class="ttdef"><b>Definition:</b> <a href="modules_2wdt_2wdt_8hpp_source.html#l00049">wdt.hpp:49</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1_wdt_1_1_error_html_aca128594025d015df655e4e9c311e5b2a0b765d57d46e762b4b730264bffe4392"><div class="ttname"><a href="structyahal_1_1mcu_1_1_wdt_1_1_error.html#aca128594025d015df655e4e9c311e5b2a0b765d57d46e762b4b730264bffe4392">yahal::mcu::Wdt::Error::NO_ERROR</a></div><div class="ttdef"><b>Definition:</b> <a href="modules_2wdt_2wdt_8hpp_source.html#l00053">wdt.hpp:53</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_wdt_html_a786126a1d909d22e2ea91c3101a8776b"><div class="ttname"><a href="classyahal_1_1mcu_1_1_wdt.html#a786126a1d909d22e2ea91c3101a8776b">yahal::mcu::Wdt::Wdt</a></div><div class="ttdeci">Wdt(void)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2wdt_2wdt_8hpp_source.html#l00059">wdt.hpp:59</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_wdt_html_a66c2db0831be46e919017d943b3fa6d9"><div class="ttname"><a href="classyahal_1_1mcu_1_1_wdt.html#a66c2db0831be46e919017d943b3fa6d9">yahal::mcu::Wdt::~Wdt</a></div><div class="ttdeci">virtual ~Wdt(void)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2wdt_2wdt_8hpp_source.html#l00060">wdt.hpp:60</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1_wdt_1_1_error_html_aca128594025d015df655e4e9c311e5b2"><div class="ttname"><a href="structyahal_1_1mcu_1_1_wdt_1_1_error.html#aca128594025d015df655e4e9c311e5b2">yahal::mcu::Wdt::Error::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="modules_2wdt_2wdt_8hpp_source.html#l00052">wdt.hpp:52</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

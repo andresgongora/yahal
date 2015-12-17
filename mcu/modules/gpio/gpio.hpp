@@ -89,10 +89,10 @@ public:				// PORT ACCESS
 	virtual Port&		port(uint8_t portNumber) = 0;
 
 				/**
-				 * Inline wrapper for function port(uint8_t portNumber).
-				 * For less verbose code.
+				 * Short wrapper for port(uint8_t portNumber).
+				 * @see port(uint8_t portNumber).
 				 */
-	inline Port&		operator[](uint8_t portNumber) {return port(portNumber);}
+	Port&			operator[](uint8_t portNumber);
 };
 
 

@@ -1,0 +1,63 @@
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave}{}\section{yahal\+:\+:mcu\+:\+:I2\+C\+\_\+slave Class Reference}
+\label{classyahal_1_1mcu_1_1_i2_c__slave}\index{yahal\+::mcu\+::\+I2\+C\+\_\+slave@{yahal\+::mcu\+::\+I2\+C\+\_\+slave}}
+
+
+Base class for all I2\+C slaves.  
+
+
+
+
+{\ttfamily \#include $<$i2c\+\_\+slave.\+hpp$>$}
+
+Inheritance diagram for yahal\+:\+:mcu\+:\+:I2\+C\+\_\+slave\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classyahal_1_1mcu_1_1_i2_c__slave}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave_a89a2c6293aab02189e1140082c3a0ada}{}virtual void {\bfseries handle\+Received\+Start} (void)\label{classyahal_1_1mcu_1_1_i2_c__slave_a89a2c6293aab02189e1140082c3a0ada}
+
+\item 
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave_aff9257fb7bba6935470e7e4df7be665a}{}virtual void {\bfseries handle\+Received\+Stop} (void)\label{classyahal_1_1mcu_1_1_i2_c__slave_aff9257fb7bba6935470e7e4df7be665a}
+
+\item 
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave_aaf745b91c3f902f135219c385e082c12}{}virtual void {\bfseries handle\+Buffer\+T\+X\+Empty} (void)\label{classyahal_1_1mcu_1_1_i2_c__slave_aaf745b91c3f902f135219c385e082c12}
+
+\item 
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave_af2bc4067c1e2c8cc499dde9bfd55f9f2}{}virtual void {\bfseries handle\+Buffer\+R\+X\+Full} (void)\label{classyahal_1_1mcu_1_1_i2_c__slave_af2bc4067c1e2c8cc499dde9bfd55f9f2}
+
+\item 
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave_ab21ae123a6dd0ced188cfd78b14c6de8}{}void {\bfseries set\+Callback\+Received\+Start} (void($\ast$fp\+Call\+On\+Event)(Direction\+::\+Type))\label{classyahal_1_1mcu_1_1_i2_c__slave_ab21ae123a6dd0ced188cfd78b14c6de8}
+
+\item 
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave_a9cd6542bef603a8bc1da8ba1ba1c5f41}{}void {\bfseries set\+Callback\+Received\+Stop} (void($\ast$fp\+Call\+On\+Event)(void))\label{classyahal_1_1mcu_1_1_i2_c__slave_a9cd6542bef603a8bc1da8ba1ba1c5f41}
+
+\item 
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave_a78a651cf27799db59250c2a5646b6502}{}void {\bfseries set\+Callback\+Byte\+Received} (void($\ast$fp\+Call\+On\+Event)(uint8\+\_\+t))\label{classyahal_1_1mcu_1_1_i2_c__slave_a78a651cf27799db59250c2a5646b6502}
+
+\item 
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave_a7b266fcbfcc75dda6695d8a321e66ca4}{}void {\bfseries set\+Callback\+Byte\+Requested} (void($\ast$fp\+Call\+On\+Event)(uint8\+\_\+t \&))\label{classyahal_1_1mcu_1_1_i2_c__slave_a7b266fcbfcc75dda6695d8a321e66ca4}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classyahal_1_1mcu_1_1_i2_c__slave_a452c58e3bfd632a4465809eee83f7784}{}virtual bool {\bfseries is\+Incomming\+Write} (void)=0\label{classyahal_1_1mcu_1_1_i2_c__slave_a452c58e3bfd632a4465809eee83f7784}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Base class for all I2\+C slaves. 
+
+Definition at line 51 of file i2c\+\_\+slave.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andy/\+Documentos/\+Source/yahal/mcu/modules/i2c/i2c\+\_\+slave.\+hpp\end{DoxyCompactItemize}

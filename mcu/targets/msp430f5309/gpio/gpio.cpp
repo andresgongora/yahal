@@ -23,7 +23,7 @@
 	+-----------------------------------------------------------------------+	*/
 
 #include "gpio.hpp"
-#ifdef __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <msp430f5309.h>
 
@@ -320,4 +320,4 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)co
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__
+#endif // MCU_DEVICE == MCU_MSP430F5309

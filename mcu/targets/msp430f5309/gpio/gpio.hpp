@@ -29,8 +29,8 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/targets/msp430f5309_config.hpp"
-#ifdef __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__
+#include "../../../config/mcu_config.hpp"
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <stdint.h>
 #include "../../../modules/gpio/gpio.hpp"
@@ -162,5 +162,5 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__
+#endif // MCU_DEVICE == MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__

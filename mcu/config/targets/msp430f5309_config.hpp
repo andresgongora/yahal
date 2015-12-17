@@ -25,11 +25,33 @@
 
 
 
-#ifndef __YAHAL_MCU_MSP430F5309_CONFIG_HPP_INCLUDED__
-#define __YAHAL_MCU_MSP430F5309_CONFIG_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
+#define __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
 
-
+#include "../../targets/msp430f5309/msp430f5309.hpp"
 #if MCU_DEVICE == MCU_MSP430F5309
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace config{
+
+
+	static const msp430f5309::Clk::Configuration clkConfiguration = {
+		/* Frequency	*/ msp430f5309::Clk::Frequency::DCO_8MHz,
+		/* Number	*/ 32,
+	};
+
+
+}}}}}
+
+
+
+
+
+
+
+
 
 
 
@@ -86,4 +108,4 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif // MCU_DEVICE == MCU_MSP430F5309
-#endif //__YAHAL_MCU_MSP430F5309_CONFIGHPP_INCLUDED__
+#endif //__YAHAL_MCU_TARGETS_MSP430F5309_CONFIGHPP_INCLUDED__

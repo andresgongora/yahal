@@ -28,7 +28,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "wdt.hpp"
-#ifdef __YAHAL_MCU_MSP430F5309_WDT_ENABLED__
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <msp430f5309.h>
 
@@ -49,4 +49,4 @@ void yahal::mcu::targets::msp430f5309::Wdt::reset(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __YAHAL_MCU_MSP430F5309_WDT_ENABLED__
+#endif // MCU_DEVICE == MCU_MSP430F5309

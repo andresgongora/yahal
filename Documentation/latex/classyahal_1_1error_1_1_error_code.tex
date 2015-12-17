@@ -2,7 +2,7 @@
 \label{classyahal_1_1error_1_1_error_code}\index{yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}}
 
 
-Error code.  
+Base class for error code handling.  
 
 
 
@@ -12,37 +12,41 @@ Error code.
 Inheritance diagram for yahal\+:\+:error\+:\+:Error\+Code\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{classyahal_1_1error_1_1_error_code}
+\includegraphics[height=1.575246cm]{classyahal_1_1error_1_1_error_code}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classyahal_1_1error_1_1_error_code_a8da8151a2788d474084d789337d97bae}{}unsigned int {\bfseries get\+Error\+Code} (void) const \label{classyahal_1_1error_1_1_error_code_a8da8151a2788d474084d789337d97bae}
-
+std\+::size\+\_\+t \hyperlink{classyahal_1_1error_1_1_error_code_ab6cafddc35cacf01a434862696780259}{get\+Error\+Code} (void) const 
 \item 
-\hypertarget{classyahal_1_1error_1_1_error_code_a2c92ad4dd5a16cd0f994fb14d35f2245}{}bool {\bfseries has\+Error} (void) const \label{classyahal_1_1error_1_1_error_code_a2c92ad4dd5a16cd0f994fb14d35f2245}
-
+bool \hyperlink{classyahal_1_1error_1_1_error_code_a2c92ad4dd5a16cd0f994fb14d35f2245}{has\+Error} (void) const 
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classyahal_1_1error_1_1_error_code_acc2142f7c7fad8b06e9933611e8a5a31}{set\+Error\+Code} (unsigned int new\+Error\+Code)
+void \hyperlink{classyahal_1_1error_1_1_error_code_a2709825a2c104d8fbb74467580ecf0bc}{set\+Error\+Code} (std\+::size\+\_\+t new\+Error\+Code)
 \begin{DoxyCompactList}\small\item\em Set new error code. \end{DoxyCompactList}\item 
 void \hyperlink{classyahal_1_1error_1_1_error_code_a6dcccae993641509661b2f92c702b714}{clear\+Error\+Code} (void)
 \begin{DoxyCompactList}\small\item\em Clear error code. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classyahal_1_1error_1_1_error_code_a190aff352d405f5859ed2134017643d4}{}static const unsigned int {\bfseries N\+O\+\_\+\+E\+R\+R\+O\+R} = 0\label{classyahal_1_1error_1_1_error_code_a190aff352d405f5859ed2134017643d4}
-
-\end{DoxyCompactItemize}
+static const std\+::size\+\_\+t \hyperlink{classyahal_1_1error_1_1_error_code_a44ddbb7e00e4830e93372c89f61dcd68}{N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E} = 0
+\begin{DoxyCompactList}\small\item\em No error condition code. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Error code. 
+Base class for error code handling. 
 
-Definition at line 48 of file error\+\_\+code.\+hpp.
+This class stores the last error code that happened to a derived class. It two public methods to check the existence and value of the last error code and two protected methods to set and clear the code. This base class also defines N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E (value = N\+U\+L\+L) to signal a no error condition.
+
+\begin{DoxyNote}{Note}
+For performance reasons, the error code is stored size\+\_\+t. 
+\end{DoxyNote}
+
+
+Definition at line 53 of file error\+\_\+code.\+hpp.
 
 
 
@@ -58,27 +62,74 @@ Definition at line 48 of file error\+\_\+code.\+hpp.
 
 Clear error code. 
 
-Identical to \char`\"{}set\+Error\+Code(\+N\+O\+\_\+\+E\+R\+R\+O\+R)\char`\"{}. \begin{DoxySeeAlso}{See also}
-\hyperlink{classyahal_1_1error_1_1_error_code_acc2142f7c7fad8b06e9933611e8a5a31}{set\+Error\+Code}. 
+Identical to \char`\"{}set\+Error\+Code(\+N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E)\char`\"{}. \begin{DoxySeeAlso}{See also}
+\hyperlink{classyahal_1_1error_1_1_error_code_a2709825a2c104d8fbb74467580ecf0bc}{set\+Error\+Code}. 
 \end{DoxySeeAlso}
 
 
-Definition at line 98 of file error\+\_\+code.\+hpp.
+Definition at line 103 of file error\+\_\+code.\+hpp.
 
-\hypertarget{classyahal_1_1error_1_1_error_code_acc2142f7c7fad8b06e9933611e8a5a31}{}\index{yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}!set\+Error\+Code@{set\+Error\+Code}}
-\index{set\+Error\+Code@{set\+Error\+Code}!yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}}
-\subsubsection[{set\+Error\+Code(unsigned int new\+Error\+Code)}]{\setlength{\rightskip}{0pt plus 5cm}void yahal\+::error\+::\+Error\+Code\+::set\+Error\+Code (
+\hypertarget{classyahal_1_1error_1_1_error_code_ab6cafddc35cacf01a434862696780259}{}\index{yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}!get\+Error\+Code@{get\+Error\+Code}}
+\index{get\+Error\+Code@{get\+Error\+Code}!yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}}
+\subsubsection[{get\+Error\+Code(void) const }]{\setlength{\rightskip}{0pt plus 5cm}std\+::size\+\_\+t yahal\+::error\+::\+Error\+Code\+::get\+Error\+Code (
 \begin{DoxyParamCaption}
-\item[{unsigned int}]{new\+Error\+Code}
+\item[{void}]{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classyahal_1_1error_1_1_error_code_acc2142f7c7fad8b06e9933611e8a5a31}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classyahal_1_1error_1_1_error_code_ab6cafddc35cacf01a434862696780259}
+\begin{DoxyReturn}{Returns}
+last error code. 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file error\+\_\+code.\+hpp.
+
+\hypertarget{classyahal_1_1error_1_1_error_code_a2c92ad4dd5a16cd0f994fb14d35f2245}{}\index{yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}!has\+Error@{has\+Error}}
+\index{has\+Error@{has\+Error}!yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}}
+\subsubsection[{has\+Error(void) const }]{\setlength{\rightskip}{0pt plus 5cm}bool yahal\+::error\+::\+Error\+Code\+::has\+Error (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classyahal_1_1error_1_1_error_code_a2c92ad4dd5a16cd0f994fb14d35f2245}
+\begin{DoxyReturn}{Returns}
+true if last error is not equal to N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E. 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file error\+\_\+code.\+hpp.
+
+\hypertarget{classyahal_1_1error_1_1_error_code_a2709825a2c104d8fbb74467580ecf0bc}{}\index{yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}!set\+Error\+Code@{set\+Error\+Code}}
+\index{set\+Error\+Code@{set\+Error\+Code}!yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}}
+\subsubsection[{set\+Error\+Code(std\+::size\+\_\+t new\+Error\+Code)}]{\setlength{\rightskip}{0pt plus 5cm}void yahal\+::error\+::\+Error\+Code\+::set\+Error\+Code (
+\begin{DoxyParamCaption}
+\item[{std\+::size\+\_\+t}]{new\+Error\+Code}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classyahal_1_1error_1_1_error_code_a2709825a2c104d8fbb74467580ecf0bc}
 
 
 Set new error code. 
 
 Allows derived classes to set a new error code. 
+\begin{DoxyParams}{Parameters}
+{\em new\+Error\+Code} & new error code to store. \\
+\hline
+\end{DoxyParams}
 
-Definition at line 86 of file error\+\_\+code.\+hpp.
+
+Definition at line 91 of file error\+\_\+code.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classyahal_1_1error_1_1_error_code_a44ddbb7e00e4830e93372c89f61dcd68}{}\index{yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}!N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E@{N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E}}
+\index{N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E@{N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E}!yahal\+::error\+::\+Error\+Code@{yahal\+::error\+::\+Error\+Code}}
+\subsubsection[{N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::size\+\_\+t yahal\+::error\+::\+Error\+Code\+::\+N\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+D\+E = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\label{classyahal_1_1error_1_1_error_code_a44ddbb7e00e4830e93372c89f61dcd68}
+
+
+No error condition code. 
+
+
+
+Definition at line 79 of file error\+\_\+code.\+hpp.
 
 
 

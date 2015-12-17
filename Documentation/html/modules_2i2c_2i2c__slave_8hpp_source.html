@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">i2c_slave.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //</span></div>
+<a href="modules_2i2c_2i2c__slave_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 1 TAB = 8 SPACES // LINE LENGTH = 100 CHARACTERS //</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*      +-----------------------------------------------------------------------+</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">        |           Yet Another Hardware Abstraction Layer (YAHAL)              |</span></div>
@@ -126,63 +126,76 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;cstddef&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;i2c_common.hpp&quot;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;../../utility/callback.hpp&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c__common_8hpp.html">i2c_common.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;../../../utility/oop/callback.hpp&quot;</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceyahal.html">yahal</a>{ <span class="keyword">namespace </span>mcu{</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">class </span>I2C_slave;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/* ============================================================================================== */</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; *      DECLARATION::I2C</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; * ============================================================================================== */</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">class </span>yahal::mcu::I2C_slave : <span class="keyword">virtual</span> <span class="keyword">public</span> yahal::mcu::I2C_common</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">protected</span>:                      <span class="comment">// CONSTRUCTOR &amp; DESTRUCTOR</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                I2C_slave(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">virtual</span>                 ~I2C_slave(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/***********************************************************************************************/</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_i2_c__slave.html">   51</a></span>&#160;<span class="keyword">class </span><a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html">yahal::mcu::I2C_slave</a> : <span class="keyword">virtual</span> <span class="keyword">public</span> <a class="code" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html">yahal::mcu::details::I2C_common</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">protected</span>:                      <span class="comment">// CONSTRUCTOR &amp; DESTRUCTOR</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#afe2732b2fafb081a3e82ab3a2f8a5d87">I2C_slave</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">virtual</span>                 <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aee6e10164e2ccc22cbfa1d0e7556b2d0">~I2C_slave</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">protected</span>:                      <span class="comment">// I2C PROTOCOL -&gt; IMPLEMENT</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span>            isIncommingWrite(<span class="keywordtype">void</span>) = 0;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//protected:                    // I2C EVENTS -&gt; TO BE USED BY IMPLEMENTATION (ISR)</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            handleReceivedStart(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            handleReceivedStop(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            handleBufferTXEmpty(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            handleBufferRXFull(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">protected</span>:                      <span class="comment">// I2C PROTOCOL -&gt; IMPLEMENT</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span>            <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a452c58e3bfd632a4465809eee83f7784">isIncommingWrite</a>(<span class="keywordtype">void</span>) = 0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">//protected:                    // I2C EVENTS -&gt; TO BE USED BY IMPLEMENTATION (ISR)</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a89a2c6293aab02189e1140082c3a0ada">handleReceivedStart</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aff9257fb7bba6935470e7e4df7be665a">handleReceivedStop</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aaf745b91c3f902f135219c385e082c12">handleBufferTXEmpty</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#af2bc4067c1e2c8cc499dde9bfd55f9f2">handleBufferRXFull</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">public</span>:                         <span class="comment">// SET CALLBACK FUNCTIONS FOR HOOKS</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span>                    setCallbackReceivedStart(<span class="keywordtype">void</span>(*fpCallOnEvent)(DIRECTION::Type));</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">void</span>                    setCallbackReceivedStop(<span class="keywordtype">void</span>(*fpCallOnEvent)(<span class="keywordtype">void</span>));</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">void</span>                    setCallbackByteReceived(<span class="keywordtype">void</span>(*fpCallOnEvent)(uint8_t));</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">void</span>                    setCallbackByteRequested(<span class="keywordtype">void</span>(*fpCallOnEvent)(uint8_t&amp;));</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">public</span>:                         <span class="comment">// SET CALLBACK FUNCTIONS FOR HOOKS</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span>                    <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#ab21ae123a6dd0ced188cfd78b14c6de8">setCallbackReceivedStart</a>(<span class="keywordtype">void</span>(*fpCallOnEvent)(<a class="code" href="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction.html#a13e2000f0f779540af7efbc0f744b420">Direction::Type</a>));</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">void</span>                    <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a9cd6542bef603a8bc1da8ba1ba1c5f41">setCallbackReceivedStop</a>(<span class="keywordtype">void</span>(*fpCallOnEvent)(<span class="keywordtype">void</span>));</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span>                    <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a78a651cf27799db59250c2a5646b6502">setCallbackByteReceived</a>(<span class="keywordtype">void</span>(*fpCallOnEvent)(uint8_t));</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">void</span>                    <a class="code" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a7b266fcbfcc75dda6695d8a321e66ca4">setCallbackByteRequested</a>(<span class="keywordtype">void</span>(*fpCallOnEvent)(uint8_t&amp;));</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">private</span>:                        <span class="comment">// PRIVATE VARIABLES</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        yahal::mcu::utility::Callback&lt;DIRECTION::Type&gt; _callbackStart;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        yahal::mcu::utility::Callback&lt;void&gt;             _callbackStop;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        yahal::mcu::utility::Callback&lt;uint8_t&gt;          _callbackByteReceived;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        yahal::mcu::utility::Callback&lt;uint8_t&amp;&gt; _callbackByteRequested;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif  // __YAHAL_MCU_I2C_SLAVE_HPP_INCLUDED__</span></div>
-<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00038">error_code.hpp:38</a></div></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">private</span>:                        <span class="comment">// PRIVATE VARIABLES</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="classyahal_1_1utility_1_1oop_1_1_callback.html">yahal::utility::oop::Callback&lt;Direction::Type&gt;</a>  _callbackStart;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="classyahal_1_1utility_1_1oop_1_1_callback_3_01void_01_4.html">yahal::utility::oop::Callback&lt;void&gt;</a>             _callbackStop;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="classyahal_1_1utility_1_1oop_1_1_callback.html">yahal::utility::oop::Callback&lt;uint8_t&gt;</a>          _callbackByteReceived;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="classyahal_1_1utility_1_1oop_1_1_callback.html">yahal::utility::oop::Callback&lt;uint8_t&amp;&gt;</a>         _callbackByteRequested;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;};</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif  // __YAHAL_MCU_I2C_SLAVE_HPP_INCLUDED__</span></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1details_1_1_i2_c__common_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html">yahal::mcu::details::I2C_common</a></div><div class="ttdoc">Base class for all I2C modules. </div><div class="ttdef"><b>Definition:</b> <a href="i2c__common_8hpp_source.html#l00049">i2c_common.hpp:49</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_aff9257fb7bba6935470e7e4df7be665a"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#aff9257fb7bba6935470e7e4df7be665a">yahal::mcu::I2C_slave::handleReceivedStop</a></div><div class="ttdeci">virtual void handleReceivedStop(void)</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_af2bc4067c1e2c8cc499dde9bfd55f9f2"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#af2bc4067c1e2c8cc499dde9bfd55f9f2">yahal::mcu::I2C_slave::handleBufferRXFull</a></div><div class="ttdeci">virtual void handleBufferRXFull(void)</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_a9cd6542bef603a8bc1da8ba1ba1c5f41"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#a9cd6542bef603a8bc1da8ba1ba1c5f41">yahal::mcu::I2C_slave::setCallbackReceivedStop</a></div><div class="ttdeci">void setCallbackReceivedStop(void(*fpCallOnEvent)(void))</div></div>
+<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_callback_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_callback.html">yahal::utility::oop::Callback&lt; Direction::Type &gt;</a></div></div>
+<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00037">error_code.hpp:37</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction_html_a13e2000f0f779540af7efbc0f744b420"><div class="ttname"><a href="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction.html#a13e2000f0f779540af7efbc0f744b420">yahal::mcu::details::I2C_common::Direction::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="i2c__common_8hpp_source.html#l00055">i2c_common.hpp:55</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html">yahal::mcu::I2C_slave</a></div><div class="ttdoc">Base class for all I2C slaves. </div><div class="ttdef"><b>Definition:</b> <a href="modules_2i2c_2i2c__slave_8hpp_source.html#l00051">i2c_slave.hpp:51</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_a452c58e3bfd632a4465809eee83f7784"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#a452c58e3bfd632a4465809eee83f7784">yahal::mcu::I2C_slave::isIncommingWrite</a></div><div class="ttdeci">virtual bool isIncommingWrite(void)=0</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_a78a651cf27799db59250c2a5646b6502"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#a78a651cf27799db59250c2a5646b6502">yahal::mcu::I2C_slave::setCallbackByteReceived</a></div><div class="ttdeci">void setCallbackByteReceived(void(*fpCallOnEvent)(uint8_t))</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_a89a2c6293aab02189e1140082c3a0ada"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#a89a2c6293aab02189e1140082c3a0ada">yahal::mcu::I2C_slave::handleReceivedStart</a></div><div class="ttdeci">virtual void handleReceivedStart(void)</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_a7b266fcbfcc75dda6695d8a321e66ca4"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#a7b266fcbfcc75dda6695d8a321e66ca4">yahal::mcu::I2C_slave::setCallbackByteRequested</a></div><div class="ttdeci">void setCallbackByteRequested(void(*fpCallOnEvent)(uint8_t &amp;))</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_aee6e10164e2ccc22cbfa1d0e7556b2d0"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#aee6e10164e2ccc22cbfa1d0e7556b2d0">yahal::mcu::I2C_slave::~I2C_slave</a></div><div class="ttdeci">virtual ~I2C_slave(void)</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_ab21ae123a6dd0ced188cfd78b14c6de8"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#ab21ae123a6dd0ced188cfd78b14c6de8">yahal::mcu::I2C_slave::setCallbackReceivedStart</a></div><div class="ttdeci">void setCallbackReceivedStart(void(*fpCallOnEvent)(Direction::Type))</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_afe2732b2fafb081a3e82ab3a2f8a5d87"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#afe2732b2fafb081a3e82ab3a2f8a5d87">yahal::mcu::I2C_slave::I2C_slave</a></div><div class="ttdeci">I2C_slave(void)</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__slave_html_aaf745b91c3f902f135219c385e082c12"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__slave.html#aaf745b91c3f902f135219c385e082c12">yahal::mcu::I2C_slave::handleBufferTXEmpty</a></div><div class="ttdeci">virtual void handleBufferTXEmpty(void)</div></div>
+<div class="ttc" id="i2c__common_8hpp_html"><div class="ttname"><a href="i2c__common_8hpp.html">i2c_common.hpp</a></div></div>
+<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_callback_3_01void_01_4_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_callback_3_01void_01_4.html">yahal::utility::oop::Callback&lt; void &gt;</a></div><div class="ttdoc">=========================================================================== WITHOUT ARGUMENT ...</div><div class="ttdef"><b>Definition:</b> <a href="callback_8hpp_source.html#l00081">callback.hpp:81</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -31,8 +31,8 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/targets/msp430f5309_config.hpp"
-#ifdef __YAHAL_MCU_MSP430F5309_WDT_ENABLED__
+#include "../../../config/mcu_config.hpp"
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include "../../../modules/wdt/wdt.hpp"
 
@@ -50,15 +50,18 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::Wdt : public yahal::mcu::Wdt
 {
-private:			// INITIALIZATION
+private:
 	void			doInit(void);
 
 public:
+				/**
+				 * Reset WDT counter if WDT enabled.
+				 */
 	void			reset(void);
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __YAHAL_MCU_MSP430F5309_WDT_ENABLED__
+#endif // MCU_DEVICE == MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_WDT_HPP_INCLUDED__
