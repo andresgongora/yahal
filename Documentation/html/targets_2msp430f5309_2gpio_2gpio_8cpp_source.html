@@ -116,7 +116,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">        +-----------------------------------------------------------------------+       */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="targets_2msp430f5309_2gpio_2gpio_8hpp.html">gpio.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifdef __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#if MCU_DEVICE == MCU_MSP430F5309</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;msp430f5309.h&gt;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
@@ -413,7 +413,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="preprocessor">#endif // __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="preprocessor">#endif // MCU_DEVICE == MCU_MSP430F5309</span></div>
 <div class="ttc" id="classyahal_1_1error_1_1_error_code_html_a2709825a2c104d8fbb74467580ecf0bc"><div class="ttname"><a href="classyahal_1_1error_1_1_error_code.html#a2709825a2c104d8fbb74467580ecf0bc">yahal::error::ErrorCode::setErrorCode</a></div><div class="ttdeci">void setErrorCode(std::size_t newErrorCode)</div><div class="ttdoc">Set new error code. </div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00091">error_code.hpp:91</a></div></div>
 <div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port.html">yahal::mcu::Gpio::Port</a></div><div class="ttdoc">Base class for all GPIO Ports. </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8hpp_source.html#l00104">gpio.hpp:104</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1_gpio_1_1_resistor_html_a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5a0b03abc26f722c74acf4527199cd3936"><div class="ttname"><a href="structyahal_1_1mcu_1_1_gpio_1_1_resistor.html#a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5a0b03abc26f722c74acf4527199cd3936">yahal::mcu::Gpio::Resistor::DISABLED</a></div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8hpp_source.html#l00064">gpio.hpp:64</a></div></div>

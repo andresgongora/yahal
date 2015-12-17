@@ -20,7 +20,7 @@ var searchData=
   ['msp430f2132_5fmodules_2ehpp',['msp430f2132_modules.hpp',['../msp430f2132__modules_8hpp.html',1,'']]],
   ['msp430f5309_2ehpp',['msp430f5309.hpp',['../msp430f5309_8hpp.html',1,'']]],
   ['msp430f5309_5fconfig_2ehpp',['msp430f5309_config.hpp',['../msp430f5309__config_8hpp.html',1,'']]],
-  ['mutex',['Mutex',['../classyahal_1_1rtos_1_1api_1_1_mutex.html',1,'yahal::rtos::api']]],
+  ['mutex',['Mutex',['../classyahal_1_1rtos_1_1_mutex.html',1,'yahal::rtos']]],
   ['mutex',['Mutex',['../classyahal_1_1rtos_1_1api_1_1_mutex.html#adfac5ede23819d2ac0b1eca2b46d602a',1,'yahal::rtos::api::Mutex']]],
-  ['mutex',['Mutex',['../classyahal_1_1rtos_1_1_mutex.html',1,'yahal::rtos']]]
+  ['mutex',['Mutex',['../classyahal_1_1rtos_1_1api_1_1_mutex.html',1,'yahal::rtos::api']]]
 ];

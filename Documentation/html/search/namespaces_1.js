@@ -1,6 +1,7 @@
 var searchData=
 [
   ['api',['api',['../namespaceyahal_1_1rtos_1_1api.html',1,'yahal::rtos']]],
+  ['config',['config',['../namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1config.html',1,'yahal::mcu::targets::msp430f5309']]],
   ['details',['details',['../namespaceyahal_1_1mcu_1_1details.html',1,'yahal::mcu']]],
   ['error',['error',['../namespaceyahal_1_1error.html',1,'yahal']]],
   ['hwemulation',['hwemulation',['../namespaceyahal_1_1mcu_1_1hwemulation.html',1,'yahal::mcu']]],

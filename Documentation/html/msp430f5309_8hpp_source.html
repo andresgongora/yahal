@@ -127,30 +127,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#if MCU_DEVICE == MCU_MSP430F5309</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;msp430f5309.h&gt;</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/* =================================================================================================</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">        MODULES</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">================================================================================================= */</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;clk/clk.hpp&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;wdt/wdt.hpp&quot;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;gpio/gpio.hpp&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//#include &quot;i2c/i2c_master.hpp&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">//#include &quot;i2c/i2c_slave.hpp&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">//#include &quot;i2c/i2c_multimaster.hpp&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//#include &quot;hal/mcu/devices/msp430f5309/i2c/i2c_master.hpp&quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">//#include &quot;hal/mcu/devices/msp430f5309/i2c/i2c_slave.hpp&quot;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//#include &quot;hal/mcu/devices/msp430f5309/irq/irq.hpp&quot;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//#include &quot;hal/mcu/devices/msp430f5309/uart/uart.hpp&quot;</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/* =================================================================================================</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">        MODULES</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">================================================================================================= */</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;clk/clk.hpp&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;wdt/wdt.hpp&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;gpio/gpio.hpp&quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">//#include &quot;i2c/i2c_master.hpp&quot;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//#include &quot;i2c/i2c_slave.hpp&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">//#include &quot;i2c/i2c_multimaster.hpp&quot;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//#include &quot;hal/mcu/devices/msp430f5309/i2c/i2c_master.hpp&quot;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//#include &quot;hal/mcu/devices/msp430f5309/i2c/i2c_slave.hpp&quot;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">//#include &quot;hal/mcu/devices/msp430f5309/irq/irq.hpp&quot;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//#include &quot;hal/mcu/devices/msp430f5309/uart/uart.hpp&quot;</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif  // MCU_DEVICE == MCU_MSP430F5309</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif  // __YAHAL_MCU_MSP430F5309_HPP_INCLUDED__</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">// Include all modules before configuration</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#include &quot;../../config/targets/msp430f5309_config.hpp&quot;</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceyahal.html">yahal</a>{ <span class="keyword">namespace </span>mcu{ <span class="keyword">namespace </span>targets{ <span class="keyword">namespace </span>msp430f5309{</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">        #if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                msp430f5309::Clk <a class="code" href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a8cf5bfbcd04214d5406c76d6ba02c5bf">clk</a>(msp430f5309::config::clk);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">        #endif</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">        #if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                msp430f5309::Wdt <a class="code" href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#af2b88a4e2b488c0c1aeedfcdd882319c">wdt</a>(msp430f5309::config::wdt);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">        #endif</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a205570075595ce51600da37419be1ecc">   72</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a205570075595ce51600da37419be1ecc">init</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">                #if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                        <a class="code" href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a8cf5bfbcd04214d5406c76d6ba02c5bf">clk</a>.<a class="code" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a2389e2ad5dd20fb4cd7076dfe2f403ec">init</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">                #endif</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">                #if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                        <a class="code" href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#af2b88a4e2b488c0c1aeedfcdd882319c">wdt</a>.<a class="code" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a2389e2ad5dd20fb4cd7076dfe2f403ec">init</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">                #endif</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}}}}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif  // MCU_DEVICE == MCU_MSP430F5309</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif  // __YAHAL_MCU_MSP430F5309_HPP_INCLUDED__</span></div>
+<div class="ttc" id="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309_html_a205570075595ce51600da37419be1ecc"><div class="ttname"><a href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a205570075595ce51600da37419be1ecc">yahal::mcu::targets::msp430f5309::init</a></div><div class="ttdeci">void init(void)</div><div class="ttdef"><b>Definition:</b> <a href="msp430f5309_8hpp_source.html#l00072">msp430f5309.hpp:72</a></div></div>
+<div class="ttc" id="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309_html_a8cf5bfbcd04214d5406c76d6ba02c5bf"><div class="ttname"><a href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a8cf5bfbcd04214d5406c76d6ba02c5bf">yahal::mcu::targets::msp430f5309::clk</a></div><div class="ttdeci">msp430f5309::Clk clk(msp430f5309::config::clk)</div></div>
+<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00037">error_code.hpp:37</a></div></div>
+<div class="ttc" id="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309_html_af2b88a4e2b488c0c1aeedfcdd882319c"><div class="ttname"><a href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#af2b88a4e2b488c0c1aeedfcdd882319c">yahal::mcu::targets::msp430f5309::wdt</a></div><div class="ttdeci">msp430f5309::Wdt wdt(msp430f5309::config::wdt)</div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1details_1_1_base_module_html_a2389e2ad5dd20fb4cd7076dfe2f403ec"><div class="ttname"><a href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a2389e2ad5dd20fb4cd7076dfe2f403ec">yahal::mcu::details::BaseModule::init</a></div><div class="ttdeci">bool init(void)</div><div class="ttdoc">Public initialization method. </div><div class="ttdef"><b>Definition:</b> <a href="base__module_8hpp_source.html#l00070">base_module.hpp:70</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

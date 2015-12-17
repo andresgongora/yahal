@@ -26,7 +26,7 @@ var searchData=
   ['i2c_5fslave_2ehpp',['i2c_slave.hpp',['../targets_2msp430f2132_2i2c_2i2c__slave_8hpp.html',1,'']]],
   ['i2c_5fslave_2ehpp',['i2c_slave.hpp',['../modules_2i2c_2i2c__slave_8hpp.html',1,'']]],
   ['i2c_5fslave_2ehpp',['i2c_slave.hpp',['../targets_2msp430f5309_2i2c_2i2c__slave_8hpp.html',1,'']]],
-  ['init',['init',['../classyahal_1_1mcu_1_1details_1_1_base_module.html#a2389e2ad5dd20fb4cd7076dfe2f403ec',1,'yahal::mcu::details::BaseModule']]],
+  ['init',['init',['../classyahal_1_1mcu_1_1details_1_1_base_module.html#a2389e2ad5dd20fb4cd7076dfe2f403ec',1,'yahal::mcu::details::BaseModule::init()'],['../namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a205570075595ce51600da37419be1ecc',1,'yahal::mcu::targets::msp430f5309::init()']]],
   ['input',['INPUT',['../structyahal_1_1mcu_1_1_gpio_1_1_direction.html#a439a47640b093599989104f4260ddea5a5641bbbf3a81d2814edce8967910aba9',1,'yahal::mcu::Gpio::Direction']]],
   ['invalid_5fmessage_5fbuffer',['INVALID_MESSAGE_BUFFER',['../structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_error.html#a8b8e77837be54467fe7bc9ecb823453ba4d9fa9b69fbb56b6267ea1ae33caf6de',1,'yahal::mcu::details::I2C_common::Error']]],
   ['irq',['Irq',['../classyahal_1_1mcu_1_1_irq.html',1,'yahal::mcu']]],

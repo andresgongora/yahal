@@ -122,8 +122,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;../../../config/targets/msp430f5309_config.hpp&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;../../../config/mcu_config.hpp&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#if MCU_DEVICE == MCU_MSP430F5309</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;../../../modules/gpio/gpio.hpp&quot;</span></div>
@@ -245,7 +245,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#endif // __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#endif // MCU_DEVICE == MCU_MSP430F5309</span></div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#endif // __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__</span></div>
 <div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00037">error_code.hpp:37</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1_gpio_1_1_resistor_html_a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5"><div class="ttname"><a href="structyahal_1_1mcu_1_1_gpio_1_1_resistor.html#a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5">yahal::mcu::Gpio::Resistor::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8hpp_source.html#l00063">gpio.hpp:63</a></div></div>
