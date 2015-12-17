@@ -367,9 +367,4 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)co
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
-	yahal::mcu::targets::msp430f5309::Gpio gpio;
-}}
-
-/* ---------------------------------------------------------------------------------------------- */
 #endif // __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__

@@ -60,13 +60,5 @@ public:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-
-namespace yahal{ namespace mcu{
-	extern yahal::mcu::targets::msp430f5309::Wdt wdt;
-}}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
 #endif // __YAHAL_MCU_MSP430F5309_WDT_ENABLED__
 #endif // __YAHAL_MCU_MSP430F5309_WDT_HPP_INCLUDED__

@@ -84,11 +84,5 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
-	extern yahal::mcu::targets::msp430f5309::Clk clk;
-}}
-
-
-/* ---------------------------------------------------------------------------------------------- */
 #endif // __YAHAL_MCU_MSP430F5309_CLK_ENABLED__
 #endif // __YAHAL_MCU_MSP430F5309_CLK_HPP_INCLUDED__

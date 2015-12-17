@@ -51,16 +51,25 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::Gpio : public yahal::mcu::Gpio
 {
-public:				// PORT ACCESS -----------------------------------------------------
+public:
+				/**
+				 * Return reference to port.
+				 */
  	yahal::mcu::Gpio::Port&	port(uint8_t portNumber);
 
 
-private:			// INITIALIZATION
-	void			doInit(void);
 
 
 private:
- 				// PORT 1 ----------------------------------------------------------
+				/**
+				 * Initialize module (private).
+				 * The public initialization rountine is called init() and
+				 * is inherited from BaseModule.
+				 */
+	void			doInit(void);
+
+
+				/* -------------------------------------------------------------- */
  	class 			Port1 : public yahal::mcu::Gpio::Port
 				{
 				public:
@@ -74,7 +83,7 @@ private:
 				};
 
 
- 				// PORT 2 ----------------------------------------------------------
+ 				/* -------------------------------------------------------------- */
  	class 			Port2 : public yahal::mcu::Gpio::Port
 				{
 				public:
@@ -88,7 +97,7 @@ private:
 				};
 
 
- 				// PORT 3 ----------------------------------------------------------
+ 				/* -------------------------------------------------------------- */
  	class 			Port3 : public yahal::mcu::Gpio::Port
 				{
 				public:
@@ -102,7 +111,7 @@ private:
 				};
 
 
- 				// PORT 4 ----------------------------------------------------------
+ 				/* -------------------------------------------------------------- */
  	class 			Port4 : public yahal::mcu::Gpio::Port
 				{
 				public:
@@ -116,7 +125,7 @@ private:
 				};
 
 
- 				// PORT 5 ----------------------------------------------------------
+ 				/* -------------------------------------------------------------- */
  	class 			Port5 : public yahal::mcu::Gpio::Port
 				{
 				public:
@@ -130,7 +139,7 @@ private:
 				};
 
 
- 				// PORT 6 ----------------------------------------------------------
+ 				/* -------------------------------------------------------------- */
  	class 			Port6 : public yahal::mcu::Gpio::Port
 				{
 				public:
@@ -144,7 +153,8 @@ private:
 				};
 
 
- 				// PRIVATE INSTANCES -----------------------------------------------
+
+ 				// PRIVATE INSTANCES
  	Port1			_port1;
  	Port2			_port2;
  	Port3			_port3;
@@ -152,13 +162,6 @@ private:
  	Port5			_port5;
  	Port6			_port6;
 };
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
-	extern yahal::mcu::targets::msp430f5309::Gpio gpio;
-}}
 
 
 
