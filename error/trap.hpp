@@ -29,35 +29,27 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include <stdint.h>
+#include <cstddef>
+#include "../utility/macros/concatenate.hpp"
 
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace error{
-	void TRAP(const char* description, long int line, int errorCode);
-}}
-
-
-/** --- DEFINE --------------------------------------------------------------------------------- **/
-#define __DEBUG
-
-
-
-/* ============================================================================================== */
- *	DECLARATION
- * ============================================================================================== */
-
-
-void yahal::error::TRAP(const char* description, long int line, int errorCode)
-{
-	#ifdef __DEBUG
-		if(errorCode)
+	void assert(bool condition, const char* file, std::size_t line)
+	{
+		if(condition)
 		{
 			for(;;);
 		}
-	#endif
-}
+	}
+}}
 
+
+#ifdef __DEBUG
+#define assert(condition)	yahal::error::assert(condition,CONCATENATE("ASSERT_FAILED_IN_FILE_",__FILE__),__LINE__);
+#else
+#define assert(condition)	do{}while(0);
+#endif
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif 	//__TRAP_HPP_INCLUDED

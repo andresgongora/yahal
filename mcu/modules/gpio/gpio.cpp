@@ -53,10 +53,7 @@ void yahal::mcu::Gpio::Port::toggle(uint8_t mask)
 
 yahal::mcu::Gpio::Port::Pin yahal::mcu::Gpio::Port::pin(uint8_t pinNumber)
 {
-	if(pinNumber >= 8)
-	{
-		for(;;);	///< @warning
-	}
+//	assert(pinNumber < 8, "Ports have only 8 pins");
 
 
 	yahal::mcu::Gpio::Port::Pin pin(*this, pinNumber);

@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_ERROR_ERROR_CODE_HPP_INCLUDED__
-#define __YAHAL_ERROR_ERROR_CODE_HPP_INCLUDED__
+#ifndef __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
+#define __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
 
 
 
@@ -35,21 +35,14 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace error{
-	class ErrorCode;
+	void assert(bool,const char*)
 }}
 
 
 
 /***********************************************************************************************//**
- * @brief	Base class for error code handling.
  *
- * 	This class stores the last error code that happened to a derived class.
- * 	It two public methods to check the existence and value of the last error code
- *	and two protected methods to set and clear the code.
- *	This base class also defines NO_ERROR_CODE (value = NULL) to signal a no error condition.
- *
- *@note		For performance reasons, the error code is stored size_t.
-  **************************************************************************************************/
+ **************************************************************************************************/
 class yahal::error::ErrorCode
 {
 protected:
@@ -116,4 +109,4 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_ERROR_ERROR_CODE_HPP_INCLUDED__
+#endif 	// __YAHAL_ERROR_ASSERT_HPP_INCLUDED__

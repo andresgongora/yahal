@@ -68,9 +68,9 @@ public:
 				 * @see doInit()
 				 */
 	bool			init(void){
-					this->setErrorCode(NO_ERROR_CODE);
+					setErrorCode(NO_ERROR_CODE);
 					doInit();
-					return not this->hasError();
+					return hasError();
 				}
 
 
@@ -79,7 +79,7 @@ protected:
 				/** Prepare module for exclusive operation */
 	void			open(void){
 					_mutex.lock();
-					this->setErrorCode(NO_ERROR_CODE);
+					setErrorCode(NO_ERROR_CODE);
 				}
 
 				/** Releases module */
@@ -93,7 +93,7 @@ protected:
 
 
 private:
-	yahal::rtos::Mutex	_mutex;	/**< Mutex for exclusive access to each derived module */
+	yahal::rtos::Mutex	_mutex;	///< Mutex for exclusive access to each derived module
 };
 
 

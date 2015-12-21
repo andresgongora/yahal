@@ -31,6 +31,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include "../base_module.hpp"
+#include "../../../utility/macros/static_assert.hpp"
 
 
 

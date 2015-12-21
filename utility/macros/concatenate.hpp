@@ -22,38 +22,16 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_RTOS_EMPTY_MUTEX_HPP_INCLUDED__
-#define __YAHAL_RTOS_EMPTY_MUTEX_HPP_INCLUDED__
+#ifndef __CONCTATENATE_HPP_INCLUDED__
+#define __CONCTATENATE_HPP_INCLUDED__
 
 
-/** ---- INCLUDE ------------------------------------------------------------------------------- **/
-#include "empty.hpp"
-#if MCU_RTOS == MCU_RTOS_EMPTY
+#define CONCATENATE_1(a, b)	a ## b
+#define CONCATENATE_2(a, b)	CONCATENATE_1(a, b)
+#define CONCATENATE_3(a, b)	CONCATENATE_2(a, b)
 
-#include "../../api/api_mutex.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{namespace rtos{
-	class Mutex;
-}}
-
-
-
-/***********************************************************************************************//**
- * @brief	Does absolutely nothing.
- **************************************************************************************************/
-class yahal::rtos::Mutex : public yahal::rtos::api::Mutex
-{
-public:
-	inline void		lock(void)	{}
-	inline bool		try_lock(void) 	{return true;}
-	inline void		unlock(void)	{}
-};
-
+#define CONCATENATE(a, b)	CONCATENATE_3(a, b)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// MCU_RTOS == MCU_RTOS_EMPTY
-#endif	// __YAHAL_RTOS_EMPTY_MUTEX_HPP_INCLUDED__
+#endif 	//__CONCTATENATE_HPP_INCLUDED__

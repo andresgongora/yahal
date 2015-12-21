@@ -22,38 +22,23 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_RTOS_EMPTY_MUTEX_HPP_INCLUDED__
-#define __YAHAL_RTOS_EMPTY_MUTEX_HPP_INCLUDED__
-
-
-/** ---- INCLUDE ------------------------------------------------------------------------------- **/
-#include "empty.hpp"
-#if MCU_RTOS == MCU_RTOS_EMPTY
-
-#include "../../api/api_mutex.hpp"
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{namespace rtos{
-	class Mutex;
-}}
+#ifndef __CPP_STATIC_ASSERT_HPP_INCLUDED__
+#define __CPP_STATIC_ASSERT_HPP_INCLUDED__
 
 
+#include "concatenate.hpp"
 
-/***********************************************************************************************//**
- * @brief	Does absolutely nothing.
- **************************************************************************************************/
-class yahal::rtos::Mutex : public yahal::rtos::api::Mutex
-{
-public:
-	inline void		lock(void)	{}
-	inline bool		try_lock(void) 	{return true;}
-	inline void		unlock(void)	{}
-};
+
+#ifndef __cpp_static_assert
+	#define static_assert(condition, message)\
+		typedef int CONCATENATE(ASSERTMACRO, __LINE__)[(condition) ? 1 : -1]
+#endif
+
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// MCU_RTOS == MCU_RTOS_EMPTY
-#endif	// __YAHAL_RTOS_EMPTY_MUTEX_HPP_INCLUDED__
+#endif 	//__CPP_STATIC_ASSERT_HPP_INCLUDED__
