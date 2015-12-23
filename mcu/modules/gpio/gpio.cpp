@@ -27,6 +27,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "gpio.hpp"
+#include "../../../error/assert.hpp"
 
 
 
@@ -53,9 +54,7 @@ void yahal::mcu::Gpio::Port::toggle(uint8_t mask)
 
 yahal::mcu::Gpio::Port::Pin yahal::mcu::Gpio::Port::pin(uint8_t pinNumber)
 {
-//	assert(pinNumber < 8, "Ports have only 8 pins");
-
-
+	assert(pinNumber < 8);
 	yahal::mcu::Gpio::Port::Pin pin(*this, pinNumber);
 	return pin;
 }

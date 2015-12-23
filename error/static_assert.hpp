@@ -29,7 +29,7 @@
 #define __CPP_STATIC_ASSERT_HPP_INCLUDED__
 
 
-#include "concatenate.hpp"
+#include "../utility/macros/concatenate.hpp"
 
 
 #ifndef __cpp_static_assert

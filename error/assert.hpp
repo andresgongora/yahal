@@ -22,91 +22,37 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+
+
 #ifndef __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
 #define __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
 
 
-
 /* ---------------------------------------------------------------------------------------------- */
 #include <cstddef>
-#include "../rtos/rtos.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace error{
-	void assert(bool,const char*)
-}}
+namespace yahal{ namespace error{ namespace details{
+	static void assert(bool condition, const char* file, std::size_t line)
+	{
+#ifdef __DEBUG
+		while(not condition)
+		{
+			volatile std::size_t i;
+			for(i=line; i>file[0]; i--);
+		}
+#endif
+	}
+}}}
 
 
-
-/***********************************************************************************************//**
- *
- **************************************************************************************************/
-class yahal::error::ErrorCode
-{
-protected:
-				// CONSTRUCTOR & DESTRUCTOR
-				ErrorCode(void) : _errorCode(NO_ERROR_CODE)	{}
-	virtual			~ErrorCode(void)				{}
-
-
-public:
-				/**
-				 * @return last error code.
-				 */
-	std::size_t		getErrorCode(void) const
-				{
-					_errorMutex.lock();
-					std::size_t temp = _errorCode;
-					_errorMutex.unlock();
-					return temp;
-				}
-
-				/**
-				 * @return true if last error is not equal to NO_ERROR_CODE.
-				 */
-	inline bool		hasError(void) const
-				{
-					return (getErrorCode() != NO_ERROR_CODE);
-				}
-
-
-
-protected:
-	static const
-	std::size_t		NO_ERROR_CODE = 0;	///< No error condition code.
-
-				/**
-				 * Set new error code.
-				 * Allows derived classes to set a new error code.
-				 * @param newErrorCode new error code to store.
-				 */
-	void			setErrorCode(std::size_t newErrorCode)
-				{
-					_errorMutex.lock();
-					_errorCode = newErrorCode;
-					_errorMutex.unlock();
-				}
-
-				/**
-				 * Clear error code.
-				 * Identical to "setErrorCode(NO_ERROR_CODE)".
-				 * @see setErrorCode.
-				 */
-	inline void		clearErrorCode(void)
-				{
-					setErrorCode(NO_ERROR_CODE);	// Clears code and count
-				}
-
-
-
-private:
-	volatile std::size_t	_errorCode;	///< Store last error code
-	mutable	yahal::rtos::Mutex _errorMutex;	///< Thread safety to modify error code
-};
-
-
+#ifdef __DEBUG
+#define assert(condition)	yahal::error::details::assert(condition, __FILE__, __LINE__)
+#else
+#define assert(condition)	do{}while(0)
+#endif
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
+#endif 	 // __YAHAL_ERROR_ASSERT_HPP_INCLUDED__

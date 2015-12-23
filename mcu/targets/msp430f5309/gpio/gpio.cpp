@@ -26,7 +26,7 @@
 #if MCU_DEVICE == MCU_MSP430F5309
 
 #include <msp430f5309.h>
-
+#include "../../../../error/assert.hpp"
 
 
 /* =================================================================================================
@@ -52,6 +52,8 @@ void yahal::mcu::targets::msp430f5309::Gpio::doInit(void)
 
 yahal::mcu::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
 {
+	assert(portNumber >= 1 && portNumber <= 6);
+
 	switch(portNumber)
 	{
 	case 1:	return _port1;
@@ -60,9 +62,7 @@ yahal::mcu::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t por
 	case 4:	return _port4;
 	case 5:	return _port5;
 	case 6:	return _port6;
-	default:
-		this->setErrorCode(Error::TRYING_TO_ACCESS_NON_EXISTANT_PORT);
-		for(;;);	//TODO: TRAP
+	default:assert(false);
 	}
 }
 
