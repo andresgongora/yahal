@@ -63,6 +63,7 @@ yahal::mcu::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t por
 	case 5:	return _port5;
 	case 6:	return _port6;
 	default:assert(false);
+		return _port1;	///< Better return this than nothing.
 	}
 }
 

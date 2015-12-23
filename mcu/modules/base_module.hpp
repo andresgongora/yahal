@@ -33,6 +33,7 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../../utility/oop/noncopyable.hpp"
+#include "../../utility/oop/nonheapable.hpp"
 #include "../../error/error_code.hpp"
 #include "../../rtos/rtos.hpp"
 
@@ -53,7 +54,8 @@ namespace yahal{ namespace mcu{ namespace details{
  **************************************************************************************************/
 class yahal::mcu::details::BaseModule :
 	public yahal::error::ErrorCode,
-	private yahal::utility::oop::Noncopyable
+	private yahal::utility::oop::Noncopyable,
+	private yahal::utility::oop::Nonheapable
 {
 protected:
 				BaseModule(void)	{}
