@@ -18,6 +18,8 @@
 	 *
 	 *	- BASE MODULE: //TODO: Añadir metodo para solicitar dispositivo (mutex), y al hacerlo borrar codigos de error viejos, comprobar que esta inicializado y todo. La interfaz para comprobar la salud de un modulo deberia estar aqui
 	 *
+	 *	- Cambiar el funcionamiento para imitar el de RTOS. Las clases base de modulos meterlas en el namespace modulos. Y el micro que implemente el chiringuito meterlo debajo de mcu. Pero no se hacer entonces con hwemulation
+	 *
 	*/
 
 
