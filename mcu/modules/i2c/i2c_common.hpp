@@ -84,7 +84,6 @@ protected:
 
 				// CONSTRUCTOR & DESTRUCTOR
 				I2C_common(void)	{}
-	virtual			~I2C_common(void)	{}
 };
 
 

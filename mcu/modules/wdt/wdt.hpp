@@ -57,7 +57,6 @@ public:
 
 protected:
 				Wdt(void) {}
-	virtual			~Wdt(void){}
 
 public:
 				/**

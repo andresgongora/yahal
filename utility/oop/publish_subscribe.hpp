@@ -86,7 +86,7 @@ class hal::utility::Subscriber : public hal::utility::LinkedListNode<Subscriber<
 public:
 				// CONSTRUCTOR & DESTRUCTOR
 				Subscriber(void)		{}
-	virtual			~Subscriber(void)		{}
+
 
 private:
 				// FRONT END ACCESIBLE ONLY BY PUBLISHER

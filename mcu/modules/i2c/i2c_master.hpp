@@ -51,7 +51,6 @@ class yahal::mcu::I2C_master : virtual public yahal::mcu::details::I2C_common
 {
 protected:			// CONSTRUCTOR & DESTRUCTOR
 				I2C_master(void)	{}
-	virtual			~I2C_master(void)	{}
 
 
 

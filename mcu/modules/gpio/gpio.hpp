@@ -103,11 +103,6 @@ public:				// PORT ACCESS
  **************************************************************************************************/
 class yahal::mcu::Gpio::Port
 {
-
-protected:			// CONSTRUCTOR & DESTRUCTOR ----------------------------------------
-	virtual			~Port(void){}
-
-
 public:				// CONFIGURATION ---------------------------------------------------
 	virtual bool		config(	Direction::Type direction = Direction::INPUT,
 					Resistor::Type resistor = Resistor::DISABLED,

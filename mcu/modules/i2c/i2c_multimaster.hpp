@@ -55,7 +55,6 @@ class yahal::mcu::I2C_multimaster : public yahal::mcu::I2C_master, public yahal:
 {
 protected:			// CONTRUSTOR & DESTRUCTOR
 				I2C_multimaster(void);
-	virtual			~I2C_multimaster(void);
 
 
 protected:			// I2C PROTOCOL -> IMPLEMENT

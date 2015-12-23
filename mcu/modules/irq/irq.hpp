@@ -50,7 +50,6 @@ class yahal::mcu::Irq : public yahal::mcu::details::BaseModule
 public:
 				// CONSTRUCTOR & DESTRUCTOR
 				Irq(void)	{}
-	virtual			~Irq(void)	{}
 
 
 				// INITIALIZATION

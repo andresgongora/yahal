@@ -117,7 +117,6 @@ class yahal::utility::LinkedListNode
 public:
 				// CONSTRUCTOR & DESTRUCTOR
 				LinkedListNode()		: _pNextNode(0)	{}
-	virtual			~LinkedListNode()				{}
 
 
 private:

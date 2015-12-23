@@ -55,7 +55,6 @@ class yahal::error::ErrorCode
 protected:
 				// CONSTRUCTOR & DESTRUCTOR
 				ErrorCode(void) : _errorCode(NO_ERROR_CODE)	{}
-	virtual			~ErrorCode(void)				{}
 
 
 public:

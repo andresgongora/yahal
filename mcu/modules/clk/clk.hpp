@@ -52,10 +52,6 @@ public:
 					FREQUENCY_NOT_AVAILABLE,
 					OTHER
 				};};
-
-
-protected:
-	virtual			~Clk(void){}
 };
 
 

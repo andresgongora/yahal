@@ -52,7 +52,6 @@ class yahal::mcu::I2C_slave : virtual public yahal::mcu::details::I2C_common
 {
 protected:			// CONSTRUCTOR & DESTRUCTOR
 				I2C_slave(void);
-	virtual			~I2C_slave(void);
 
 
 

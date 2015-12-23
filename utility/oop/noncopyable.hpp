@@ -43,9 +43,9 @@ namespace yahal{ namespace utility{ namespace oop{
  **************************************************************************************************/
 class yahal::utility::oop::Noncopyable
 {
-protected:			// CONSTRUCTOR & DESTRUCTOR
+protected:			// Allow only derived classes
 				Noncopyable()	{}
-	virtual			~Noncopyable()	{}
+				~Noncopyable()	{}
 
 
 private:			// PROHIBIT COPY

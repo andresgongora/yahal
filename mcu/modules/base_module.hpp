@@ -59,7 +59,6 @@ class yahal::mcu::details::BaseModule :
 {
 protected:
 				BaseModule(void)	{}
-	virtual			~BaseModule(void)	{}
 
 
 
