@@ -36,24 +36,21 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
-	class Nonheapable;
+	class NonHeapable;
 }}}
 
 
 
 /***********************************************************************************************//**
- * Non heapable base class.
+ * Non Heapable base class.
  * Each class that inherits from this class can not be instantiated with new.
  * Also it can not be removed with delete.
  **************************************************************************************************/
-class yahal::utility::oop::Nonheapable
+class yahal::utility::oop::NonHeapable
 {
-public:
-
-
 protected:			// Allow only derived classes
-				Nonheapable()	{}
-				~Nonheapable()	{}
+				NonHeapable()	{}
+				~NonHeapable()	{}
 
 
 private:

@@ -31,26 +31,26 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
-	class Noncopyable;
+	class NonCopyable;
 }}}
 
 
 
 /***********************************************************************************************//**
- * Non copyable base class.
+ * Non Copyable base class.
  * Each class that inherits from this class can not be copied.
  * Its constructor and asignment operator are protected and private respectively. *
  **************************************************************************************************/
-class yahal::utility::oop::Noncopyable
+class yahal::utility::oop::NonCopyable
 {
 protected:			// Allow only derived classes
-				Noncopyable()	{}
-				~Noncopyable()	{}
+				NonCopyable()	{}
+				~NonCopyable()	{}
 
 
 private:			// PROHIBIT COPY
-	explicit		Noncopyable(const Noncopyable&);
-				Noncopyable& operator=(const Noncopyable&);
+	explicit		NonCopyable(const NonCopyable&);
+				NonCopyable& operator=(const NonCopyable&);
 };
 
 

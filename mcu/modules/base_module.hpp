@@ -54,11 +54,12 @@ namespace yahal{ namespace mcu{ namespace details{
  **************************************************************************************************/
 class yahal::mcu::details::BaseModule :
 	public yahal::error::ErrorCode,
-	private yahal::utility::oop::Noncopyable,
-	private yahal::utility::oop::Nonheapable
+	private yahal::utility::oop::NonCopyable,
+	private yahal::utility::oop::NonHeapable
 {
 protected:
 				BaseModule(void)	{}
+				~BaseModule(void)	{}
 
 
 

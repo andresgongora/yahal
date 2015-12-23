@@ -39,7 +39,7 @@ namespace yahal{namespace rtos{ namespace api{
 /***********************************************************************************************//**
  * @brief	Base class for all MUTEX
  **************************************************************************************************/
-class yahal::rtos::api::Mutex : private yahal::utility::oop::Noncopyable
+class yahal::rtos::api::Mutex : private yahal::utility::oop::NonCopyable
 {
 public:
 				// CONSTRUTOR & DESTRUCTOR
