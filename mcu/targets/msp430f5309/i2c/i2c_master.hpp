@@ -30,8 +30,8 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/targets/msp430f5309_config.hpp"
-#if defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__)
+#include "../../../config/mcu_config.hpp"
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <stdint.h>
 #include <cstddef>
@@ -51,21 +51,37 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::I2C_master : public yahal::mcu::I2C_master
 {
+public:
+				struct Configuration
+				{
+					uint8_t ownAddress;
+				};
+
+
+				// CONSTRUCTOR
+				I2C_master(const Configuration& configuration);
+
+
+
 private:			// INITIALIZATION
 	virtual void		doInit(void);
 
 
 
 private:			// MODULE IMPLEMENTATION
-	virtual void		start(uint8_t slaveAddress, DIRECTION::Type direction);
+	virtual void		start(uint8_t slaveAddress, Direction::Type direction);
 	virtual void		stop(void);
 	virtual void		writeBufferTX(uint8_t byte);
 	virtual uint8_t		readBufferRX(void);
 	virtual void		awaitTransmissionEnd(void);
+
+
+				// PRIVATE VARIABLES
+	const Configuration&	_configuration;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__)
+#endif // MCU_DEVICE == MCU_MSP430F5309
 #endif	// __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__

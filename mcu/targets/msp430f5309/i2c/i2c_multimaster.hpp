@@ -22,17 +22,14 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
 #ifndef __YAHAL_MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__
 #define __YAHAL_MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/targets/msp430f5309_config.hpp"
-#ifdef __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+#include "../../../config/mcu_config.hpp"
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <stdint.h>
 #include <cstddef>
@@ -52,8 +49,15 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::I2C_multimaster : public yahal::mcu::I2C_multimaster
 {
-public:				// CONTRUSTOR & DESTRUCTOR
-				I2C_multimaster(uint8_t ownAddress);
+public:
+				struct Configuration
+				{
+					uint8_t ownAddress;
+				};
+
+
+				// CONSTRUCTOR
+				I2C_multimaster(const Configuration& configuration);
 
 
 
@@ -63,7 +67,7 @@ private:			// INITIALIZATION
 
 public:
 //private:			// MODULE IMPLEMENTATION
-	virtual void		start(uint8_t slaveAddress, DIRECTION::Type direction);
+	virtual void		start(uint8_t slaveAddress, Direction::Type direction);
 	virtual void		stop(void);
 	virtual void		writeBufferTX(uint8_t byte);
 	virtual uint8_t		readBufferRX(void);
@@ -76,9 +80,10 @@ public:
 
 private:			// PRIVATE VARIABLES
 	uint8_t			_ownAddress;
+	const Configuration&	_configuration;
 };
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+#endif // MCU_DEVICE == MCU_MSP430F5309
 #endif // __YAHAL_MCU_M430F5309_I2C_MULTIMASTER_HPP_INCLUDED__

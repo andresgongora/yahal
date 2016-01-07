@@ -29,23 +29,16 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "i2c_slave.hpp"
-#if defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__)
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <msp430f5309.h>
 
 
+/* ---------------------------------------------------------------------------------------------- */
 
-/* ============================================================================================== */
- *	DEFINITION::M430F5309_I2C_SLAVE
- * ============================================================================================== */
-
-/** ============================================================================= INITIALIZATION **/
-
-yahal::mcu::targets::msp430f5309::I2C_slave::I2C_slave(uint8_t ownAddress) :
-	_ownAddress(ownAddress)
-{
-
-}
+yahal::mcu::targets::msp430f5309::I2C_slave::I2C_slave(const Configuration& configuration) :
+	_configuration(configuration)
+{}
 
 
 
@@ -56,7 +49,7 @@ void yahal::mcu::targets::msp430f5309::I2C_slave::doInit(void)
 	P4SEL |= 0x06;					// Config GPIO pins
 	UCB1CTL1 = UCSSEL__SMCLK + UCSWRST;		// SMCLK clock source (keep SW reset)
 	UCB1CTL0 = UCMODE_3 + UCSYNC;			// I2C mode + syncrhonous
-	UCB1I2COA = _ownAddress;			// Set own slave address
+	UCB1I2COA = _configuration.ownAddress;			// Set own slave address
 	UCB1CTL1 &= ~UCSWRST;				// Clear SW Reset
 
 	UCB1IE |= UCTXIE + UCRXIE + UCSTTIE + UCSTPIE;	// Enable IE
@@ -64,7 +57,8 @@ void yahal::mcu::targets::msp430f5309::I2C_slave::doInit(void)
 
 
 
-/** =============================================================================== I2C PROTOCOL **/
+/* ---------------------------------------------------------------------------------------------- */
+
 void yahal::mcu::targets::msp430f5309::I2C_slave::writeBufferTX(uint8_t byte)
 {
 	UCB1TXBUF = byte;
@@ -87,4 +81,4 @@ bool yahal::mcu::targets::msp430f5309::I2C_slave::isIncommingWrite(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__)
+#endif // MCU_DEVICE == MCU_MSP430F5309

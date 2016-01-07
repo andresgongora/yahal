@@ -55,8 +55,24 @@ protected:			// CONSTRUCTOR & DESTRUCTOR
 
 
 protected:			// I2C PROTOCOL -> IMPLEMENT
+
+				/**
+				 * @brief	Start I/O with slave.
+				 * @param	slaveAddress address to perform I/O on.
+				 * @param	direction Direction::READ or Direction::Write.
+				 */
 	virtual void		start(uint8_t slaveAddress, Direction::Type direction) = 0;
+
+				/**
+				 * @brief	Send stop.
+				 */
 	virtual void		stop(void) = 0;
+
+				/**
+				 * @brief	Wait (or block) while I/O in progress.
+				 * You should check for error codes after the code returns from
+				 * this function to assert a correct transmission.
+				 */
 	virtual void		awaitTransmissionEnd(void) = 0;
 
 
@@ -116,7 +132,7 @@ private:			// PRIVATE VARIABLES
 	Direction::Type		_direction;
 
 	volatile std::size_t	_numTransmitted;		// Might be changed by ISR
-	volatile bool		_sendRegisterAddressPending;	//
+	volatile bool		_sendRegisterAddressPending;	// Might be changed by ISR
 };
 
 

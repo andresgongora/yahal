@@ -43,7 +43,8 @@ void yahal::mcu::targets::msp430f5309::Wdt::doInit(void)
 
 void yahal::mcu::targets::msp430f5309::Wdt::reset(void)
 {
-	init();
+	//TODO!!!
+	init();	// Call this for now.
 }
 
 

@@ -42,11 +42,6 @@ namespace yahal{namespace rtos{ namespace api{
 class yahal::rtos::api::Mutex : private yahal::utility::oop::NonCopyable
 {
 public:
-				// CONSTRUTOR & DESTRUCTOR
-				Mutex(void)	{}
-	virtual			~Mutex(void)	{}
-
-
 				// Mutex
 	virtual void		lock(void) = 0;
 	virtual bool		try_lock(void) = 0;

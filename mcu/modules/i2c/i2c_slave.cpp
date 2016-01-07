@@ -22,27 +22,21 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
 #include "i2c_slave.hpp"
 
-/* ============================================================================================== */
- *	DEFINITION::I2C_SLAVE
- * ============================================================================================== */
 
-/** =================================================================== CONSTRUCTOR & DESTRUCTOR **/
+
+/* ---------------------------------------------------------------------------------------------- */
 yahal::mcu::I2C_slave::I2C_slave(void){}
-yahal::mcu::I2C_slave::~I2C_slave(void){}
 
 
 
-/** ================================================================================= I2C EVENTS **/
+/* ---------------------------------------------------------------------------------------------- */
 
 void yahal::mcu::I2C_slave::handleReceivedStart(void)
 {
-	if(isIncommingWrite())	{_callbackStart.run(DIRECTION::WRITE);}
-	else			{_callbackStart.run(DIRECTION::READ);}
+	if(isIncommingWrite())	{_callbackStart.run(Direction::WRITE);}
+	else			{_callbackStart.run(Direction::READ);}
 }
 
 
@@ -73,9 +67,9 @@ void yahal::mcu::I2C_slave::handleBufferRXFull(void)
 
 
 
-/** ================================================================================== SET HOOKS **/
+/* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::I2C_slave::setCallbackReceivedStart(void(*fpCallOnEvent)(DIRECTION::Type))
+void yahal::mcu::I2C_slave::setCallbackReceivedStart(void(*fpCallOnEvent)(Direction::Type))
 {
 	_callbackStart.setCallBackFunction(fpCallOnEvent);
 }

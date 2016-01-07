@@ -45,8 +45,8 @@
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
 #include "gpio/gpio.hpp"
-//#include "i2c/i2c_master.hpp"
-//#include "i2c/i2c_slave.hpp"
+#include "i2c/i2c_master.hpp"
+#include "i2c/i2c_slave.hpp"
 //#include "i2c/i2c_multimaster.hpp"
 //#include "hal/mcu/devices/msp430f5309/i2c/i2c_master.hpp"
 //#include "hal/mcu/devices/msp430f5309/i2c/i2c_slave.hpp"
@@ -68,6 +68,8 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	#if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true
 		msp430f5309::Wdt wdt(msp430f5309::config::wdt);
 	#endif
+
+
 
 	void init(void)
 	{

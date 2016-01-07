@@ -28,17 +28,22 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "i2c_master.hpp"
-#if defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__)
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <msp430f5309.h>
 
 
 
-/* ============================================================================================== */
- *	yahal::mcu::targets::msp430f5309::I2C_master
- * ============================================================================================== */
+/* ---------------------------------------------------------------------------------------------- */
 
-/** ============================================================================= INITIALIZATION **/
+yahal::mcu::targets::msp430f5309::I2C_master::I2C_master(const Configuration& configuration) :
+	_configuration(configuration)
+{}
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
 void yahal::mcu::targets::msp430f5309::I2C_master::doInit(void)
 {
 	UCB1CTL1 |= UCSWRST;			// Enable SW reset while we configure the module
@@ -55,12 +60,13 @@ void yahal::mcu::targets::msp430f5309::I2C_master::doInit(void)
 
 
 
-/** ====================================================================== MODULE IMPLEMENTATION **/
-void yahal::mcu::targets::msp430f5309::I2C_master::start(uint8_t slaveAddress, DIRECTION::Type direction)
+/* ---------------------------------------------------------------------------------------------- */
+
+void yahal::mcu::targets::msp430f5309::I2C_master::start(uint8_t slaveAddress, Direction::Type direction)
 {
 	while(UCB1STAT & UCBBUSY);					// Recommended to check
 
-	if(direction == DIRECTION::WRITE)	{UCB1CTL1 |= UCTR;}	// Set transmitter
+	if(direction == Direction::WRITE)	{UCB1CTL1 |= UCTR;}	// Set transmitter
 	else					{UCB1CTL1 &= ~UCTR;}	// Set receiver
 
 	UCB1I2CSA = slaveAddress;					// Bit shifting done by HW
@@ -100,4 +106,4 @@ void yahal::mcu::targets::msp430f5309::I2C_master::awaitTransmissionEnd(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__)
+#endif // MCU_DEVICE == MCU_MSP430F5309

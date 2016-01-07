@@ -29,9 +29,10 @@
 #define __YAHAL_MCU_M430F5309_I2C_SLAVE_HPP_INCLUDED__
 
 
+
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/targets/msp430f5309_config.hpp"
-#if defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__)
+#include "../../../config/mcu_config.hpp"
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <stdint.h>
 #include <cstddef>
@@ -51,8 +52,15 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::I2C_slave : public yahal::mcu::I2C_slave
 {
-public:				// CONTRUSTOR & DESTRUCTOR
-				I2C_slave(uint8_t ownAddress);
+public:
+				struct Configuration
+				{
+					uint8_t ownAddress;
+				};
+
+
+				// CONSTRUCTOR
+				I2C_slave(const Configuration& configuration);
 
 
 private:			// INITIALIZATION
@@ -67,10 +75,11 @@ private:			// I2C PROTOCOL
 
 private:			// PRIVATE VARIABLES
 	uint8_t			_ownAddress;
+	const Configuration&	_configuration;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__)
+#endif // MCU_DEVICE == MCU_MSP430F5309
 #endif // __M430F5309_I2C_SLAVE_HPP_INCLUDED__

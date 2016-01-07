@@ -57,9 +57,6 @@ public:
 					WRITE,
 				};};
 
-
-
-public:
 				/**
 				 * Error codes for I2C.
 				 */
@@ -74,16 +71,23 @@ public:
 					TRANSMISSION_PREMATURELY_ENDED,
 				};};
 
-
-
 protected:
-				// VIRTUAL FUNCTIONS
-	virtual void		writeBufferTX(uint8_t byte) = 0;	/**< Prepare write.*/
-	virtual uint8_t		readBufferRX(void) = 0;			/**< Finish read.*/
-
-
 				// CONSTRUCTOR & DESTRUCTOR
 				I2C_common(void)	{}
+
+
+
+				// VIRTUAL FUNCTIONS
+
+				/**
+				 * @brief	Write to output buffer. Let HW handle TX
+				 */
+	virtual void		writeBufferTX(uint8_t byte) = 0;
+
+				/*
+				 * @brief	Read input buffer.
+				 */
+	virtual uint8_t		readBufferRX(void) = 0;
 };
 
 

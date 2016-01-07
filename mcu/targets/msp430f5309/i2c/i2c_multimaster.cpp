@@ -28,24 +28,21 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "i2c_multimaster.hpp"
-#ifdef __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+#if MCU_DEVICE == MCU_MSP430F5309
 
 #include <msp430f5309.h>
 
 
+/* ---------------------------------------------------------------------------------------------- */
 
-/* ============================================================================================== */
- *	yahal::mcutargets::msp430f5309::I2C_multimaster
- * ============================================================================================== */
-
-/** ================================================================================ CONSTRUCTOR **/
-yahal::mcutargets::msp430f5309::I2C_multimaster::I2C_multimaster(uint8_t ownAddress) :
-	_ownAddress(ownAddress)
+yahal::mcutargets::msp430f5309::I2C_multimaster::I2C_multimaster(const Configuration& configuration) :
+	_configuration(configuration)
 {}
 
 
 
-/** ============================================================================= INITIALIZATION **/
+/* ---------------------------------------------------------------------------------------------- */
+
 void yahal::mcutargets::msp430f5309::I2C_multimaster::doInit(void)
 {
 	UCB1CTL1 |= UCSWRST;				// Enable SW reset while we configure the module
@@ -54,7 +51,7 @@ void yahal::mcutargets::msp430f5309::I2C_multimaster::doInit(void)
 	UCB1CTL0 = UCMST + UCMODE_3 + UCSYNC + UCMM;	// I2C Master, synchronous mode, multimaster
 	UCB1CTL1 = UCSSEL__SMCLK + UCSWRST + UCTR;	// Use SMCLK
 	UCB1BRW = 32;					// fSCL = SMCLK/12 = ~100kHz TODO: CALCULATE ASKING CLK!
-	UCB1I2COA = _ownAddress + UCGCEN;
+	UCB1I2COA = _configuration.ownAddress + UCGCEN;
 	UCB1CTL1 &= ~UCSWRST;				// Clear SW reset, resume operation
 
 	UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;			// Enable Interrupts
@@ -62,13 +59,13 @@ void yahal::mcutargets::msp430f5309::I2C_multimaster::doInit(void)
 
 
 
-/** ====================================================================== MODULE IMPLEMENTATION **/
+/* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcutargets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress, DIRECTION::Type direction)
+void yahal::mcutargets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress, Direction::Type direction)
 {
 	while(UCB1STAT & UCBBUSY);					// Recommended to check
 
-	if(direction == DIRECTION::WRITE)	{UCB1CTL1 |= UCTR;}	// Set transmitter
+	if(direction == Direction::WRITE)	{UCB1CTL1 |= UCTR;}	// Set transmitter
 	else					{UCB1CTL1 &= ~UCTR;}	// Set receiver
 
 	UCB1I2CSA = slaveAddress;					// Bit shifting done by HW
@@ -138,4 +135,4 @@ void yahal::mcutargets::msp430f5309::I2C_multimaster::configureAsMaster(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
+#endif // MCU_DEVICE == MCU_MSP430F5309
