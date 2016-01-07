@@ -49,7 +49,7 @@ void yahal::mcu::targets::msp430f5309::I2C_slave::doInit(void)
 	P4SEL |= 0x06;					// Config GPIO pins
 	UCB1CTL1 = UCSSEL__SMCLK + UCSWRST;		// SMCLK clock source (keep SW reset)
 	UCB1CTL0 = UCMODE_3 + UCSYNC;			// I2C mode + syncrhonous
-	UCB1I2COA = _configuration.ownAddress;			// Set own slave address
+	UCB1I2COA = _configuration.ownAddress;		// Set own slave address
 	UCB1CTL1 &= ~UCSWRST;				// Clear SW Reset
 
 	UCB1IE |= UCTXIE + UCRXIE + UCSTTIE + UCSTPIE;	// Enable IE

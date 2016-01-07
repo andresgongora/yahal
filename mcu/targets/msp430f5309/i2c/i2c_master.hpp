@@ -54,7 +54,6 @@ class yahal::mcu::targets::msp430f5309::I2C_master : public yahal::mcu::I2C_mast
 public:
 				struct Configuration
 				{
-					uint8_t ownAddress;
 				};
 
 

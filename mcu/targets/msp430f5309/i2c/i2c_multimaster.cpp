@@ -35,7 +35,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcutargets::msp430f5309::I2C_multimaster::I2C_multimaster(const Configuration& configuration) :
+yahal::mcu::targets::msp430f5309::I2C_multimaster::I2C_multimaster(const Configuration& configuration) :
 	_configuration(configuration)
 {}
 
