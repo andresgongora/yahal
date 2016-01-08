@@ -46,16 +46,16 @@ yahal::mcu::targets::msp430f5309::I2C_master::I2C_master(const Configuration& co
 
 void yahal::mcu::targets::msp430f5309::I2C_master::doInit(void)
 {
-	UCB1CTL1 |= UCSWRST;			// Enable SW reset while we configure the module
-	P4SEL |= BIT1 + BIT2;			// Assign I2C pins to USCI_B0
+	UCB1CTL1 |= UCSWRST;				///< Enable SW reset while we configure the module
+	P4SEL |= BIT1 + BIT2;				///< Assign I2C pins to USCI_B0
 
-	UCB1CTL0 = UCMST | UCMODE_3 | UCSYNC;	// I2C Master, synchronous mode
-	UCB1CTL1 = UCSSEL__SMCLK | UCSWRST | UCTR;	// Use SMCLK
-	UCB1BRW = 12;				// fSCL = SMCLK/12 = ~100kHz TODO: CALCULATE ASKING CLK!
+	UCB1CTL0 = UCMST | UCMODE_3 | UCSYNC;		///< I2C Master, synchronous mode
+	UCB1CTL1 = UCSSEL__SMCLK | UCSWRST | UCTR;	///< Use SMCLK
+	UCB1BRW = 12;					///< fSCL = SMCLK/12 = ~100kHz TODO: CALCULATE ASKING CLK!
 
-	UCB1CTL1 &= ~UCSWRST;			// Clear SW reset, resume operation
+	UCB1CTL1 &= ~UCSWRST;				///< Clear SW reset, resume operation
 
-	UCB1IE |= UCRXIE + UCTXIE + UCNACKIE;	// Enable RX interrupt
+	UCB1IE |= UCRXIE + UCTXIE + UCNACKIE;		///< Enable RX interrupt
 }
 
 
@@ -64,20 +64,23 @@ void yahal::mcu::targets::msp430f5309::I2C_master::doInit(void)
 
 void yahal::mcu::targets::msp430f5309::I2C_master::start(uint8_t slaveAddress, Direction::Type direction)
 {
-	while(UCB1STAT & UCBBUSY);					// Recommended to check
+	while(UCB1STAT & UCBBUSY);			///< Recommended to check
 
-	if(direction == Direction::WRITE)	{UCB1CTL1 |= UCTR;}	// Set transmitter
-	else					{UCB1CTL1 &= ~UCTR;}	// Set receiver
+	if (direction == Direction::WRITE) {
+		UCB1CTL1 |= UCTR;			///< Set transmitter
+	} else {
+		UCB1CTL1 &= ~UCTR;			///< Set receiver
+	}
 
-	UCB1I2CSA = slaveAddress;					// Bit shifting done by HW
-	UCB1CTL1 |= UCTXSTT;						// Send start
+	UCB1I2CSA = slaveAddress;			///< Bit shifting done by HW
+	UCB1CTL1 |= UCTXSTT;				///< Send start
 }
 
 
 
 void yahal::mcu::targets::msp430f5309::I2C_master::stop(void)
 {
-	while(UCB1CTL1 & UCTXSTT);	// Wait if START in progress
+	while(UCB1CTL1 & UCTXSTT);	///< Wait if START in progress
 	UCB1CTL1 |= UCTXSTP;
 }
 
@@ -100,7 +103,7 @@ uint8_t yahal::mcu::targets::msp430f5309::I2C_master::readBufferRX(void)
 void yahal::mcu::targets::msp430f5309::I2C_master::awaitTransmissionEnd(void)
 {
 	while(UCB1STAT & UCBBUSY);
-//	UCB1CTL1 &= ~(UCTR + UCTXNACK + UCTXSTP + UCTXSTT);
+//	UCB1CTL1 &= ~(UCTR + UCTXNACK + UCTXSTP + UCTXSTT); // I think I dont need this anymore
 }
 
 
