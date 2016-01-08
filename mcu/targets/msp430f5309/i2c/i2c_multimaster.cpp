@@ -45,16 +45,16 @@ yahal::mcu::targets::msp430f5309::I2C_multimaster::I2C_multimaster(const Configu
 
 void yahal::mcu::targets::msp430f5309::I2C_multimaster::doInit(void)
 {
-	UCB1CTL1 |= UCSWRST;				// Enable SW reset while we configure the module
-	P4SEL |= BIT1 + BIT2;				// Assign I2C pins to USCI_B0
+	UCB1CTL1 |= UCSWRST;				///< Enable SW reset while we configure the module
+	P4SEL |= BIT1 + BIT2;				///< Assign I2C pins to USCI_B0
 
-	UCB1CTL0 = UCMST + UCMODE_3 + UCSYNC + UCMM;	// I2C Master, synchronous mode, multimaster
-	UCB1CTL1 = UCSSEL__SMCLK + UCSWRST + UCTR;	// Use SMCLK
-	UCB1BRW = 32;					// fSCL = SMCLK/12 = ~100kHz TODO: CALCULATE ASKING CLK!
+	UCB1CTL0 = UCMST + UCMODE_3 + UCSYNC + UCMM;	///< I2C Master, synchronous mode, multimaster
+	UCB1CTL1 = UCSSEL__SMCLK + UCSWRST + UCTR;	///< Use SMCLK
+	UCB1BRW = 32;					///< fSCL = SMCLK/12 = ~100kHz TODO: CALCULATE ASKING CLK!
 	UCB1I2COA = _configuration.ownAddress + UCGCEN;
-	UCB1CTL1 &= ~UCSWRST;				// Clear SW reset, resume operation
+	UCB1CTL1 &= ~UCSWRST;				///< Clear SW reset, resume operation
 
-	UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;			// Enable Interrupts
+	UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;///< Enable Interrupts
 }
 
 
@@ -63,13 +63,16 @@ void yahal::mcu::targets::msp430f5309::I2C_multimaster::doInit(void)
 
 void yahal::mcu::targets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress, Direction::Type direction)
 {
-	while(UCB1STAT & UCBBUSY);					// Recommended to check
+	while(UCB1STAT & UCBBUSY);		///< Recommended to check
 
-	if(direction == Direction::WRITE)	{UCB1CTL1 |= UCTR;}	// Set transmitter
-	else					{UCB1CTL1 &= ~UCTR;}	// Set receiver
+	if (direction == Direction::WRITE) {
+		UCB1CTL1 |= UCTR;		///< Set transmitter
+	} else {
+		UCB1CTL1 &= ~UCTR;		///< Set receiver
+	}
 
-	UCB1I2CSA = slaveAddress;					// Bit shifting done by HW
-	UCB1CTL1 |= UCTXSTT;						// Send start
+	UCB1I2CSA = slaveAddress;		///< Bit shifting done by HW
+	UCB1CTL1 |= UCTXSTT;			///< Send start
 
 }
 
@@ -77,10 +80,10 @@ void yahal::mcu::targets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddre
 
 void yahal::mcu::targets::msp430f5309::I2C_multimaster::stop(void)
 {
-	if(not(UCB1CTL1 & UCTR))
-	{
-		while(UCB1CTL1 & UCTXSTT);	// Wait if START in progress during READ operation
+	if (not (UCB1CTL1 & UCTR)) {
+		while (UCB1CTL1 & UCTXSTT);	///< Wait if START in progress during READ operation
 	}
+
 	UCB1CTL1 |= UCTXSTP;
 }
 
@@ -102,7 +105,8 @@ uint8_t yahal::mcu::targets::msp430f5309::I2C_multimaster::readBufferRX(void)
 
 void yahal::mcu::targets::msp430f5309::I2C_multimaster::awaitTransmissionEnd(void)
 {
-	while(UCB1STAT & UCBBUSY);
+	while(UCB1STAT & UCBBUSY);	///< Wait while busy
+
 	UCB1CTL1 &= ~(UCTR + UCTXNACK + UCTXSTP + UCTXSTT);
 	UCB1TXBUF = UCB1RXBUF;	// Experimental: clear both buffers
 }
