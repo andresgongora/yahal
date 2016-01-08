@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['targets_2ehpp',['targets.hpp',['../targets_8hpp.html',1,'']]],
-  ['targets_5fuid_2ehpp',['targets_uid.hpp',['../targets__uid_8hpp.html',1,'']]],
-  ['timer_2ecpp',['timer.cpp',['../timer_8cpp.html',1,'']]],
-  ['timer_2ehpp',['timer.hpp',['../timer_8hpp.html',1,'']]],
-  ['trap_2ehpp',['trap.hpp',['../trap_8hpp.html',1,'']]]
+  ['sliding_5fwindow_2ehpp',['sliding_window.hpp',['../sliding__window_8hpp.html',1,'']]],
+  ['static_5fassert_2ehpp',['static_assert.hpp',['../static__assert_8hpp.html',1,'']]]
 ];

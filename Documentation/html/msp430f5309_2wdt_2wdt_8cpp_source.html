@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('msp430f5309_2wdt_2wdt_8cpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_a2a3af687cf57e71f3722fd00bc90b21.html">targets</a></li><li class="navelem"><a class="el" href="dir_869cd22de7f74e11818c2339e5f14215.html">msp430f5309</a></li><li class="navelem"><a class="el" href="dir_3b45f34ae4102f463fd25a080498bbf4.html">wdt</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">wdt.cpp</div>  </div>
@@ -136,24 +154,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt.html#a80cb956c417c5a477bfe07ccf7bb4356">   44</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt.html#a80cb956c417c5a477bfe07ccf7bb4356">yahal::mcu::targets::msp430f5309::Wdt::reset</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a205570075595ce51600da37419be1ecc">init</a>();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment">//TODO!!!</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a205570075595ce51600da37419be1ecc">init</a>(); <span class="comment">// Call this for now.</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif // MCU_DEVICE == MCU_MSP430F5309</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif // MCU_DEVICE == MCU_MSP430F5309</span></div>
 <div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt_html_a80cb956c417c5a477bfe07ccf7bb4356"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt.html#a80cb956c417c5a477bfe07ccf7bb4356">yahal::mcu::targets::msp430f5309::Wdt::reset</a></div><div class="ttdeci">void reset(void)</div><div class="ttdoc">Reset WDT counter if WDT enabled. </div><div class="ttdef"><b>Definition:</b> <a href="msp430f5309_2wdt_2wdt_8cpp_source.html#l00044">wdt.cpp:44</a></div></div>
-<div class="ttc" id="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309_html_a205570075595ce51600da37419be1ecc"><div class="ttname"><a href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a205570075595ce51600da37419be1ecc">yahal::mcu::targets::msp430f5309::init</a></div><div class="ttdeci">void init(void)</div><div class="ttdef"><b>Definition:</b> <a href="msp430f5309_8hpp_source.html#l00072">msp430f5309.hpp:72</a></div></div>
+<div class="ttc" id="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309_html_a205570075595ce51600da37419be1ecc"><div class="ttname"><a href="namespaceyahal_1_1mcu_1_1targets_1_1msp430f5309.html#a205570075595ce51600da37419be1ecc">yahal::mcu::targets::msp430f5309::init</a></div><div class="ttdeci">void init(void)</div><div class="ttdef"><b>Definition:</b> <a href="msp430f5309_8hpp_source.html#l00074">msp430f5309.hpp:74</a></div></div>
 <div class="ttc" id="targets_2msp430f5309_2wdt_2wdt_8hpp_html"><div class="ttname"><a href="targets_2msp430f5309_2wdt_2wdt_8hpp.html">wdt.hpp</a></div></div>
 <div class="ttc" id="classyahal_1_1mcu_1_1_wdt_html_a786126a1d909d22e2ea91c3101a8776b"><div class="ttname"><a href="classyahal_1_1mcu_1_1_wdt.html#a786126a1d909d22e2ea91c3101a8776b">yahal::mcu::Wdt::Wdt</a></div><div class="ttdeci">Wdt(void)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2wdt_2wdt_8hpp_source.html#l00059">wdt.hpp:59</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt_1_1_configuration_html"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt_1_1_configuration.html">yahal::mcu::targets::msp430f5309::Wdt::Configuration</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2wdt_2wdt_8hpp_source.html#l00054">wdt.hpp:54</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_a2a3af687cf57e71f3722fd00bc90b21.html">targets</a></li><li class="navelem"><a class="el" href="dir_869cd22de7f74e11818c2339e5f14215.html">msp430f5309</a></li><li class="navelem"><a class="el" href="dir_3b45f34ae4102f463fd25a080498bbf4.html">wdt</a></li><li class="navelem"><a class="el" href="msp430f5309_2wdt_2wdt_8cpp.html">wdt.cpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -33,19 +33,18 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace utility
-{
+namespace yahal{ namespace utility{ namespace oop{
 	template <typename T> class LinkedList;
 	template <typename T> class LinkedListNode;
-}}
+}}}
 
 
 
 /***********************************************************************************************//**
- * @brief	Linked list of templated type T_NODE. *
+ * @brief	Linked list of templated type T_NODE.
  **************************************************************************************************/
 template <typename T_NODE>
-class yahal::utility::LinkedList
+class yahal::utility::oop::LinkedList
 {
 public:				// CONSTRUCTOR
 				LinkedList()	: _pFirstNode(0), _size(0)	{}
@@ -124,10 +123,10 @@ private:			// PRIVATE VARIABLES
 
 
 /***********************************************************************************************//**
- * @brief	Individual node of a linked list. Its type is T_NODE
+ * @brief	Individual node of a linked list. Its type is T_NODE.
  **************************************************************************************************/
 template <typename T_NODE>
-class yahal::utility::LinkedListNode
+class yahal::utility::oop::LinkedListNode
 {
 public:
 				// CONSTRUCTOR
@@ -142,12 +141,13 @@ private:
 				/// Set pointer to next node
 	void			setNext(T_NODE& nextNode)	{_pNextNode = &nextNode;}
 
+
 				/// Get pointer to next node
 	T_NODE*			getNext(void) const		{return _pNextNode;}
 
 
-				// PRIVATE VARIABLES
-	T_NODE*			_pNextNode;		///< Pointer to next node of same class
+				/// Pointer to next node of same class
+	T_NODE*			_pNextNode;
 };
 
 

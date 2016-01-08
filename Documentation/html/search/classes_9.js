@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['pin',['Pin',['../classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html',1,'yahal::mcu::Gpio::Port']]],
-  ['port',['Port',['../classyahal_1_1mcu_1_1_gpio_1_1_port.html',1,'yahal::mcu::Gpio']]]
+  ['noncopyable',['NonCopyable',['../classyahal_1_1utility_1_1oop_1_1_non_copyable.html',1,'yahal::utility::oop']]],
+  ['nonheapable',['NonHeapable',['../classyahal_1_1utility_1_1oop_1_1_non_heapable.html',1,'yahal::utility::oop']]]
 ];

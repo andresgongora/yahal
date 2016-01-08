@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('noncopyable_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_64e73385a8b7738563c26ce10415b58d.html">utility</a></li><li class="navelem"><a class="el" href="dir_8bb5d490d7d093ca427901c60192f992.html">oop</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">noncopyable.hpp</div>  </div>
@@ -124,38 +142,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceyahal.html">yahal</a>{ <span class="keyword">namespace </span>utility{ <span class="keyword">namespace </span>oop{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">class </span>Noncopyable;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">class </span>NonCopyable;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}}}</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/***********************************************************************************************/</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html">   44</a></span>&#160;<span class="keyword">class </span><a class="code" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html">yahal::utility::oop::Noncopyable</a></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html">   44</a></span>&#160;<span class="keyword">class </span><a class="code" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html">yahal::utility::oop::NonCopyable</a></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">protected</span>:                      <span class="comment">// CONSTRUCTOR &amp; DESTRUCTOR</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html#a575155cdf644c0ceda5e58c7ebf9628f">   47</a></span>&#160;                                <a class="code" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html#a575155cdf644c0ceda5e58c7ebf9628f">Noncopyable</a>()   {}</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html#a5ee18d2c732a8f1078db4e529b68bfa0">   48</a></span>&#160;        <span class="keyword">virtual</span>                 <a class="code" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html#a5ee18d2c732a8f1078db4e529b68bfa0">~Noncopyable</a>()  {}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">protected</span>:                      <span class="comment">// Allow only derived classes</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html#acc839016ede7e5374dd0d582e63028a0">   47</a></span>&#160;                                <a class="code" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html#acc839016ede7e5374dd0d582e63028a0">NonCopyable</a>()   {}</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html#a6b24549ceed637043ed6c7af2b9d6574">   48</a></span>&#160;                                <a class="code" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html#a6b24549ceed637043ed6c7af2b9d6574">~NonCopyable</a>()  {}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:                        <span class="comment">// PROHIBIT COPY</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">explicit</span>                <a class="code" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html#a575155cdf644c0ceda5e58c7ebf9628f">Noncopyable</a>(<span class="keyword">const</span> <a class="code" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html">Noncopyable</a>&amp;);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                <a class="code" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html">Noncopyable</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html">Noncopyable</a>&amp;);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">explicit</span>                <a class="code" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html#acc839016ede7e5374dd0d582e63028a0">NonCopyable</a>(<span class="keyword">const</span> <a class="code" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html">NonCopyable</a>&amp;);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                <a class="code" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html">NonCopyable</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html">NonCopyable</a>&amp;);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif  // __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__</span></div>
-<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00037">error_code.hpp:37</a></div></div>
-<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_noncopyable_html_a575155cdf644c0ceda5e58c7ebf9628f"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html#a575155cdf644c0ceda5e58c7ebf9628f">yahal::utility::oop::Noncopyable::Noncopyable</a></div><div class="ttdeci">Noncopyable()</div><div class="ttdef"><b>Definition:</b> <a href="noncopyable_8hpp_source.html#l00047">noncopyable.hpp:47</a></div></div>
-<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_noncopyable_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html">yahal::utility::oop::Noncopyable</a></div><div class="ttdoc">Non copyable base class. </div><div class="ttdef"><b>Definition:</b> <a href="noncopyable_8hpp_source.html#l00044">noncopyable.hpp:44</a></div></div>
-<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_noncopyable_html_a5ee18d2c732a8f1078db4e529b68bfa0"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html#a5ee18d2c732a8f1078db4e529b68bfa0">yahal::utility::oop::Noncopyable::~Noncopyable</a></div><div class="ttdeci">virtual ~Noncopyable()</div><div class="ttdef"><b>Definition:</b> <a href="noncopyable_8hpp_source.html#l00048">noncopyable.hpp:48</a></div></div>
+<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="assert_8hpp_source.html#l00037">assert.hpp:37</a></div></div>
+<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_non_copyable_html_a6b24549ceed637043ed6c7af2b9d6574"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html#a6b24549ceed637043ed6c7af2b9d6574">yahal::utility::oop::NonCopyable::~NonCopyable</a></div><div class="ttdeci">~NonCopyable()</div><div class="ttdef"><b>Definition:</b> <a href="noncopyable_8hpp_source.html#l00048">noncopyable.hpp:48</a></div></div>
+<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_non_copyable_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html">yahal::utility::oop::NonCopyable</a></div><div class="ttdoc">Non Copyable base class. </div><div class="ttdef"><b>Definition:</b> <a href="noncopyable_8hpp_source.html#l00044">noncopyable.hpp:44</a></div></div>
+<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_non_copyable_html_acc839016ede7e5374dd0d582e63028a0"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html#acc839016ede7e5374dd0d582e63028a0">yahal::utility::oop::NonCopyable::NonCopyable</a></div><div class="ttdeci">NonCopyable()</div><div class="ttdef"><b>Definition:</b> <a href="noncopyable_8hpp_source.html#l00047">noncopyable.hpp:47</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_64e73385a8b7738563c26ce10415b58d.html">utility</a></li><li class="navelem"><a class="el" href="dir_8bb5d490d7d093ca427901c60192f992.html">oop</a></li><li class="navelem"><a class="el" href="noncopyable_8hpp.html">noncopyable.hpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

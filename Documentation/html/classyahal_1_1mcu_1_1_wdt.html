@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classyahal_1_1mcu_1_1_wdt.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,11 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespaceyahal.html">yahal</a></li><li class="navelem"><a class="el" href="namespaceyahal_1_1mcu.html">mcu</a></li><li class="navelem"><a class="el" href="classyahal_1_1mcu_1_1_wdt.html">Wdt</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -109,10 +127,11 @@ Inheritance diagram for yahal::mcu::Wdt:</div>
  <div class="center">
   <img src="classyahal_1_1mcu_1_1_wdt.png" usemap="#yahal::mcu::Wdt_map" alt=""/>
   <map id="yahal::mcu::Wdt_map" name="yahal::mcu::Wdt_map">
-<area href="classyahal_1_1mcu_1_1details_1_1_base_module.html" title="Base class for all MCU modules. " alt="yahal::mcu::details::BaseModule" shape="rect" coords="117,56,341,80"/>
+<area href="classyahal_1_1mcu_1_1details_1_1_base_module.html" title="Base class for all MCU modules. " alt="yahal::mcu::details::BaseModule" shape="rect" coords="234,56,458,80"/>
 <area href="classyahal_1_1error_1_1_error_code.html" title="Base class for error code handling. " alt="yahal::error::ErrorCode" shape="rect" coords="0,0,224,24"/>
-<area href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html" title="Non copyable base class. " alt="yahal::utility::oop::Noncopyable" shape="rect" coords="234,0,458,24"/>
-<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt.html" title=" " alt="yahal::mcu::targets::msp430f5309::Wdt" shape="rect" coords="117,168,341,192"/>
+<area href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html" title="Non Copyable base class. " alt="yahal::utility::oop::NonCopyable" shape="rect" coords="234,0,458,24"/>
+<area href="classyahal_1_1utility_1_1oop_1_1_non_heapable.html" title="Non Heapable base class. " alt="yahal::utility::oop::NonHeapable" shape="rect" coords="468,0,692,24"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt.html" title=" " alt="yahal::mcu::targets::msp430f5309::Wdt" shape="rect" coords="234,168,458,192"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -140,13 +159,11 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a786126a1d909d22e2ea91c3101a8776b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_wdt.html#a786126a1d909d22e2ea91c3101a8776b">Wdt</a> (void)</td></tr>
 <tr class="separator:a786126a1d909d22e2ea91c3101a8776b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c2db0831be46e919017d943b3fa6d9"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_wdt.html#a66c2db0831be46e919017d943b3fa6d9">~Wdt</a> (void)</td></tr>
-<tr class="separator:a66c2db0831be46e919017d943b3fa6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html">yahal::mcu::details::BaseModule</a></td></tr>
 <tr class="memitem:abbaf0755774c0cf25a78d682edd75950 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#abbaf0755774c0cf25a78d682edd75950">BaseModule</a> (void)</td></tr>
 <tr class="separator:abbaf0755774c0cf25a78d682edd75950 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72303c21cd68152b48b3bcb4095decb1 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a72303c21cd68152b48b3bcb4095decb1">~BaseModule</a> (void)</td></tr>
-<tr class="separator:a72303c21cd68152b48b3bcb4095decb1 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42989bb96d0cbddf2a2a264f2161379a inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a42989bb96d0cbddf2a2a264f2161379a">~BaseModule</a> (void)</td></tr>
+<tr class="separator:a42989bb96d0cbddf2a2a264f2161379a inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0237a22e9f1662107cdfa4ec252e46c0 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a0237a22e9f1662107cdfa4ec252e46c0">open</a> (void)</td></tr>
 <tr class="memdesc:a0237a22e9f1662107cdfa4ec252e46c0 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare module for exclusive operation.  <a href="#a0237a22e9f1662107cdfa4ec252e46c0">More...</a><br /></td></tr>
 <tr class="separator:a0237a22e9f1662107cdfa4ec252e46c0 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,8 +176,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="inherit_header pro_methods_classyahal_1_1error_1_1_error_code"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classyahal_1_1error_1_1_error_code')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classyahal_1_1error_1_1_error_code.html">yahal::error::ErrorCode</a></td></tr>
 <tr class="memitem:a89ee21c5424ac262953b171e06db259e inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1error_1_1_error_code.html#a89ee21c5424ac262953b171e06db259e">ErrorCode</a> (void)</td></tr>
 <tr class="separator:a89ee21c5424ac262953b171e06db259e inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d333d07ef7eb376a068a01ca7730ea9 inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1error_1_1_error_code.html#a2d333d07ef7eb376a068a01ca7730ea9">~ErrorCode</a> (void)</td></tr>
-<tr class="separator:a2d333d07ef7eb376a068a01ca7730ea9 inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2709825a2c104d8fbb74467580ecf0bc inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1error_1_1_error_code.html#a2709825a2c104d8fbb74467580ecf0bc">setErrorCode</a> (std::size_t newErrorCode)</td></tr>
 <tr class="memdesc:a2709825a2c104d8fbb74467580ecf0bc inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set new error code.  <a href="#a2709825a2c104d8fbb74467580ecf0bc">More...</a><br /></td></tr>
 <tr class="separator:a2709825a2c104d8fbb74467580ecf0bc inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,32 +221,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a66c2db0831be46e919017d943b3fa6d9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual yahal::mcu::Wdt::~Wdt </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="modules_2wdt_2wdt_8hpp_source.html#l00060">60</a> of file <a class="el" href="modules_2wdt_2wdt_8hpp_source.html">wdt.hpp</a>.</p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a147a40273f928037437c8fefa58ed388"></a>
 <div class="memitem">
@@ -265,11 +254,15 @@ Additional Inherited Members</h2></td></tr>
 <li>/home/andy/Documentos/Source/yahal/mcu/modules/wdt/<a class="el" href="modules_2wdt_2wdt_8hpp_source.html">wdt.hpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceyahal.html">yahal</a></li><li class="navelem"><a class="el" href="namespaceyahal_1_1mcu.html">mcu</a></li><li class="navelem"><a class="el" href="classyahal_1_1mcu_1_1_wdt.html">Wdt</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

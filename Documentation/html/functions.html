@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -76,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
+      <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -105,6 +114,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -127,7 +150,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="structyahal_1_1mcu_1_1_irq_1_1_g_p_i_o.html#a32d7b87ae60ee74fae28b3df5ff17d1fa4073c18957c7ff2a103ba0c4bd3dfec0">yahal::mcu::Irq::GPIO</a>
 </li>
 <li>awaitTransmissionEnd()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#ad8a78ad95cebfbd6e4140456a5e78bec">yahal::mcu::I2C_master</a>
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a18024f53f06966eedc51704ce23dff44">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ac25a66dc6b29abbfc64b08678b37e4e0">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>
 </li>
 </ul>
 
@@ -163,6 +187,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a20da8a9eded1eac1ad3163fa218e51ff">yahal::mcu::Gpio::Port</a>
 , <a class="el" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa14906a4f396defe53795836c79bb522">yahal::mcu::Gpio::Port::Pin</a>
 </li>
+<li>configureAsMaster()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a446a4fcc3e1d2a83ec77c2047af82060">yahal::mcu::I2C_multimaster</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a981471387ee216770afd2c7004d3b348">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>
+</li>
 <li>COULD_NOT_INITIALIZE_PORT
 : <a class="el" href="structyahal_1_1mcu_1_1_gpio_1_1_error.html#a3cdf8682538fd41409200af5008458afa794e818da416ab11715f5e46006b6628">yahal::mcu::Gpio::Error</a>
 </li>
@@ -188,6 +216,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>DCO_8MHz
 : <a class="el" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26afe003a1648f8e5fab5d85f53f93fb5ce">yahal::mcu::targets::msp430f5309::Clk::Frequency</a>
 </li>
+<li>deliverRXByte()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html#a205e563b443eae40dae8c7d03b8ac5ac">yahal::mcu::I2C_slave::ExternalHandler</a>
+</li>
 <li>DISABLED
 : <a class="el" href="structyahal_1_1mcu_1_1_gpio_1_1_resistor.html#a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5a0b03abc26f722c74acf4527199cd3936">yahal::mcu::Gpio::Resistor</a>
 </li>
@@ -200,6 +231,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
 <li>ErrorCode()
 : <a class="el" href="classyahal_1_1error_1_1_error_code.html#a89ee21c5424ac262953b171e06db259e">yahal::error::ErrorCode</a>
+</li>
+<li>ExternalHandler()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html#a8e5b441eb29fa96f52d67286dfbdf00a">yahal::mcu::I2C_slave::ExternalHandler</a>
 </li>
 </ul>
 
@@ -230,22 +264,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>handleArbitrationLost()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#aa8715df80a1da1945a339621d6b548cc">yahal::mcu::I2C_multimaster</a>
+</li>
 <li>handleBufferRXFull()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a0902de640df4a6a0a95f5ad526c20495">yahal::mcu::I2C_master</a>
-, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#af2bc4067c1e2c8cc499dde9bfd55f9f2">yahal::mcu::I2C_slave</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a774cf773f03360dcdff729906e763f34">yahal::mcu::I2C_multimaster</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a5542e788b800e79df82f224b58fe35e5">yahal::mcu::I2C_slave</a>
 </li>
 <li>handleBufferTXEmpty()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#af7b36228ed09e8aac886f4d4325b1c1e">yahal::mcu::I2C_master</a>
-, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aaf745b91c3f902f135219c385e082c12">yahal::mcu::I2C_slave</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a641bc348b1945ce4d365ba565e972f94">yahal::mcu::I2C_multimaster</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a4af3934b4e14a3891c211fd9b76aefc7">yahal::mcu::I2C_slave</a>
 </li>
 <li>handleReceivedNack()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a2a3d46c9ad4ef297f05ec628e86293ea">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a12338f391340c17076929e7206804a1d">yahal::mcu::I2C_multimaster</a>
 </li>
 <li>handleReceivedStart()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a89a2c6293aab02189e1140082c3a0ada">yahal::mcu::I2C_slave</a>
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#af63df851c65ed0a6d3905c4c520a24a5">yahal::mcu::I2C_multimaster</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a98aa7da67a6aac189940ed7ab932a838">yahal::mcu::I2C_slave</a>
 </li>
 <li>handleReceivedStop()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aff9257fb7bba6935470e7e4df7be665a">yahal::mcu::I2C_slave</a>
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a1bd33998b099cd03ad30c3e8de04dda3">yahal::mcu::I2C_multimaster</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aa36a2258d93b7347327598520e181df4">yahal::mcu::I2C_slave</a>
 </li>
 <li>hasError()
 : <a class="el" href="classyahal_1_1error_1_1_error_code.html#a2c92ad4dd5a16cd0f994fb14d35f2245">yahal::error::ErrorCode</a>
@@ -259,9 +301,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>I2C_master()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#ad4637236fb442a12f3f12360df9eb9c2">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master.html#a000c2f1d6109ff888456a09a761aa5d9">yahal::mcu::targets::msp430f5309::I2C_master</a>
+</li>
+<li>I2C_multimaster()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#aa94fdeb856b152818569338cd44b3693">yahal::mcu::I2C_multimaster</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#aeb4de87af713e75c7f0c403b554cd246">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>
 </li>
 <li>I2C_slave()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#afe2732b2fafb081a3e82ab3a2f8a5d87">yahal::mcu::I2C_slave</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__slave.html#ab58ef45358caa7e501c884b6d68f5189">yahal::mcu::targets::msp430f5309::I2C_slave</a>
 </li>
 <li>init()
 : <a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a2389e2ad5dd20fb4cd7076dfe2f403ec">yahal::mcu::details::BaseModule</a>
@@ -275,16 +323,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Irq()
 : <a class="el" href="classyahal_1_1mcu_1_1_irq.html#a7c7bb4348105c091a0f68c7b45b6968c">yahal::mcu::Irq</a>
 </li>
+<li>isEmpty()
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#af2ea463e8f3979ddfe5c30fec306f7a8">yahal::utility::oop::LinkedList&lt; T_NODE &gt;</a>
+</li>
 <li>isIncommingWrite()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a452c58e3bfd632a4465809eee83f7784">yahal::mcu::I2C_slave</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ab13f6898a87d115792f39d3681c42a5f">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>
+</li>
+<li>isMaster()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a50eb9191655f192081a14d1518d79d69">yahal::mcu::I2C_multimaster</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a0cfe3a937d452fdaf4d7f572ce2d8d03">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>
 </li>
 <li>isSlavePresent()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a5917071910d96d6b2f941877daf09d13">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#ae3420e7f1c420d103f7bcb2695e3ce07">yahal::mcu::I2C_multimaster</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>LinkedList()
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#ac49ed050eecbc9b3afb8d765a73a7ead">yahal::utility::oop::LinkedList&lt; T_NODE &gt;</a>
+</li>
+<li>LinkedListNode()
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html#ae2e1ee35f6d32d2e74e5e854ff8e0775">yahal::utility::oop::LinkedListNode&lt; T_NODE &gt;</a>
+</li>
 <li>lock()
 : <a class="el" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#a34dcfba67a052a8f4a28a513108a2920">yahal::rtos::api::Mutex</a>
 , <a class="el" href="classyahal_1_1rtos_1_1_mutex.html#a43df7d0b3e52ab1dc78474bc63dbe67f">yahal::rtos::Mutex</a>
@@ -293,8 +356,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
-<li>Mutex()
-: <a class="el" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#adfac5ede23819d2ac0b1eca2b46d602a">yahal::rtos::api::Mutex</a>
+<li>mcu::utility::LinkedList&lt; T_NODE &gt;
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html#a64519f86dcac3de09e6dbde04bd456e2">yahal::utility::oop::LinkedListNode&lt; T_NODE &gt;</a>
 </li>
 </ul>
 
@@ -310,8 +373,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>NO_ERROR_CODE
 : <a class="el" href="classyahal_1_1error_1_1_error_code.html#a44ddbb7e00e4830e93372c89f61dcd68">yahal::error::ErrorCode</a>
 </li>
-<li>Noncopyable()
-: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html#a575155cdf644c0ceda5e58c7ebf9628f">yahal::utility::oop::Noncopyable</a>
+<li>NonCopyable()
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html#acc839016ede7e5374dd0d582e63028a0">yahal::utility::oop::NonCopyable</a>
+</li>
+<li>NonHeapable()
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_non_heapable.html#aa03989d6176b6a7a7b91eeb5559e85ce">yahal::utility::oop::NonHeapable</a>
+</li>
+<li>notifyStart()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html#a6f7ef0b181b5c62d0308cf4635eb5622">yahal::mcu::I2C_slave::ExternalHandler</a>
+</li>
+<li>notifyStop()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html#a21ffeb33b27d485b4e21c200350e88bd">yahal::mcu::I2C_slave::ExternalHandler</a>
 </li>
 </ul>
 
@@ -323,6 +395,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>operator[]()
 : <a class="el" href="classyahal_1_1mcu_1_1_gpio.html#a8030923e3e174c8380feeb02261a4ba2">yahal::mcu::Gpio</a>
 , <a class="el" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a33956b3dc2400ee18f1393eb9928d2b0">yahal::mcu::Gpio::Port</a>
+, <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#a7669763e6442113229001cbebbfe62a3">yahal::utility::oop::LinkedList&lt; T_NODE &gt;</a>
 </li>
 <li>OTHER
 : <a class="el" href="structyahal_1_1mcu_1_1_clk_1_1_error.html#a2adeac4ff415df9b1cfe8707f88ae2abacf4d8bd27dd326613e8ce8f257c12685">yahal::mcu::Clk::Error</a>
@@ -332,6 +405,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>OUTPUT
 : <a class="el" href="structyahal_1_1mcu_1_1_gpio_1_1_direction.html#a439a47640b093599989104f4260ddea5a1b123220e158aa313baef8df56c592d5">yahal::mcu::Gpio::Direction</a>
+</li>
+<li>ownAddress
+: <a class="el" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_1_1_configuration.html#a988f684fc4091fbb924f7d482cea5cb8">yahal::mcu::targets::msp430f5309::I2C_multimaster::Configuration</a>
+, <a class="el" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__slave_1_1_configuration.html#ab050663f80893c640f5211406446d0fd">yahal::mcu::targets::msp430f5309::I2C_slave::Configuration</a>
 </li>
 </ul>
 
@@ -359,6 +436,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>PULLUP_Resistor_NOT_AVAILABLE
 : <a class="el" href="structyahal_1_1mcu_1_1_gpio_1_1_error.html#a3cdf8682538fd41409200af5008458afacadf76ab890b8846ead59fce6ddf502f">yahal::mcu::Gpio::Error</a>
 </li>
+<li>pushBack()
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#a8a3667e8776fb939e864ffd6c89ffc33">yahal::utility::oop::LinkedList&lt; T_NODE &gt;</a>
+</li>
 </ul>
 
 
@@ -368,21 +448,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>read()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a4550ee5d6613d0fd76ea1750b3ed5935">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#ae06dd1e0bf03ade58f8003048b6db5d5">yahal::mcu::I2C_multimaster</a>
 </li>
 <li>READ_OVERFLOW_ATTEMPT
 : <a class="el" href="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_error.html#a8b8e77837be54467fe7bc9ecb823453bac16d7c3aae194475c103e737d1f5aa6d">yahal::mcu::details::I2C_common::Error</a>
 </li>
 <li>readBufferRX()
 : <a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a98bc3518e3a4fad5a2e942853550ccb9">yahal::mcu::details::I2C_common</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ac056ed8d5ad9e34981172b1fc13d21af">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>
 </li>
 <li>readRegister()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a63300f623b504d6ec969b4e76764fb02">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a3ffea4faa5d5dc99a5d16ade214b4400">yahal::mcu::I2C_multimaster</a>
 </li>
 <li>RECEIVED_NACK
 : <a class="el" href="structyahal_1_1mcu_1_1_irq_1_1_i2_c.html#acd51c57af795744492ee0c003e79318aa97872eee6008ac32b2a98f3033779cd0">yahal::mcu::Irq::I2C</a>
 </li>
 <li>RECEIVED_START
 : <a class="el" href="structyahal_1_1mcu_1_1_irq_1_1_i2_c.html#acd51c57af795744492ee0c003e79318aa5010b47c037b904a195dd3027ae7747d">yahal::mcu::Irq::I2C</a>
+</li>
+<li>requestTXByte()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html#a419c6d9fd39695df9ff899dc3bb62c5d">yahal::mcu::I2C_slave::ExternalHandler</a>
 </li>
 <li>reset()
 : <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt.html#a80cb956c417c5a477bfe07ccf7bb4356">yahal::mcu::targets::msp430f5309::Wdt</a>
@@ -406,24 +492,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa85e73ccf2321a3677f726d9cd26ba6e">yahal::mcu::Gpio::Port::Pin</a>
 , <a class="el" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#aed59cdf9217ca14979c8473684de2fb4">yahal::mcu::Gpio::Port</a>
 </li>
-<li>setCallbackByteReceived()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a78a651cf27799db59250c2a5646b6502">yahal::mcu::I2C_slave</a>
-</li>
-<li>setCallbackByteRequested()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a7b266fcbfcc75dda6695d8a321e66ca4">yahal::mcu::I2C_slave</a>
-</li>
 <li>setCallBackFunction()
 : <a class="el" href="classyahal_1_1utility_1_1oop_1_1_callback.html#a98bf2f87baa4b37ca913d87b299739fd">yahal::utility::oop::Callback&lt; T_ARGUMENT &gt;</a>
 , <a class="el" href="classyahal_1_1utility_1_1oop_1_1_callback_3_01void_01_4.html#ad2f0d55b5a796e8537e359ae766acb54">yahal::utility::oop::Callback&lt; void &gt;</a>
 </li>
-<li>setCallbackReceivedStart()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#ab21ae123a6dd0ced188cfd78b14c6de8">yahal::mcu::I2C_slave</a>
-</li>
-<li>setCallbackReceivedStop()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a9cd6542bef603a8bc1da8ba1ba1c5f41">yahal::mcu::I2C_slave</a>
-</li>
 <li>setErrorCode()
 : <a class="el" href="classyahal_1_1error_1_1_error_code.html#a2709825a2c104d8fbb74467580ecf0bc">yahal::error::ErrorCode</a>
+</li>
+<li>setExternalHandler()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a5a8a8960b9e32b2b6d3e5c891589048d">yahal::mcu::I2C_slave</a>
+</li>
+<li>setMasterCallbacks()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a2523710a5553578f5a09551e71eafaf1">yahal::mcu::I2C_multimaster</a>
+</li>
+<li>setSlaveCallbacks()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#ae3d2ff96ab3fdf9e25c98257bf075955">yahal::mcu::I2C_multimaster</a>
+</li>
+<li>size()
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#a7bd0a4a5818ca1fb1d9636af56c91f44">yahal::utility::oop::LinkedList&lt; T_NODE &gt;</a>
 </li>
 <li>SLAVE_ADDRESS_NOT_7_BIT
 : <a class="el" href="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_error.html#a8b8e77837be54467fe7bc9ecb823453ba081ea8df2a177cb97664088df630e633">yahal::mcu::details::I2C_common::Error</a>
@@ -435,10 +521,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_error.html#a8b8e77837be54467fe7bc9ecb823453ba9619cbba89b81cf825e9fff903583681">yahal::mcu::details::I2C_common::Error</a>
 </li>
 <li>start()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a515d0a5f65c651a5a50f0b1188e5c76c">yahal::mcu::I2C_master</a>
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a52a71a46540f273474f9937606fd3e33">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a8840454fdebbd0cfe0a57b4315cca49c">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>
 </li>
 <li>stop()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a6e6917ff19fb323e899970dd511a533b">yahal::mcu::I2C_master</a>
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a6a71af5eb05462299b3b535319a0204d">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a7d5567c670536f05ee5cf2f1392f48e5">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>
 </li>
 </ul>
 
@@ -514,12 +602,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>write()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#ab04427f7a2c279f85897c569980e5028">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a09975105cfbdb115a96c9458f5f1b21d">yahal::mcu::I2C_multimaster</a>
 </li>
 <li>writeBufferTX()
 : <a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a2d57008663c00d17865d6dcdf9114253">yahal::mcu::details::I2C_common</a>
+, <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a26fd3bc9ca4a0c077cb206711bd38e01">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>
 </li>
 <li>writeRegister()
 : <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#a50d197cc66ef0825bed15f67b16a701b">yahal::mcu::I2C_master</a>
+, <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a5543f162b481cc53babbf1fd2eeb989d">yahal::mcu::I2C_multimaster</a>
 </li>
 </ul>
 
@@ -533,45 +624,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_~"></a>- ~ -</h3><ul>
 <li>~BaseModule()
-: <a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a72303c21cd68152b48b3bcb4095decb1">yahal::mcu::details::BaseModule</a>
+: <a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a42989bb96d0cbddf2a2a264f2161379a">yahal::mcu::details::BaseModule</a>
 </li>
-<li>~Clk()
-: <a class="el" href="classyahal_1_1mcu_1_1_clk.html#ab6a9b356f341d87053de084acf0021c3">yahal::mcu::Clk</a>
+<li>~ExternalHandler()
+: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html#a91b89151507474d81262668922472587">yahal::mcu::I2C_slave::ExternalHandler</a>
 </li>
-<li>~ErrorCode()
-: <a class="el" href="classyahal_1_1error_1_1_error_code.html#a2d333d07ef7eb376a068a01ca7730ea9">yahal::error::ErrorCode</a>
+<li>~NonCopyable()
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html#a6b24549ceed637043ed6c7af2b9d6574">yahal::utility::oop::NonCopyable</a>
 </li>
-<li>~I2C_common()
-: <a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#af256a642f3b2e78b78db8800d843b9dc">yahal::mcu::details::I2C_common</a>
-</li>
-<li>~I2C_master()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__master.html#ab74d0db4641fafba8162ae55306cac88">yahal::mcu::I2C_master</a>
-</li>
-<li>~I2C_slave()
-: <a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aee6e10164e2ccc22cbfa1d0e7556b2d0">yahal::mcu::I2C_slave</a>
-</li>
-<li>~Irq()
-: <a class="el" href="classyahal_1_1mcu_1_1_irq.html#aa3233c0c478a0bd2b3c4aaf95e45be41">yahal::mcu::Irq</a>
-</li>
-<li>~Mutex()
-: <a class="el" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#af33c2c29dcdf8e0e5f63927c7b939be5">yahal::rtos::api::Mutex</a>
-</li>
-<li>~Noncopyable()
-: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html#a5ee18d2c732a8f1078db4e529b68bfa0">yahal::utility::oop::Noncopyable</a>
-</li>
-<li>~Port()
-: <a class="el" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a21dfef5247fa71679aab0fa47c6d0352">yahal::mcu::Gpio::Port</a>
-</li>
-<li>~Wdt()
-: <a class="el" href="classyahal_1_1mcu_1_1_wdt.html#a66c2db0831be46e919017d943b3fa6d9">yahal::mcu::Wdt</a>
+<li>~NonHeapable()
+: <a class="el" href="classyahal_1_1utility_1_1oop_1_1_non_heapable.html#adac87a1ae668dfc3fd350f66b445c9e4">yahal::utility::oop::NonHeapable</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classyahal_1_1mcu_1_1details_1_1_base_module.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,11 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespaceyahal.html">yahal</a></li><li class="navelem"><a class="el" href="namespaceyahal_1_1mcu.html">mcu</a></li><li class="navelem"><a class="el" href="namespaceyahal_1_1mcu_1_1details.html">details</a></li><li class="navelem"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html">BaseModule</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -108,18 +126,25 @@ Inheritance diagram for yahal::mcu::details::BaseModule:</div>
  <div class="center">
   <img src="classyahal_1_1mcu_1_1details_1_1_base_module.png" usemap="#yahal::mcu::details::BaseModule_map" alt=""/>
   <map id="yahal::mcu::details::BaseModule_map" name="yahal::mcu::details::BaseModule_map">
-<area href="classyahal_1_1error_1_1_error_code.html" title="Base class for error code handling. " alt="yahal::error::ErrorCode" shape="rect" coords="597,0,826,24"/>
-<area href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html" title="Non copyable base class. " alt="yahal::utility::oop::Noncopyable" shape="rect" coords="836,0,1065,24"/>
-<area href="classyahal_1_1mcu_1_1_clk.html" title="Base class for all system clock handling modules. " alt="yahal::mcu::Clk" shape="rect" coords="0,112,229,136"/>
-<area href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html" title="Base class for all I2C modules. " alt="yahal::mcu::details::I2C_common" shape="rect" coords="358,112,587,136"/>
-<area href="classyahal_1_1mcu_1_1_gpio.html" title="Base class for GPIO modules. " alt="yahal::mcu::Gpio" shape="rect" coords="717,112,946,136"/>
-<area href="classyahal_1_1mcu_1_1_irq.html" title="Base class for all IRQ handlers. " alt="yahal::mcu::Irq" shape="rect" coords="956,112,1185,136"/>
-<area href="classyahal_1_1mcu_1_1_wdt.html" title="Base class for all Watch Dog Timers. " alt="yahal::mcu::Wdt" shape="rect" coords="1195,112,1424,136"/>
-<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk.html" title=" " alt="yahal::mcu::targets::msp430f5309::Clk" shape="rect" coords="0,168,229,192"/>
-<area href="classyahal_1_1mcu_1_1_i2_c__master.html" title="Base class for all I2C Masters. " alt="yahal::mcu::I2C_master" shape="rect" coords="239,168,468,192"/>
-<area href="classyahal_1_1mcu_1_1_i2_c__slave.html" title="Base class for all I2C slaves. " alt="yahal::mcu::I2C_slave" shape="rect" coords="478,168,707,192"/>
-<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_gpio.html" title=" " alt="yahal::mcu::targets::msp430f5309::Gpio" shape="rect" coords="717,168,946,192"/>
-<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt.html" title=" " alt="yahal::mcu::targets::msp430f5309::Wdt" shape="rect" coords="1195,168,1424,192"/>
+<area href="classyahal_1_1error_1_1_error_code.html" title="Base class for error code handling. " alt="yahal::error::ErrorCode" shape="rect" coords="903,0,1194,24"/>
+<area href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html" title="Non Copyable base class. " alt="yahal::utility::oop::NonCopyable" shape="rect" coords="1204,0,1495,24"/>
+<area href="classyahal_1_1utility_1_1oop_1_1_non_heapable.html" title="Non Heapable base class. " alt="yahal::utility::oop::NonHeapable" shape="rect" coords="1505,0,1796,24"/>
+<area href="classyahal_1_1mcu_1_1_clk.html" title="Base class for all system clock handling modules. " alt="yahal::mcu::Clk" shape="rect" coords="0,112,291,136"/>
+<area href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html" title="Base class for all I2C modules. " alt="yahal::mcu::details::I2C_common" shape="rect" coords="602,112,893,136"/>
+<area href="classyahal_1_1mcu_1_1_gpio.html" title="Base class for GPIO modules. " alt="yahal::mcu::Gpio" shape="rect" coords="1204,112,1495,136"/>
+<area href="classyahal_1_1mcu_1_1_irq.html" title="Base class for all IRQ handlers. " alt="yahal::mcu::Irq" shape="rect" coords="1505,112,1796,136"/>
+<area href="classyahal_1_1mcu_1_1_wdt.html" title="Base class for all Watch Dog Timers. " alt="yahal::mcu::Wdt" shape="rect" coords="1806,112,2097,136"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk.html" title=" " alt="yahal::mcu::targets::msp430f5309::Clk" shape="rect" coords="0,168,291,192"/>
+<area href="classyahal_1_1mcu_1_1_i2_c__master.html" title="Base class for all I2C Masters. " alt="yahal::mcu::I2C_master" shape="rect" coords="301,168,592,192"/>
+<area href="classyahal_1_1mcu_1_1_i2_c__slave.html" title="Base class for all I2C slaves. " alt="yahal::mcu::I2C_slave" shape="rect" coords="903,168,1194,192"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_gpio.html" title=" " alt="yahal::mcu::targets::msp430f5309::Gpio" shape="rect" coords="1204,168,1495,192"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_wdt.html" title=" " alt="yahal::mcu::targets::msp430f5309::Wdt" shape="rect" coords="1806,168,2097,192"/>
+<area href="classyahal_1_1mcu_1_1_i2_c__multimaster.html" title="I2C Multimaster base class. " alt="yahal::mcu::I2C_multimaster" shape="rect" coords="150,224,441,248"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master.html" title=" " alt="yahal::mcu::targets::msp430f5309::I2C_master" shape="rect" coords="451,224,742,248"/>
+<area href="classyahal_1_1mcu_1_1_i2_c__multimaster.html" title="I2C Multimaster base class. " alt="yahal::mcu::I2C_multimaster" shape="rect" coords="752,224,1043,248"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__slave.html" title=" " alt="yahal::mcu::targets::msp430f5309::I2C_slave" shape="rect" coords="1053,224,1344,248"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html" title=" " alt="yahal::mcu::targets::msp430f5309::I2C_multimaster" shape="rect" coords="150,280,441,304"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html" title=" " alt="yahal::mcu::targets::msp430f5309::I2C_multimaster" shape="rect" coords="752,280,1043,304"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -138,8 +163,8 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:abbaf0755774c0cf25a78d682edd75950"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#abbaf0755774c0cf25a78d682edd75950">BaseModule</a> (void)</td></tr>
 <tr class="separator:abbaf0755774c0cf25a78d682edd75950"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72303c21cd68152b48b3bcb4095decb1"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a72303c21cd68152b48b3bcb4095decb1">~BaseModule</a> (void)</td></tr>
-<tr class="separator:a72303c21cd68152b48b3bcb4095decb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42989bb96d0cbddf2a2a264f2161379a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a42989bb96d0cbddf2a2a264f2161379a">~BaseModule</a> (void)</td></tr>
+<tr class="separator:a42989bb96d0cbddf2a2a264f2161379a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0237a22e9f1662107cdfa4ec252e46c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a0237a22e9f1662107cdfa4ec252e46c0">open</a> (void)</td></tr>
 <tr class="memdesc:a0237a22e9f1662107cdfa4ec252e46c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare module for exclusive operation.  <a href="#a0237a22e9f1662107cdfa4ec252e46c0">More...</a><br /></td></tr>
 <tr class="separator:a0237a22e9f1662107cdfa4ec252e46c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,8 +177,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="inherit_header pro_methods_classyahal_1_1error_1_1_error_code"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classyahal_1_1error_1_1_error_code')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classyahal_1_1error_1_1_error_code.html">yahal::error::ErrorCode</a></td></tr>
 <tr class="memitem:a89ee21c5424ac262953b171e06db259e inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1error_1_1_error_code.html#a89ee21c5424ac262953b171e06db259e">ErrorCode</a> (void)</td></tr>
 <tr class="separator:a89ee21c5424ac262953b171e06db259e inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d333d07ef7eb376a068a01ca7730ea9 inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1error_1_1_error_code.html#a2d333d07ef7eb376a068a01ca7730ea9">~ErrorCode</a> (void)</td></tr>
-<tr class="separator:a2d333d07ef7eb376a068a01ca7730ea9 inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2709825a2c104d8fbb74467580ecf0bc inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1error_1_1_error_code.html#a2709825a2c104d8fbb74467580ecf0bc">setErrorCode</a> (std::size_t newErrorCode)</td></tr>
 <tr class="memdesc:a2709825a2c104d8fbb74467580ecf0bc inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set new error code.  <a href="#a2709825a2c104d8fbb74467580ecf0bc">More...</a><br /></td></tr>
 <tr class="separator:a2709825a2c104d8fbb74467580ecf0bc inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,7 +195,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>Base class for all MCU modules. </p>
 <p>This class implements all methods that are common to all modules. It also inherits from noncopyable, prohibiting the copy of any class, as they are asociated to physical resources. </p>
 
-<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00054">54</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
+<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00055">55</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="abbaf0755774c0cf25a78d682edd75950"></a>
 <div class="memitem">
@@ -196,11 +219,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00059">59</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
+<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00061">61</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a72303c21cd68152b48b3bcb4095decb1"></a>
+<a class="anchor" id="a42989bb96d0cbddf2a2a264f2161379a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -208,7 +231,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual yahal::mcu::details::BaseModule::~BaseModule </td>
+          <td class="memname">yahal::mcu::details::BaseModule::~BaseModule </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -217,12 +240,12 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00060">60</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
+<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00062">62</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
 
 </div>
 </div>
@@ -251,7 +274,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Releases module. </p>
 
-<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00086">86</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
+<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00088">88</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
 
 </div>
 </div>
@@ -306,7 +329,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Public initialization method. </p>
 <p>It calls doInit. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#ab4333f0c7df8ae0bcf114fa206380ca5" title="Must be implemented by each module. ">doInit()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00070">70</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
+<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00072">72</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
 
 </div>
 </div>
@@ -334,7 +357,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Prepare module for exclusive operation. </p>
 
-<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00080">80</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
+<p>Definition at line <a class="el" href="base__module_8hpp_source.html#l00082">82</a> of file <a class="el" href="base__module_8hpp_source.html">base_module.hpp</a>.</p>
 
 </div>
 </div>
@@ -342,11 +365,15 @@ Additional Inherited Members</h2></td></tr>
 <li>/home/andy/Documentos/Source/yahal/mcu/modules/<a class="el" href="base__module_8hpp_source.html">base_module.hpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceyahal.html">yahal</a></li><li class="navelem"><a class="el" href="namespaceyahal_1_1mcu.html">mcu</a></li><li class="navelem"><a class="el" href="namespaceyahal_1_1mcu_1_1details.html">details</a></li><li class="navelem"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html">BaseModule</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

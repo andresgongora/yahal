@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classyahal_1_1mcu_1_1_i2_c__slave.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,13 +106,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespaceyahal.html">yahal</a></li><li class="navelem"><a class="el" href="namespaceyahal_1_1mcu.html">mcu</a></li><li class="navelem"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html">I2C_slave</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classyahal_1_1mcu_1_1_i2_c__slave-members.html">List of all members</a>  </div>
@@ -108,31 +127,39 @@ Inheritance diagram for yahal::mcu::I2C_slave:</div>
  <div class="center">
   <img src="classyahal_1_1mcu_1_1_i2_c__slave.png" usemap="#yahal::mcu::I2C_slave_map" alt=""/>
   <map id="yahal::mcu::I2C_slave_map" name="yahal::mcu::I2C_slave_map">
-<area href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html" title="Base class for all I2C modules. " alt="yahal::mcu::details::I2C_common" shape="rect" coords="101,112,293,136"/>
-<area href="classyahal_1_1mcu_1_1details_1_1_base_module.html" title="Base class for all MCU modules. " alt="yahal::mcu::details::BaseModule" shape="rect" coords="101,56,293,80"/>
-<area href="classyahal_1_1error_1_1_error_code.html" title="Base class for error code handling. " alt="yahal::error::ErrorCode" shape="rect" coords="0,0,192,24"/>
-<area href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html" title="Non copyable base class. " alt="yahal::utility::oop::Noncopyable" shape="rect" coords="202,0,394,24"/>
+<area href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html" title="Base class for all I2C modules. " alt="yahal::mcu::details::I2C_common" shape="rect" coords="301,112,592,136"/>
+<area href="classyahal_1_1mcu_1_1details_1_1_base_module.html" title="Base class for all MCU modules. " alt="yahal::mcu::details::BaseModule" shape="rect" coords="301,56,592,80"/>
+<area href="classyahal_1_1error_1_1_error_code.html" title="Base class for error code handling. " alt="yahal::error::ErrorCode" shape="rect" coords="0,0,291,24"/>
+<area href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html" title="Non Copyable base class. " alt="yahal::utility::oop::NonCopyable" shape="rect" coords="301,0,592,24"/>
+<area href="classyahal_1_1utility_1_1oop_1_1_non_heapable.html" title="Non Heapable base class. " alt="yahal::utility::oop::NonHeapable" shape="rect" coords="602,0,893,24"/>
+<area href="classyahal_1_1mcu_1_1_i2_c__multimaster.html" title="I2C Multimaster base class. " alt="yahal::mcu::I2C_multimaster" shape="rect" coords="150,224,441,248"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__slave.html" title=" " alt="yahal::mcu::targets::msp430f5309::I2C_slave" shape="rect" coords="451,224,742,248"/>
+<area href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html" title=" " alt="yahal::mcu::targets::msp430f5309::I2C_multimaster" shape="rect" coords="150,280,441,304"/>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html">ExternalHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class allows derived classes to be notified of slave events.  <a href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a89a2c6293aab02189e1140082c3a0ada"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a89a2c6293aab02189e1140082c3a0ada">handleReceivedStart</a> (void)</td></tr>
-<tr class="separator:a89a2c6293aab02189e1140082c3a0ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff9257fb7bba6935470e7e4df7be665a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aff9257fb7bba6935470e7e4df7be665a">handleReceivedStop</a> (void)</td></tr>
-<tr class="separator:aff9257fb7bba6935470e7e4df7be665a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf745b91c3f902f135219c385e082c12"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aaf745b91c3f902f135219c385e082c12">handleBufferTXEmpty</a> (void)</td></tr>
-<tr class="separator:aaf745b91c3f902f135219c385e082c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2bc4067c1e2c8cc499dde9bfd55f9f2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#af2bc4067c1e2c8cc499dde9bfd55f9f2">handleBufferRXFull</a> (void)</td></tr>
-<tr class="separator:af2bc4067c1e2c8cc499dde9bfd55f9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab21ae123a6dd0ced188cfd78b14c6de8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#ab21ae123a6dd0ced188cfd78b14c6de8">setCallbackReceivedStart</a> (void(*fpCallOnEvent)(<a class="el" href="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction.html#a13e2000f0f779540af7efbc0f744b420">Direction::Type</a>))</td></tr>
-<tr class="separator:ab21ae123a6dd0ced188cfd78b14c6de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cd6542bef603a8bc1da8ba1ba1c5f41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a9cd6542bef603a8bc1da8ba1ba1c5f41">setCallbackReceivedStop</a> (void(*fpCallOnEvent)(void))</td></tr>
-<tr class="separator:a9cd6542bef603a8bc1da8ba1ba1c5f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78a651cf27799db59250c2a5646b6502"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a78a651cf27799db59250c2a5646b6502">setCallbackByteReceived</a> (void(*fpCallOnEvent)(uint8_t))</td></tr>
-<tr class="separator:a78a651cf27799db59250c2a5646b6502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b266fcbfcc75dda6695d8a321e66ca4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a7b266fcbfcc75dda6695d8a321e66ca4">setCallbackByteRequested</a> (void(*fpCallOnEvent)(uint8_t &amp;))</td></tr>
-<tr class="separator:a7b266fcbfcc75dda6695d8a321e66ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a8a8960b9e32b2b6d3e5c891589048d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a5a8a8960b9e32b2b6d3e5c891589048d">setExternalHandler</a> (<a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html">ExternalHandler</a> *pExternalHandler)</td></tr>
+<tr class="separator:a5a8a8960b9e32b2b6d3e5c891589048d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98aa7da67a6aac189940ed7ab932a838"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a98aa7da67a6aac189940ed7ab932a838">handleReceivedStart</a> (void)</td></tr>
+<tr class="memdesc:a98aa7da67a6aac189940ed7ab932a838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attend Start IRQs.  <a href="#a98aa7da67a6aac189940ed7ab932a838">More...</a><br /></td></tr>
+<tr class="separator:a98aa7da67a6aac189940ed7ab932a838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa36a2258d93b7347327598520e181df4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aa36a2258d93b7347327598520e181df4">handleReceivedStop</a> (void)</td></tr>
+<tr class="memdesc:aa36a2258d93b7347327598520e181df4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attend Stop IRQs.  <a href="#aa36a2258d93b7347327598520e181df4">More...</a><br /></td></tr>
+<tr class="separator:aa36a2258d93b7347327598520e181df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4af3934b4e14a3891c211fd9b76aefc7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a4af3934b4e14a3891c211fd9b76aefc7">handleBufferTXEmpty</a> (void)</td></tr>
+<tr class="memdesc:a4af3934b4e14a3891c211fd9b76aefc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attend next TX byte requested.  <a href="#a4af3934b4e14a3891c211fd9b76aefc7">More...</a><br /></td></tr>
+<tr class="separator:a4af3934b4e14a3891c211fd9b76aefc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5542e788b800e79df82f224b58fe35e5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a5542e788b800e79df82f224b58fe35e5">handleBufferRXFull</a> (void)</td></tr>
+<tr class="memdesc:a5542e788b800e79df82f224b58fe35e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attend RX.  <a href="#a5542e788b800e79df82f224b58fe35e5">More...</a><br /></td></tr>
+<tr class="separator:a5542e788b800e79df82f224b58fe35e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classyahal_1_1mcu_1_1details_1_1_base_module')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html">yahal::mcu::details::BaseModule</a></td></tr>
 <tr class="memitem:a2389e2ad5dd20fb4cd7076dfe2f403ec inherit pub_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a2389e2ad5dd20fb4cd7076dfe2f403ec">init</a> (void)</td></tr>
 <tr class="memdesc:a2389e2ad5dd20fb4cd7076dfe2f403ec inherit pub_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public initialization method.  <a href="#a2389e2ad5dd20fb4cd7076dfe2f403ec">More...</a><br /></td></tr>
@@ -147,26 +174,21 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:afe2732b2fafb081a3e82ab3a2f8a5d87"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#afe2732b2fafb081a3e82ab3a2f8a5d87">I2C_slave</a> (void)</td></tr>
 <tr class="separator:afe2732b2fafb081a3e82ab3a2f8a5d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee6e10164e2ccc22cbfa1d0e7556b2d0"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#aee6e10164e2ccc22cbfa1d0e7556b2d0">~I2C_slave</a> (void)</td></tr>
-<tr class="separator:aee6e10164e2ccc22cbfa1d0e7556b2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a452c58e3bfd632a4465809eee83f7784"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html#a452c58e3bfd632a4465809eee83f7784">isIncommingWrite</a> (void)=0</td></tr>
 <tr class="separator:a452c58e3bfd632a4465809eee83f7784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html">yahal::mcu::details::I2C_common</a></td></tr>
-<tr class="memitem:a2d57008663c00d17865d6dcdf9114253 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a2d57008663c00d17865d6dcdf9114253">writeBufferTX</a> (uint8_t byte)=0</td></tr>
-<tr class="memdesc:a2d57008663c00d17865d6dcdf9114253 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare write.  <a href="#a2d57008663c00d17865d6dcdf9114253">More...</a><br /></td></tr>
-<tr class="separator:a2d57008663c00d17865d6dcdf9114253 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98bc3518e3a4fad5a2e942853550ccb9 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a98bc3518e3a4fad5a2e942853550ccb9">readBufferRX</a> (void)=0</td></tr>
-<tr class="memdesc:a98bc3518e3a4fad5a2e942853550ccb9 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finish read.  <a href="#a98bc3518e3a4fad5a2e942853550ccb9">More...</a><br /></td></tr>
-<tr class="separator:a98bc3518e3a4fad5a2e942853550ccb9 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24c3bb47bd3a9ae42068ca9e97a2cd2c inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a24c3bb47bd3a9ae42068ca9e97a2cd2c">I2C_common</a> (void)</td></tr>
 <tr class="separator:a24c3bb47bd3a9ae42068ca9e97a2cd2c inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af256a642f3b2e78b78db8800d843b9dc inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#af256a642f3b2e78b78db8800d843b9dc">~I2C_common</a> (void)</td></tr>
-<tr class="separator:af256a642f3b2e78b78db8800d843b9dc inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d57008663c00d17865d6dcdf9114253 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a2d57008663c00d17865d6dcdf9114253">writeBufferTX</a> (uint8_t byte)=0</td></tr>
+<tr class="memdesc:a2d57008663c00d17865d6dcdf9114253 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to output buffer.  <a href="#a2d57008663c00d17865d6dcdf9114253">More...</a><br /></td></tr>
+<tr class="separator:a2d57008663c00d17865d6dcdf9114253 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98bc3518e3a4fad5a2e942853550ccb9 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a98bc3518e3a4fad5a2e942853550ccb9">readBufferRX</a> (void)=0</td></tr>
+<tr class="separator:a98bc3518e3a4fad5a2e942853550ccb9 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_i2_c__common"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html">yahal::mcu::details::BaseModule</a></td></tr>
 <tr class="memitem:abbaf0755774c0cf25a78d682edd75950 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#abbaf0755774c0cf25a78d682edd75950">BaseModule</a> (void)</td></tr>
 <tr class="separator:abbaf0755774c0cf25a78d682edd75950 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72303c21cd68152b48b3bcb4095decb1 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a72303c21cd68152b48b3bcb4095decb1">~BaseModule</a> (void)</td></tr>
-<tr class="separator:a72303c21cd68152b48b3bcb4095decb1 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42989bb96d0cbddf2a2a264f2161379a inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a42989bb96d0cbddf2a2a264f2161379a">~BaseModule</a> (void)</td></tr>
+<tr class="separator:a42989bb96d0cbddf2a2a264f2161379a inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0237a22e9f1662107cdfa4ec252e46c0 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#a0237a22e9f1662107cdfa4ec252e46c0">open</a> (void)</td></tr>
 <tr class="memdesc:a0237a22e9f1662107cdfa4ec252e46c0 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare module for exclusive operation.  <a href="#a0237a22e9f1662107cdfa4ec252e46c0">More...</a><br /></td></tr>
 <tr class="separator:a0237a22e9f1662107cdfa4ec252e46c0 inherit pro_methods_classyahal_1_1mcu_1_1details_1_1_base_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,8 +201,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="inherit_header pro_methods_classyahal_1_1error_1_1_error_code"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classyahal_1_1error_1_1_error_code')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classyahal_1_1error_1_1_error_code.html">yahal::error::ErrorCode</a></td></tr>
 <tr class="memitem:a89ee21c5424ac262953b171e06db259e inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1error_1_1_error_code.html#a89ee21c5424ac262953b171e06db259e">ErrorCode</a> (void)</td></tr>
 <tr class="separator:a89ee21c5424ac262953b171e06db259e inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d333d07ef7eb376a068a01ca7730ea9 inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1error_1_1_error_code.html#a2d333d07ef7eb376a068a01ca7730ea9">~ErrorCode</a> (void)</td></tr>
-<tr class="separator:a2d333d07ef7eb376a068a01ca7730ea9 inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2709825a2c104d8fbb74467580ecf0bc inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1error_1_1_error_code.html#a2709825a2c104d8fbb74467580ecf0bc">setErrorCode</a> (std::size_t newErrorCode)</td></tr>
 <tr class="memdesc:a2709825a2c104d8fbb74467580ecf0bc inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set new error code.  <a href="#a2709825a2c104d8fbb74467580ecf0bc">More...</a><br /></td></tr>
 <tr class="separator:a2709825a2c104d8fbb74467580ecf0bc inherit pro_methods_classyahal_1_1error_1_1_error_code"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -198,7 +218,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for all I2C slaves. </p>
 
-<p>Definition at line <a class="el" href="modules_2i2c_2i2c__slave_8hpp_source.html#l00051">51</a> of file <a class="el" href="modules_2i2c_2i2c__slave_8hpp_source.html">i2c_slave.hpp</a>.</p>
+<p>Definition at line <a class="el" href="modules_2i2c_2i2c__slave_8hpp_source.html#l00053">53</a> of file <a class="el" href="modules_2i2c_2i2c__slave_8hpp_source.html">i2c_slave.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afe2732b2fafb081a3e82ab3a2f8a5d87"></a>
 <div class="memitem">
@@ -222,34 +242,12 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="aee6e10164e2ccc22cbfa1d0e7556b2d0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual yahal::mcu::I2C_slave::~I2C_slave </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Definition at line <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html#l00030">30</a> of file <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html">i2c_slave.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="af2bc4067c1e2c8cc499dde9bfd55f9f2"></a>
+<a class="anchor" id="a5542e788b800e79df82f224b58fe35e5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -257,7 +255,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void yahal::mcu::I2C_slave::handleBufferRXFull </td>
+          <td class="memname">void yahal::mcu::I2C_slave::handleBufferRXFull </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -271,9 +269,16 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Attend RX. </p>
+<p>&lt; Read buffer in order to free it for next transmission </p>
+
+<p>Reimplemented in <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a774cf773f03360dcdff729906e763f34">yahal::mcu::I2C_multimaster</a>.</p>
+
+<p>Definition at line <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html#l00081">81</a> of file <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html">i2c_slave.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="aaf745b91c3f902f135219c385e082c12"></a>
+<a class="anchor" id="a4af3934b4e14a3891c211fd9b76aefc7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -281,7 +286,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void yahal::mcu::I2C_slave::handleBufferTXEmpty </td>
+          <td class="memname">void yahal::mcu::I2C_slave::handleBufferTXEmpty </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -295,9 +300,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Attend next TX byte requested. </p>
+<p>&lt; Default value 0xFF</p>
+<p>&lt; MASTER IS READING US -&gt; Send next byte </p>
+
+<p>Reimplemented in <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a641bc348b1945ce4d365ba565e972f94">yahal::mcu::I2C_multimaster</a>.</p>
+
+<p>Definition at line <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html#l00068">68</a> of file <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html">i2c_slave.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a89a2c6293aab02189e1140082c3a0ada"></a>
+<a class="anchor" id="a98aa7da67a6aac189940ed7ab932a838"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -305,7 +318,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void yahal::mcu::I2C_slave::handleReceivedStart </td>
+          <td class="memname">void yahal::mcu::I2C_slave::handleReceivedStart </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -319,9 +332,15 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Attend Start IRQs. </p>
+
+<p>Reimplemented in <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#af63df851c65ed0a6d3905c4c520a24a5">yahal::mcu::I2C_multimaster</a>.</p>
+
+<p>Definition at line <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html#l00046">46</a> of file <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html">i2c_slave.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="aff9257fb7bba6935470e7e4df7be665a"></a>
+<a class="anchor" id="aa36a2258d93b7347327598520e181df4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -329,7 +348,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void yahal::mcu::I2C_slave::handleReceivedStop </td>
+          <td class="memname">void yahal::mcu::I2C_slave::handleReceivedStop </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -342,6 +361,12 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Attend Stop IRQs. </p>
+
+<p>Reimplemented in <a class="el" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#a1bd33998b099cd03ad30c3e8de04dda3">yahal::mcu::I2C_multimaster</a>.</p>
+
+<p>Definition at line <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html#l00059">59</a> of file <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html">i2c_slave.cpp</a>.</p>
 
 </div>
 </div>
@@ -367,81 +392,42 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Implemented in <a class="el" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ab13f6898a87d115792f39d3681c42a5f">yahal::mcu::targets::msp430f5309::I2C_multimaster</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a78a651cf27799db59250c2a5646b6502"></a>
+<a class="anchor" id="a5a8a8960b9e32b2b6d3e5c891589048d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void yahal::mcu::I2C_slave::setCallbackByteReceived </td>
+          <td class="memname">void yahal::mcu::I2C_slave::setExternalHandler </td>
           <td>(</td>
-          <td class="paramtype">void(*)(uint8_t)&#160;</td>
-          <td class="paramname"><em>fpCallOnEvent</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html">ExternalHandler</a> *&#160;</td>
+          <td class="paramname"><em>pExternalHandler</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="a7b266fcbfcc75dda6695d8a321e66ca4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void yahal::mcu::I2C_slave::setCallbackByteRequested </td>
-          <td>(</td>
-          <td class="paramtype">void(*)(uint8_t &amp;)&#160;</td>
-          <td class="paramname"><em>fpCallOnEvent</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Definition at line <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html#l00038">38</a> of file <a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html">i2c_slave.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab21ae123a6dd0ced188cfd78b14c6de8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void yahal::mcu::I2C_slave::setCallbackReceivedStart </td>
-          <td>(</td>
-          <td class="paramtype">void(*)(<a class="el" href="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction.html#a13e2000f0f779540af7efbc0f744b420">Direction::Type</a>)&#160;</td>
-          <td class="paramname"><em>fpCallOnEvent</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a9cd6542bef603a8bc1da8ba1ba1c5f41"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void yahal::mcu::I2C_slave::setCallbackReceivedStop </td>
-          <td>(</td>
-          <td class="paramtype">void(*)(void)&#160;</td>
-          <td class="paramname"><em>fpCallOnEvent</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/andy/Documentos/Source/yahal/mcu/modules/i2c/<a class="el" href="modules_2i2c_2i2c__slave_8hpp_source.html">i2c_slave.hpp</a></li>
+<li>/home/andy/Documentos/Source/yahal/mcu/modules/i2c/<a class="el" href="modules_2i2c_2i2c__slave_8cpp_source.html">i2c_slave.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceyahal.html">yahal</a></li><li class="navelem"><a class="el" href="namespaceyahal_1_1mcu.html">mcu</a></li><li class="navelem"><a class="el" href="classyahal_1_1mcu_1_1_i2_c__slave.html">I2C_slave</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

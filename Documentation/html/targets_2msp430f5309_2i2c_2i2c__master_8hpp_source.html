@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('targets_2msp430f5309_2i2c_2i2c__master_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_a2a3af687cf57e71f3722fd00bc90b21.html">targets</a></li><li class="navelem"><a class="el" href="dir_869cd22de7f74e11818c2339e5f14215.html">msp430f5309</a></li><li class="navelem"><a class="el" href="dir_8bbe4d38efa94bac05db68be3c8f4b88.html">i2c</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">i2c_master.hpp</div>  </div>
@@ -123,8 +141,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;../../../config/targets/msp430f5309_config.hpp&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#if defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__)</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;../../../config/mcu_config.hpp&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#if MCU_DEVICE == MCU_MSP430F5309</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;cstddef&gt;</span></div>
@@ -140,40 +158,57 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/***********************************************************************************************/</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">class </span>yahal::mcu::targets::msp430f5309::I2C_master : <span class="keyword">public</span> <a class="code" href="classyahal_1_1mcu_1_1_i2_c__master.html">yahal::mcu::I2C_master</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master.html">   52</a></span>&#160;<span class="keyword">class </span><a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master.html">yahal::mcu::targets::msp430f5309::I2C_master</a> : <span class="keyword">public</span> <a class="code" href="classyahal_1_1mcu_1_1_i2_c__master.html">yahal::mcu::I2C_master</a></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">private</span>:                        <span class="comment">// INITIALIZATION</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1details_1_1_base_module.html#ab4333f0c7df8ae0bcf114fa206380ca5">doInit</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master_1_1_configuration.html">   55</a></span>&#160;                                <span class="keyword">struct </span><a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master_1_1_configuration.html">Configuration</a></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                };</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:                        <span class="comment">// MODULE IMPLEMENTATION</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1_i2_c__master.html#a515d0a5f65c651a5a50f0b1188e5c76c">start</a>(uint8_t slaveAddress, DIRECTION::Type direction);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1_i2_c__master.html#a6e6917ff19fb323e899970dd511a533b">stop</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a2d57008663c00d17865d6dcdf9114253">writeBufferTX</a>(uint8_t byte);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">virtual</span> uint8_t         <a class="code" href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a98bc3518e3a4fad5a2e942853550ccb9">readBufferRX</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1mcu_1_1_i2_c__master.html#ad8a78ad95cebfbd6e4140456a5e78bec">awaitTransmissionEnd</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                <span class="comment">// CONSTRUCTOR</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                <a class="code" href="classyahal_1_1mcu_1_1_i2_c__master.html#ad4637236fb442a12f3f12360df9eb9c2">I2C_master</a>(<span class="keyword">const</span> <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master_1_1_configuration.html">Configuration</a>&amp; configuration);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">private</span>:                        <span class="comment">// INITIALIZATION</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            doInit(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif  // defined(__YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__) || defined(__YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__)</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#endif  // __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__</span></div>
-<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00037">error_code.hpp:37</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__master_html_a6e6917ff19fb323e899970dd511a533b"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__master.html#a6e6917ff19fb323e899970dd511a533b">yahal::mcu::I2C_master::stop</a></div><div class="ttdeci">virtual void stop(void)=0</div><div class="ttdef"><b>Definition:</b> <a href="hwemulation_2i2c_2i2c__master_8cpp_source.html#l00383">i2c_master.cpp:383</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__master_html_a515d0a5f65c651a5a50f0b1188e5c76c"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__master.html#a515d0a5f65c651a5a50f0b1188e5c76c">yahal::mcu::I2C_master::start</a></div><div class="ttdeci">virtual void start(uint8_t slaveAddress, Direction::Type direction)=0</div><div class="ttdoc">====================================================================== MODULE IMPLEMENTATION ...</div><div class="ttdef"><b>Definition:</b> <a href="hwemulation_2i2c_2i2c__master_8cpp_source.html#l00375">i2c_master.cpp:375</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__master_html_ad8a78ad95cebfbd6e4140456a5e78bec"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__master.html#ad8a78ad95cebfbd6e4140456a5e78bec">yahal::mcu::I2C_master::awaitTransmissionEnd</a></div><div class="ttdeci">virtual void awaitTransmissionEnd(void)=0</div><div class="ttdef"><b>Definition:</b> <a href="hwemulation_2i2c_2i2c__master_8cpp_source.html#l00407">i2c_master.cpp:407</a></div></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>:                        <span class="comment">// MODULE IMPLEMENTATION</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            start(uint8_t slaveAddress, <a class="code" href="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction.html#a13e2000f0f779540af7efbc0f744b420">Direction::Type</a> direction);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            stop(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            writeBufferTX(uint8_t byte);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">virtual</span> uint8_t         readBufferRX(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            awaitTransmissionEnd(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                                <span class="comment">// PRIVATE VARIABLES</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">const</span> <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master_1_1_configuration.html">Configuration</a>&amp;    _configuration;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif  // MCU_DEVICE == MCU_MSP430F5309</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif  // __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__</span></div>
+<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="assert_8hpp_source.html#l00037">assert.hpp:37</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction_html_a13e2000f0f779540af7efbc0f744b420"><div class="ttname"><a href="structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction.html#a13e2000f0f779540af7efbc0f744b420">yahal::mcu::details::I2C_common::Direction::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="i2c__common_8hpp_source.html#l00055">i2c_common.hpp:55</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master_1_1_configuration_html"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master_1_1_configuration.html">yahal::mcu::targets::msp430f5309::I2C_master::Configuration</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__master_8hpp_source.html#l00055">i2c_master.hpp:55</a></div></div>
 <div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__master_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__master.html">yahal::mcu::I2C_master</a></div><div class="ttdoc">Base class for all I2C Masters. </div><div class="ttdef"><b>Definition:</b> <a href="modules_2i2c_2i2c__master_8hpp_source.html#l00050">i2c_master.hpp:50</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1details_1_1_i2_c__common_html_a2d57008663c00d17865d6dcdf9114253"><div class="ttname"><a href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a2d57008663c00d17865d6dcdf9114253">yahal::mcu::details::I2C_common::writeBufferTX</a></div><div class="ttdeci">virtual void writeBufferTX(uint8_t byte)=0</div><div class="ttdoc">Prepare write. </div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1details_1_1_base_module_html_ab4333f0c7df8ae0bcf114fa206380ca5"><div class="ttname"><a href="classyahal_1_1mcu_1_1details_1_1_base_module.html#ab4333f0c7df8ae0bcf114fa206380ca5">yahal::mcu::details::BaseModule::doInit</a></div><div class="ttdeci">virtual void doInit(void)=0</div><div class="ttdoc">Must be implemented by each module. </div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1details_1_1_i2_c__common_html_a98bc3518e3a4fad5a2e942853550ccb9"><div class="ttname"><a href="classyahal_1_1mcu_1_1details_1_1_i2_c__common.html#a98bc3518e3a4fad5a2e942853550ccb9">yahal::mcu::details::I2C_common::readBufferRX</a></div><div class="ttdeci">virtual uint8_t readBufferRX(void)=0</div><div class="ttdoc">Finish read. </div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__master.html">yahal::mcu::targets::msp430f5309::I2C_master</a></div><div class="ttdoc"> </div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__master_8hpp_source.html#l00052">i2c_master.hpp:52</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__master_html_ad4637236fb442a12f3f12360df9eb9c2"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__master.html#ad4637236fb442a12f3f12360df9eb9c2">yahal::mcu::I2C_master::I2C_master</a></div><div class="ttdeci">I2C_master(void)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2i2c_2i2c__master_8hpp_source.html#l00053">i2c_master.hpp:53</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_a2a3af687cf57e71f3722fd00bc90b21.html">targets</a></li><li class="navelem"><a class="el" href="dir_869cd22de7f74e11818c2339e5f14215.html">msp430f5309</a></li><li class="navelem"><a class="el" href="dir_8bbe4d38efa94bac05db68be3c8f4b88.html">i2c</a></li><li class="navelem"><a class="el" href="targets_2msp430f5309_2i2c_2i2c__master_8hpp.html">i2c_master.hpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

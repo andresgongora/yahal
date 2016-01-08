@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('targets_2msp430f5309_2clk_2clk_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_a2a3af687cf57e71f3722fd00bc90b21.html">targets</a></li><li class="navelem"><a class="el" href="dir_869cd22de7f74e11818c2339e5f14215.html">msp430f5309</a></li><li class="navelem"><a class="el" href="dir_c3063a134d215f2a3cf94e9212d6e4b7.html">clk</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">clk.hpp</div>  </div>
@@ -191,7 +209,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_clock_source_html_af428fee98d5769f0e2ffd1fb4d94e442a95a2115c8809baeb48a8238e8f08157f"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_clock_source.html#af428fee98d5769f0e2ffd1fb4d94e442a95a2115c8809baeb48a8238e8f08157f">yahal::mcu::targets::msp430f5309::Clk::ClockSource::VLP</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00063">clk.hpp:63</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html_a32962c9ff596c457b230044a7f209b26a3ef4a28b1e6bf1a39b967791ffdb6bb7"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a3ef4a28b1e6bf1a39b967791ffdb6bb7">yahal::mcu::targets::msp430f5309::Clk::Frequency::DCO_4MHz</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00056">clk.hpp:56</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_configuration_html_a2e77300a6edd5a35a73fab05d3b5a9bc"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_configuration.html#a2e77300a6edd5a35a73fab05d3b5a9bc">yahal::mcu::targets::msp430f5309::Clk::Configuration::clockSource</a></div><div class="ttdeci">ClockSource::Type clockSource</div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00069">clk.hpp:69</a></div></div>
-<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00037">error_code.hpp:37</a></div></div>
+<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="assert_8hpp_source.html#l00037">assert.hpp:37</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_configuration_html"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_configuration.html">yahal::mcu::targets::msp430f5309::Clk::Configuration</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00066">clk.hpp:66</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_clock_source_html"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_clock_source.html">yahal::mcu::targets::msp430f5309::Clk::ClockSource</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00062">clk.hpp:62</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency_html_a32962c9ff596c457b230044a7f209b26af8d1230da5ecd3fa8b684ffcf46adde9"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26af8d1230da5ecd3fa8b684ffcf46adde9">yahal::mcu::targets::msp430f5309::Clk::Frequency::DCO_16MHz</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00058">clk.hpp:58</a></div></div>
@@ -204,11 +222,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_configuration_html_a7d6b7aa41e921446501e6610e196cc0b"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_configuration.html#a7d6b7aa41e921446501e6610e196cc0b">yahal::mcu::targets::msp430f5309::Clk::Configuration::frequency</a></div><div class="ttdeci">Frequency::Type frequency</div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00068">clk.hpp:68</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_clock_source_html_af428fee98d5769f0e2ffd1fb4d94e442"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_clock_source.html#af428fee98d5769f0e2ffd1fb4d94e442">yahal::mcu::targets::msp430f5309::Clk::ClockSource::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2clk_2clk_8hpp_source.html#l00062">clk.hpp:62</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_a2a3af687cf57e71f3722fd00bc90b21.html">targets</a></li><li class="navelem"><a class="el" href="dir_869cd22de7f74e11818c2339e5f14215.html">msp430f5309</a></li><li class="navelem"><a class="el" href="dir_c3063a134d215f2a3cf94e9212d6e4b7.html">clk</a></li><li class="navelem"><a class="el" href="targets_2msp430f5309_2clk_2clk_8hpp.html">clk.hpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

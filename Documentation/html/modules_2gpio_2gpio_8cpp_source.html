@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('modules_2gpio_2gpio_8cpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_30c75372601327d294475ba7afcef410.html">modules</a></li><li class="navelem"><a class="el" href="dir_0cc6a28cdb8bfd5242d7147d289b59e1.html">gpio</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">gpio.cpp</div>  </div>
@@ -120,111 +138,112 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="modules_2gpio_2gpio_8hpp.html">gpio.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;../../../error/assert.hpp&quot;</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/* =================================================================================================</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">        GPIO</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">================================================================================================= */</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio.html#a8030923e3e174c8380feeb02261a4ba2">   37</a></span>&#160;<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html">yahal::mcu::Gpio::Port</a>&amp; <a class="code" href="classyahal_1_1mcu_1_1_gpio.html#a8030923e3e174c8380feeb02261a4ba2">yahal::mcu::Gpio::operator[]</a>(uint8_t portNumber)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio.html#ae479c2a3403911b60310bf0c57594dcd">port</a>(portNumber);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">/* =================================================================================================</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">        GPIO</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">================================================================================================= */</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio.html#a8030923e3e174c8380feeb02261a4ba2">   38</a></span>&#160;<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html">yahal::mcu::Gpio::Port</a>&amp; <a class="code" href="classyahal_1_1mcu_1_1_gpio.html#a8030923e3e174c8380feeb02261a4ba2">yahal::mcu::Gpio::operator[]</a>(uint8_t portNumber)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio.html#ae479c2a3403911b60310bf0c57594dcd">port</a>(portNumber);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/* =================================================================================================</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">        PORT</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">================================================================================================= */</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a04667de64bf79fbc59a1a7fb7051d88f">   48</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a04667de64bf79fbc59a1a7fb7051d88f">yahal::mcu::Gpio::Port::toggle</a>(uint8_t mask)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        set(~getOutput(), mask);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/* =================================================================================================</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">        PORT</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">================================================================================================= */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a04667de64bf79fbc59a1a7fb7051d88f">   49</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a04667de64bf79fbc59a1a7fb7051d88f">yahal::mcu::Gpio::Port::toggle</a>(uint8_t mask)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        set(~getOutput(), mask);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#aa16ce5a6eac5b549121b6036286945fe">   54</a></span>&#160;<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html">yahal::mcu::Gpio::Port::Pin</a> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#aa16ce5a6eac5b549121b6036286945fe">yahal::mcu::Gpio::Port::pin</a>(uint8_t pinNumber)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span>(pinNumber &gt;= 8)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">for</span>(;;);        </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#aa16ce5a6eac5b549121b6036286945fe">   55</a></span>&#160;<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html">yahal::mcu::Gpio::Port::Pin</a> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#aa16ce5a6eac5b549121b6036286945fe">yahal::mcu::Gpio::Port::pin</a>(uint8_t pinNumber)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="assert_8hpp.html#acdcc5aaebf3f273c1762f24a6ece2e5e">assert</a>(pinNumber &lt; 8);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html">yahal::mcu::Gpio::Port::Pin</a> pin(*<span class="keyword">this</span>, pinNumber);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">return</span> pin;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html">yahal::mcu::Gpio::Port::Pin</a> pin(*<span class="keyword">this</span>, pinNumber);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> pin;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a33956b3dc2400ee18f1393eb9928d2b0">   66</a></span>&#160;<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html">yahal::mcu::Gpio::Port::Pin</a> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a33956b3dc2400ee18f1393eb9928d2b0">yahal::mcu::Gpio::Port::operator[]</a>(uint8_t pinNumber)</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> pin(pinNumber);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a33956b3dc2400ee18f1393eb9928d2b0">   62</a></span>&#160;<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html">yahal::mcu::Gpio::Port::Pin</a> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a33956b3dc2400ee18f1393eb9928d2b0">yahal::mcu::Gpio::Port::operator[]</a>(uint8_t pinNumber)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> pin(pinNumber);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">/* =================================================================================================</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">        PIN</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">================================================================================================= */</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">/* =================================================================================================</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">        PIN</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">================================================================================================= */</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a7222a8a899df5f52afb9f051ff37600f">   76</a></span>&#160;<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a7222a8a899df5f52afb9f051ff37600f">yahal::mcu::Gpio::Port::Pin::Pin</a>(<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html">yahal::mcu::Gpio::Port</a>&amp; port, uint8_t pinNumber) :</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        _port(port),</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        _pinNumber(pinNumber)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa14906a4f396defe53795836c79bb522">   82</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa14906a4f396defe53795836c79bb522">yahal::mcu::Gpio::Port::Pin::config</a>(<a class="code" href="structyahal_1_1mcu_1_1_gpio_1_1_direction.html#a439a47640b093599989104f4260ddea5">Direction::Type</a> direction, <a class="code" href="structyahal_1_1mcu_1_1_gpio_1_1_resistor.html#a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5">Resistor::Type</a> resistor)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> _port.config(direction, resistor, (1&lt;&lt;_pinNumber));</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa85e73ccf2321a3677f726d9cd26ba6e">   88</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa85e73ccf2321a3677f726d9cd26ba6e">yahal::mcu::Gpio::Port::Pin::set</a>(<span class="keywordtype">bool</span> b)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        _port.set((b&lt;&lt;_pinNumber), (1&lt;&lt;_pinNumber));</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a2e61bdd78fb21e0fafd57467547d2492">   94</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a2e61bdd78fb21e0fafd57467547d2492">yahal::mcu::Gpio::Port::Pin::get</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> _port.get((1&lt;&lt;_pinNumber));</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a217d8e25f291766274f42706583d4cd1">  100</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a217d8e25f291766274f42706583d4cd1">yahal::mcu::Gpio::Port::Pin::getOutput</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">return</span> _port.getOutput((1&lt;&lt;_pinNumber));</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a56aec5c48c03afb52211da1d55a5f400">  106</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a56aec5c48c03afb52211da1d55a5f400">yahal::mcu::Gpio::Port::Pin::toggle</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        _port.toggle((1&lt;&lt;_pinNumber));</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html">yahal::mcu::Gpio::Port::Pin</a></div><div class="ttdoc">Base class for all GPIO Pins. </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8hpp_source.html#l00136">gpio.hpp:136</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_a217d8e25f291766274f42706583d4cd1"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a217d8e25f291766274f42706583d4cd1">yahal::mcu::Gpio::Port::Pin::getOutput</a></div><div class="ttdeci">bool getOutput() const </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00100">gpio.cpp:100</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_html_a04667de64bf79fbc59a1a7fb7051d88f"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a04667de64bf79fbc59a1a7fb7051d88f">yahal::mcu::Gpio::Port::toggle</a></div><div class="ttdeci">virtual void toggle(uint8_t mask=0xFF)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00048">gpio.cpp:48</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_html_aa16ce5a6eac5b549121b6036286945fe"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#aa16ce5a6eac5b549121b6036286945fe">yahal::mcu::Gpio::Port::pin</a></div><div class="ttdeci">Pin pin(uint8_t pinNumber)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00054">gpio.cpp:54</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_html_a33956b3dc2400ee18f1393eb9928d2b0"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a33956b3dc2400ee18f1393eb9928d2b0">yahal::mcu::Gpio::Port::operator[]</a></div><div class="ttdeci">Pin operator[](uint8_t pinNumber)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00066">gpio.cpp:66</a></div></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a7222a8a899df5f52afb9f051ff37600f">   72</a></span>&#160;<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a7222a8a899df5f52afb9f051ff37600f">yahal::mcu::Gpio::Port::Pin::Pin</a>(<a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port.html">yahal::mcu::Gpio::Port</a>&amp; port, uint8_t pinNumber) :</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        _port(port),</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        _pinNumber(pinNumber)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa14906a4f396defe53795836c79bb522">   78</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa14906a4f396defe53795836c79bb522">yahal::mcu::Gpio::Port::Pin::config</a>(<a class="code" href="structyahal_1_1mcu_1_1_gpio_1_1_direction.html#a439a47640b093599989104f4260ddea5">Direction::Type</a> direction, <a class="code" href="structyahal_1_1mcu_1_1_gpio_1_1_resistor.html#a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5">Resistor::Type</a> resistor)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">return</span> _port.config(direction, resistor, (1&lt;&lt;_pinNumber));</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa85e73ccf2321a3677f726d9cd26ba6e">   84</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa85e73ccf2321a3677f726d9cd26ba6e">yahal::mcu::Gpio::Port::Pin::set</a>(<span class="keywordtype">bool</span> b)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        _port.set((b&lt;&lt;_pinNumber), (1&lt;&lt;_pinNumber));</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a2e61bdd78fb21e0fafd57467547d2492">   90</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a2e61bdd78fb21e0fafd57467547d2492">yahal::mcu::Gpio::Port::Pin::get</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> _port.get((1&lt;&lt;_pinNumber));</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a217d8e25f291766274f42706583d4cd1">   96</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a217d8e25f291766274f42706583d4cd1">yahal::mcu::Gpio::Port::Pin::getOutput</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> _port.getOutput((1&lt;&lt;_pinNumber));</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a56aec5c48c03afb52211da1d55a5f400">  102</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a56aec5c48c03afb52211da1d55a5f400">yahal::mcu::Gpio::Port::Pin::toggle</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        _port.toggle((1&lt;&lt;_pinNumber));</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html">yahal::mcu::Gpio::Port::Pin</a></div><div class="ttdoc">Base class for all GPIO Pins. </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8hpp_source.html#l00131">gpio.hpp:131</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_a217d8e25f291766274f42706583d4cd1"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a217d8e25f291766274f42706583d4cd1">yahal::mcu::Gpio::Port::Pin::getOutput</a></div><div class="ttdeci">bool getOutput() const </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00096">gpio.cpp:96</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_html_a04667de64bf79fbc59a1a7fb7051d88f"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a04667de64bf79fbc59a1a7fb7051d88f">yahal::mcu::Gpio::Port::toggle</a></div><div class="ttdeci">virtual void toggle(uint8_t mask=0xFF)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00049">gpio.cpp:49</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_html_aa16ce5a6eac5b549121b6036286945fe"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#aa16ce5a6eac5b549121b6036286945fe">yahal::mcu::Gpio::Port::pin</a></div><div class="ttdeci">Pin pin(uint8_t pinNumber)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00055">gpio.cpp:55</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_html_a33956b3dc2400ee18f1393eb9928d2b0"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port.html#a33956b3dc2400ee18f1393eb9928d2b0">yahal::mcu::Gpio::Port::operator[]</a></div><div class="ttdeci">Pin operator[](uint8_t pinNumber)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00062">gpio.cpp:62</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1_gpio_1_1_resistor_html_a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5"><div class="ttname"><a href="structyahal_1_1mcu_1_1_gpio_1_1_resistor.html#a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5">yahal::mcu::Gpio::Resistor::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8hpp_source.html#l00063">gpio.hpp:63</a></div></div>
 <div class="ttc" id="classyahal_1_1mcu_1_1_gpio_html_ae479c2a3403911b60310bf0c57594dcd"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio.html#ae479c2a3403911b60310bf0c57594dcd">yahal::mcu::Gpio::port</a></div><div class="ttdeci">virtual Port &amp; port(uint8_t portNumber)=0</div><div class="ttdoc">Return reference to port. </div></div>
 <div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_html"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port.html">yahal::mcu::Gpio::Port</a></div><div class="ttdoc">Base class for all GPIO Ports. </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8hpp_source.html#l00104">gpio.hpp:104</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_html_a8030923e3e174c8380feeb02261a4ba2"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio.html#a8030923e3e174c8380feeb02261a4ba2">yahal::mcu::Gpio::operator[]</a></div><div class="ttdeci">Port &amp; operator[](uint8_t portNumber)</div><div class="ttdoc">Short wrapper for port(uint8_t portNumber). </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00037">gpio.cpp:37</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_aa85e73ccf2321a3677f726d9cd26ba6e"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa85e73ccf2321a3677f726d9cd26ba6e">yahal::mcu::Gpio::Port::Pin::set</a></div><div class="ttdeci">void set(bool b)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00088">gpio.cpp:88</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_a2e61bdd78fb21e0fafd57467547d2492"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a2e61bdd78fb21e0fafd57467547d2492">yahal::mcu::Gpio::Port::Pin::get</a></div><div class="ttdeci">bool get() const </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00094">gpio.cpp:94</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_aa14906a4f396defe53795836c79bb522"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa14906a4f396defe53795836c79bb522">yahal::mcu::Gpio::Port::Pin::config</a></div><div class="ttdeci">bool config(Direction::Type direction=Direction::INPUT, Resistor::Type resistor=Resistor::DISABLED)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00082">gpio.cpp:82</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_html_a8030923e3e174c8380feeb02261a4ba2"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio.html#a8030923e3e174c8380feeb02261a4ba2">yahal::mcu::Gpio::operator[]</a></div><div class="ttdeci">Port &amp; operator[](uint8_t portNumber)</div><div class="ttdoc">Short wrapper for port(uint8_t portNumber). </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00038">gpio.cpp:38</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_aa85e73ccf2321a3677f726d9cd26ba6e"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa85e73ccf2321a3677f726d9cd26ba6e">yahal::mcu::Gpio::Port::Pin::set</a></div><div class="ttdeci">void set(bool b)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00084">gpio.cpp:84</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_a2e61bdd78fb21e0fafd57467547d2492"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a2e61bdd78fb21e0fafd57467547d2492">yahal::mcu::Gpio::Port::Pin::get</a></div><div class="ttdeci">bool get() const </div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00090">gpio.cpp:90</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_aa14906a4f396defe53795836c79bb522"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#aa14906a4f396defe53795836c79bb522">yahal::mcu::Gpio::Port::Pin::config</a></div><div class="ttdeci">bool config(Direction::Type direction=Direction::INPUT, Resistor::Type resistor=Resistor::DISABLED)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00078">gpio.cpp:78</a></div></div>
 <div class="ttc" id="modules_2gpio_2gpio_8hpp_html"><div class="ttname"><a href="modules_2gpio_2gpio_8hpp.html">gpio.hpp</a></div></div>
 <div class="ttc" id="structyahal_1_1mcu_1_1_gpio_1_1_direction_html_a439a47640b093599989104f4260ddea5"><div class="ttname"><a href="structyahal_1_1mcu_1_1_gpio_1_1_direction.html#a439a47640b093599989104f4260ddea5">yahal::mcu::Gpio::Direction::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8hpp_source.html#l00054">gpio.hpp:54</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_a7222a8a899df5f52afb9f051ff37600f"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a7222a8a899df5f52afb9f051ff37600f">yahal::mcu::Gpio::Port::Pin::Pin</a></div><div class="ttdeci">Pin(yahal::mcu::Gpio::Port &amp;port, uint8_t pinNumber)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00076">gpio.cpp:76</a></div></div>
-<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_a56aec5c48c03afb52211da1d55a5f400"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a56aec5c48c03afb52211da1d55a5f400">yahal::mcu::Gpio::Port::Pin::toggle</a></div><div class="ttdeci">void toggle(void)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00106">gpio.cpp:106</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_a7222a8a899df5f52afb9f051ff37600f"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a7222a8a899df5f52afb9f051ff37600f">yahal::mcu::Gpio::Port::Pin::Pin</a></div><div class="ttdeci">Pin(yahal::mcu::Gpio::Port &amp;port, uint8_t pinNumber)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00072">gpio.cpp:72</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin_html_a56aec5c48c03afb52211da1d55a5f400"><div class="ttname"><a href="classyahal_1_1mcu_1_1_gpio_1_1_port_1_1_pin.html#a56aec5c48c03afb52211da1d55a5f400">yahal::mcu::Gpio::Port::Pin::toggle</a></div><div class="ttdeci">void toggle(void)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2gpio_2gpio_8cpp_source.html#l00102">gpio.cpp:102</a></div></div>
+<div class="ttc" id="assert_8hpp_html_acdcc5aaebf3f273c1762f24a6ece2e5e"><div class="ttname"><a href="assert_8hpp.html#acdcc5aaebf3f273c1762f24a6ece2e5e">assert</a></div><div class="ttdeci">#define assert(condition)</div><div class="ttdef"><b>Definition:</b> <a href="assert_8hpp_source.html#l00054">assert.hpp:54</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_30c75372601327d294475ba7afcef410.html">modules</a></li><li class="navelem"><a class="el" href="dir_0cc6a28cdb8bfd5242d7147d289b59e1.html">gpio</a></li><li class="navelem"><a class="el" href="modules_2gpio_2gpio_8cpp.html">gpio.cpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

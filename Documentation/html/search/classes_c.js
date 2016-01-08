@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uart',['UART',['../structyahal_1_1mcu_1_1_irq_1_1_u_a_r_t.html',1,'yahal::mcu::Irq']]]
+  ['slidingwindow',['SlidingWindow',['../classhal_1_1utility_1_1_sliding_window.html',1,'hal::utility']]]
 ];

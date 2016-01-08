@@ -72,21 +72,26 @@ private:
 
 
 
-/* ============================================================================================== */
- *	yahal::utility::oop::SignalHandler
- * ============================================================================================== */
-
+/***********************************************************************************************//**
+ * @brief	Subscriber base class. Any derived class can subscribe to subscribers of type T_MSG.
+ *
+ * A subscriber can subscribe to various publishers. But right now there is no way to know
+ * the source of a message.
+ **************************************************************************************************/
 template <typename T_MSG>
 class yahal::utility::oop::Subscriber : public yahal::utility::oop::LinkedListNode<Subscriber<T_MSG> >
 {
-public:
-				// CONSTRUCTOR & DESTRUCTOR
+protected:
+				// CONSTRUCTOR
 				Subscriber(void)		{}
 
 
 private:
 				// FRONT END ACCESIBLE ONLY BY PUBLISHER
 	friend class		yahal::utility::oop::Publisher<T_MSG>;
+
+				/// This function receives any published message.
+				/// Todo: mecahnism to detect source publisher.
 	virtual void		notify(T_MSG message) = 0;
 };
 

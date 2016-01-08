@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['slidingwindow',['SlidingWindow',['../classhal_1_1utility_1_1_sliding_window.html',1,'hal::utility']]]
+  ['resistor',['Resistor',['../structyahal_1_1mcu_1_1_gpio_1_1_resistor.html',1,'yahal::mcu::Gpio']]]
 ];

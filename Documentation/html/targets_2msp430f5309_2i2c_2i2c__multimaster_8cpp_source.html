@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_a2a3af687cf57e71f3722fd00bc90b21.html">targets</a></li><li class="navelem"><a class="el" href="dir_869cd22de7f74e11818c2339e5f14215.html">msp430f5309</a></li><li class="navelem"><a class="el" href="dir_8bbe4d38efa94bac05db68be3c8f4b88.html">i2c</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">i2c_multimaster.cpp</div>  </div>
@@ -121,120 +139,139 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="targets_2msp430f5309_2i2c_2i2c__multimaster_8hpp.html">i2c_multimaster.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifdef __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#if MCU_DEVICE == MCU_MSP430F5309</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;msp430f5309.h&gt;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/* ============================================================================================== */</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; *      yahal::mcutargets::msp430f5309::I2C_multimaster</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; * ============================================================================================== */</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;yahal::mcutargets::msp430f5309::I2C_multimaster::I2C_multimaster(uint8_t ownAddress) :</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        _ownAddress(ownAddress)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{}</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#aeb4de87af713e75c7f0c403b554cd246">   38</a></span>&#160;<a class="code" href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#aa94fdeb856b152818569338cd44b3693">yahal::mcu::targets::msp430f5309::I2C_multimaster::I2C_multimaster</a>(<span class="keyword">const</span> <a class="code" href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_1_1_configuration.html">Configuration</a>&amp; configuration) :</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        _configuration(configuration)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{}</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> yahal::mcutargets::msp430f5309::I2C_multimaster::doInit(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        UCB1CTL1 |= UCSWRST;                            <span class="comment">// Enable SW reset while we configure the module</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        P4SEL |= BIT1 + BIT2;                           <span class="comment">// Assign I2C pins to USCI_B0</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        UCB1CTL0 = UCMST + UCMODE_3 + UCSYNC + UCMM;    <span class="comment">// I2C Master, synchronous mode, multimaster</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        UCB1CTL1 = UCSSEL__SMCLK + UCSWRST + UCTR;      <span class="comment">// Use SMCLK</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        UCB1BRW = 32;                                   <span class="comment">// fSCL = SMCLK/12 = ~100kHz TODO: CALCULATE ASKING CLK!</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        UCB1I2COA = _ownAddress + UCGCEN;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        UCB1CTL1 &amp;= ~UCSWRST;                           <span class="comment">// Clear SW reset, resume operation</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> yahal::mcu::targets::msp430f5309::I2C_multimaster::doInit(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        UCB1CTL1 |= UCSWRST;                            </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        P4SEL |= BIT1 + BIT2;                           </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        UCB1CTL0 = UCMST + UCMODE_3 + UCSYNC + UCMM;    </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        UCB1CTL1 = UCSSEL__SMCLK + UCSWRST + UCTR;      </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        UCB1BRW = 32;                                   </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        UCB1I2COA = _configuration.ownAddress + UCGCEN; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        UCB1CTL1 &amp;= ~UCSWRST;                           </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;                       <span class="comment">// Enable Interrupts</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">void</span> yahal::mcutargets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress, DIRECTION::Type direction)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">while</span>(UCB1STAT &amp; UCBBUSY);                                      <span class="comment">// Recommended to check</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">if</span>(direction == DIRECTION::WRITE)       {UCB1CTL1 |= UCTR;}     <span class="comment">// Set transmitter</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">else</span>                                    {UCB1CTL1 &amp;= ~UCTR;}    <span class="comment">// Set receiver</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a8840454fdebbd0cfe0a57b4315cca49c">   64</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a8840454fdebbd0cfe0a57b4315cca49c">yahal::mcu::targets::msp430f5309::I2C_multimaster::start</a>(uint8_t slaveAddress, Direction::Type direction)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">while</span>(UCB1STAT &amp; UCBBUSY);              </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">if</span> (direction == Direction::WRITE) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                UCB1CTL1 |= UCTR;               </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                UCB1CTL1 &amp;= ~UCTR;              </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        UCB1I2CSA = slaveAddress;                                       <span class="comment">// Bit shifting done by HW</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        UCB1CTL1 |= UCTXSTT;                                            <span class="comment">// Send start</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        UCB1I2CSA = slaveAddress;               </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        UCB1CTL1 |= UCTXSTT;                    </div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> yahal::mcutargets::msp430f5309::I2C_multimaster::stop(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a7d5567c670536f05ee5cf2f1392f48e5">   81</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a7d5567c670536f05ee5cf2f1392f48e5">yahal::mcu::targets::msp430f5309::I2C_multimaster::stop</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">if</span>(not(UCB1CTL1 &amp; UCTR))</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keywordflow">while</span>(UCB1CTL1 &amp; UCTXSTT);      <span class="comment">// Wait if START in progress during READ operation</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">if</span> (not (UCB1CTL1 &amp; UCTR)) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="keywordflow">while</span> (UCB1CTL1 &amp; UCTXSTT);     </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        UCB1CTL1 |= UCTXSTP;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">void</span> yahal::mcutargets::msp430f5309::I2C_multimaster::writeBufferTX(uint8_t byte)</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a26fd3bc9ca4a0c077cb206711bd38e01">   92</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a26fd3bc9ca4a0c077cb206711bd38e01">yahal::mcu::targets::msp430f5309::I2C_multimaster::writeBufferTX</a>(uint8_t byte)</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        UCB1TXBUF = byte;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;uint8_t yahal::mcutargets::msp430f5309::I2C_multimaster::readBufferRX(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ac056ed8d5ad9e34981172b1fc13d21af">   99</a></span>&#160;uint8_t <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ac056ed8d5ad9e34981172b1fc13d21af">yahal::mcu::targets::msp430f5309::I2C_multimaster::readBufferRX</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;{</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span> UCB1RXBUF;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordtype">void</span> yahal::mcutargets::msp430f5309::I2C_multimaster::awaitTransmissionEnd(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ac25a66dc6b29abbfc64b08678b37e4e0">  106</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ac25a66dc6b29abbfc64b08678b37e4e0">yahal::mcu::targets::msp430f5309::I2C_multimaster::awaitTransmissionEnd</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">while</span>(UCB1STAT &amp; UCBBUSY);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        UCB1CTL1 &amp;= ~(UCTR + UCTXNACK + UCTXSTP + UCTXSTT);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        UCB1TXBUF = UCB1RXBUF;  <span class="comment">// Experimental: clear both buffers</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">while</span>(UCB1STAT &amp; UCBBUSY);      </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        UCB1CTL1 &amp;= ~(UCTR + UCTXNACK + UCTXSTP + UCTXSTT);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        UCB1TXBUF = UCB1RXBUF;  <span class="comment">// Experimental: clear both buffers</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keywordtype">bool</span> yahal::mcutargets::msp430f5309::I2C_multimaster::isIncommingWrite(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">return</span> (UCB1CTL1 &amp; UCTR);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ab13f6898a87d115792f39d3681c42a5f">  116</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ab13f6898a87d115792f39d3681c42a5f">yahal::mcu::targets::msp430f5309::I2C_multimaster::isIncommingWrite</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span> (UCB1CTL1 &amp; UCTR);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keywordtype">bool</span> yahal::mcutargets::msp430f5309::I2C_multimaster::isMaster(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">return</span> (UCB1CTL0 &amp; UCMST);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a0cfe3a937d452fdaf4d7f572ce2d8d03">  122</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a0cfe3a937d452fdaf4d7f572ce2d8d03">yahal::mcu::targets::msp430f5309::I2C_multimaster::isMaster</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordflow">return</span> (UCB1CTL0 &amp; UCMST);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keywordtype">void</span> yahal::mcutargets::msp430f5309::I2C_multimaster::configureAsMaster(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        awaitTransmissionEnd();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="comment">// I FIGURED OUT THE HARDWAY THIS IS THE ONLY WAY TO GET BACK INTO MASTER MODE</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        UCB1CTL1 |= UCSWRST;                                            <span class="comment">// Enter SW reset</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        UCB1CTL0 |= UCMST ;                                             <span class="comment">// Set as Master</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        UCB1CTL1 &amp;= ~UCSWRST;                                           <span class="comment">// Return from SW Reset</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;       <span class="comment">// Need to reenable IRQ</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a981471387ee216770afd2c7004d3b348">  128</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a981471387ee216770afd2c7004d3b348">yahal::mcu::targets::msp430f5309::I2C_multimaster::configureAsMaster</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        awaitTransmissionEnd();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="comment">// I FIGURED OUT THE HARDWAY THIS IS THE ONLY WAY TO GET BACK INTO MASTER MODE</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        UCB1CTL1 |= UCSWRST;                                            <span class="comment">// Enter SW reset</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        UCB1CTL0 |= UCMST ;                                             <span class="comment">// Set as Master</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        UCB1CTL1 &amp;= ~UCSWRST;                                           <span class="comment">// Return from SW Reset</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;       <span class="comment">// Need to reenable IRQ</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#endif  // __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#endif // MCU_DEVICE == MCU_MSP430F5309</span></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1_i2_c__multimaster_html_aa94fdeb856b152818569338cd44b3693"><div class="ttname"><a href="classyahal_1_1mcu_1_1_i2_c__multimaster.html#aa94fdeb856b152818569338cd44b3693">yahal::mcu::I2C_multimaster::I2C_multimaster</a></div><div class="ttdeci">I2C_multimaster(void)</div><div class="ttdef"><b>Definition:</b> <a href="modules_2i2c_2i2c__multimaster_8cpp_source.html#l00031">i2c_multimaster.cpp:31</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_html_ab13f6898a87d115792f39d3681c42a5f"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ab13f6898a87d115792f39d3681c42a5f">yahal::mcu::targets::msp430f5309::I2C_multimaster::isIncommingWrite</a></div><div class="ttdeci">virtual bool isIncommingWrite(void)</div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp_source.html#l00116">i2c_multimaster.cpp:116</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_html_a8840454fdebbd0cfe0a57b4315cca49c"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a8840454fdebbd0cfe0a57b4315cca49c">yahal::mcu::targets::msp430f5309::I2C_multimaster::start</a></div><div class="ttdeci">virtual void start(uint8_t slaveAddress, Direction::Type direction)</div><div class="ttdoc">Start I/O with slave. </div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp_source.html#l00064">i2c_multimaster.cpp:64</a></div></div>
+<div class="ttc" id="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_1_1_configuration_html"><div class="ttname"><a href="structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_1_1_configuration.html">yahal::mcu::targets::msp430f5309::I2C_multimaster::Configuration</a></div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8hpp_source.html#l00053">i2c_multimaster.hpp:53</a></div></div>
 <div class="ttc" id="targets_2msp430f5309_2i2c_2i2c__multimaster_8hpp_html"><div class="ttname"><a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8hpp.html">i2c_multimaster.hpp</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_html_a26fd3bc9ca4a0c077cb206711bd38e01"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a26fd3bc9ca4a0c077cb206711bd38e01">yahal::mcu::targets::msp430f5309::I2C_multimaster::writeBufferTX</a></div><div class="ttdeci">virtual void writeBufferTX(uint8_t byte)</div><div class="ttdoc">Write to output buffer. </div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp_source.html#l00092">i2c_multimaster.cpp:92</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_html_ac056ed8d5ad9e34981172b1fc13d21af"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ac056ed8d5ad9e34981172b1fc13d21af">yahal::mcu::targets::msp430f5309::I2C_multimaster::readBufferRX</a></div><div class="ttdeci">virtual uint8_t readBufferRX(void)</div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp_source.html#l00099">i2c_multimaster.cpp:99</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_html_a0cfe3a937d452fdaf4d7f572ce2d8d03"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a0cfe3a937d452fdaf4d7f572ce2d8d03">yahal::mcu::targets::msp430f5309::I2C_multimaster::isMaster</a></div><div class="ttdeci">virtual bool isMaster(void)</div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp_source.html#l00122">i2c_multimaster.cpp:122</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_html_a7d5567c670536f05ee5cf2f1392f48e5"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a7d5567c670536f05ee5cf2f1392f48e5">yahal::mcu::targets::msp430f5309::I2C_multimaster::stop</a></div><div class="ttdeci">virtual void stop(void)</div><div class="ttdoc">Send stop. </div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp_source.html#l00081">i2c_multimaster.cpp:81</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_html_ac25a66dc6b29abbfc64b08678b37e4e0"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ac25a66dc6b29abbfc64b08678b37e4e0">yahal::mcu::targets::msp430f5309::I2C_multimaster::awaitTransmissionEnd</a></div><div class="ttdeci">virtual void awaitTransmissionEnd(void)</div><div class="ttdoc">Wait (or block) while I/O in progress. </div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp_source.html#l00106">i2c_multimaster.cpp:106</a></div></div>
+<div class="ttc" id="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster_html_a981471387ee216770afd2c7004d3b348"><div class="ttname"><a href="classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#a981471387ee216770afd2c7004d3b348">yahal::mcu::targets::msp430f5309::I2C_multimaster::configureAsMaster</a></div><div class="ttdeci">virtual void configureAsMaster(void)</div><div class="ttdef"><b>Definition:</b> <a href="targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp_source.html#l00128">i2c_multimaster.cpp:128</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_4cee3ed2fe28b98d73407141cfd215dc.html">mcu</a></li><li class="navelem"><a class="el" href="dir_a2a3af687cf57e71f3722fd00bc90b21.html">targets</a></li><li class="navelem"><a class="el" href="dir_869cd22de7f74e11818c2339e5f14215.html">msp430f5309</a></li><li class="navelem"><a class="el" href="dir_8bbe4d38efa94bac05db68be3c8f4b88.html">i2c</a></li><li class="navelem"><a class="el" href="targets_2msp430f5309_2i2c_2i2c__multimaster_8cpp.html">i2c_multimaster.cpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

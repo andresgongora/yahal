@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('api__mutex_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_da9b1fa3a11988e83c393c7410ee9ef9.html">rtos</a></li><li class="navelem"><a class="el" href="dir_602cb7f9741adae9ea4468ac61bd3eb6.html">api</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">api_mutex.hpp</div>  </div>
@@ -130,38 +148,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/***********************************************************************************************/</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classyahal_1_1rtos_1_1api_1_1_mutex.html">   42</a></span>&#160;<span class="keyword">class </span><a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html">yahal::rtos::api::Mutex</a> : <span class="keyword">private</span> <a class="code" href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html">yahal::utility::oop::Noncopyable</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classyahal_1_1rtos_1_1api_1_1_mutex.html">   42</a></span>&#160;<span class="keyword">class </span><a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html">yahal::rtos::api::Mutex</a> : <span class="keyword">private</span> <a class="code" href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html">yahal::utility::oop::NonCopyable</a></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                <span class="comment">// CONSTRUTOR &amp; DESTRUCTOR</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#adfac5ede23819d2ac0b1eca2b46d602a">   46</a></span>&#160;                                <a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#adfac5ede23819d2ac0b1eca2b46d602a">Mutex</a>(<span class="keywordtype">void</span>)     {}</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#af33c2c29dcdf8e0e5f63927c7b939be5">   47</a></span>&#160;        <span class="keyword">virtual</span>                 <a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#af33c2c29dcdf8e0e5f63927c7b939be5">~Mutex</a>(<span class="keywordtype">void</span>)    {}</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                <span class="comment">// Mutex</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#a34dcfba67a052a8f4a28a513108a2920">lock</a>(<span class="keywordtype">void</span>) = 0;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span>            <a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#a32b7f850efd201d11dde4a98a298af68">try_lock</a>(<span class="keywordtype">void</span>) = 0;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#ac5b67f3c507906dd24a3db27868b3b4a">unlock</a>(<span class="keywordtype">void</span>) = 0;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif  // __YAHAL_RTOS_API_MUTEX_HPP_INCLUDED__</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                <span class="comment">// Mutex</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#a34dcfba67a052a8f4a28a513108a2920">lock</a>(<span class="keywordtype">void</span>) = 0;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span>            <a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#a32b7f850efd201d11dde4a98a298af68">try_lock</a>(<span class="keywordtype">void</span>) = 0;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            <a class="code" href="classyahal_1_1rtos_1_1api_1_1_mutex.html#ac5b67f3c507906dd24a3db27868b3b4a">unlock</a>(<span class="keywordtype">void</span>) = 0;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif  // __YAHAL_RTOS_API_MUTEX_HPP_INCLUDED__</span></div>
 <div class="ttc" id="classyahal_1_1rtos_1_1api_1_1_mutex_html_a34dcfba67a052a8f4a28a513108a2920"><div class="ttname"><a href="classyahal_1_1rtos_1_1api_1_1_mutex.html#a34dcfba67a052a8f4a28a513108a2920">yahal::rtos::api::Mutex::lock</a></div><div class="ttdeci">virtual void lock(void)=0</div></div>
 <div class="ttc" id="classyahal_1_1rtos_1_1api_1_1_mutex_html"><div class="ttname"><a href="classyahal_1_1rtos_1_1api_1_1_mutex.html">yahal::rtos::api::Mutex</a></div><div class="ttdoc">Base class for all MUTEX. </div><div class="ttdef"><b>Definition:</b> <a href="api__mutex_8hpp_source.html#l00042">api_mutex.hpp:42</a></div></div>
-<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="error__code_8hpp_source.html#l00037">error_code.hpp:37</a></div></div>
+<div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="assert_8hpp_source.html#l00037">assert.hpp:37</a></div></div>
 <div class="ttc" id="classyahal_1_1rtos_1_1api_1_1_mutex_html_a32b7f850efd201d11dde4a98a298af68"><div class="ttname"><a href="classyahal_1_1rtos_1_1api_1_1_mutex.html#a32b7f850efd201d11dde4a98a298af68">yahal::rtos::api::Mutex::try_lock</a></div><div class="ttdeci">virtual bool try_lock(void)=0</div></div>
-<div class="ttc" id="classyahal_1_1rtos_1_1api_1_1_mutex_html_adfac5ede23819d2ac0b1eca2b46d602a"><div class="ttname"><a href="classyahal_1_1rtos_1_1api_1_1_mutex.html#adfac5ede23819d2ac0b1eca2b46d602a">yahal::rtos::api::Mutex::Mutex</a></div><div class="ttdeci">Mutex(void)</div><div class="ttdef"><b>Definition:</b> <a href="api__mutex_8hpp_source.html#l00046">api_mutex.hpp:46</a></div></div>
 <div class="ttc" id="classyahal_1_1rtos_1_1api_1_1_mutex_html_ac5b67f3c507906dd24a3db27868b3b4a"><div class="ttname"><a href="classyahal_1_1rtos_1_1api_1_1_mutex.html#ac5b67f3c507906dd24a3db27868b3b4a">yahal::rtos::api::Mutex::unlock</a></div><div class="ttdeci">virtual void unlock(void)=0</div></div>
-<div class="ttc" id="classyahal_1_1rtos_1_1api_1_1_mutex_html_af33c2c29dcdf8e0e5f63927c7b939be5"><div class="ttname"><a href="classyahal_1_1rtos_1_1api_1_1_mutex.html#af33c2c29dcdf8e0e5f63927c7b939be5">yahal::rtos::api::Mutex::~Mutex</a></div><div class="ttdeci">virtual ~Mutex(void)</div><div class="ttdef"><b>Definition:</b> <a href="api__mutex_8hpp_source.html#l00047">api_mutex.hpp:47</a></div></div>
-<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_noncopyable_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_noncopyable.html">yahal::utility::oop::Noncopyable</a></div><div class="ttdoc">Non copyable base class. </div><div class="ttdef"><b>Definition:</b> <a href="noncopyable_8hpp_source.html#l00044">noncopyable.hpp:44</a></div></div>
+<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_non_copyable_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_non_copyable.html">yahal::utility::oop::NonCopyable</a></div><div class="ttdoc">Non Copyable base class. </div><div class="ttdef"><b>Definition:</b> <a href="noncopyable_8hpp_source.html#l00044">noncopyable.hpp:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_da9b1fa3a11988e83c393c7410ee9ef9.html">rtos</a></li><li class="navelem"><a class="el" href="dir_602cb7f9741adae9ea4468ac61bd3eb6.html">api</a></li><li class="navelem"><a class="el" href="api__mutex_8hpp.html">api_mutex.hpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>
