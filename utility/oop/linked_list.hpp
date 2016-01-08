@@ -22,14 +22,14 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-#ifndef __YAHAL_LINKED_LIST_HPP_INCLUDED__
-#define __YAHAL_LINKED_LIST_HPP_INCLUDED__
+#ifndef __YAHAL_UTILITY_OOP_LINKED_LIST_HPP_INCLUDED__
+#define __YAHAL_UTILITY_OOP_LINKED_LIST_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <cstdlib>
+#include "../../error/assert.hpp"
+
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -41,40 +41,46 @@ namespace yahal{ namespace mcu{ namespace utility
 
 
 
-/* ============================================================================================== */
+/***********************************************************************************************//**
+ * @brief	Linked list of templated type T_NODE. *
+ **************************************************************************************************/
 template <typename T_NODE>
 class yahal::utility::LinkedList
 {
-public:				// CONSTRUCTOR & DESTRUCTOR
+public:				// CONSTRUCTOR
 				LinkedList()	: _pFirstNode(0), _size(0)	{}
 
 
-				// APPEND NODE
+				/// APPEND NODE
 	void			pushBack(T_NODE& newNode)
 				{
-					if(isEmpty())	{_pFirstNode = & newNode;}
-					else		{lastNode->setNext(newNode);}
+					if (isEmpty()) {
+						_pFirstNode = &newNode;
+					} else {
+						lastNode->setNext(newNode);
+					}
 
 					_size++;
 				}
 
 
 
-public:				// RETRIEVE NODE
+public:				/// RETRIEVE NODE
 	T_NODE*			operator[](std::size_t possition) const
 				{
 					T_NODE*	pCurrentNode = _pFirstNode;
 
-					if(possition >= _size)
-					{
-						for(;;); //WARNING TODO ERROR!!!!!
+					if (possition >= _size) {
+						_DEBUG_TRAP();
+
+						/// If tryong to access non-existant node, point
+						/// to last node instead.
+						/// Its not an optimum solution.
+						position = _size -1;
 					}
-					else
-					{
-						for(std::size_t i = possition; i; i--)
-						{
-							pCurrentNode = pCurrentNode->getNext();
-						}
+
+					for (std::size_t i = possition; i; i--) {
+						pCurrentNode = pCurrentNode->getNext();
 					}
 
 					return pCurrentNode;
@@ -82,40 +88,49 @@ public:				// RETRIEVE NODE
 
 
 
-public:				// UTILITY
+public:				/// Check if linked list is empty
 	bool			isEmpty(void) const
 				{
 					return (_pFirstNode == 0);
 				}
 
+				/// Get size of linked list
 	std::size_t		size(void) const
 				{
 					return _size;
 				}
 
-private:T_NODE*			lastNode(void) const
+
+private:
+				/// Retrieve last node
+	T_NODE*			lastNode(void) const
 				{
-					if(isEmpty())	{return 0}
-					else 		{return this->operator[](_size-1);}
+					if (isEmpty()) {
+						return _pFirstNode;
+					} else {
+						return this->operator[](_size - 1);
+					}
 				}
 
 
 
 private:			// PRIVATE VARIABLES
-	T_NODE*			_pFirstNode;
-	std::size_t		_size;
+	T_NODE*			_pFirstNode;	///< Pointer to first node, starts empty.
+	std::size_t		_size;		///< Store size of linked list.
 };
 
 
 
 
 
-/* ============================================================================================== */
+/***********************************************************************************************//**
+ * @brief	Individual node of a linked list. Its type is T_NODE
+ **************************************************************************************************/
 template <typename T_NODE>
 class yahal::utility::LinkedListNode
 {
 public:
-				// CONSTRUCTOR & DESTRUCTOR
+				// CONSTRUCTOR
 				LinkedListNode()		: _pNextNode(0)	{}
 
 
@@ -124,17 +139,19 @@ private:
 	friend class		mcu::utility::LinkedList<T_NODE>;
 
 
-				// PRIVATE ACCESSOR
+				/// Set pointer to next node
 	void			setNext(T_NODE& nextNode)	{_pNextNode = &nextNode;}
+
+				/// Get pointer to next node
 	T_NODE*			getNext(void) const		{return _pNextNode;}
 
 
 				// PRIVATE VARIABLES
-	T_NODE*			_pNextNode;
+	T_NODE*			_pNextNode;		///< Pointer to next node of same class
 };
 
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_LINKED_LIST_HPP_INCLUDED__
+#endif 	// __YAHAL_UTILITY_OOP_LINKED_LIST_HPP_INCLUDED__

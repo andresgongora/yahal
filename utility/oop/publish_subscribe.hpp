@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __PUBLISH_SUBSCRIBE_HPP_INCLUDED__
-#define __PUBLISH_SUBSCRIBE_HPP_INCLUDED__
+#ifndef __YAHAL_UTILITY_OOP_PUBLISH_SUBSCRIBE_HPP_INCLUDED__
+#define __YAHAL_UTILITY_OOP_PUBLISH_SUBSCRIBE_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -40,26 +40,26 @@ namespace yahal{ namespace utility{ namespace oop{
 
 
 
-/* ============================================================================================== */
- *	utility::Publisher
- * ============================================================================================== */
-
+/***********************************************************************************************//**
+ * @brief	Publisher base class. This class notifies all subscribers.
+ **************************************************************************************************/
 template <typename T_MSG>
 class yahal::utility::oop::Publisher
 {
 public:
+				/// Used by Subscribers to subscribe.
 	void			subscribe(yahal::utility::oop::Subscriber<T_MSG>& newSubscriber)
 				{
 					_subscribers.pushBack(newSubscriber);
 				}
 
+				/// Tublish a message to all subscribers
 	void			publish(T_MSG message) const
 				{
-					std::size_t size = _subscribers.size();
+					std::size_t size = _subscribers.size();	///< Get number of subscribers
 					std::size_t i;
 
-					for(i=0; i<size; i++)
-					{
+					for (i = 0; i < size; i++) {
 						_subscribers[i]->notify(message);
 					}
 				}
@@ -67,7 +67,7 @@ public:
 
 private:
 				// PRIVATE VARIABLES
-	yahal::utility::oop::LinkedList<yahal::utility::oop::Subscriber<T_MSG> >	_subscribers;
+	yahal::utility::oop::LinkedList<yahal::utility::oop::Subscriber<T_MSG> >	_subscribers;	///< Linked list of type Subscribers
 };
 
 
@@ -93,4 +93,4 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __PUBLISH_SUBSCRIBE_HPP_INCLUDED__
+#endif 	// __YAHAL_UTILITY_OOP_PUBLISH_SUBSCRIBE_HPP_INCLUDED__

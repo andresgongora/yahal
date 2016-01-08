@@ -24,72 +24,22 @@
 
 
 
-
-
-#ifndef __YAHAL_MCU_IRQ_HPP_INCLUDED__
-#define __YAHAL_MCU_IRQ_HPP_INCLUDED__
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../base_module.hpp"
-
+#ifndef __YAHAL_ERROR_DEBUG_TRAP_HPP_INCLUDED__
+#define __YAHAL_ERROR_DEBUG_TRAP_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
-	class Irq;
-}}
-
-
-
-/***********************************************************************************************//**
- * @brief	Base class for all IRQ handlers.
- **************************************************************************************************/
-class yahal::mcu::Irq : public yahal::mcu::details::BaseModule
-{
-public:
-				// CONSTRUCTOR & DESTRUCTOR
-				Irq(void)	{}
-
-
-				// INITIALIZATION
-//	virtual bool		init(void) = 0;
-
-
-				// CONFIGURATION
-//	virtual void		enableGlobalInterrupts(void) const = 0;
-//	virtual void		disableGlobalInterrupts(void) const = 0;
-
-
-
-		struct I2C {enum type {
-			TX_BUFFER_EMPTY,
-			RX_BUFFER_FULL,
-			RECEIVED_NACK,
-			RECEIVED_START,
-		};};
-
-
-		struct UART {enum type {
-			RX,
-			TX,
-		};};
-
-		struct GPIO {enum type {
-			A,
-			B,
-		};};
-
-
-
-
-		struct Error {enum Type {
-			NO_ERROR = 0,
-			OTHER
-		};};
-};
+#include <cstddef>
+#include "assert.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_IRQ_HPP_INCLUDED__
+#ifdef __DEBUG
+#define _DEBUG_TRAP()	assert(false)
+#else
+#define _DEBUG_TRAP()	assert(true)
+#endif
+
+/* ---------------------------------------------------------------------------------------------- */
+#endif 	 // __YAHAL_ERROR_DEBUG_TRAP_HPP_INCLUDED__
