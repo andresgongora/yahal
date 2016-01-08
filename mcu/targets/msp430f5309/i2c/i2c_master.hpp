@@ -82,5 +82,5 @@ private:			// MODULE IMPLEMENTATION
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // MCU_DEVICE == MCU_MSP430F5309
+#endif	// MCU_DEVICE == MCU_MSP430F5309
 #endif	// __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__

@@ -112,7 +112,173 @@ private:			// PRIVATE VARIABLES
 
 
 
+// THIS BELOW FORK FINE BUT USE HEAP MEMORY
 
+/*
+template <typename T_ARG>
+class Callback
+{
+private:
+	// Abstract interface for all callbacks
+	class CallbackBase
+	{
+	public:
+		virtual		~CallbackBase(void){}
+		virtual void	call(T_ARG argument) = 0;
+	};
+
+
+	// Implementation for member functions
+	template <typename T_CLASS>
+	class ClassCallback : public CallbackBase
+	{
+	private:
+		T_CLASS* const	_object;
+		void 		(T_CLASS::*_fpCallback)(T_ARG);
+
+	public:
+		ClassCallback(T_CLASS* object,void (T_CLASS::*callbackFunction)(T_ARG)):
+			_object(object), _fpCallback(callbackFunction)
+		{}
+
+		virtual	void call(T_ARG argument){
+			(_object->*_fpCallback)(argument);
+		}
+	};
+
+
+	// Implementation for global functions
+	class GlobalCallback : public CallbackBase
+	{
+	private:
+		void (*_fpCallback)(T_ARG);
+
+	public:
+		GlobalCallback( void (*callbackFunction)(T_ARG) ) :
+			_fpCallback(callbackFunction)
+		{}
+
+		virtual void call(T_ARG argument){
+			(*_fpCallback)(argument);
+		}
+	};
+
+
+
+
+private:
+				// PRIVATE VARIABLES
+	CallbackBase*		_pCallbackBase;
+
+
+
+public:
+				// CONSTRUCTOR
+				Callback() : _pCallbackBase(NULL) {}
+
+
+
+	template <typename T>
+	void setCallbackFunction(T* object, void (T::*callbackFunction)(T_ARG)){
+		if(_pCallbackBase != NULL){
+			delete _pCallbackBase;
+		}
+		_pCallbackBase = new ClassCallback<T>(object,callbackFunction);
+	}
+
+	void setCallbackFunction(void (*callbackFunction)(T_ARG)){
+		if(_pCallbackBase != NULL){
+			delete _pCallbackBase;
+		}
+		_pCallbackBase = new GlobalCallback(callbackFunction);
+	}
+
+	// actually calling the function
+	void call(T_ARG argument){
+		if(_pCallbackBase != NULL){
+			_pCallbackBase->call(argument);
+		}
+	}
+};
+
+*/
+/*
+template <>
+class Callback<void>
+{
+private:
+	// Abstract interface for all callbacks
+	class Callback
+	{
+	public:
+		virtual		~Callback(void){}
+		virtual void	call() = 0;
+	};
+
+
+	// Implementation for member functions
+	template <typename T_CLASS>
+	class ClassCallback : public Callback
+	{
+	private:
+		T_CLASS*	_object;
+		void 		(T_CLASS::*_fpCallback)();
+
+	public:
+		ClassCallback(T_CLASS* object, void (T_CLASS::*callbackFunction)()) :
+			_object(object), _fpCallback(callbackFunction)
+		{}
+
+		virtual	void call(){
+			(_object->*_fpCallback)();
+		}
+	};
+
+
+	// Implementation for global functions
+	class GlobalCallback : public Callback
+	{
+	private:
+		void (*_fpCallback)();
+
+	public:
+		GlobalCallback( void (*callbackFunction)() ) :
+			_fpCallback(callbackFunction)
+		{}
+
+		virtual void call(){
+			(*_fpCallback)();
+		}
+	};
+
+
+private:
+	// Data member for the Function class
+	Callback*	_callback;
+
+public:
+	// basic construct/destruct
+				Callback() : _callback(NULL) {}
+
+
+
+	template <typename T>
+	void			setCallbackFunction(T* object, void (T::*callbackFunction)()){
+					_callback = new ClassCallback<T>(object,callbackFunction);
+				}
+
+	void			setCallbackFunction(void (*callbackFunction)()){
+					_callback = new GlobalCallback(callbackFunction);
+				}
+
+
+	// actually calling the function
+	void			call(void){
+					_callback->call();
+				}
+};
+
+*/
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif 	// __YAHAL_CALLBACK_HPP_INCLUDED__
