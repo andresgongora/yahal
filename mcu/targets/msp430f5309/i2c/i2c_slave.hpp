@@ -74,7 +74,6 @@ private:			// I2C PROTOCOL
 
 
 private:			// PRIVATE VARIABLES
-	uint8_t			_ownAddress;
 	const Configuration&	_configuration;
 };
 

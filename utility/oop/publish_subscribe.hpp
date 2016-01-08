@@ -22,9 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
 #ifndef __PUBLISH_SUBSCRIBE_HPP_INCLUDED__
 #define __PUBLISH_SUBSCRIBE_HPP_INCLUDED__
 
@@ -36,8 +33,7 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace utility
-{
+namespace yahal{ namespace utility{ namespace oop{
 	template <typename T_MSG> class Publisher;
 	template <typename T_MSG> class Subscriber;
 }}
@@ -49,10 +45,10 @@ namespace yahal{ namespace mcu{ namespace utility
  * ============================================================================================== */
 
 template <typename T_MSG>
-class hal::utility::Publisher
+class yahal::utility::oop::Publisher
 {
 public:
-	void			subscribe(hal::utility::Subscriber<T_MSG>& newSubscriber)
+	void			subscribe(yahal::utility::oop::Subscriber<T_MSG>& newSubscriber)
 				{
 					_subscribers.pushBack(newSubscriber);
 				}
@@ -71,17 +67,17 @@ public:
 
 private:
 				// PRIVATE VARIABLES
-	hal::utility::LinkedList<hal::utility::Subscriber<T_MSG> >	_subscribers;
+	yahal::utility::oop::LinkedList<yahal::utility::oop::Subscriber<T_MSG> >	_subscribers;
 };
 
 
 
 /* ============================================================================================== */
- *	hal::utility::SignalHandler
+ *	yahal::utility::oop::SignalHandler
  * ============================================================================================== */
 
 template <typename T_MSG>
-class hal::utility::Subscriber : public hal::utility::LinkedListNode<Subscriber<T_MSG> >
+class yahal::utility::oop::Subscriber : public yahal::utility::oop::LinkedListNode<Subscriber<T_MSG> >
 {
 public:
 				// CONSTRUCTOR & DESTRUCTOR
@@ -90,7 +86,7 @@ public:
 
 private:
 				// FRONT END ACCESIBLE ONLY BY PUBLISHER
-	friend class		hal::utility::Publisher<T_MSG>;
+	friend class		yahal::utility::oop::Publisher<T_MSG>;
 	virtual void		notify(T_MSG message) = 0;
 };
 

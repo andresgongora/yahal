@@ -34,7 +34,7 @@
 #include <stdint.h>
 #include <cstddef>
 #include "i2c_common.hpp"
-#include "../../../utility/oop/callback.hpp"
+#include "../../../utility/oop/noncopyable.hpp"
 
 
 
@@ -47,9 +47,33 @@ namespace yahal{ namespace mcu{
 
 /***********************************************************************************************//**
  * @brief	Base class for all I2C slaves
+ *
+ *
  **************************************************************************************************/
 class yahal::mcu::I2C_slave : virtual public yahal::mcu::details::I2C_common
 {
+public:
+				/**
+				 * This class allows derived classes to be notified of slave events.
+				 */
+				class ExternalHandler : private yahal::utility::oop::NonCopyable
+				{
+				protected:
+							 ExternalHandler(void) {}
+					virtual		~ExternalHandler(void) {}
+
+				public:
+					virtual void	notifyStart(Direction::Type)	{}	/// Signal a start has been received
+					virtual void	notifyStop(void)		{}	/// Signal a stop has been received
+					virtual void	deliverRXByte(uint8_t)		{}	/// Delivers received byte to handler
+					virtual uint8_t	requestTXByte(void)	{return 0xFF;}	/// Request next byte to be sent to handler
+				};
+
+
+	void			setExternalHandler(ExternalHandler* pExternalHandler);
+
+
+
 protected:			// CONSTRUCTOR & DESTRUCTOR
 				I2C_slave(void);
 
@@ -61,26 +85,14 @@ protected:			// I2C PROTOCOL -> IMPLEMENT
 
 public:
 //protected:			// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
-	virtual void		handleReceivedStart(void);
-	virtual void		handleReceivedStop(void);
-	virtual void		handleBufferTXEmpty(void);
-	virtual void		handleBufferRXFull(void);
+	void			handleReceivedStart(void);	///< Attend Start IRQs
+	void			handleReceivedStop(void);	///< Attend Stop IRQs
+	void			handleBufferTXEmpty(void);	///< Attend next TX byte requested
+	void			handleBufferRXFull(void);	///< Attend RX
 
-
-
-public:				// SET CALLBACK FUNCTIONS FOR HOOKS
-	void			setCallbackReceivedStart(void(*fpCallOnEvent)(Direction::Type));
-	void			setCallbackReceivedStop(void(*fpCallOnEvent)(void));
-	void			setCallbackByteReceived(void(*fpCallOnEvent)(uint8_t));
-	void			setCallbackByteRequested(void(*fpCallOnEvent)(uint8_t&));
-
-
-
-private:			// PRIVATE VARIABLES
-	yahal::utility::oop::Callback<Direction::Type>	_callbackStart;
-	yahal::utility::oop::Callback<void>		_callbackStop;
-	yahal::utility::oop::Callback<uint8_t>		_callbackByteReceived;
-	yahal::utility::oop::Callback<uint8_t&>		_callbackByteRequested;
+private:
+				// PRIVATE VARIABLES
+	ExternalHandler*	_pExternalHandler;
 };
 
 

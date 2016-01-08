@@ -23,41 +23,6 @@
 	+-----------------------------------------------------------------------+	*/
 
 
-
-
-      /**
-	*	ID:
-	*   EDITED:
-	*    AUTOR:	Andres Gongora
-	*
-	*	+------ Description: -----------------------------------------------------------+
-	*	|										|
-	*	|	SOURCES:________________________________________________________	|
-	*	|	ACLK:	Auxiliary clock. ACLK is SW selectable as LFXT1CLK or VLOCLK.	|
-	*	|		ACLK is divided by 1, 2, 4, or 8.				|
-	*	|		ACLK is software selectable for individual peripheral modules	|
-	*	|										|
-	*	|	MCLK:	Master clock. MCLK is software selectable as			|
-	*	|		LFXT1CLK, VLOCLK, XT2CLK (if available onchip), or DCOCLK.	|
-	*	|		MCLK is divided by 1,2,4,or8. MCLK is used by the CPU and system|
-	*	|										|
-	*	|	SMCLK:	Sub-main clock. SMCLK is software selectable as			|
-	*	|		LFXT1CLK, VLOCLK, XT2CLK (if available on-chip), or DCOCLK.	|
-	*	|		SMCLK is divided by 1, 2, 4, or 8.				|
-	*	|		SMCLK is software selectable for individual peripheral modules.	|
-	*	|										|
-	*	|										|
-	*	|										|
-	*	|	CLOCKS:_________________________________________________________	|
-	*	|	LFXT1CLK:	Low-frequency/high-frequency oscillator			|
-	*	|	DCOCLK: 	Internal digitally controlled oscillator (DCO).		|
-	*	|	VLOCLK: 	Internal very low power, low frequency 12-kHz typical	|
-	*	|										|
-	*	+-------------------------------------------------------------------------------+
-	*	
-	**/
-
-
 #ifndef __MSP430F2132_IRQ_HPP_INCLUDED__
 #define __MSP430F2132_IRQ_HPP_INCLUDED__
 
@@ -75,9 +40,9 @@
 
 
 /* ============================================================================================== */
- *	hal::uc::msp430f2132::Irq
+ *	yahal::mcu::modules::msp430f2132::Irq
  * ============================================================================================== */
-class hal::uc::msp430f2132::Irq : public hal::uc::Irq
+class yahal::mcu::modules::msp430f2132::Irq : public yahal::mcu::modules::Irq
 {
 public:
 				// CONFIGURATION
@@ -87,19 +52,19 @@ public:
 
 
 	// PUBLISHERS
-	utility::Publisher<hal::uc::Irq::Code::I2C::Type>	i2c;
-	utility::Publisher<hal::uc::Irq::Code::UART::Type>	uart;
-	utility::Publisher<hal::uc::Irq::Code::GPIO::Type>	gpio;
+	utility::Publisher<yahal::mcu::modules::Irq::Code::I2C::Type>	i2c;
+	utility::Publisher<yahal::mcu::modules::Irq::Code::UART::Type>	uart;
+	utility::Publisher<yahal::mcu::modules::Irq::Code::GPIO::Type>	gpio;
 };
 
 
 
 /* ============================================================================================== */
- *	hal::uc::msp430f2132::Irq :: GLOBAL VARIABLE
+ *	yahal::mcu::modules::msp430f2132::Irq :: GLOBAL VARIABLE
  * ============================================================================================== */
 
 namespace hal{namespace uc{namespace msp430f2132{
-	extern hal::uc::msp430f2132::Irq irq;
+	extern yahal::mcu::targets::msp430f2132::Irq irq;
 }}}
 
 

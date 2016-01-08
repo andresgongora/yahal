@@ -27,72 +27,64 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-yahal::mcu::I2C_slave::I2C_slave(void){}
+yahal::mcu::I2C_slave::I2C_slave(void) :
+	_pExternalHandler(NULL)
+{}
 
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
+void yahal::mcu::I2C_slave::setExternalHandler(ExternalHandler* pExternalHandler)
+{
+	_pExternalHandler = pExternalHandler;
+}
 
 
 /* ---------------------------------------------------------------------------------------------- */
 
 void yahal::mcu::I2C_slave::handleReceivedStart(void)
 {
-	if(isIncommingWrite())	{_callbackStart.run(Direction::WRITE);}
-	else			{_callbackStart.run(Direction::READ);}
+	if (_pExternalHandler) {
+		if (isIncommingWrite()) {
+			_pExternalHandler->notifyStart(Direction::WRITE);
+		} else {
+			_pExternalHandler->notifyStart(Direction::READ);
+		}
+	}
 }
 
 
 
 void yahal::mcu::I2C_slave::handleReceivedStop(void)
 {
-	_callbackStop.run();
+	if (_pExternalHandler) {
+		_pExternalHandler->notifyStop();
+	}
 }
 
 
 
 void yahal::mcu::I2C_slave::handleBufferTXEmpty(void)
 {
-	uint8_t byteToSend;	// If callback fails, set to 0xFF (default value)
-	if(not _callbackByteRequested.run(byteToSend)){byteToSend = 0xFF;}
+	uint8_t byteToSend = 0xFF;	///< Default value 0xFF
 
-	// MASTER IS READING US -> Send next byte
-	writeBufferTX(byteToSend);
+	if (_pExternalHandler) {
+		byteToSend = _pExternalHandler->requestTXByte();
+	}
+
+	writeBufferTX(byteToSend);	///< MASTER IS READING US -> Send next byte
 }
 
 
 
 void yahal::mcu::I2C_slave::handleBufferRXFull(void)
 {
-	volatile uint8_t receivedByte = readBufferRX();	// Read to free input buffer (if it exists)
-	_callbackByteReceived.run(receivedByte);// Deliver byte to callback function
-}
+	volatile uint8_t receivedByte = readBufferRX();	///< Read buffer in order to free it for next transmission
 
-
-
-/* ---------------------------------------------------------------------------------------------- */
-
-void yahal::mcu::I2C_slave::setCallbackReceivedStart(void(*fpCallOnEvent)(Direction::Type))
-{
-	_callbackStart.setCallBackFunction(fpCallOnEvent);
-}
-
-
-
-void yahal::mcu::I2C_slave::setCallbackReceivedStop(void(*fpCallOnEvent)(void))
-{
-	_callbackStop.setCallBackFunction(fpCallOnEvent);
-}
-
-
-
-void yahal::mcu::I2C_slave::setCallbackByteReceived(void(*fpCallOnEvent)(uint8_t))
-{
-	_callbackByteReceived.setCallBackFunction(fpCallOnEvent);
-}
-
-
-
-void yahal::mcu::I2C_slave::setCallbackByteRequested(void(*fpCallOnEvent)(uint8_t&))
-{
-	_callbackByteRequested.setCallBackFunction(fpCallOnEvent);
+	if (_pExternalHandler) {
+		_pExternalHandler->deliverRXByte(receivedByte);
+	}
 }
 
 

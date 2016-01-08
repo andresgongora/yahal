@@ -43,7 +43,7 @@ yahal::mcu::targets::msp430f5309::I2C_multimaster::I2C_multimaster(const Configu
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcutargets::msp430f5309::I2C_multimaster::doInit(void)
+void yahal::mcu::targets::msp430f5309::I2C_multimaster::doInit(void)
 {
 	UCB1CTL1 |= UCSWRST;				// Enable SW reset while we configure the module
 	P4SEL |= BIT1 + BIT2;				// Assign I2C pins to USCI_B0
@@ -61,7 +61,7 @@ void yahal::mcutargets::msp430f5309::I2C_multimaster::doInit(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcutargets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress, Direction::Type direction)
+void yahal::mcu::targets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress, Direction::Type direction)
 {
 	while(UCB1STAT & UCBBUSY);					// Recommended to check
 
@@ -75,7 +75,7 @@ void yahal::mcutargets::msp430f5309::I2C_multimaster::start(uint8_t slaveAddress
 
 
 
-void yahal::mcutargets::msp430f5309::I2C_multimaster::stop(void)
+void yahal::mcu::targets::msp430f5309::I2C_multimaster::stop(void)
 {
 	if(not(UCB1CTL1 & UCTR))
 	{
@@ -86,21 +86,21 @@ void yahal::mcutargets::msp430f5309::I2C_multimaster::stop(void)
 
 
 
-void yahal::mcutargets::msp430f5309::I2C_multimaster::writeBufferTX(uint8_t byte)
+void yahal::mcu::targets::msp430f5309::I2C_multimaster::writeBufferTX(uint8_t byte)
 {
 	UCB1TXBUF = byte;
 }
 
 
 
-uint8_t yahal::mcutargets::msp430f5309::I2C_multimaster::readBufferRX(void)
+uint8_t yahal::mcu::targets::msp430f5309::I2C_multimaster::readBufferRX(void)
 {
 	return UCB1RXBUF;
 }
 
 
 
-void yahal::mcutargets::msp430f5309::I2C_multimaster::awaitTransmissionEnd(void)
+void yahal::mcu::targets::msp430f5309::I2C_multimaster::awaitTransmissionEnd(void)
 {
 	while(UCB1STAT & UCBBUSY);
 	UCB1CTL1 &= ~(UCTR + UCTXNACK + UCTXSTP + UCTXSTT);
@@ -109,19 +109,19 @@ void yahal::mcutargets::msp430f5309::I2C_multimaster::awaitTransmissionEnd(void)
 
 
 
-bool yahal::mcutargets::msp430f5309::I2C_multimaster::isIncommingWrite(void)
+bool yahal::mcu::targets::msp430f5309::I2C_multimaster::isIncommingWrite(void)
 {
 	return (UCB1CTL1 & UCTR);
 }
 
 
-bool yahal::mcutargets::msp430f5309::I2C_multimaster::isMaster(void)
+bool yahal::mcu::targets::msp430f5309::I2C_multimaster::isMaster(void)
 {
 	return (UCB1CTL0 & UCMST);
 }
 
 
-void yahal::mcutargets::msp430f5309::I2C_multimaster::configureAsMaster(void)
+void yahal::mcu::targets::msp430f5309::I2C_multimaster::configureAsMaster(void)
 {
 	awaitTransmissionEnd();
 
