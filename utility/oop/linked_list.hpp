@@ -34,14 +34,88 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
-	template <typename T> class LinkedList;
 	template <typename T> class LinkedListNode;
+	template <typename T> class LinkedList;
 }}}
+
+
+
+
+
+/***********************************************************************************************//**
+ * @brief	Individual node of a linked list. Its type is T_NODE.
+ *
+ *	A LinkedListNode derives from T_NODE, and thus allows access to the base class.
+ **************************************************************************************************/
+template <typename T_NODE>
+class yahal::utility::oop::LinkedListNode :
+		public T_NODE
+{
+public:
+				// CONSTRUCTOR
+				LinkedListNode() : _pNextNode(0)
+				{}
+
+
+private:
+				// FRIEND
+	friend class		yahal::utility::oop::LinkedList<T_NODE>;
+
+
+				/// Set pointer to next node
+	void			setNext(LinkedListNode<T_NODE>& nextNode)
+				{
+					_pNextNode = &nextNode;
+				}
+
+
+				/// Get pointer to next node
+	LinkedListNode<T_NODE>*	getNext(void) const
+				{
+					return _pNextNode;
+				}
+
+
+				/// Pointer to next node of same class
+	LinkedListNode<T_NODE>*	_pNextNode;
+};
+
 
 
 
 /***********************************************************************************************//**
  * @brief	Linked list of templated type T_NODE.
+ *
+ *	A LinkedList is composed of a series of LinkedListNodes, in which each node points
+ *	to the next node.
+ *
+ *	The function of the LinkedList is to provide methods to navigate to the desired
+ *	LinkedListNode, control the total ammount of linked nodes and allow adding new
+ *	nodes to the list.
+ *
+ * @code
+ *	// Class example we want to link in a list
+ *	class MyClass {
+ *	public:
+ *		void foo(void) { ··· }
+ *		int number;
+ *	}
+ *
+ *	// Nodes that will be linked
+ *	typedef LinkedListNode<MyClass> MyClassNode;
+ *	MyClassNode a;
+ *	MyClassNode b;
+ *
+ *	// Linked List
+ *	LinkedList<MyClass> ll;		// Linked list starts empty
+ *
+ *	// Linked List manipulation
+ *	ll.pushBack(a);			// Add a to list.
+ *	ll.pushBack(b);			// Add b to list, linked after a;
+ *	ll[0];				// Returns pointer to a;
+ *	ll[1]->foo();			// Returns pointer to b and runs b.foo();
+ *	ll.size();			// Returns linked list size, equal to 2
+ * @endcode
  **************************************************************************************************/
 template <typename T_NODE>
 class yahal::utility::oop::LinkedList
@@ -51,12 +125,12 @@ public:				// CONSTRUCTOR
 
 
 				/// APPEND NODE
-	void			pushBack(T_NODE& newNode)
+	void			pushBack(LinkedListNode<T_NODE>& newNode)
 				{
 					if (isEmpty()) {
 						_pFirstNode = &newNode;
 					} else {
-						lastNode->setNext(newNode);
+						lastNode()->setNext(newNode);
 					}
 
 					_size++;
@@ -65,20 +139,21 @@ public:				// CONSTRUCTOR
 
 
 public:				/// RETRIEVE NODE
-	T_NODE*			operator[](std::size_t possition) const
+	LinkedListNode<T_NODE>*	operator[](std::size_t position) const
 				{
-					T_NODE*	pCurrentNode = _pFirstNode;
+					LinkedListNode<T_NODE>*	pCurrentNode = _pFirstNode;
 
-					if (possition >= _size) {
+					if (position >= _size) {
+						/// Try to detect this error in debug mode
 						_DEBUG_TRAP();
 
-						/// If tryong to access non-existant node, point
-						/// to last node instead.
+						/// If trying to access non-existant node,
+						/// point instead to last node instead.
 						/// Its not an optimum solution.
 						position = _size -1;
 					}
 
-					for (std::size_t i = possition; i; i--) {
+					for (std::size_t i = position; i; i--) {
 						pCurrentNode = pCurrentNode->getNext();
 					}
 
@@ -102,7 +177,7 @@ public:				/// Check if linked list is empty
 
 private:
 				/// Retrieve last node
-	T_NODE*			lastNode(void) const
+	LinkedListNode<T_NODE>*	lastNode(void) const
 				{
 					if (isEmpty()) {
 						return _pFirstNode;
@@ -114,42 +189,9 @@ private:
 
 
 private:			// PRIVATE VARIABLES
-	T_NODE*			_pFirstNode;	///< Pointer to first node, starts empty.
+	LinkedListNode<T_NODE>*	_pFirstNode;	///< Pointer to first node, starts empty.
 	std::size_t		_size;		///< Store size of linked list.
 };
-
-
-
-
-
-/***********************************************************************************************//**
- * @brief	Individual node of a linked list. Its type is T_NODE.
- **************************************************************************************************/
-template <typename T_NODE>
-class yahal::utility::oop::LinkedListNode
-{
-public:
-				// CONSTRUCTOR
-				LinkedListNode()		: _pNextNode(0)	{}
-
-
-private:
-				// FRIEND
-	friend class		mcu::utility::LinkedList<T_NODE>;
-
-
-				/// Set pointer to next node
-	void			setNext(T_NODE& nextNode)	{_pNextNode = &nextNode;}
-
-
-				/// Get pointer to next node
-	T_NODE*			getNext(void) const		{return _pNextNode;}
-
-
-				/// Pointer to next node of same class
-	T_NODE*			_pNextNode;
-};
-
 
 
 
