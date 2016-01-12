@@ -95,9 +95,13 @@ private:
 				/// Todo: mecahnism to detect source publisher.
 	virtual void		notify(T_MSG message) = 0;
 
-	void			subscribeTo(yahal::utility::oop::Publisher<T_MSG>* p_publisher){
 
-	}
+
+public:
+				/// Subscribe to publisher
+	void			subscribeTo(yahal::utility::oop::Publisher<T_MSG>* p_publisher){
+					p_publisher->subscribe(this);
+				}
 };
 
 
