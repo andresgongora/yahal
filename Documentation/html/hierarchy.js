@@ -45,10 +45,7 @@ var hierarchy =
     [ "yahal::mcu::targets::msp430f5309::Clk::Frequency", "structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html", null ],
     [ "yahal::mcu::Irq::GPIO", "structyahal_1_1mcu_1_1_irq_1_1_g_p_i_o.html", null ],
     [ "yahal::mcu::Irq::I2C", "structyahal_1_1mcu_1_1_irq_1_1_i2_c.html", null ],
-    [ "yahal::mcu::utility::oop::LinkedList< T >", "classyahal_1_1mcu_1_1utility_1_1oop_1_1_linked_list.html", null ],
     [ "yahal::utility::oop::LinkedList< T_NODE >", "classyahal_1_1utility_1_1oop_1_1_linked_list.html", null ],
-    [ "yahal::utility::oop::LinkedListNode< T_NODE >", "classyahal_1_1utility_1_1oop_1_1_linked_list_node.html", null ],
-    [ "yahal::mcu::utility::oop::LinkedListNode< T >", "classyahal_1_1mcu_1_1utility_1_1oop_1_1_linked_list_node.html", null ],
     [ "hal::utility::MessageBuffer< T_data, T_bufferSize >", "classhal_1_1utility_1_1_message_buffer.html", null ],
     [ "hal::utility::MessageStack< T_data, T_stackSize >", "classhal_1_1utility_1_1_message_stack.html", null ],
     [ "yahal::utility::oop::NonCopyable", "classyahal_1_1utility_1_1oop_1_1_non_copyable.html", [
@@ -65,5 +62,8 @@ var hierarchy =
     [ "yahal::mcu::Gpio::Port", "classyahal_1_1mcu_1_1_gpio_1_1_port.html", null ],
     [ "yahal::mcu::Gpio::Resistor", "structyahal_1_1mcu_1_1_gpio_1_1_resistor.html", null ],
     [ "hal::utility::SlidingWindow< T_data, T_bufferSize >", "classhal_1_1utility_1_1_sliding_window.html", null ],
+    [ "T_NODE", null, [
+      [ "yahal::utility::oop::LinkedListNode< T_NODE >", "classyahal_1_1utility_1_1oop_1_1_linked_list_node.html", null ]
+    ] ],
     [ "yahal::mcu::Irq::UART", "structyahal_1_1mcu_1_1_irq_1_1_u_a_r_t.html", null ]
 ];

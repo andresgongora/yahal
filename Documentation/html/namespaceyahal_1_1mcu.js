@@ -2,7 +2,6 @@ var namespaceyahal_1_1mcu =
 [
     [ "details", "namespaceyahal_1_1mcu_1_1details.html", "namespaceyahal_1_1mcu_1_1details" ],
     [ "targets", "namespaceyahal_1_1mcu_1_1targets.html", "namespaceyahal_1_1mcu_1_1targets" ],
-    [ "utility", "namespaceyahal_1_1mcu_1_1utility.html", "namespaceyahal_1_1mcu_1_1utility" ],
     [ "Clk", "classyahal_1_1mcu_1_1_clk.html", [
       [ "Error", "structyahal_1_1mcu_1_1_clk_1_1_error.html", "structyahal_1_1mcu_1_1_clk_1_1_error" ]
     ] ],

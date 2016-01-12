@@ -179,32 +179,30 @@ $(document).ready(function(){initNavTree('publish__subscribe_8hpp_source.html','
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">/* ============================================================================================== */</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; *      yahal::utility::oop::SignalHandler</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; * ============================================================================================== */</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T_MSG&gt;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">class </span>yahal::utility::oop::Subscriber : <span class="keyword">public</span> <a class="code" href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html">yahal::utility::oop::LinkedListNode</a>&lt;Subscriber&lt;T_MSG&gt; &gt;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                                <span class="comment">// CONSTRUCTOR &amp; DESTRUCTOR</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                                Subscriber(<span class="keywordtype">void</span>)                {}</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                <span class="comment">// FRONT END ACCESIBLE ONLY BY PUBLISHER</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class            </span>yahal::utility::oop::Publisher&lt;T_MSG&gt;;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            notify(T_MSG message) = 0;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">/***********************************************************************************************/</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T_MSG&gt;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">class </span>yahal::utility::oop::Subscriber : <span class="keyword">public</span> <a class="code" href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html">yahal::utility::oop::LinkedListNode</a>&lt;Subscriber&lt;T_MSG&gt; &gt;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                                <span class="comment">// CONSTRUCTOR</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                                Subscriber(<span class="keywordtype">void</span>)                {}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                                <span class="comment">// FRONT END ACCESIBLE ONLY BY PUBLISHER</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class            </span>yahal::utility::oop::Publisher&lt;T_MSG&gt;;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif  // __YAHAL_UTILITY_OOP_PUBLISH_SUBSCRIBE_HPP_INCLUDED__</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span>            notify(T_MSG message) = 0;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">/* ---------------------------------------------------------------------------------------------- */</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif  // __YAHAL_UTILITY_OOP_PUBLISH_SUBSCRIBE_HPP_INCLUDED__</span></div>
 <div class="ttc" id="namespaceyahal_html"><div class="ttname"><a href="namespaceyahal.html">yahal</a></div><div class="ttdoc">-— INCLUDE ----------------------------------------------------------------------------— ...</div><div class="ttdef"><b>Definition:</b> <a href="assert_8hpp_source.html#l00037">assert.hpp:37</a></div></div>
 <div class="ttc" id="linked__list_8hpp_html"><div class="ttname"><a href="linked__list_8hpp.html">linked_list.hpp</a></div></div>
-<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_linked_list_node_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html">yahal::utility::oop::LinkedListNode</a></div><div class="ttdoc">Individual node of a linked list. </div><div class="ttdef"><b>Definition:</b> <a href="linked__list_8hpp_source.html#l00129">linked_list.hpp:129</a></div></div>
-<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_linked_list_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_linked_list.html">yahal::utility::oop::LinkedList</a></div><div class="ttdoc">Linked list of templated type T_NODE. </div><div class="ttdef"><b>Definition:</b> <a href="linked__list_8hpp_source.html#l00047">linked_list.hpp:47</a></div></div>
+<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_linked_list_node_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html">yahal::utility::oop::LinkedListNode</a></div><div class="ttdoc">Individual node of a linked list. </div><div class="ttdef"><b>Definition:</b> <a href="linked__list_8hpp_source.html#l00037">linked_list.hpp:37</a></div></div>
+<div class="ttc" id="classyahal_1_1utility_1_1oop_1_1_linked_list_html"><div class="ttname"><a href="classyahal_1_1utility_1_1oop_1_1_linked_list.html">yahal::utility::oop::LinkedList</a></div><div class="ttdoc">Linked list of templated type T_NODE. </div><div class="ttdef"><b>Definition:</b> <a href="linked__list_8hpp_source.html#l00038">linked_list.hpp:38</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

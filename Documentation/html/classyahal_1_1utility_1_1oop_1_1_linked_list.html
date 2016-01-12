@@ -124,12 +124,12 @@ $(document).ready(function(){initNavTree('classyahal_1_1utility_1_1oop_1_1_linke
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac49ed050eecbc9b3afb8d765a73a7ead"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#ac49ed050eecbc9b3afb8d765a73a7ead">LinkedList</a> ()</td></tr>
 <tr class="separator:ac49ed050eecbc9b3afb8d765a73a7ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a3667e8776fb939e864ffd6c89ffc33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#a8a3667e8776fb939e864ffd6c89ffc33">pushBack</a> (T_NODE &amp;newNode)</td></tr>
-<tr class="memdesc:a8a3667e8776fb939e864ffd6c89ffc33"><td class="mdescLeft">&#160;</td><td class="mdescRight">APPEND NODE.  <a href="#a8a3667e8776fb939e864ffd6c89ffc33">More...</a><br /></td></tr>
-<tr class="separator:a8a3667e8776fb939e864ffd6c89ffc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7669763e6442113229001cbebbfe62a3"><td class="memItemLeft" align="right" valign="top">T_NODE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#a7669763e6442113229001cbebbfe62a3">operator[]</a> (std::size_t possition) const </td></tr>
-<tr class="memdesc:a7669763e6442113229001cbebbfe62a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">RETRIEVE NODE.  <a href="#a7669763e6442113229001cbebbfe62a3">More...</a><br /></td></tr>
-<tr class="separator:a7669763e6442113229001cbebbfe62a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87a59970a51e987178c3295f34862f6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#a87a59970a51e987178c3295f34862f6a">pushBack</a> (<a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html">LinkedListNode</a>&lt; T_NODE &gt; &amp;newNode)</td></tr>
+<tr class="memdesc:a87a59970a51e987178c3295f34862f6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">APPEND NODE.  <a href="#a87a59970a51e987178c3295f34862f6a">More...</a><br /></td></tr>
+<tr class="separator:a87a59970a51e987178c3295f34862f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf018304941b5a23c3269fc55d74bf16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html">LinkedListNode</a>&lt; T_NODE &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#aaf018304941b5a23c3269fc55d74bf16">operator[]</a> (std::size_t position) const </td></tr>
+<tr class="memdesc:aaf018304941b5a23c3269fc55d74bf16"><td class="mdescLeft">&#160;</td><td class="mdescRight">RETRIEVE NODE.  <a href="#aaf018304941b5a23c3269fc55d74bf16">More...</a><br /></td></tr>
+<tr class="separator:aaf018304941b5a23c3269fc55d74bf16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2ea463e8f3979ddfe5c30fec306f7a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html#af2ea463e8f3979ddfe5c30fec306f7a8">isEmpty</a> (void) const </td></tr>
 <tr class="memdesc:af2ea463e8f3979ddfe5c30fec306f7a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if linked list is empty.  <a href="#af2ea463e8f3979ddfe5c30fec306f7a8">More...</a><br /></td></tr>
 <tr class="separator:af2ea463e8f3979ddfe5c30fec306f7a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,8 +142,31 @@ Public Member Functions</h2></td></tr>
 class yahal::utility::oop::LinkedList&lt; T_NODE &gt;</h3>
 
 <p>Linked list of templated type T_NODE. </p>
-
-<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00047">47</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
+<p>A <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html" title="Linked list of templated type T_NODE. ">LinkedList</a> is composed of a series of LinkedListNodes, in which each node points to the next node.</p>
+<p>The function of the <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html" title="Linked list of templated type T_NODE. ">LinkedList</a> is to provide methods to navigate to the desired <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html" title="Individual node of a linked list. ">LinkedListNode</a>, control the total ammount of linked nodes and allow adding new nodes to the list.</p>
+<div class="fragment"><div class="line"><span class="comment">// Class example we want to link in a list</span></div>
+<div class="line"><span class="keyword">class </span>MyClass {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">   <span class="keywordtype">void</span> foo(<span class="keywordtype">void</span>) { ··· }</div>
+<div class="line">   <span class="keywordtype">int</span> number;</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Nodes that will be linked</span></div>
+<div class="line"><span class="keyword">typedef</span> LinkedListNode&lt;MyClass&gt; MyClassNode;</div>
+<div class="line">MyClassNode a;</div>
+<div class="line">MyClassNode b;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Linked List</span></div>
+<div class="line">LinkedList&lt;MyClass&gt; ll;            <span class="comment">// Linked list starts empty</span></div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Linked List manipulation</span></div>
+<div class="line">ll.pushBack(a);                    <span class="comment">// Add a to list.</span></div>
+<div class="line">ll.pushBack(b);                    <span class="comment">// Add b to list, linked after a;</span></div>
+<div class="line">ll[0];                             <span class="comment">// Returns pointer to a;</span></div>
+<div class="line">ll[1]-&gt;foo();                      <span class="comment">// Returns pointer to b and runs b.foo();</span></div>
+<div class="line">ll.size();                 <span class="comment">// Returns linked list size, equal to 2</span></div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00038">38</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ac49ed050eecbc9b3afb8d765a73a7ead"></a>
 <div class="memitem">
@@ -168,7 +191,7 @@ template&lt;typename T_NODE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00050">50</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
+<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00124">124</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
 
 </div>
 </div>
@@ -199,11 +222,11 @@ template&lt;typename T_NODE&gt; </div>
 
 <p>Check if linked list is empty. </p>
 
-<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00091">91</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
+<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00166">166</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7669763e6442113229001cbebbfe62a3"></a>
+<a class="anchor" id="aaf018304941b5a23c3269fc55d74bf16"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -213,10 +236,10 @@ template&lt;typename T_NODE&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">T_NODE* <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html">yahal::utility::oop::LinkedList</a>&lt; T_NODE &gt;::operator[] </td>
+          <td class="memname"><a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html">LinkedListNode</a>&lt;T_NODE&gt;* <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html">yahal::utility::oop::LinkedList</a>&lt; T_NODE &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>possition</em></td><td>)</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -228,13 +251,14 @@ template&lt;typename T_NODE&gt; </div>
 </div><div class="memdoc">
 
 <p>RETRIEVE NODE. </p>
-<p>If tryong to access non-existant node, point to last node instead. Its not an optimum solution. </p>
+<p>Try to detect this error in debug mode</p>
+<p>If trying to access non-existant node, point instead to last node instead. Its not an optimum solution. </p>
 
-<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00068">68</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
+<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00142">142</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8a3667e8776fb939e864ffd6c89ffc33"></a>
+<a class="anchor" id="a87a59970a51e987178c3295f34862f6a"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -246,7 +270,7 @@ template&lt;typename T_NODE&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list.html">yahal::utility::oop::LinkedList</a>&lt; T_NODE &gt;::pushBack </td>
           <td>(</td>
-          <td class="paramtype">T_NODE &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classyahal_1_1utility_1_1oop_1_1_linked_list_node.html">LinkedListNode</a>&lt; T_NODE &gt; &amp;&#160;</td>
           <td class="paramname"><em>newNode</em></td><td>)</td>
           <td></td>
         </tr>
@@ -260,7 +284,7 @@ template&lt;typename T_NODE&gt; </div>
 
 <p>APPEND NODE. </p>
 
-<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00054">54</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
+<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00128">128</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
 
 </div>
 </div>
@@ -290,7 +314,7 @@ template&lt;typename T_NODE&gt; </div>
 
 <p>Get size of linked list. </p>
 
-<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00097">97</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
+<p>Definition at line <a class="el" href="linked__list_8hpp_source.html#l00172">172</a> of file <a class="el" href="linked__list_8hpp_source.html">linked_list.hpp</a>.</p>
 
 </div>
 </div>

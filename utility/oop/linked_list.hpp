@@ -40,21 +40,21 @@ namespace yahal{ namespace utility{ namespace oop{
 
 
 
-
-
 /***********************************************************************************************//**
- * @brief	Individual node of a linked list. Its type is T_NODE.
+ * @brief	Base class for classes that can be linked in a LinkedList
  *
- *	A LinkedListNode derives from T_NODE, and thus allows access to the base class.
+ *	The Curiously Recurring Template Pattern is used to acces the derived class T_NODE.
+ *	All methods for LinkedListNode are private and only accesible by LinkedList.
+ *
+ * @todo	assert((std::is_base_of<LinkedListNode<T_NODE>, T_NODE>::value));
  **************************************************************************************************/
 template <typename T_NODE>
-class yahal::utility::oop::LinkedListNode :
-		public T_NODE
+class yahal::utility::oop::LinkedListNode
 {
-public:
+protected:
 				// CONSTRUCTOR
-				LinkedListNode() : _pNextNode(0)
-				{}
+				 LinkedListNode(void) : _pNextNode(0)	{}
+	virtual			~LinkedListNode(void)			{}
 
 
 private:
@@ -63,21 +63,21 @@ private:
 
 
 				/// Set pointer to next node
-	void			setNext(LinkedListNode<T_NODE>& nextNode)
+	void			setNext(T_NODE& nextNode)
 				{
 					_pNextNode = &nextNode;
 				}
 
 
 				/// Get pointer to next node
-	LinkedListNode<T_NODE>*	getNext(void) const
+	T_NODE*			getNext(void) const
 				{
 					return _pNextNode;
 				}
 
 
 				/// Pointer to next node of same class
-	LinkedListNode<T_NODE>*	_pNextNode;
+	T_NODE*			_pNextNode;
 };
 
 
@@ -86,23 +86,22 @@ private:
 /***********************************************************************************************//**
  * @brief	Linked list of templated type T_NODE.
  *
- *	A LinkedList is composed of a series of LinkedListNodes, in which each node points
- *	to the next node.
+ *	A LinkedList is composed of a series of classes deroved from LinkedListNodes,
+ *	in which each node points to the next node.
  *
- *	The function of the LinkedList is to provide methods to navigate to the desired
- *	LinkedListNode, control the total ammount of linked nodes and allow adding new
- *	nodes to the list.
+ *	The function of the LinkedList is to provide methods to navigate to the desired node,
+ *	control the total ammount of linked nodes and allow adding new nodes to the list.
  *
  * @code
- *	// Class example we want to link in a list
- *	class MyClass {
+ *	// Class example we want to link in a list. Must derive from LinkedListNode
+ *	class MyClass : public LinkedListNode<MyClass>
+ *	{
  *	public:
- *		void foo(void) { ··· }
+ *		void foo(void) { ... }
  *		int number;
  *	}
  *
  *	// Nodes that will be linked
- *	typedef LinkedListNode<MyClass> MyClassNode;
  *	MyClassNode a;
  *	MyClassNode b;
  *
@@ -120,12 +119,13 @@ private:
 template <typename T_NODE>
 class yahal::utility::oop::LinkedList
 {
-public:				// CONSTRUCTOR
+public:
+				/// CONSTRUCTOR
 				LinkedList()	: _pFirstNode(0), _size(0)	{}
 
 
 				/// APPEND NODE
-	void			pushBack(LinkedListNode<T_NODE>& newNode)
+	void			pushBack(T_NODE& newNode)
 				{
 					if (isEmpty()) {
 						_pFirstNode = &newNode;
@@ -138,10 +138,11 @@ public:				// CONSTRUCTOR
 
 
 
-public:				/// RETRIEVE NODE
-	LinkedListNode<T_NODE>*	operator[](std::size_t position) const
+public:
+				/// RETRIEVE NODE
+	T_NODE*			operator[](std::size_t position) const
 				{
-					LinkedListNode<T_NODE>*	pCurrentNode = _pFirstNode;
+					T_NODE*	pCurrentNode = _pFirstNode;
 
 					if (position >= _size) {
 						/// Try to detect this error in debug mode
@@ -162,7 +163,7 @@ public:				/// RETRIEVE NODE
 
 
 
-public:				/// Check if linked list is empty
+				/// Check if linked list is empty
 	bool			isEmpty(void) const
 				{
 					return (_pFirstNode == 0);
@@ -177,7 +178,7 @@ public:				/// Check if linked list is empty
 
 private:
 				/// Retrieve last node
-	LinkedListNode<T_NODE>*	lastNode(void) const
+	T_NODE*			lastNode(void) const
 				{
 					if (isEmpty()) {
 						return _pFirstNode;
@@ -189,7 +190,7 @@ private:
 
 
 private:			// PRIVATE VARIABLES
-	LinkedListNode<T_NODE>*	_pFirstNode;	///< Pointer to first node, starts empty.
+	T_NODE*			_pFirstNode;	///< Pointer to first node, starts empty.
 	std::size_t		_size;		///< Store size of linked list.
 };
 

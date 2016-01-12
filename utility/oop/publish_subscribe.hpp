@@ -36,7 +36,7 @@
 namespace yahal{ namespace utility{ namespace oop{
 	template <typename T_MSG> class Publisher;
 	template <typename T_MSG> class Subscriber;
-}}
+}}}
 
 
 
@@ -66,8 +66,8 @@ public:
 
 
 private:
-				// PRIVATE VARIABLES
-	yahal::utility::oop::LinkedList<yahal::utility::oop::Subscriber<T_MSG> >	_subscribers;	///< Linked list of type Subscribers
+				/// Linked list of type Subscribers
+	yahal::utility::oop::LinkedList< yahal::utility::oop::Subscriber<T_MSG> > _subscribers;
 };
 
 
@@ -79,7 +79,7 @@ private:
  * the source of a message.
  **************************************************************************************************/
 template <typename T_MSG>
-class yahal::utility::oop::Subscriber : public yahal::utility::oop::LinkedListNode<Subscriber<T_MSG> >
+class yahal::utility::oop::Subscriber : public yahal::utility::oop::LinkedListNode<T_MSG>
 {
 protected:
 				// CONSTRUCTOR
@@ -87,12 +87,14 @@ protected:
 
 
 private:
-				// FRONT END ACCESIBLE ONLY BY PUBLISHER
+				/// FRONT END ACCESIBLE ONLY BY PUBLISHER
 	friend class		yahal::utility::oop::Publisher<T_MSG>;
 
 				/// This function receives any published message.
 				/// Todo: mecahnism to detect source publisher.
 	virtual void		notify(T_MSG message) = 0;
+
+	void			subscribeTo(yahal::utility::oop::Publisher<T_MSG> publisher){}
 };
 
 
