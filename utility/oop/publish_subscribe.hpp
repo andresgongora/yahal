@@ -42,6 +42,43 @@ namespace yahal{ namespace utility{ namespace oop{
 
 /***********************************************************************************************//**
  * @brief	Publisher base class. This class notifies all subscribers.
+ *
+ *
+ * @code
+ * 	// Messages, for example an enum, but it could be any class
+ * 	enum MyCode{
+ * 		NOTHING,
+ * 		SUCCESS,
+ * 		GOAL,
+ * 		IMOUTOFIDEAD
+ * 	};
+ *
+ * 	// Publisher class
+ * 	class Newsletter : public Publisher<MyCode>
+ * 	{
+ * 		...
+ * 	}
+ *
+ * 	// Subscriber
+ * 	class Reader : public Subscriber<MyCode>
+ * 	{
+ * 		// Do stuff when a message is received.
+ * 		virtual notify(MyCode message){ ... } *
+ * 	}
+ *
+ * 	main()
+ * 	{
+ * 		Newsletter dayly_sports;		// Publisher
+ * 		Reader	john;				// Subscriber
+ * 		Reader	mikel;				// Subscriber
+ *
+ * 		// Subscriptions
+ * 		john.subscribeTo(&dayly_sports);	// A subscriber may subscribe: valid
+ * 		dayly_sports.subscribe(&mikel);		// A publisher may be subscribed to: valid
+ *
+ * 		dayly_sports.publish(GOAL);		// All subscribers receive a message GOAL
+ * 	}
+ *
  **************************************************************************************************/
 template <typename T_MSG>
 class yahal::utility::oop::Publisher
