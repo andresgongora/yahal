@@ -34,6 +34,7 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../../../modules/i2c/i2c_multimaster.hpp"
+#include "../irq/irq.hpp"
 
 
 
@@ -47,7 +48,9 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::I2C_multimaster : public yahal::mcu::I2C_multimaster
+class yahal::mcu::targets::msp430f5309::I2C_multimaster :
+	public yahal::mcu::I2C_multimaster,
+	public yahal::mcu::targets::msp430f5309::IRQHandler::I2C
 {
 public:
 				struct Configuration
@@ -80,6 +83,13 @@ public:
 
 private:			// PRIVATE VARIABLES
 	const Configuration&	_configuration;
+
+
+private:			// ISR
+	friend class		yahal::mcu::targets::msp430f5309::IRQHandler;
+	virtual void 		isr(IRQHandler::I2C::IRQ::Type irq) {
+					for(;;);
+				}
 };
 
 

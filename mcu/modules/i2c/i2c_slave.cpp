@@ -28,16 +28,16 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 yahal::mcu::I2C_slave::I2C_slave(void) :
-	_pExternalHandler(NULL)
+	p_external_handler_(NULL)
 {}
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::I2C_slave::setExternalHandler(ExternalHandler* pExternalHandler)
+void yahal::mcu::I2C_slave::setExternalHandler(ExternalHandler* p_external_handler)
 {
-	_pExternalHandler = pExternalHandler;
+	p_external_handler_ = p_external_handler;
 }
 
 
@@ -45,11 +45,11 @@ void yahal::mcu::I2C_slave::setExternalHandler(ExternalHandler* pExternalHandler
 
 void yahal::mcu::I2C_slave::handleReceivedStart(void)
 {
-	if (_pExternalHandler) {
+	if (p_external_handler_) {
 		if (isIncommingWrite()) {
-			_pExternalHandler->notifyStart(Direction::WRITE);
+			p_external_handler_->notifyStart(Direction::WRITE);
 		} else {
-			_pExternalHandler->notifyStart(Direction::READ);
+			p_external_handler_->notifyStart(Direction::READ);
 		}
 	}
 }
@@ -58,8 +58,8 @@ void yahal::mcu::I2C_slave::handleReceivedStart(void)
 
 void yahal::mcu::I2C_slave::handleReceivedStop(void)
 {
-	if (_pExternalHandler) {
-		_pExternalHandler->notifyStop();
+	if (p_external_handler_) {
+		p_external_handler_->notifyStop();
 	}
 }
 
@@ -69,8 +69,8 @@ void yahal::mcu::I2C_slave::handleBufferTXEmpty(void)
 {
 	uint8_t byteToSend = 0xFF;	///< Default value 0xFF
 
-	if (_pExternalHandler) {
-		byteToSend = _pExternalHandler->requestTXByte();
+	if (p_external_handler_) {
+		byteToSend = p_external_handler_->requestTXByte();
 	}
 
 	writeBufferTX(byteToSend);	///< MASTER IS READING US -> Send next byte
@@ -82,8 +82,8 @@ void yahal::mcu::I2C_slave::handleBufferRXFull(void)
 {
 	volatile uint8_t receivedByte = readBufferRX();	///< Read buffer in order to free it for next transmission
 
-	if (_pExternalHandler) {
-		_pExternalHandler->deliverRXByte(receivedByte);
+	if (p_external_handler_) {
+		p_external_handler_->deliverRXByte(receivedByte);
 	}
 }
 

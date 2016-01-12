@@ -80,5 +80,5 @@ private:			// PRIVATE VARIABLES
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // MCU_DEVICE == MCU_MSP430F5309
-#endif // __M430F5309_I2C_SLAVE_HPP_INCLUDED__
+#endif	// MCU_DEVICE == MCU_MSP430F5309
+#endif	// __M430F5309_I2C_SLAVE_HPP_INCLUDED__

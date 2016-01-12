@@ -70,7 +70,7 @@ public:
 				};
 
 
-	void			setExternalHandler(ExternalHandler* pExternalHandler);
+	void			setExternalHandler(ExternalHandler* p_external_handler);
 
 
 
@@ -92,7 +92,7 @@ public:
 
 private:
 				// PRIVATE VARIABLES
-	ExternalHandler*	_pExternalHandler;
+	ExternalHandler*	p_external_handler_;
 };
 
 

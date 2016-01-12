@@ -22,51 +22,74 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-#ifndef __MSP430F2132_IRQ_HPP_INCLUDED__
-#define __MSP430F2132_IRQ_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_M430F5309_IRQ_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_IRQ_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../msp430f5309.hpp"
-#include "hal/utility/publish_subscribe.hpp"
+#include "../../../config/mcu_config.hpp"
+#if MCU_DEVICE == MCU_MSP430F5309
+
+#include <stdint.h>
+#include <cstddef>
 
 
 
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+	class IRQHandler;
+}}}}
 
-/** --- DEFINE --------------------------------------------------------------------------------- **/
 
 
-
-/* ============================================================================================== */
- *	yahal::mcu::modules::msp430f2132::Irq
- * ============================================================================================== */
-class yahal::mcu::modules::msp430f2132::Irq : public yahal::mcu::modules::Irq
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::targets::msp430f5309::IRQHandler // : public yahal::mcu::modules::Irq
 {
 public:
-				// CONFIGURATION
-	void			enableGlobalInterrupts(void) const;
-	void			disableGlobalInterrupts(void) const;
+				/// I2C IRQ Handler
+				class I2C
+				{
+				protected:		I2C(void) {}
+				public:
+							struct IRQ { enum Type {
+								START,
+								STOP,
+								ETC,
+							};};
+				protected:
+					friend class	IRQHandler;
+					virtual void	isr(IRQHandler::I2C::IRQ::Type irq) = 0;
+				};
 
 
 
-	// PUBLISHERS
-	utility::Publisher<yahal::mcu::modules::Irq::Code::I2C::Type>	i2c;
-	utility::Publisher<yahal::mcu::modules::Irq::Code::UART::Type>	uart;
-	utility::Publisher<yahal::mcu::modules::Irq::Code::GPIO::Type>	gpio;
+
+public:
+				/// Constructor
+				IRQHandler(void);
+
+
+public:
+				// I2C
+	void 			setISRHandlerI2C(I2C* p_handler);
+	void 			irqHandleI2C(I2C::IRQ::Type irq);
+
+
+
+private:
+				// POINTERS
+	I2C*			p_i2c_;
+
 };
 
-
-
-/* ============================================================================================== */
- *	yahal::mcu::modules::msp430f2132::Irq :: GLOBAL VARIABLE
- * ============================================================================================== */
-
-namespace hal{namespace uc{namespace msp430f2132{
-	extern yahal::mcu::targets::msp430f2132::Irq irq;
-}}}
-
+/*				// CONFIGURATION
+ void			enableGlobalInterrupts(void) const;
+ void			disableGlobalInterrupts(void) const;
+ */
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__MSP430F2132_IRQ_HPP_INCLUDED__
+#endif	// MCU_DEVICE == MCU_MSP430F5309
+#endif 	// __YAHAL_MCU_M430F5309_IRQ_HPP_INCLUDED__
