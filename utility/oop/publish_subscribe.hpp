@@ -79,7 +79,8 @@ private:
  * the source of a message.
  **************************************************************************************************/
 template <typename T_MSG>
-class yahal::utility::oop::Subscriber : public yahal::utility::oop::LinkedListNode<T_MSG>
+class yahal::utility::oop::Subscriber :
+	public yahal::utility::oop::LinkedListNode<yahal::utility::oop::Subscriber<T_MSG> >
 {
 protected:
 				// CONSTRUCTOR
