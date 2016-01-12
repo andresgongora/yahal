@@ -48,9 +48,9 @@ class yahal::utility::oop::Publisher
 {
 public:
 				/// Used by Subscribers to subscribe.
-	void			subscribe(yahal::utility::oop::Subscriber<T_MSG>& newSubscriber)
+	void			subscribe(yahal::utility::oop::Subscriber<T_MSG>* p_new_subscriber)
 				{
-					subscribers_.pushBack(newSubscriber);
+					subscribers_.pushBack(p_new_subscriber);
 				}
 
 				/// Tublish a message to all subscribers
@@ -75,8 +75,8 @@ private:
 /***********************************************************************************************//**
  * @brief	Subscriber base class. Any derived class can subscribe to subscribers of type T_MSG.
  *
- * A subscriber can subscribe to various publishers. But right now there is no way to know
- * the source of a message.
+ *	A subscriber can subscribe to various publishers. But right now there is no way to know
+ * 	the source of a message.
  **************************************************************************************************/
 template <typename T_MSG>
 class yahal::utility::oop::Subscriber :
@@ -95,7 +95,9 @@ private:
 				/// Todo: mecahnism to detect source publisher.
 	virtual void		notify(T_MSG message) = 0;
 
-	void			subscribeTo(yahal::utility::oop::Publisher<T_MSG> publisher){}
+	void			subscribeTo(yahal::utility::oop::Publisher<T_MSG>* p_publisher){
+
+	}
 };
 
 

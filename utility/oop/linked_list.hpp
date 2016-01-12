@@ -53,7 +53,7 @@ class yahal::utility::oop::LinkedListNode
 {
 protected:
 				// CONSTRUCTOR
-				 LinkedListNode(void) : _pNextNode(0)	{}
+				 LinkedListNode(void) : p_next_node_(0)	{}
 	virtual			~LinkedListNode(void)			{}
 
 
@@ -63,21 +63,21 @@ private:
 
 
 				/// Set pointer to next node
-	void			setNext(T_NODE& nextNode)
+	void			setNext(T_NODE* p_next_node)
 				{
-					_pNextNode = &nextNode;
+					p_next_node_ = p_next_node;
 				}
 
 
 				/// Get pointer to next node
 	T_NODE*			getNext(void) const
 				{
-					return _pNextNode;
+					return p_next_node_;
 				}
 
 
 				/// Pointer to next node of same class
-	T_NODE*			_pNextNode;
+	T_NODE*			p_next_node_;
 };
 
 
@@ -125,12 +125,12 @@ public:
 
 
 				/// Append node.
-	void			pushBack(T_NODE& newNode)
+	void			pushBack(T_NODE* p_new_node)
 				{
 					if (isEmpty()) {
-						p_first_node_ = &newNode;
+						p_first_node_ = p_new_node;
 					} else {
-						lastNode()->setNext(newNode);
+						lastNode()->setNext(p_new_node);
 					}
 
 					size_++;
@@ -142,7 +142,7 @@ public:
 				/// Retrieve node.
 	T_NODE*			operator[](std::size_t position) const
 				{
-					T_NODE*	pCurrentNode = p_first_node_;
+					T_NODE*	p_current_node = p_first_node_;
 
 					if (position >= size_) {
 						/// Try to detect this error in debug mode
@@ -155,10 +155,10 @@ public:
 					}
 
 					for (std::size_t i = position; i; i--) {
-						pCurrentNode = pCurrentNode->getNext();
+						p_current_node = p_current_node->getNext();
 					}
 
-					return pCurrentNode;
+					return p_current_node;
 				}
 
 
