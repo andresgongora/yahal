@@ -50,24 +50,24 @@ public:
 				/// Used by Subscribers to subscribe.
 	void			subscribe(yahal::utility::oop::Subscriber<T_MSG>& newSubscriber)
 				{
-					_subscribers.pushBack(newSubscriber);
+					subscribers_.pushBack(newSubscriber);
 				}
 
 				/// Tublish a message to all subscribers
 	void			publish(T_MSG message) const
 				{
-					std::size_t size = _subscribers.size();	///< Get number of subscribers
+					std::size_t size = subscribers_.size();	///< Get number of subscribers
 					std::size_t i;
 
 					for (i = 0; i < size; i++) {
-						_subscribers[i]->notify(message);
+						subscribers_[i]->notify(message);
 					}
 				}
 
 
 private:
 				/// Linked list of type Subscribers
-	yahal::utility::oop::LinkedList< yahal::utility::oop::Subscriber<T_MSG> > _subscribers;
+	yahal::utility::oop::LinkedList< yahal::utility::oop::Subscriber<T_MSG> > subscribers_;
 };
 
 

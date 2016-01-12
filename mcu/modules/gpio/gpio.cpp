@@ -70,38 +70,38 @@ yahal::mcu::Gpio::Port::Pin yahal::mcu::Gpio::Port::operator[](uint8_t pinNumber
 ================================================================================================= */
 
 yahal::mcu::Gpio::Port::Pin::Pin(yahal::mcu::Gpio::Port& port, uint8_t pinNumber) :
-	_port(port),
-	_pinNumber(pinNumber)
+	port_(port),
+	pin_number_(pinNumber)
 {}
 
 
 bool yahal::mcu::Gpio::Port::Pin::config(Direction::Type direction, Resistor::Type resistor)
 {
-	return _port.config(direction, resistor, (1<<_pinNumber));
+	return port_.config(direction, resistor, (1<<pin_number_));
 }
 
 
 void yahal::mcu::Gpio::Port::Pin::set(bool b)
 {
-	_port.set((b<<_pinNumber), (1<<_pinNumber));
+	port_.set((b<<pin_number_), (1<<pin_number_));
 }
 
 
 bool yahal::mcu::Gpio::Port::Pin::get() const
 {
-	return _port.get((1<<_pinNumber));
+	return port_.get((1<<pin_number_));
 }
 
 
 bool yahal::mcu::Gpio::Port::Pin::getOutput() const
 {
-	return _port.getOutput((1<<_pinNumber));
+	return port_.getOutput((1<<pin_number_));
 }
 
 
 void yahal::mcu::Gpio::Port::Pin::toggle(void)
 {
-	_port.toggle((1<<_pinNumber));
+	port_.toggle((1<<pin_number_));
 }
 
 

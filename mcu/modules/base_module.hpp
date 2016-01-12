@@ -80,13 +80,13 @@ public:
 protected:
 				/** Prepare module for exclusive operation */
 	void			open(void){
-					_mutex.lock();
+					mutex_.lock();
 					setErrorCode(NO_ERROR_CODE);
 				}
 
 				/** Releases module */
 	void			close(void){
-					_mutex.unlock();
+					mutex_.unlock();
 				}
 
 				/** Must be implemented by each module */
@@ -95,7 +95,7 @@ protected:
 
 
 private:
-	yahal::rtos::Mutex	_mutex;	///< Mutex for exclusive access to each derived module
+	yahal::rtos::Mutex	mutex_;	///< Mutex for exclusive access to each derived module
 };
 
 

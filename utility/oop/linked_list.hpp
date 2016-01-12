@@ -120,38 +120,38 @@ template <typename T_NODE>
 class yahal::utility::oop::LinkedList
 {
 public:
-				/// CONSTRUCTOR
-				LinkedList()	: _pFirstNode(0), _size(0)	{}
+				/// Constructor.
+				LinkedList()	: p_first_node_(0), size_(0)	{}
 
 
-				/// APPEND NODE
+				/// Append node.
 	void			pushBack(T_NODE& newNode)
 				{
 					if (isEmpty()) {
-						_pFirstNode = &newNode;
+						p_first_node_ = &newNode;
 					} else {
 						lastNode()->setNext(newNode);
 					}
 
-					_size++;
+					size_++;
 				}
 
 
 
 public:
-				/// RETRIEVE NODE
+				/// Retrieve node.
 	T_NODE*			operator[](std::size_t position) const
 				{
-					T_NODE*	pCurrentNode = _pFirstNode;
+					T_NODE*	pCurrentNode = p_first_node_;
 
-					if (position >= _size) {
+					if (position >= size_) {
 						/// Try to detect this error in debug mode
 						_DEBUG_TRAP();
 
 						/// If trying to access non-existant node,
 						/// point instead to last node instead.
 						/// Its not an optimum solution.
-						position = _size -1;
+						position = size_ -1;
 					}
 
 					for (std::size_t i = position; i; i--) {
@@ -163,35 +163,35 @@ public:
 
 
 
-				/// Check if linked list is empty
+				/// Check if linked list is empty.
 	bool			isEmpty(void) const
 				{
-					return (_pFirstNode == 0);
+					return (p_first_node_ == 0);
 				}
 
-				/// Get size of linked list
+				/// Get size of linked list.
 	std::size_t		size(void) const
 				{
-					return _size;
+					return size_;
 				}
 
 
 private:
-				/// Retrieve last node
+				/// Retrieve last node, even if it is empty.
 	T_NODE*			lastNode(void) const
 				{
 					if (isEmpty()) {
-						return _pFirstNode;
+						return p_first_node_;
 					} else {
-						return this->operator[](_size - 1);
+						return this->operator[](size_ - 1);
 					}
 				}
 
 
 
 private:			// PRIVATE VARIABLES
-	T_NODE*			_pFirstNode;	///< Pointer to first node, starts empty.
-	std::size_t		_size;		///< Store size of linked list.
+	T_NODE*			p_first_node_;	///< Pointer to first node, starts empty.
+	std::size_t		size_;		///< Store size of linked list.
 };
 
 
