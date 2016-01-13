@@ -68,6 +68,10 @@ public:
 					I2C_NACK,
 				};};
 
+				class I2CMaster;
+				class I2CMultimaster;
+				class I2CSlave;
+
 protected:
 	friend class		IRQHandler;
 	virtual void		isr(IRQ::Type irq) = 0;

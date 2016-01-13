@@ -38,17 +38,10 @@
 
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace uscib1{
-	class I2CMultimaster;
-}}}}}
-
-
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster :
+class yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster :
 	public yahal::mcu::modules::I2CMultimaster,
 	public yahal::mcu::targets::msp430f5309::UsciB1
 {

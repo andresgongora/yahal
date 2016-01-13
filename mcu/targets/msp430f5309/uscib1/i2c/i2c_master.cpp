@@ -32,7 +32,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::I2CMaster(const Configuration& configuration) :
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::I2CMaster(const Configuration& configuration) :
 	configuration_(configuration)
 {}
 
@@ -40,7 +40,7 @@ yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::I2CMaster(const Configurati
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::doInit(void)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::doInit(void)
 {
 	UCB1CTL1 |= UCSWRST;				///< Enable SW reset while we configure the module
 	P4SEL |= BIT1 + BIT2;				///< Assign I2C pins to USCI_B0
@@ -58,7 +58,7 @@ void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::doInit(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::start(uint8_t slaveAddress, Direction::Type direction)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::start(uint8_t slaveAddress, Direction::Type direction)
 {
 	while(UCB1STAT & UCBBUSY);			///< Recommended to check
 
@@ -74,7 +74,7 @@ void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::start(uint8_t slaveAdd
 
 
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::stop(void)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::stop(void)
 {
 	while(UCB1CTL1 & UCTXSTT);	///< Wait if START in progress
 	UCB1CTL1 |= UCTXSTP;
@@ -82,21 +82,21 @@ void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::stop(void)
 
 
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::writeBufferTX(uint8_t byte)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::writeBufferTX(uint8_t byte)
 {
 	UCB1TXBUF = byte;
 }
 
 
 
-uint8_t yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::readBufferRX(void)
+uint8_t yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::readBufferRX(void)
 {
 	return UCB1RXBUF;
 }
 
 
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::awaitTransmissionEnd(void)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::awaitTransmissionEnd(void)
 {
 	while(UCB1STAT & UCBBUSY);
 //	UCB1CTL1 &= ~(UCTR + UCTXNACK + UCTXSTP + UCTXSTT); // I think I dont need this anymore
@@ -105,7 +105,7 @@ void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::awaitTransmissionEnd(v
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMaster::isr(UsciB1::IRQ::Type irq)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::isr(UsciB1::IRQ::Type irq)
 {
 	switch (irq)
 	{

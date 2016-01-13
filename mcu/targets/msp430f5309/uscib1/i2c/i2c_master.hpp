@@ -40,17 +40,11 @@
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace uscib1{
-	class I2CMaster;
-}}}}}
-
-
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::uscib1::I2CMaster :
+class yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster :
 	public yahal::mcu::modules::I2CMaster,
 	public yahal::mcu::targets::msp430f5309::UsciB1
 {

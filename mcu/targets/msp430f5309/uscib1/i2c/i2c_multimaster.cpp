@@ -35,7 +35,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::I2CMultimaster(const Configuration& configuration) :
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::I2CMultimaster(const Configuration& configuration) :
 	configuration_(configuration)
 {}
 
@@ -43,7 +43,7 @@ yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::I2CMultimaster(const C
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::doInit(void)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::doInit(void)
 {
 	UCB1CTL1 |= UCSWRST;				///< Enable SW reset while we configure the module
 	P4SEL |= BIT1 + BIT2;				///< Assign I2C pins to USCI_B0
@@ -61,7 +61,7 @@ void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::doInit(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::start(uint8_t slaveAddress, Direction::Type direction)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::start(uint8_t slaveAddress, Direction::Type direction)
 {
 	while(UCB1STAT & UCBBUSY);		///< Recommended to check
 
@@ -78,7 +78,7 @@ void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::start(uint8_t sla
 
 
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::stop(void)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::stop(void)
 {
 	if (not (UCB1CTL1 & UCTR)) {
 		while (UCB1CTL1 & UCTXSTT);	///< Wait if START in progress during READ operation
@@ -89,21 +89,21 @@ void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::stop(void)
 
 
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::writeBufferTX(uint8_t byte)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::writeBufferTX(uint8_t byte)
 {
 	UCB1TXBUF = byte;
 }
 
 
 
-uint8_t yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::readBufferRX(void)
+uint8_t yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::readBufferRX(void)
 {
 	return UCB1RXBUF;
 }
 
 
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::awaitTransmissionEnd(void)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::awaitTransmissionEnd(void)
 {
 	while(UCB1STAT & UCBBUSY);	///< Wait while busy
 
@@ -113,19 +113,19 @@ void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::awaitTransmission
 
 
 
-bool yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::isIncommingWrite(void)
+bool yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::isIncommingWrite(void)
 {
 	return (UCB1CTL1 & UCTR);
 }
 
 
-bool yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::isMaster(void)
+bool yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::isMaster(void)
 {
 	return (UCB1CTL0 & UCMST);
 }
 
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::configureAsMaster(void)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::configureAsMaster(void)
 {
 	awaitTransmissionEnd();
 
@@ -139,7 +139,7 @@ void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::configureAsMaster
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster::isr(UsciB1::IRQ::Type irq)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::isr(UsciB1::IRQ::Type irq)
 {
 	switch (irq)
 	{
