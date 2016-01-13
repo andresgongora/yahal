@@ -59,52 +59,53 @@
 ================================================================================================= */
 
 namespace yahal{ namespace mcu{
-/* ---------------------------------------------------------------------------------------------- */
+
+	/* -------------------------------------------------------------------------------------- */
 
 	// IRQHandler
-	targets::msp430f5309::IRQHandler irq_handler;
+	static targets::msp430f5309::IRQHandler irq_handler;
 
-/* ---------------------------------------------------------------------------------------------- */
+	/* -------------------------------------------------------------------------------------- */
 
 	// CLK
 	#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
-		targets::msp430f5309::Clk clk(targets::msp430f5309::config::clk);
+		static targets::msp430f5309::Clk clk(targets::msp430f5309::config::clk);
 	#endif
 
-/* ---------------------------------------------------------------------------------------------- */
+	/* -------------------------------------------------------------------------------------- */
 
 	// GPIO
 	#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
-		targets::msp430f5309::Gpio gpio(targets::msp430f5309::config::gpio);
+		static targets::msp430f5309::Gpio gpio(targets::msp430f5309::config::gpio);
 	#endif
 
-/* ---------------------------------------------------------------------------------------------- */
+	/* -------------------------------------------------------------------------------------- */
 
-	// USCI_B0
-	#if	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCI_B0_MODE == YAHAL_MCU_MSP430F5309_USCI_B0_I2C_SLAVE
-		targets::msp430f5309::I2C_slave		\
-		YAHAL_MCU_MSP430F5309_USCI_B0_NAME	\
+	// USCI_B1
+	#if	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
+		static targets::msp430f5309::I2C_slave		\
+		YAHAL_MCU_MSP430F5309_USCI_B1_NAME		\
 		(targets::msp430f5309::config::usci_b0);
 
-	#elif	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCI_B0_MODE == YAHAL_MCU_MSP430F5309_USCI_B0_I2C_MASTER
-		targets::msp430f5309::I2C_master	\
-		YAHAL_MCU_MSP430F5309_USCI_B0_NAME	\
+	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
+		static targets::msp430f5309::I2C_master		\
+		YAHAL_MCU_MSP430F5309_USCI_B1_NAME		\
 		(targets::msp430f5309::config::usci_b0);
 
-	#elif	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCI_B0_MODE == YAHAL_MCU_MSP430F5309_USCI_B0_I2C_MULTIMASTER
-		targets::msp430f5309::I2C_multimaster	\
-		YAHAL_MCU_MSP430F5309_USCI_B0_NAME	\
+	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
+		static targets::msp430f5309::I2C_multimaster	\
+		YAHAL_MCU_MSP430F5309_USCI_B1_NAME	\
 		(targets::msp430f5309::config::usci_b0);
 	#endif
 
-	/* ---------------------------------------------------------------------------------------------- */
+	/* -------------------------------------------------------------------------------------- */
 
 	// WDT
 	#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
-		targets::msp430f5309::Wdt wdt(targets::msp430f5309::config::wdt);
+		static targets::msp430f5309::Wdt wdt(targets::msp430f5309::config::wdt);
 	#endif
 
 }} // Namespace yahal::mcu
@@ -132,11 +133,10 @@ namespace yahal{ namespace mcu{ namespace details{
 			yahal::mcu::gpio.init();
 		#endif
 
-		// USCI_B0
-		#if YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true
-			yahal::mcu::YAHAL_MCU_MSP430F5309_USCI_B0_NAME.init();
+		// USCI_B1
+		#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
+			yahal::mcu::YAHAL_MCU_MSP430F5309_USCI_B1_NAME.init();
 		#endif
-
 
 		// WDT
 		#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
@@ -155,37 +155,53 @@ namespace yahal{ namespace mcu{ namespace details{
 
 
 
+
 /***********************************************************************************************//**
- * @brief	I2C IRQ
+ * @brief	USCI_B1 IRQ
  **************************************************************************************************/
 #pragma vector = USCI_B1_VECTOR
 __interrupt void USCI_B1_ISR(void)
 {
-	switch (__even_in_range(UCB1IV, 12))
-	{
-	case  0: ///< Vector 00: No interrupts
-		break;
-	case  2: ///< Vector 02: Arbitration Lost
-		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::ARBITRATION_LOST);
-		break;
-	case  4: ///< Vector 04: Nack
-		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::NACK);
-		break;
-	case  6: ///< Vector 06: Start
-		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::START);
-		break;
-	case  8: ///< Vector 08: Stop
-		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::STOP);
-		break;
-	case 10: ///< Vector 10: RX Full
-		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::RX_BUFFER_FULL);
-		break;
-	case 12: ///< Vector 12: TX Empty
-		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::TX_BUFFER_EMPTY);
-		break;
-	default:
-		break;
-	}
+	#if	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
+
+	/* -------------------------------------------------------------------------------------- */
+
+
+	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
+
+	/* -------------------------------------------------------------------------------------- */
+
+	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
+
+		switch (__even_in_range(UCB1IV, 12))
+		{
+		case  0: ///< Vector 00: No interrupts
+			break;
+		case  2: ///< Vector 02: Arbitration Lost
+			yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::ARBITRATION_LOST);
+			break;
+		case  4: ///< Vector 04: Nack
+			yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::NACK);
+			break;
+		case  6: ///< Vector 06: Start
+			yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::START);
+			break;
+		case  8: ///< Vector 08: Stop
+			yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::STOP);
+			break;
+		case 10: ///< Vector 10: RX Full
+			yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::RX_BUFFER_FULL);
+			break;
+		case 12: ///< Vector 12: TX Empty
+			yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::TX_BUFFER_EMPTY);
+			break;
+		default:
+			break;
+		}
+	#endif
 }
 
 
