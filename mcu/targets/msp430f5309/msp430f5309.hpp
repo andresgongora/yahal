@@ -59,6 +59,11 @@
 #include "../../config/targets/msp430f5309_config.hpp"
 
 
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
 namespace yahal{ namespace mcu{
 
 	// IRQHandler
@@ -82,7 +87,14 @@ namespace yahal{ namespace mcu{
 }} // Namespace yahal::mcu
 
 
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+
+	/// Call all init functions for this targets modules.
 	void init(void)
 	{
 		// CLK
@@ -108,8 +120,6 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	}
 
 }} // Namespace yahal::mcu::targets::msp430f5309
-
-
 
 
 
