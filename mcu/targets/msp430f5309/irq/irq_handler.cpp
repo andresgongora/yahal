@@ -38,18 +38,19 @@ yahal::mcu::targets::msp430f5309::IRQHandler::IRQHandler(void) :
 {}
 
 
-void yahal::mcu::targets::msp430f5309::IRQHandler::doInit(void)
-{}
-
 
 /* ---------------------------------------------------------------------------------------------- */
 
 void yahal::mcu::targets::msp430f5309::IRQHandler::enableGlobalInterrupts(void) const
-{}
+{
+	_EINT();
+}
 
 
 void yahal::mcu::targets::msp430f5309::IRQHandler::disableGlobalInterrupts(void) const
-{}
+{
+	_DINT();
+}
 
 
 
@@ -63,7 +64,7 @@ void yahal::mcu::targets::msp430f5309::IRQHandler::setISRHandlerI2C(I2C* p_handl
 
 
 
-void yahal::mcu::targets::msp430f5309::IRQHandler::irqHandleI2C(I2C::IRQ::Type irq)
+void yahal::mcu::targets::msp430f5309::IRQHandler::irqI2C(I2C::IRQ::Type irq)
 {
 	if (p_i2c_) {
 		p_i2c_->isr(irq);

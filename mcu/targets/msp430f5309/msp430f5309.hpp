@@ -61,10 +61,15 @@
 
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 
+	// IRQHandler
+	msp430f5309::IRQHandler irq_handler;
+
+	// CLK
 	#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
 		msp430f5309::Clk clk(msp430f5309::config::clk);
 	#endif
 
+	// WDT
 	#if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true
 		msp430f5309::Wdt wdt(msp430f5309::config::wdt);
 	#endif
@@ -73,13 +78,21 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 
 	void init(void)
 	{
+		// CLK
 		#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
 			clk.init();
 		#endif
 
+		// WDT
 		#if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true
 			wdt.init();
 		#endif
+
+
+		// IRQHandler
+		//irq_handler.setISRHandlerI2C()
+		// ...
+		irq_handler.enableGlobalInterrupts();
 	}
 }}}}
 

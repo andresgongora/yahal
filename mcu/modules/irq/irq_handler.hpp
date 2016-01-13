@@ -27,7 +27,8 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../base_module.hpp"
+#include "../../../utility/oop/noncopyable.hpp"
+#include "../../../utility/oop/nonheapable.hpp"
 
 
 
@@ -42,17 +43,9 @@ namespace yahal{ namespace mcu{
  * @brief	Base class for all IRQ handlers.
  **************************************************************************************************/
 class yahal::mcu::IRQHandler :
-	public yahal::mcu::details::BaseModule
+	private yahal::utility::oop::NonCopyable,
+	private yahal::utility::oop::NonHeapable
 {
-public:
-				/// Error codes.
-				struct Error {enum Type {
-					NO_ERROR = 0,
-					OTHER
-				};};
-
-
-				// CONSTRUCTOR
 protected:
 				Irq(void)	{}
 

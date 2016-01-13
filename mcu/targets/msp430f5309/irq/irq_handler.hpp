@@ -58,7 +58,10 @@ public:
 							struct IRQ { enum Type {
 								START,
 								STOP,
-								ETC,
+								TX_BUFFER_EMPTY,
+								RX_BUFFER_FULL,
+								ARBITRATION_LOST,
+								NACK,
 							};};
 				protected:
 					friend class	IRQHandler;
@@ -72,9 +75,6 @@ public:
 				/// Constructor
 				IRQHandler(void);
 
-private:
-	virtual void		doInit(void);
-
 
 public:
 				// IRQ Control
@@ -85,7 +85,7 @@ public:
 
 				// I2C
 	void 			setISRHandlerI2C(I2C* p_handler);
-	void 			irqHandleI2C(I2C::IRQ::Type irq);
+	void 			irqI2C(I2C::IRQ::Type irq);
 
 
 
