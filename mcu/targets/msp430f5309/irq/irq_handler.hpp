@@ -34,6 +34,7 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../../../modules/irq/irq_handler.hpp"
+#include "../uscib1/uscib1.hpp"
 
 
 
@@ -51,28 +52,6 @@ class yahal::mcu::targets::msp430f5309::IRQHandler :
 	public yahal::mcu::modules::details::IRQHandler
 {
 public:
-				/// I2C IRQ Handler
-				class UsciB1
-				{
-				protected:		UsciB1(void) {}
-				public:
-							struct IRQ { enum Type {
-								I2C_START,
-								I2C_STOP,
-								I2C_TX_BUFFER_EMPTY,
-								I2C_RX_BUFFER_FULL,
-								I2C_ARBITRATION_LOST,
-								I2C_NACK,
-							};};
-				protected:
-					friend class	IRQHandler;
-					virtual void	isr(IRQHandler::UsciB1::IRQ::Type irq) = 0;
-				};
-
-
-
-
-public:
 				/// Constructor
 				IRQHandler(void);
 
@@ -85,14 +64,14 @@ public:
 
 
 				// I2C
-	void 			setISRHandlerUsciB1(UsciB1* p_handler);
-	void 			irqUsciB1(UsciB1::IRQ::Type irq);
+	void 			setISRHandlerUsciB1(yahal::mcu::targets::msp430f5309::UsciB1* p_handler);
+	void 			irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::IRQ::Type irq);
 
 
 
 private:
 				// POINTERS
-	UsciB1*			p_handler_uscib1_;
+	yahal::mcu::targets::msp430f5309::UsciB1*			p_handler_uscib1_;
 };
 
 

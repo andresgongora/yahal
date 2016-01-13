@@ -25,8 +25,8 @@
 
 
 
-#ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_M430F5309_USCIB1_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_USCIB1_HPP_INCLUDED__
 
 
 
@@ -34,59 +34,48 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include <stdint.h>
-#include <cstddef>
-#include "../../../modules/i2c/i2c_slave.hpp"
-#include "../irq/irq_handler.hpp"
+//#include "../irq/irq_handler.hpp"
+
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace uscib1{
-	class I2CSlave;
-}}}}}
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+	class UsciB1;
+	class IRQHandler;	// Forward declaration
+}}}}
+
+
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::uscib1::I2CSlave :
-	public yahal::mcu::modules::I2CSlave,
-	public yahal::mcu::targets::msp430f5309::IRQHandler::UsciB1
+class yahal::mcu::targets::msp430f5309::UsciB1
 {
+protected:
+				UsciB1(void) {}
+
+
 public:
-				struct Configuration
-				{
-					uint8_t ownAddress;
-				};
+				struct IRQ { enum Type {
+					I2C_START,
+					I2C_STOP,
+					I2C_TX_BUFFER_EMPTY,
+					I2C_RX_BUFFER_FULL,
+					I2C_ARBITRATION_LOST,
+					I2C_NACK,
+				};};
 
-
-				// CONSTRUCTOR
-				I2CSlave(const Configuration& configuration);
-
-
-private:			// INITIALIZATION
-	virtual void		doInit(void);
-
-
-private:			// I2C PROTOCOL
-	virtual void		writeBufferTX(uint8_t byte);
-	virtual uint8_t		readBufferRX(void);
-	virtual bool		isIncommingWrite(void);
-
-
-private:			// ISR
-	friend class		yahal::mcu::targets::msp430f5309::IRQHandler;
-	virtual void 		isr(IRQHandler::UsciB1::IRQ::Type irq);
-
-
-private:			// PRIVATE VARIABLES
-	const Configuration&	configuration_;
+protected:
+	friend class		IRQHandler;
+	virtual void		isr(IRQ::Type irq) = 0;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// MCU_DEVICE == MCU_MSP430F5309
-#endif	// __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_M430F5309_USCIB1_HPP_INCLUDED__
+

@@ -64,7 +64,7 @@ void yahal::mcu::targets::msp430f5309::IRQHandler::setISRHandlerUsciB1(UsciB1* p
 
 
 
-void yahal::mcu::targets::msp430f5309::IRQHandler::irqUsciB1(UsciB1::IRQ::Type irq)
+void yahal::mcu::targets::msp430f5309::IRQHandler::irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::IRQ::Type irq)
 {
 	if (p_handler_uscib1_) {
 		p_handler_uscib1_->isr(irq);

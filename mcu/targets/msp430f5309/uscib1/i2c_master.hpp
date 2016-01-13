@@ -36,6 +36,7 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../../../modules/i2c/i2c_master.hpp"
+#include "uscib1.hpp"
 #include "../irq/irq_handler.hpp"
 
 
@@ -52,7 +53,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::uscib1::I2CMaster :
 	public yahal::mcu::modules::I2CMaster,
-	public yahal::mcu::targets::msp430f5309::IRQHandler::UsciB1
+	public yahal::mcu::targets::msp430f5309::UsciB1
 {
 public:
 				struct Configuration
@@ -80,7 +81,7 @@ private:			// MODULE IMPLEMENTATION
 
 private:			// ISR
 	friend class		yahal::mcu::targets::msp430f5309::IRQHandler;
-	virtual void 		isr(IRQHandler::UsciB1::IRQ::Type irq);
+	virtual void 		isr(UsciB1::IRQ::Type irq);
 
 
 				// PRIVATE VARIABLES
