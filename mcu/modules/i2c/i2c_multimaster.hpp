@@ -42,7 +42,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace modules{
-	class I2C_multimaster;
+	class I2CMultimaster;
 }}}
 
 
@@ -51,10 +51,10 @@ namespace yahal{ namespace mcu{ namespace modules{
 /**
  * I2C Multimaster base class
  */
-class yahal::mcu::modules::I2C_multimaster : public yahal::mcu::modules::I2C_master, public yahal::mcu::modules::I2C_slave
+class yahal::mcu::modules::I2CMultimaster : public yahal::mcu::modules::I2CMaster, public yahal::mcu::modules::I2CSlave
 {
 protected:			// CONTRUSTOR & DESTRUCTOR
-				I2C_multimaster(void);
+				I2CMultimaster(void);
 
 
 protected:			// I2C PROTOCOL -> IMPLEMENT
@@ -102,11 +102,11 @@ private:
 
 
 private:			// EVENT CALLBACKS
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2C_multimaster,void> _callbackHandleReceivedStart;
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2C_multimaster,void> _callbackHandleReceivedStop;
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2C_multimaster,void> _callbackHandleReceivedNack;
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2C_multimaster,void> _callbackHandleBufferTXEmpty;
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2C_multimaster,void> _callbackHandleBufferRXFull;*/
+	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleReceivedStart;
+	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleReceivedStop;
+	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleReceivedNack;
+	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleBufferTXEmpty;
+	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleBufferRXFull;*/
 };
 
 

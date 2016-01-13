@@ -41,7 +41,7 @@
  *	DECLARATION::I2C_MASTER
  * ============================================================================================== */
 
-class hal::uc::msp430f2132::I2c_master:	public hal::uc::I2C_master,
+class hal::uc::msp430f2132::I2c_master:	public hal::uc::I2CMaster,
 					public hal::utility::Subscriber<hal::uc::Irq::I2C::Type>
 {
 public:

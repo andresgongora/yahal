@@ -84,19 +84,19 @@ namespace yahal{ namespace mcu{
 	// USCI_B1
 	#if	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true	\
 	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
-		static targets::msp430f5309::I2C_slave		\
+		static targets::msp430f5309::I2CSlave		\
 		YAHAL_MCU_MSP430F5309_USCI_B1_NAME		\
 		(targets::msp430f5309::config::usci_b0);
 
 	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true	\
 	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
-		static targets::msp430f5309::I2C_master		\
+		static targets::msp430f5309::I2CMaster		\
 		YAHAL_MCU_MSP430F5309_USCI_B1_NAME		\
 		(targets::msp430f5309::config::usci_b0);
 
 	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true	\
 	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
-		static targets::msp430f5309::I2C_multimaster	\
+		static targets::msp430f5309::I2CMultimaster	\
 		YAHAL_MCU_MSP430F5309_USCI_B1_NAME	\
 		(targets::msp430f5309::config::usci_b0);
 	#endif

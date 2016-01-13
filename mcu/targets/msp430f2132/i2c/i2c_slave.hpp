@@ -42,7 +42,7 @@
  *	DECLARATION::I2C::SLAVE
  * ============================================================================================== */
 
-class hal::uc::msp430f2132::I2c_slave : public hal::uc::I2C_slave
+class hal::uc::msp430f2132::I2c_slave : public hal::uc::I2CSlave
 {
 public:
 				// INITIALIZATION

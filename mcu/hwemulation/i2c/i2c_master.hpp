@@ -40,7 +40,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace hwemulation{
-	class I2C_master;
+	class I2CMaster;
 }}}
 
 
@@ -49,11 +49,11 @@ namespace yahal{ namespace mcu{ namespace hwemulation{
  *	DECLARATION::I2C_MASTER
  * ============================================================================================== */
 
-class yahal::mcu::hwemulation::I2C_master : public yahal::mcu::I2C_master
+class yahal::mcu::hwemulation::I2CMaster : public yahal::mcu::I2CMaster
 {
 public:
 				// CONSTRUCTOR -----------------------------------------------------
-				I2C_master(Gpio::Port::Pin sda, Gpio::Port::Pin scl);
+				I2CMaster(Gpio::Port::Pin sda, Gpio::Port::Pin scl);
 
 
 				// INITIALIZATION

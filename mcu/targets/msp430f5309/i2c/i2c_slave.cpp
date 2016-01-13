@@ -36,13 +36,13 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::I2C_slave::I2C_slave(const Configuration& configuration) :
+yahal::mcu::targets::msp430f5309::I2CSlave::I2CSlave(const Configuration& configuration) :
 	configuration_(configuration)
 {}
 
 
 
-void yahal::mcu::targets::msp430f5309::I2C_slave::doInit(void)
+void yahal::mcu::targets::msp430f5309::I2CSlave::doInit(void)
 {
 	UCB1CTL1 |= UCSWRST;				///< Enable SW reset
 
@@ -59,21 +59,21 @@ void yahal::mcu::targets::msp430f5309::I2C_slave::doInit(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::I2C_slave::writeBufferTX(uint8_t byte)
+void yahal::mcu::targets::msp430f5309::I2CSlave::writeBufferTX(uint8_t byte)
 {
 	UCB1TXBUF = byte;
 }
 
 
 
-uint8_t yahal::mcu::targets::msp430f5309::I2C_slave::readBufferRX(void)
+uint8_t yahal::mcu::targets::msp430f5309::I2CSlave::readBufferRX(void)
 {
 	return UCB1RXBUF;
 }
 
 
 
-bool yahal::mcu::targets::msp430f5309::I2C_slave::isIncommingWrite(void)
+bool yahal::mcu::targets::msp430f5309::I2CSlave::isIncommingWrite(void)
 {
 	return (UCB1CTL1 & UCTR);
 }
@@ -81,7 +81,7 @@ bool yahal::mcu::targets::msp430f5309::I2C_slave::isIncommingWrite(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::I2C_slave::isr(IRQHandler::I2C::IRQ::Type irq)
+void yahal::mcu::targets::msp430f5309::I2CSlave::isr(IRQHandler::I2C::IRQ::Type irq)
 {
 	switch (irq)
 	{

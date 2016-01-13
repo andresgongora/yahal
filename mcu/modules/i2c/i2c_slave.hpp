@@ -40,7 +40,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace modules{
-	class I2C_slave;
+	class I2CSlave;
 }}}
 
 
@@ -50,7 +50,7 @@ namespace yahal{ namespace mcu{ namespace modules{
  *
  *
  **************************************************************************************************/
-class yahal::mcu::modules::I2C_slave : virtual public yahal::mcu::modules::details::I2C_common
+class yahal::mcu::modules::I2CSlave : virtual public yahal::mcu::modules::details::I2C_common
 {
 public:
 				/**
@@ -75,7 +75,7 @@ public:
 
 
 protected:			// CONSTRUCTOR & DESTRUCTOR
-				I2C_slave(void);
+				I2CSlave(void);
 
 
 

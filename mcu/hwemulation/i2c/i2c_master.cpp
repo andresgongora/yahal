@@ -36,7 +36,7 @@
 
 /** ============================================================================= INITIALIZATION **/
 
-bool yahal::mcu::hwemulation::I2C_master::init()
+bool yahal::mcu::hwemulation::I2CMaster::init()
 {
 	emulateReset();
 	this->setInitialized();
@@ -44,7 +44,7 @@ bool yahal::mcu::hwemulation::I2C_master::init()
 }
 
 
-mcu::hwemulation::I2C_master::I2C_master(Gpio::Port::Pin sda, Gpio::Port::Pin scl) :
+mcu::hwemulation::I2CMaster::I2CMaster(Gpio::Port::Pin sda, Gpio::Port::Pin scl) :
 	_sda(sda),
 	_scl(scl),
 	_sendStart(false),
@@ -58,7 +58,7 @@ mcu::hwemulation::I2C_master::I2C_master(Gpio::Port::Pin sda, Gpio::Port::Pin sc
 
 /** ======================================================================================== PIN **/
 
-void yahal::mcu::hwemulation::I2C_master::setSDA(bool b)
+void yahal::mcu::hwemulation::I2CMaster::setSDA(bool b)
 {
 	if(b)
 	{
@@ -72,7 +72,7 @@ void yahal::mcu::hwemulation::I2C_master::setSDA(bool b)
 }
 
 
-bool yahal::mcu::hwemulation::I2C_master::getSDA(void)
+bool yahal::mcu::hwemulation::I2CMaster::getSDA(void)
 {
 	_sda.config(Gpio::DIRECTION::INPUT);
 	return _sda.get();
@@ -80,7 +80,7 @@ bool yahal::mcu::hwemulation::I2C_master::getSDA(void)
 
 
 
-void yahal::mcu::hwemulation::I2C_master::setSCL(bool b)
+void yahal::mcu::hwemulation::I2CMaster::setSCL(bool b)
 {
 	if(b)
 	{
@@ -94,7 +94,7 @@ void yahal::mcu::hwemulation::I2C_master::setSCL(bool b)
 }
 
 
-bool yahal::mcu::hwemulation::I2C_master::getSCL(void)
+bool yahal::mcu::hwemulation::I2CMaster::getSCL(void)
 {
 	_scl.config(Gpio::DIRECTION::INPUT);
 	return _scl.get();
@@ -104,7 +104,7 @@ bool yahal::mcu::hwemulation::I2C_master::getSCL(void)
 /** ======================================================================================== BIT **/
 
 
-void yahal::mcu::hwemulation::I2C_master::sendBit(bool b)
+void yahal::mcu::hwemulation::I2CMaster::sendBit(bool b)
 {
 	setSCL(0);
 	setSDA(b);
@@ -113,7 +113,7 @@ void yahal::mcu::hwemulation::I2C_master::sendBit(bool b)
 }
 
 
-bool yahal::mcu::hwemulation::I2C_master::receiveBit(void)
+bool yahal::mcu::hwemulation::I2CMaster::receiveBit(void)
 {
 	bool b;
 
@@ -129,7 +129,7 @@ bool yahal::mcu::hwemulation::I2C_master::receiveBit(void)
 
 /** ======================================================================================= BYTE **/
 
-void yahal::mcu::hwemulation::I2C_master::sendByte(uint8_t byte)
+void yahal::mcu::hwemulation::I2CMaster::sendByte(uint8_t byte)
 {
 	for(int8_t i=7; i>=0; i--)
 	{
@@ -140,7 +140,7 @@ void yahal::mcu::hwemulation::I2C_master::sendByte(uint8_t byte)
 
 
 
-uint8_t yahal::mcu::hwemulation::I2C_master::receiveByte(void)
+uint8_t yahal::mcu::hwemulation::I2CMaster::receiveByte(void)
 {
 	uint8_t byte = 0;
 	bool b;
@@ -156,7 +156,7 @@ uint8_t yahal::mcu::hwemulation::I2C_master::receiveByte(void)
 
 /** =============================================================================== I2C PROTOCOL **/
 
-void yahal::mcu::hwemulation::I2C_master::sendStart(void)
+void yahal::mcu::hwemulation::I2CMaster::sendStart(void)
 {
 	setSCL(1);			//		________
 	setSDA(1);			//	SDA		\_______________
@@ -165,7 +165,7 @@ void yahal::mcu::hwemulation::I2C_master::sendStart(void)
 }
 
 
-void yahal::mcu::hwemulation::I2C_master::sendStop(void)
+void yahal::mcu::hwemulation::I2CMaster::sendStop(void)
 {
 	setSCL(0);			//				________
 	setSDA(0);			//	SDA	_______________/
@@ -174,19 +174,19 @@ void yahal::mcu::hwemulation::I2C_master::sendStop(void)
 }
 
 
-void yahal::mcu::hwemulation::I2C_master::sendAck(void)
+void yahal::mcu::hwemulation::I2CMaster::sendAck(void)
 {
 	sendBit(0);
 }
 
 
-void yahal::mcu::hwemulation::I2C_master::sendNack(void)
+void yahal::mcu::hwemulation::I2CMaster::sendNack(void)
 {
 	sendBit(1);
 }
 
 
-bool yahal::mcu::hwemulation::I2C_master::receiveAck(void)
+bool yahal::mcu::hwemulation::I2CMaster::receiveAck(void)
 {
 	return receiveBit();
 }
@@ -195,7 +195,7 @@ bool yahal::mcu::hwemulation::I2C_master::receiveAck(void)
 
 /** =============================================================================== EMULATED I2C **/
 
-void yahal::mcu::hwemulation::I2C_master::emulateStart(void)
+void yahal::mcu::hwemulation::I2CMaster::emulateStart(void)
 {
 	bool 	readBit 	=  _direction == DIRECTION::READ ? true : false;
 	uint8_t composedAddress	= (_slaveAddress << 1) + readBit;
@@ -217,38 +217,38 @@ void yahal::mcu::hwemulation::I2C_master::emulateStart(void)
 	}
 }
 
-void yahal::mcu::hwemulation::I2C_master::emulateStop(void)
+void yahal::mcu::hwemulation::I2CMaster::emulateStop(void)
 {
 	sendStop();
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void yahal::mcu::hwemulation::I2C_master::emulateIRQTX(void)
+void yahal::mcu::hwemulation::I2CMaster::emulateIRQTX(void)
 {
 	this->handleBufferTXEmpty();			//Call parent method signaling IRQ
 
 }
 
-void yahal::mcu::hwemulation::I2C_master::emulateIRQRX(void)
+void yahal::mcu::hwemulation::I2CMaster::emulateIRQRX(void)
 {
 	this->handleBufferRXFull();		//Call parent method signaling IRQ
 }
 
-void yahal::mcu::hwemulation::I2C_master::emulateIRQNack(void)
+void yahal::mcu::hwemulation::I2CMaster::emulateIRQNack(void)
 {
 	this->handleReceivedNack();		//Call parent method signaling IRQ
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void yahal::mcu::hwemulation::I2C_master::emulateWriteBufferTX(uint8_t byte)
+void yahal::mcu::hwemulation::I2CMaster::emulateWriteBufferTX(uint8_t byte)
 {
 	_bufferTX = byte;			// Write to buffer
 	_bufferTXStatus = BUFFER_STATUS::JUST_WRITTEN;
 }
 
-void yahal::mcu::hwemulation::I2C_master::emulateSendBufferTX(void)
+void yahal::mcu::hwemulation::I2CMaster::emulateSendBufferTX(void)
 {
 	sendByte(_bufferTX);
 	bool nack = receiveAck();		// NACK = 1; ACK = 0;
@@ -257,7 +257,7 @@ void yahal::mcu::hwemulation::I2C_master::emulateSendBufferTX(void)
 
 //--------------------------------------------------------------------------------------------------
 
-void yahal::mcu::hwemulation::I2C_master::emulateReceiveBufferRX(void)
+void yahal::mcu::hwemulation::I2CMaster::emulateReceiveBufferRX(void)
 {
 	uint8_t byte = receiveByte();
 
@@ -278,7 +278,7 @@ void yahal::mcu::hwemulation::I2C_master::emulateReceiveBufferRX(void)
 	_bufferRXStatus = BUFFER_STATUS::JUST_WRITTEN;
 }
 
-uint8_t	mcu::hwemulation::I2C_master::emulateReadBufferRX(void)
+uint8_t	mcu::hwemulation::I2CMaster::emulateReadBufferRX(void)
 {
 	uint8_t byte = _bufferRX;		// Read buffer to auxiliar variable
 	_bufferRXStatus = BUFFER_STATUS::EMPTY;
@@ -287,7 +287,7 @@ uint8_t	mcu::hwemulation::I2C_master::emulateReadBufferRX(void)
 
 //--------------------------------------------------------------------------------------------------
 
-void yahal::mcu::hwemulation::I2C_master::emulateLoop(void)
+void yahal::mcu::hwemulation::I2CMaster::emulateLoop(void)
 {
 	// While no STOP is sent, keep emulating HW features
 	bool busy = true;
@@ -358,7 +358,7 @@ void yahal::mcu::hwemulation::I2C_master::emulateLoop(void)
 
 }
 
-void yahal::mcu::hwemulation::I2C_master::emulateReset(void)
+void yahal::mcu::hwemulation::I2CMaster::emulateReset(void)
 {
 	_sendStart = false;
 	_sendStop = false;
@@ -372,7 +372,7 @@ void yahal::mcu::hwemulation::I2C_master::emulateReset(void)
 
 /** ====================================================================== MODULE IMPLEMENTATION **/
 
-void yahal::mcu::hwemulation::I2C_master::start(uint8_t slaveAddress, DIRECTION::Type direction)
+void yahal::mcu::hwemulation::I2CMaster::start(uint8_t slaveAddress, DIRECTION::Type direction)
 {
 	_direction = direction;
 	_slaveAddress = slaveAddress;
@@ -380,31 +380,31 @@ void yahal::mcu::hwemulation::I2C_master::start(uint8_t slaveAddress, DIRECTION:
 }
 
 
-void yahal::mcu::hwemulation::I2C_master::stop(void)
+void yahal::mcu::hwemulation::I2CMaster::stop(void)
 {
 	_sendStop = true;			// Request STOP sequence ASAP
 }
 
 
-void yahal::mcu::hwemulation::I2C_master::acknowledge(bool ack)
+void yahal::mcu::hwemulation::I2CMaster::acknowledge(bool ack)
 {
 
 }
 
 
-void yahal::mcu::hwemulation::I2C_master::writeBufferTX(uint8_t byte)
+void yahal::mcu::hwemulation::I2CMaster::writeBufferTX(uint8_t byte)
 {
 	emulateWriteBufferTX(byte);
 }
 
 
-uint8_t	mcu::hwemulation::I2C_master::readBufferRX(void)
+uint8_t	mcu::hwemulation::I2CMaster::readBufferRX(void)
 {
 	return emulateReadBufferRX();
 }
 
 
-void yahal::mcu::hwemulation::I2C_master::awaitTransmissionEnd(void)
+void yahal::mcu::hwemulation::I2CMaster::awaitTransmissionEnd(void)
 {
 	emulateLoop();
 }

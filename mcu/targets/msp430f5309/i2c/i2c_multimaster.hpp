@@ -41,15 +41,15 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class I2C_multimaster;
+	class I2CMultimaster;
 }}}}
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::I2C_multimaster :
-	public yahal::mcu::modules::I2C_multimaster,
+class yahal::mcu::targets::msp430f5309::I2CMultimaster :
+	public yahal::mcu::modules::I2CMultimaster,
 	public yahal::mcu::targets::msp430f5309::IRQHandler::I2C
 {
 public:
@@ -60,7 +60,7 @@ public:
 
 
 				// CONSTRUCTOR
-				I2C_multimaster(const Configuration& configuration);
+				I2CMultimaster(const Configuration& configuration);
 
 
 

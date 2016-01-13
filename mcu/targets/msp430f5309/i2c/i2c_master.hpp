@@ -42,7 +42,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class I2C_master;
+	class I2CMaster;
 }}}}
 
 
@@ -50,8 +50,8 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::I2C_master :
-	public yahal::mcu::modules::I2C_master,
+class yahal::mcu::targets::msp430f5309::I2CMaster :
+	public yahal::mcu::modules::I2CMaster,
 	public yahal::mcu::targets::msp430f5309::IRQHandler::I2C
 {
 public:
@@ -61,7 +61,7 @@ public:
 
 
 				// CONSTRUCTOR
-				I2C_master(const Configuration& configuration);
+				I2CMaster(const Configuration& configuration);
 
 
 
