@@ -33,6 +33,11 @@
 	GPIO
 ================================================================================================= */
 
+yahal::mcu::targets::msp430f5309::Gpio::Gpio(const Configuration& configuration) :
+	_configuration(configuration)
+{}
+
+
 void yahal::mcu::targets::msp430f5309::Gpio::doInit(void)
 {
 	bool success = true;
@@ -50,7 +55,7 @@ void yahal::mcu::targets::msp430f5309::Gpio::doInit(void)
 }
 
 
-yahal::mcu::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
+yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
 {
 	assert(portNumber >= 1 && portNumber <= 6);
 

@@ -53,6 +53,19 @@ static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 
 
 /* =================================================================================================
+	GPIO
+================================================================================================= */
+
+#define	__YAHAL_MCU_MSP430F5309_GPIO_ENABLED__	true		///< Create instance
+
+// CONFIGURATION
+static const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
+/* Nothing	*/
+};
+
+
+
+/* =================================================================================================
 	WDT
 ================================================================================================= */
 
@@ -63,10 +76,6 @@ static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 /* Nothing	*/
 };
 
-
-/* =================================================================================================
-	GPIO
-================================================================================================= */
 
 
 
@@ -90,39 +99,6 @@ static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 /* ============================================================================================== */
 
-
-
-
-
-
-
-
-#define __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__	// Comment to disable
-
-
-
-
-
-
-//#define __YAHAL_MCU_MSP430F5309_I2C_MASTER_ENABLED__
-//#define __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_ENABLED__
-//#define __YAHAL_MCU_MSP430F5309_I2C_SLAVE_ENABLED__
-
-
-
-
-//#define __YAHAL_MCU_MSP430F5309_TIMER_ENABLED__
-
-
-
-/*
-#ifdef	__MSP430F5309_CLK_ENABLED__
-	hal::uc::msp430f5309::clk	__MSP430F5309_CLK_INSTANCE_NAME__(
-						__MSP430F5309_CLK_FREQUENCY__,
-						__MSP430F5309_CLK_FREQUENCY2__
-					);
-#endif
-*/
 
 
 

@@ -51,6 +51,15 @@ class yahal::mcu::targets::msp430f5309::Gpio :
 	public yahal::mcu::modules::Gpio
 {
 public:
+
+				struct Configuration
+				{};
+
+
+				// CONSTRUCTOR
+				Gpio(const Configuration& configuration);
+
+
 				/**
 				 * Return reference to port.
 				 */
@@ -149,6 +158,10 @@ private:
 					uint8_t	getOutput(uint8_t mask=0xFF)const;
 				};
 
+
+
+ 				// CONFIGURATION
+	const Configuration&	_configuration;
 
 
  				// PRIVATE INSTANCES

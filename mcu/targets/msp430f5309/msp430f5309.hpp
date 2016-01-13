@@ -59,19 +59,24 @@
 #include "../../config/targets/msp430f5309_config.hpp"
 
 
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+namespace yahal{ namespace mcu{
 
 	// IRQHandler
-	msp430f5309::IRQHandler irq_handler;
+	targets::msp430f5309::IRQHandler irq_handler;
 
 	// CLK
 	#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
-		msp430f5309::Clk clk(msp430f5309::config::clk);
+		targets::msp430f5309::Clk clk(targets::msp430f5309::config::clk);
+	#endif
+
+	// GPIO
+	#if __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__ == true
+		targets::msp430f5309::Gpio gpio(targets::msp430f5309::config::gpio);
 	#endif
 
 	// WDT
 	#if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true
-		msp430f5309::Wdt wdt(msp430f5309::config::wdt);
+		targets::msp430f5309::Wdt wdt(targets::msp430f5309::config::wdt);
 	#endif
 
 
@@ -81,6 +86,11 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 		// CLK
 		#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
 			clk.init();
+		#endif
+
+		// GPIO
+		#if __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__ == true
+			gpio.init();
 		#endif
 
 		// WDT
@@ -94,7 +104,9 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 		// ...
 		irq_handler.enableGlobalInterrupts();
 	}
-}}}}
+
+
+}} // Namespace
 
 
 
