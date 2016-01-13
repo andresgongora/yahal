@@ -79,23 +79,25 @@ namespace yahal{ namespace mcu{
 		targets::msp430f5309::Wdt wdt(targets::msp430f5309::config::wdt);
 	#endif
 
+}} // Namespace yahal::mcu
 
 
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	void init(void)
 	{
 		// CLK
 		#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
-			clk.init();
+			yahal::mcu::clk.init();
 		#endif
 
 		// GPIO
 		#if __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__ == true
-			gpio.init();
+			yahal::mcu::gpio.init();
 		#endif
 
 		// WDT
 		#if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true
-			wdt.init();
+			yahal::mcu::wdt.init();
 		#endif
 
 
@@ -105,8 +107,7 @@ namespace yahal{ namespace mcu{
 		irq_handler.enableGlobalInterrupts();
 	}
 
-
-}} // Namespace
+}} // Namespace yahal::mcu::targets::msp430f5309
 
 
 
