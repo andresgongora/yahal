@@ -62,6 +62,16 @@
 //#include "hwemulation/hwemulation.hpp"
 
 
+namespace yahal{ namespace mcu{
+
+	void init(void)
+	{
+		yahal::mcu::details::initTarget();
+	}
+
+}} // namespace yahal::mcu
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// __YAHAL_MCU_HPP_INCLUDED__

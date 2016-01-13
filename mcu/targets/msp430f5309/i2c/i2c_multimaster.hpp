@@ -87,9 +87,7 @@ private:			// PRIVATE VARIABLES
 
 private:			// ISR
 	friend class		yahal::mcu::targets::msp430f5309::IRQHandler;
-	virtual void 		isr(IRQHandler::I2C::IRQ::Type irq) {
-					for(;;);
-				}
+	virtual void 		isr(IRQHandler::I2C::IRQ::Type irq);
 };
 
 

@@ -76,13 +76,13 @@ public:				// WRITE & READ & POLL
 
 
 
-//protected:			// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
-	void			handleArbitrationLost(void);
-	void			handleReceivedStart(void);
-	void			handleReceivedStop(void);
-	void			handleReceivedNack(void);
-	void			handleBufferTXEmpty(void);
-	void			handleBufferRXFull(void);
+protected:			// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
+	void			isrArbitrationLost(void);
+	void			isrReceivedStart(void);
+	void			isrReceivedStop(void);
+	void			isrReceivedNack(void);
+	void			isrBufferTXEmpty(void);
+	void			isrBufferRXFull(void);
 
 
 

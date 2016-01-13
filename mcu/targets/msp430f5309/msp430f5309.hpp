@@ -87,10 +87,10 @@ namespace yahal{ namespace mcu{
 	TARGET INITIALIZATION
 ================================================================================================= */
 
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+namespace yahal{ namespace mcu{ namespace details{
 
 	/// Call all init functions for this targets modules.
-	void init(void)
+	void initTarget(void)
 	{
 		// CLK
 		#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
@@ -114,8 +114,43 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 		irq_handler.enableGlobalInterrupts();
 	}
 
-}}}} // Namespace yahal::mcu::targets::msp430f5309
+}}} // Namespace yahal::mcu::details
 
+
+
+
+/***********************************************************************************************//**
+ * @brief	I2C IRQ
+ **************************************************************************************************/
+#pragma vector = USCI_B1_VECTOR
+__interrupt void USCI_B1_ISR(void)
+{
+	switch (__even_in_range(UCB1IV, 12))
+	{
+	case  0: ///< Vector 00: No interrupts
+		break;
+	case  2: ///< Vector 02: Arbitration Lost
+		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::ARBITRATION_LOST);
+		break;
+	case  4: ///< Vector 04: Nack
+		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::NACK);
+		break;
+	case  6: ///< Vector 06: Start
+		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::START);
+		break;
+	case  8: ///< Vector 08: Stop
+		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::STOP);
+		break;
+	case 10: ///< Vector 10: RX Full
+		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::RX_BUFFER_FULL);
+		break;
+	case 12: ///< Vector 12: TX Empty
+		yahal::mcu::irq_handler.irqI2C(yahal::mcu::targets::msp430f5309::IRQHandler::I2C::IRQ::TX_BUFFER_EMPTY);
+		break;
+	default:
+		break;
+	}
+}
 
 
 /* ---------------------------------------------------------------------------------------------- */

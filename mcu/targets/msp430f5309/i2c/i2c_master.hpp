@@ -36,6 +36,7 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../../../modules/i2c/i2c_master.hpp"
+#include "../irq/irq_handler.hpp"
 
 
 
@@ -50,7 +51,8 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
  * @brief
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::I2C_master :
-	public yahal::mcu::modules::I2C_master
+	public yahal::mcu::modules::I2C_master,
+	public yahal::mcu::targets::msp430f5309::IRQHandler::I2C
 {
 public:
 				struct Configuration
@@ -74,6 +76,11 @@ private:			// MODULE IMPLEMENTATION
 	virtual void		writeBufferTX(uint8_t byte);
 	virtual uint8_t		readBufferRX(void);
 	virtual void		awaitTransmissionEnd(void);
+
+
+private:			// ISR
+	friend class		yahal::mcu::targets::msp430f5309::IRQHandler;
+	virtual void 		isr(IRQHandler::I2C::IRQ::Type irq);
 
 
 				// PRIVATE VARIABLES

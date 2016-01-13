@@ -103,6 +103,25 @@ void yahal::mcu::targets::msp430f5309::I2C_master::awaitTransmissionEnd(void)
 }
 
 
+/* ---------------------------------------------------------------------------------------------- */
+
+void yahal::mcu::targets::msp430f5309::I2C_master::isr(IRQHandler::I2C::IRQ::Type irq)
+{
+	switch (irq)
+	{
+	case IRQHandler::I2C::IRQ::TX_BUFFER_EMPTY:
+		isrBufferTXEmpty();
+		break;
+	case IRQHandler::I2C::IRQ::RX_BUFFER_FULL:
+		isrBufferRXFull();
+		break;
+	case IRQHandler::I2C::IRQ::NACK:
+		isrReceivedNack();
+		break;
+	default:
+		break;
+	}
+}
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif // MCU_DEVICE == MCU_MSP430F5309

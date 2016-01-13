@@ -43,7 +43,7 @@ void yahal::mcu::modules::I2C_slave::setExternalHandler(ExternalHandler* p_exter
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::modules::I2C_slave::handleReceivedStart(void)
+void yahal::mcu::modules::I2C_slave::isrReceivedStart(void)
 {
 	if (p_external_handler_) {
 		if (isIncommingWrite()) {
@@ -56,7 +56,7 @@ void yahal::mcu::modules::I2C_slave::handleReceivedStart(void)
 
 
 
-void yahal::mcu::modules::I2C_slave::handleReceivedStop(void)
+void yahal::mcu::modules::I2C_slave::isrReceivedStop(void)
 {
 	if (p_external_handler_) {
 		p_external_handler_->notifyStop();
@@ -65,7 +65,7 @@ void yahal::mcu::modules::I2C_slave::handleReceivedStop(void)
 
 
 
-void yahal::mcu::modules::I2C_slave::handleBufferTXEmpty(void)
+void yahal::mcu::modules::I2C_slave::isrBufferTXEmpty(void)
 {
 	uint8_t byteToSend = 0xFF;	///< Default value 0xFF
 
@@ -78,7 +78,7 @@ void yahal::mcu::modules::I2C_slave::handleBufferTXEmpty(void)
 
 
 
-void yahal::mcu::modules::I2C_slave::handleBufferRXFull(void)
+void yahal::mcu::modules::I2C_slave::isrBufferRXFull(void)
 {
 	volatile uint8_t receivedByte = readBufferRX();	///< Read buffer in order to free it for next transmission
 
