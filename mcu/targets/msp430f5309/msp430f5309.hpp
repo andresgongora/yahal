@@ -40,9 +40,9 @@
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
 #include "gpio/gpio.hpp"
-#include "uscib1/i2c_master.hpp"
-#include "uscib1/i2c_slave.hpp"
-#include "uscib1/i2c_multimaster.hpp"
+#include "uscib1/i2c/i2c_master.hpp"
+#include "uscib1/i2c/i2c_slave.hpp"
+#include "uscib1/i2c/i2c_multimaster.hpp"
 
 #include "irq/irq_handler.hpp"
 //#include "hal/mcu/devices/msp430f5309/uart/uart.hpp"

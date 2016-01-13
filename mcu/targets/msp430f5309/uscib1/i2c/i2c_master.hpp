@@ -30,14 +30,13 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/mcu_config.hpp"
+#include "../../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include <stdint.h>
 #include <cstddef>
-#include "../../../modules/i2c/i2c_master.hpp"
-#include "uscib1.hpp"
-#include "../irq/irq_handler.hpp"
+#include "../../../../modules/i2c/i2c_master.hpp"
+#include "../uscib1.hpp"
 
 
 
