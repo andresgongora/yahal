@@ -33,7 +33,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 
 yahal::mcu::targets::msp430f5309::I2C_master::I2C_master(const Configuration& configuration) :
-	_configuration(configuration)
+	configuration_(configuration)
 {}
 
 

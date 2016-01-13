@@ -34,7 +34,7 @@
 ================================================================================================= */
 
 yahal::mcu::targets::msp430f5309::Gpio::Gpio(const Configuration& configuration) :
-	_configuration(configuration)
+	configuration_(configuration)
 {}
 
 

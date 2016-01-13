@@ -87,7 +87,7 @@ private:			// INITIALIZATION
 
 
 				// CONFIGURATION
-	const Configuration&	_configuration;
+	const Configuration&	configuration_;
 };
 
 

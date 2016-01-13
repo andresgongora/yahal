@@ -161,7 +161,7 @@ private:
 
 
  				// CONFIGURATION
-	const Configuration&	_configuration;
+	const Configuration&	configuration_;
 
 
  				// PRIVATE INSTANCES

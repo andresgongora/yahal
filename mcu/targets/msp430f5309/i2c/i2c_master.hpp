@@ -77,7 +77,7 @@ private:			// MODULE IMPLEMENTATION
 
 
 				// PRIVATE VARIABLES
-	const Configuration&	_configuration;
+	const Configuration&	configuration_;
 };
 
 

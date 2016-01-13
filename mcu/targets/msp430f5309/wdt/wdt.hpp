@@ -69,7 +69,7 @@ public:
 	void			reset(void);
 
 private:
-	const Configuration&	_configuration;
+	const Configuration&	configuration_;
 };
 
 

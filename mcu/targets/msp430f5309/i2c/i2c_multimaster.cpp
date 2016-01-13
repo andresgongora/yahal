@@ -36,7 +36,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 
 yahal::mcu::targets::msp430f5309::I2C_multimaster::I2C_multimaster(const Configuration& configuration) :
-	_configuration(configuration)
+	configuration_(configuration)
 {}
 
 
@@ -51,7 +51,7 @@ void yahal::mcu::targets::msp430f5309::I2C_multimaster::doInit(void)
 	UCB1CTL0 = UCMST + UCMODE_3 + UCSYNC + UCMM;	///< I2C Master, synchronous mode, multimaster
 	UCB1CTL1 = UCSSEL__SMCLK + UCSWRST + UCTR;	///< Use SMCLK
 	UCB1BRW = 32;					///< fSCL = SMCLK/12 = ~100kHz TODO: CALCULATE ASKING CLK!
-	UCB1I2COA = _configuration.ownAddress + UCGCEN;	///< Enable general call
+	UCB1I2COA = configuration_.ownAddress + UCGCEN;	///< Enable general call
 	UCB1CTL1 &= ~UCSWRST;				///< Clear SW reset, resume operation
 
 	UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;///< Enable Interrupts

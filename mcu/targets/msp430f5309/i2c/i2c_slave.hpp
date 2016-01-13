@@ -75,7 +75,7 @@ private:			// I2C PROTOCOL
 
 
 private:			// PRIVATE VARIABLES
-	const Configuration&	_configuration;
+	const Configuration&	configuration_;
 };
 
 

@@ -32,7 +32,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 
 yahal::mcu::targets::msp430f5309::Wdt::Wdt(const Configuration& configuration) :
-	_configuration(configuration)
+	configuration_(configuration)
 {}
 
 void yahal::mcu::targets::msp430f5309::Wdt::doInit(void)

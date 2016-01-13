@@ -35,14 +35,14 @@
 /* ---------------------------------------------------------------------------------------------- */
 
 yahal::mcu::targets::msp430f5309::Clk::Clk(const Configuration& configuration) :
-	_configuration(configuration)
+	configuration_(configuration)
 {}
 
 
 
 void yahal::mcu::targets::msp430f5309::Clk::doInit(void)
 {
-	if(setFrequencyHz(_configuration.frequency))	// Set default frequency
+	if(setFrequencyHz(configuration_.frequency))	// Set default frequency
 	{
 	}
 	else
