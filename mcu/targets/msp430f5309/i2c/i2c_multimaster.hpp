@@ -34,7 +34,7 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../../../modules/i2c/i2c_multimaster.hpp"
-#include "../irq/irq.hpp"
+#include "../irq/irq_handler.hpp"
 
 
 

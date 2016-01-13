@@ -45,7 +45,7 @@ namespace yahal{ namespace mcu{
  * Base class for GPIO modules.
  **************************************************************************************************/
 class yahal::mcu::Gpio :
-		public yahal::mcu::details::BaseModule
+	public yahal::mcu::details::BaseModule
 {
 public:
 				/**

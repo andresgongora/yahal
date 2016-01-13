@@ -24,7 +24,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-#include "irq.hpp"
+#include <targets/msp430f5309/irq/irq_handler.hpp>
 #if MCU_DEVICE == MCU_MSP430F5309
 
 #include <msp430f5309.h>
@@ -33,9 +33,28 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
+yahal::mcu::targets::msp430f5309::IRQHandler::IRQHandler(void) :
+	p_i2c_(NULL)
+{}
+
+
+void yahal::mcu::targets::msp430f5309::IRQHandler::doInit(void)
+{}
 
 
 /* ---------------------------------------------------------------------------------------------- */
+
+void yahal::mcu::targets::msp430f5309::IRQHandler::enableGlobalInterrupts(void) const
+{}
+
+
+void yahal::mcu::targets::msp430f5309::IRQHandler::disableGlobalInterrupts(void) const
+{}
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
 
 void yahal::mcu::targets::msp430f5309::IRQHandler::setISRHandlerI2C(I2C* p_handler)
 {

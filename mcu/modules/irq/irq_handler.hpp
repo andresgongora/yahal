@@ -22,74 +22,48 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_M430F5309_IRQ_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_IRQ_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_IRQ_HANDLER_HPP_INCLUDED__
+#define __YAHAL_MCU_IRQ_HANDLER_HPP_INCLUDED__
+
+
+/* ---------------------------------------------------------------------------------------------- */
+#include "../base_module.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/mcu_config.hpp"
-#if MCU_DEVICE == MCU_MSP430F5309
-
-#include <stdint.h>
-#include <cstddef>
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+namespace yahal{ namespace mcu{
 	class IRQHandler;
-}}}}
+}}
 
 
 
 /***********************************************************************************************//**
- * @brief
+ * @brief	Base class for all IRQ handlers.
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IRQHandler // : public yahal::mcu::modules::Irq
+class yahal::mcu::IRQHandler :
+	public yahal::mcu::details::BaseModule
 {
 public:
-				/// I2C IRQ Handler
-				class I2C
-				{
-				protected:		I2C(void) {}
-				public:
-							struct IRQ { enum Type {
-								START,
-								STOP,
-								ETC,
-							};};
-				protected:
-					friend class	IRQHandler;
-					virtual void	isr(IRQHandler::I2C::IRQ::Type irq) = 0;
-				};
+				/// Error codes.
+				struct Error {enum Type {
+					NO_ERROR = 0,
+					OTHER
+				};};
 
 
+				// CONSTRUCTOR
+protected:
+				Irq(void)	{}
 
 
 public:
-				/// Constructor
-				IRQHandler(void);
-
-
-public:
-				// I2C
-	void 			setISRHandlerI2C(I2C* p_handler);
-	void 			irqHandleI2C(I2C::IRQ::Type irq);
-
-
-
-private:
-				// POINTERS
-	I2C*			p_i2c_;
-
+				// CONFIGURATION
+	virtual void		enableGlobalInterrupts(void) const = 0;
+	virtual void		disableGlobalInterrupts(void) const = 0;
 };
 
-/*				// CONFIGURATION
- void			enableGlobalInterrupts(void) const;
- void			disableGlobalInterrupts(void) const;
- */
+
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// MCU_DEVICE == MCU_MSP430F5309
-#endif 	// __YAHAL_MCU_M430F5309_IRQ_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_IRQ_HANDLER_HPP_INCLUDED__
