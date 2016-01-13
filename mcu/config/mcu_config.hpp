@@ -30,7 +30,7 @@
 #include "targets/targets_uid.hpp"
 
 
-#define MCU_DEVICE 			MCU_MSP430F5309
+#define YAHAL_MCU_TARGET 			YAHAL_MCU_MSP430F5309
 
 
 

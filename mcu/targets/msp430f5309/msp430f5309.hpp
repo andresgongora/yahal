@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../../config/mcu_config.hpp"
-#if MCU_DEVICE == MCU_MSP430F5309
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 
 
@@ -43,14 +43,13 @@
 #include "i2c/i2c_master.hpp"
 #include "i2c/i2c_slave.hpp"
 #include "i2c/i2c_multimaster.hpp"
-//#include "hal/mcu/devices/msp430f5309/i2c/i2c_master.hpp"
-//#include "hal/mcu/devices/msp430f5309/i2c/i2c_slave.hpp"
+
 #include "irq/irq_handler.hpp"
 //#include "hal/mcu/devices/msp430f5309/uart/uart.hpp"
 
 
 
-// Include all modules before configuration
+// Include all modules before the configuration
 #include "../../config/targets/msp430f5309_config.hpp"
 
 
@@ -60,26 +59,57 @@
 ================================================================================================= */
 
 namespace yahal{ namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
 
 	// IRQHandler
 	targets::msp430f5309::IRQHandler irq_handler;
 
+/* ---------------------------------------------------------------------------------------------- */
+
 	// CLK
-	#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
+	#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 		targets::msp430f5309::Clk clk(targets::msp430f5309::config::clk);
 	#endif
 
+/* ---------------------------------------------------------------------------------------------- */
+
 	// GPIO
-	#if __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__ == true
+	#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 		targets::msp430f5309::Gpio gpio(targets::msp430f5309::config::gpio);
 	#endif
 
+/* ---------------------------------------------------------------------------------------------- */
+
+	// USCI_B0
+	#if	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B0_MODE == YAHAL_MCU_MSP430F5309_USCI_B0_I2C_SLAVE
+		targets::msp430f5309::I2C_slave		\
+		YAHAL_MCU_MSP430F5309_USCI_B0_NAME	\
+		(targets::msp430f5309::config::usci_b0);
+
+	#elif	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B0_MODE == YAHAL_MCU_MSP430F5309_USCI_B0_I2C_MASTER
+		targets::msp430f5309::I2C_master	\
+		YAHAL_MCU_MSP430F5309_USCI_B0_NAME	\
+		(targets::msp430f5309::config::usci_b0);
+
+	#elif	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B0_MODE == YAHAL_MCU_MSP430F5309_USCI_B0_I2C_MULTIMASTER
+		targets::msp430f5309::I2C_multimaster	\
+		YAHAL_MCU_MSP430F5309_USCI_B0_NAME	\
+		(targets::msp430f5309::config::usci_b0);
+	#endif
+
+	/* ---------------------------------------------------------------------------------------------- */
+
 	// WDT
-	#if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true
+	#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
 		targets::msp430f5309::Wdt wdt(targets::msp430f5309::config::wdt);
 	#endif
 
 }} // Namespace yahal::mcu
+
+
 
 
 
@@ -93,17 +123,23 @@ namespace yahal{ namespace mcu{ namespace details{
 	void initTarget(void)
 	{
 		// CLK
-		#if __YAHAL_MCU_MSP430F5309_CLK_ENABLED__ == true
+		#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 			yahal::mcu::clk.init();
 		#endif
 
 		// GPIO
-		#if __YAHAL_MCU_MSP430F5309_GPIO_ENABLED__ == true
+		#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 			yahal::mcu::gpio.init();
 		#endif
 
+		// USCI_B0
+		#if YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true
+			yahal::mcu::YAHAL_MCU_MSP430F5309_USCI_B0_NAME.init();
+		#endif
+
+
 		// WDT
-		#if __YAHAL_MCU_MSP430F5309_WDT_ENABLED__ == true
+		#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
 			yahal::mcu::wdt.init();
 		#endif
 

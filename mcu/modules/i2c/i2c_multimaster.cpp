@@ -125,41 +125,41 @@ bool yahal::mcu::modules::I2C_multimaster::isSlavePresent(uint8_t slaveAddress)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::modules::I2C_multimaster::isrReceivedStart(void)
+void yahal::mcu::modules::I2C_multimaster::handleReceivedStart(void)
 {
 	if(isMaster())	{}
-	else		{I2C_slave::isrReceivedStart();}
+	else		{I2C_slave::handleReceivedStart();}
 }
 
 
-void yahal::mcu::modules::I2C_multimaster::isrReceivedStop(void)
+void yahal::mcu::modules::I2C_multimaster::handleReceivedStop(void)
 {
 	if(isMaster())	{}
-	else		{I2C_slave::isrReceivedStop();}
+	else		{I2C_slave::handleReceivedStop();}
 }
 
 
-void yahal::mcu::modules::I2C_multimaster::isrReceivedNack(void)
+void yahal::mcu::modules::I2C_multimaster::handleReceivedNack(void)
 {
-	if(isMaster())	{I2C_master::isrReceivedNack();}
+	if(isMaster())	{I2C_master::handleReceivedNack();}
 	else		{}
 }
 
-void yahal::mcu::modules::I2C_multimaster::isrBufferTXEmpty(void)
+void yahal::mcu::modules::I2C_multimaster::handleBufferTXEmpty(void)
 {
-	if(isMaster())	{I2C_master::isrBufferTXEmpty();}
-	else		{I2C_slave::isrBufferTXEmpty();}
+	if(isMaster())	{I2C_master::handleBufferTXEmpty();}
+	else		{I2C_slave::handleBufferTXEmpty();}
 }
 
 
-void yahal::mcu::modules::I2C_multimaster::isrBufferRXFull(void)
+void yahal::mcu::modules::I2C_multimaster::handleBufferRXFull(void)
 {
-	if(isMaster())	{I2C_master::isrBufferRXFull();}
-	else		{I2C_slave::isrBufferRXFull();}
+	if(isMaster())	{I2C_master::handleBufferRXFull();}
+	else		{I2C_slave::handleBufferRXFull();}
 }
 
 
-void yahal::mcu::modules::I2C_multimaster::isrArbitrationLost(void)
+void yahal::mcu::modules::I2C_multimaster::handleArbitrationLost(void)
 {
 
 }

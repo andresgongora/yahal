@@ -31,7 +31,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "hal/mcu/devices/msp430f2132/msp430f2132.hpp"
-#if MCU_DEVICE == MCU_MSP430F2132
+#if YAHAL_MCU_TARGET == MCU_MSP430F2132
 
 #include "hal/utility/publish_subscribe.hpp"
 #include "hal/mcu/virtual/irq/irq.hpp"

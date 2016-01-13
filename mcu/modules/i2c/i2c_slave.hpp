@@ -84,10 +84,10 @@ protected:			// I2C PROTOCOL -> IMPLEMENT
 
 
 protected:			// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
-	virtual void		isrReceivedStart(void);	///< Attend Start IRQs
-	virtual void		isrReceivedStop(void);	///< Attend Stop IRQs
-	virtual void		isrBufferTXEmpty(void);	///< Attend next TX byte requested
-	virtual void		isrBufferRXFull(void);	///< Attend RX
+	virtual void		handleReceivedStart(void);	///< Attend Start IRQs
+	virtual void		handleReceivedStop(void);	///< Attend Stop IRQs
+	virtual void		handleBufferTXEmpty(void);	///< Attend next TX byte requested
+	virtual void		handleBufferRXFull(void);	///< Attend RX
 
 private:
 				// PRIVATE VARIABLES

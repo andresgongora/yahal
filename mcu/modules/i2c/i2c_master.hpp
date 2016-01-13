@@ -110,9 +110,9 @@ public:				// FAST WRITE & READ TEMPLATES
 
 
 protected:			// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
-	virtual void		isrBufferTXEmpty(void);
-	virtual void		isrBufferRXFull(void);
-	virtual void		isrReceivedNack(void);
+	virtual void		handleBufferTXEmpty(void);
+	virtual void		handleBufferRXFull(void);
+	virtual void		handleReceivedNack(void);
 
 
 

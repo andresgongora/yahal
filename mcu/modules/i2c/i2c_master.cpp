@@ -116,7 +116,7 @@ bool yahal::mcu::modules::I2C_master::isSlavePresent(uint8_t slaveAddress)
 
 /** ======================================================================================== IRQ **/
 
-void yahal::mcu::modules::I2C_master::isrBufferTXEmpty(void)
+void yahal::mcu::modules::I2C_master::handleBufferTXEmpty(void)
 {
 	// This fuction might be entered because
 	// - Need to send register address, regardless if it is Write or Read 	-> Send RegAddr
@@ -150,7 +150,7 @@ void yahal::mcu::modules::I2C_master::isrBufferTXEmpty(void)
 
 
 
-void yahal::mcu::modules::I2C_master::isrBufferRXFull(void)
+void yahal::mcu::modules::I2C_master::handleBufferRXFull(void)
 {
 	// STORE DATA IN CASE ANOTHER IRQ HAPPENS
 	uint8_t currentTransmission = _numTransmitted;
@@ -177,7 +177,7 @@ void yahal::mcu::modules::I2C_master::isrBufferRXFull(void)
 
 
 
-void yahal::mcu::modules::I2C_master::isrReceivedNack(void)
+void yahal::mcu::modules::I2C_master::handleReceivedNack(void)
 {
 	if(pendingTransmissions() == _numTransmissions)
 		{setErrorCode(Error::SLAVE_NOT_REACHABLE);}

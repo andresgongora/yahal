@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../../../config/mcu_config.hpp"
-#if MCU_DEVICE == MCU_MSP430F5309
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include <stdint.h>
 #include <cstddef>
@@ -68,8 +68,8 @@ private:			// INITIALIZATION
 	void			doInit(void);
 
 
-public:
-//private:			// MODULE IMPLEMENTATION
+
+private:			// MODULE IMPLEMENTATION
 	virtual void		start(uint8_t slaveAddress, Direction::Type direction);
 	virtual void		stop(void);
 	virtual void		writeBufferTX(uint8_t byte);

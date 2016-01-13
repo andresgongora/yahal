@@ -28,7 +28,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <mcu/targets/msp430f2132/irq/irq.hpp>
-#if MCU_DEVICE == MCU_MSP430F2132
+#if YAHAL_MCU_TARGET == MCU_MSP430F2132
 
 #include <msp430f2132.h>
 

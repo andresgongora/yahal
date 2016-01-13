@@ -29,7 +29,7 @@
 #define __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
 
 #include "../../targets/msp430f5309/msp430f5309.hpp"
-#if MCU_DEVICE == MCU_MSP430F5309
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 
 
@@ -37,13 +37,11 @@
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace config{
 
 
-
-
 /* =================================================================================================
 	CLK
 ================================================================================================= */
 
-#define	__YAHAL_MCU_MSP430F5309_CLK_ENABLED__	true		///< Create instance
+#define	YAHAL_MCU_MSP430F5309_CLK_ENABLED		true
 
 static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 /* Frequency	*/ msp430f5309::Clk::Frequency::DCO_8MHz,
@@ -52,16 +50,19 @@ static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 
 
 
+
+
 /* =================================================================================================
 	GPIO
 ================================================================================================= */
 
-#define	__YAHAL_MCU_MSP430F5309_GPIO_ENABLED__	true		///< Create instance
+#define	YAHAL_MCU_MSP430F5309_GPIO_ENABLED		true
 
-// CONFIGURATION
 static const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 /* Nothing	*/
 };
+
+
 
 
 
@@ -69,12 +70,51 @@ static const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 	WDT
 ================================================================================================= */
 
-#define	__YAHAL_MCU_MSP430F5309_WDT_ENABLED__	true		///< Create instance
+#define	YAHAL_MCU_MSP430F5309_WDT_ENABLED		true
 
-// CONFIGURATION
 static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 /* Nothing	*/
 };
+
+
+
+
+
+/* =================================================================================================
+	USCI_B0
+================================================================================================= */
+
+// AVAILABLE MODES
+#define YAHAL_MCU_MSP430F5309_USCI_B0_I2C_SLAVE		0
+#define YAHAL_MCU_MSP430F5309_USCI_B0_I2C_MASTER	1
+#define YAHAL_MCU_MSP430F5309_USCI_B0_I2C_MULTIMASTER	2
+#define YAHAL_MCU_MSP430F5309_USCI_B0_SPI 		3
+
+/* ---------------------------------------------------------------------------------------------- */
+
+#define	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED		true
+#define YAHAL_MCU_MSP430F5309_USCI_B0_MODE		YAHAL_MCU_MSP430F5309_USCI_B0_I2C_MULTIMASTER
+#define YAHAL_MCU_MSP430F5309_USCI_B0_NAME		i2c1
+
+
+#if	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true	\
+&&	YAHAL_MCU_MSP430F5309_USCI_B0_MODE == YAHAL_MCU_MSP430F5309_USCI_B0_I2C_SLAVE
+	static const yahal::mcu::targets::msp430f5309::I2C_slave::Configuration usci_b0 = {
+	/* Own Address	*/ 0x1E,
+	};
+
+#elif	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true	\
+&&	YAHAL_MCU_MSP430F5309_USCI_B0_MODE == YAHAL_MCU_MSP430F5309_USCI_B0_I2C_MASTER
+	static const yahal::mcu::targets::msp430f5309::I2C_master::Configuration usci_b0 = {
+	/* Nothing	*/
+	};
+
+#elif	YAHAL_MCU_MSP430F5309_USCI_B0_ENABLED == true	\
+&&	YAHAL_MCU_MSP430F5309_USCI_B0_MODE == YAHAL_MCU_MSP430F5309_USCI_B0_I2C_MULTIMASTER
+	static const yahal::mcu::targets::msp430f5309::I2C_multimaster::Configuration usci_b0 = {
+	/* Own Address */ 0x1E,
+	};
+#endif
 
 
 
@@ -104,4 +144,4 @@ static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif // MCU_DEVICE == MCU_MSP430F5309
-#endif //__YAHAL_MCU_TARGETS_MSP430F5309_CONFIGHPP_INCLUDED__
+#endif // __YAHAL_MCU_TARGETS_MSP430F5309_CONFIGHPP_INCLUDED__

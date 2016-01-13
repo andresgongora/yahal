@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../../../config/mcu_config.hpp"
-#if MCU_DEVICE == MCU_MSP430F5309
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include <stdint.h>
 #include <cstddef>

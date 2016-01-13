@@ -24,7 +24,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "i2c_master.hpp"
-#if MCU_DEVICE == MCU_MSP430F5309
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include <msp430f5309.h>
 
@@ -110,13 +110,13 @@ void yahal::mcu::targets::msp430f5309::I2C_master::isr(IRQHandler::I2C::IRQ::Typ
 	switch (irq)
 	{
 	case IRQHandler::I2C::IRQ::TX_BUFFER_EMPTY:
-		isrBufferTXEmpty();
+		handleBufferTXEmpty();
 		break;
 	case IRQHandler::I2C::IRQ::RX_BUFFER_FULL:
-		isrBufferRXFull();
+		handleBufferRXFull();
 		break;
 	case IRQHandler::I2C::IRQ::NACK:
-		isrReceivedNack();
+		handleReceivedNack();
 		break;
 	default:
 		break;
