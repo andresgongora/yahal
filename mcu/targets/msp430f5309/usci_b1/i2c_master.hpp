@@ -25,9 +25,8 @@
 
 
 
-#ifndef __YAHAL_MCU_M430F5309_I2C_SLAVE_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_I2C_SLAVE_HPP_INCLUDED__
-
+#ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CMASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_USCIB1_I2CMASTER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -36,52 +35,55 @@
 
 #include <stdint.h>
 #include <cstddef>
-#include "../../../modules/i2c/i2c_slave.hpp"
+#include "../../../modules/i2c/i2c_master.hpp"
 #include "../irq/irq_handler.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class I2CSlave;
-}}}}
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace uscib1{
+	class I2CMaster;
+}}}}}
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::I2CSlave :
-	public yahal::mcu::modules::I2CSlave,
-	public yahal::mcu::targets::msp430f5309::IRQHandler::I2C
+class yahal::mcu::targets::msp430f5309::uscib1::I2CMaster :
+	public yahal::mcu::modules::I2CMaster,
+	public yahal::mcu::targets::msp430f5309::IRQHandler::UsciB1
 {
 public:
 				struct Configuration
 				{
-					uint8_t ownAddress;
 				};
 
 
 				// CONSTRUCTOR
-				I2CSlave(const Configuration& configuration);
+				I2CMaster(const Configuration& configuration);
+
 
 
 private:			// INITIALIZATION
 	virtual void		doInit(void);
 
 
-private:			// I2C PROTOCOL
+
+private:			// MODULE IMPLEMENTATION
+	virtual void		start(uint8_t slaveAddress, Direction::Type direction);
+	virtual void		stop(void);
 	virtual void		writeBufferTX(uint8_t byte);
 	virtual uint8_t		readBufferRX(void);
-	virtual bool		isIncommingWrite(void);
+	virtual void		awaitTransmissionEnd(void);
 
 
 private:			// ISR
 	friend class		yahal::mcu::targets::msp430f5309::IRQHandler;
-	virtual void 		isr(IRQHandler::I2C::IRQ::Type irq);
+	virtual void 		isr(IRQHandler::UsciB1::IRQ::Type irq);
 
 
-private:			// PRIVATE VARIABLES
+				// PRIVATE VARIABLES
 	const Configuration&	configuration_;
 };
 
@@ -89,4 +91,4 @@ private:			// PRIVATE VARIABLES
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// MCU_DEVICE == MCU_MSP430F5309
-#endif	// __M430F5309_I2C_SLAVE_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_M430F5309_USCIB1_I2CMASTER_HPP_INCLUDED__

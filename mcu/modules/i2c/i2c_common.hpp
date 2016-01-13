@@ -37,7 +37,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace modules{ namespace details{
-	class I2C_common;
+	class I2CCommon;
 }}}}
 
 
@@ -46,7 +46,7 @@ namespace yahal{ namespace mcu{ namespace modules{ namespace details{
  * Base class for all I2C modules.
  * This virtual class implements all common elements to all I2C operation modes.
  **************************************************************************************************/
-class yahal::mcu::modules::details::I2C_common : public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::details::I2CCommon : public yahal::mcu::modules::details::BaseModule
 {
 public:
 				/**
@@ -73,7 +73,7 @@ public:
 
 protected:
 				// CONSTRUCTOR & DESTRUCTOR
-				I2C_common(void)	{}
+				I2CCommon(void)	{}
 
 
 

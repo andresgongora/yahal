@@ -139,26 +139,26 @@ void yahal::mcu::targets::msp430f5309::I2CMultimaster::configureAsMaster(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::I2CMultimaster::isr(IRQHandler::I2C::IRQ::Type irq)
+void yahal::mcu::targets::msp430f5309::I2CMultimaster::isr(IRQHandler::UsciB1::IRQ::Type irq)
 {
 	switch (irq)
 	{
-	case IRQHandler::I2C::IRQ::START:
+	case IRQHandler::UsciB1::IRQ::I2C_START:
 		handleReceivedStart();
 		break;
-	case IRQHandler::I2C::IRQ::STOP:
+	case IRQHandler::UsciB1::IRQ::I2C_STOP:
 		handleReceivedStop();
 		break;
-	case IRQHandler::I2C::IRQ::TX_BUFFER_EMPTY:
+	case IRQHandler::UsciB1::IRQ::I2C_TX_BUFFER_EMPTY:
 		handleBufferTXEmpty();
 		break;
-	case IRQHandler::I2C::IRQ::RX_BUFFER_FULL:
+	case IRQHandler::UsciB1::IRQ::I2C_RX_BUFFER_FULL:
 		handleBufferRXFull();
 		break;
-	case IRQHandler::I2C::IRQ::ARBITRATION_LOST:
+	case IRQHandler::UsciB1::IRQ::I2C_ARBITRATION_LOST:
 		handleArbitrationLost();
 		break;
-	case IRQHandler::I2C::IRQ::NACK:
+	case IRQHandler::UsciB1::IRQ::I2C_NACK:
 		handleReceivedNack();
 		break;
 	default:

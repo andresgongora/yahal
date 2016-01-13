@@ -22,11 +22,9 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+#ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
 
-
-
-#ifndef __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -35,38 +33,39 @@
 
 #include <stdint.h>
 #include <cstddef>
-#include "../../../modules/i2c/i2c_master.hpp"
+#include "../../../modules/i2c/i2c_multimaster.hpp"
 #include "../irq/irq_handler.hpp"
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class I2CMaster;
-}}}}
 
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace uscib1{
+	class I2CMultimaster;
+}}}}}
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::I2CMaster :
-	public yahal::mcu::modules::I2CMaster,
-	public yahal::mcu::targets::msp430f5309::IRQHandler::I2C
+class yahal::mcu::targets::msp430f5309::uscib1::I2CMultimaster :
+	public yahal::mcu::modules::I2CMultimaster,
+	public yahal::mcu::targets::msp430f5309::IRQHandler::UsciB1
 {
 public:
 				struct Configuration
 				{
+					uint8_t ownAddress;
 				};
 
 
 				// CONSTRUCTOR
-				I2CMaster(const Configuration& configuration);
+				I2CMultimaster(const Configuration& configuration);
 
 
 
 private:			// INITIALIZATION
-	virtual void		doInit(void);
+	void			doInit(void);
 
 
 
@@ -76,19 +75,22 @@ private:			// MODULE IMPLEMENTATION
 	virtual void		writeBufferTX(uint8_t byte);
 	virtual uint8_t		readBufferRX(void);
 	virtual void		awaitTransmissionEnd(void);
+	virtual bool		isIncommingWrite(void);
+	virtual bool		isMaster(void);
+	virtual void		configureAsMaster(void);
+
+
+
+private:			// PRIVATE VARIABLES
+	const Configuration&	configuration_;
 
 
 private:			// ISR
 	friend class		yahal::mcu::targets::msp430f5309::IRQHandler;
-	virtual void 		isr(IRQHandler::I2C::IRQ::Type irq);
-
-
-				// PRIVATE VARIABLES
-	const Configuration&	configuration_;
+	virtual void 		isr(IRQHandler::UsciB1::IRQ::Type irq);
 };
 
 
-
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// MCU_DEVICE == MCU_MSP430F5309
-#endif	// __YAHAL_MCU_M430F5309_I2C_MASTER_HPP_INCLUDED__
+#endif // MCU_DEVICE == MCU_MSP430F5309
+#endif // __YAHAL_MCU_M430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__

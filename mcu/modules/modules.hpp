@@ -34,12 +34,11 @@
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
 #include "gpio/gpio.hpp"
-/*
-#include "irq/irq.hpp"
 #include "i2c/i2c_master.hpp"
 #include "i2c/i2c_slave.hpp"
 #include "i2c/i2c_multimaster.hpp"
-*/
+
+//#include "irq/irq.hpp"
 
 
 /* ---------------------------------------------------------------------------------------------- */

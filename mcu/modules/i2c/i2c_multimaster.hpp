@@ -22,11 +22,7 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
-	//TODO: Use a flag to enable TX and RX, and check if thos eare enabled when calling IRQ routines. User may call them by accident
-
+	///TODO: Use a flag to enable TX and RX, and check if thos eare enabled when calling IRQ routines. User may call them by accident
 
 #ifndef __YAHAL_MCU_I2C_MULTIMASTER_HPP_INCLUDED__
 #define __YAHAL_MCU_I2C_MULTIMASTER_HPP_INCLUDED__
@@ -48,10 +44,13 @@ namespace yahal{ namespace mcu{ namespace modules{
 
 
 
-/**
- * I2C Multimaster base class
- */
-class yahal::mcu::modules::I2CMultimaster : public yahal::mcu::modules::I2CMaster, public yahal::mcu::modules::I2CSlave
+/***********************************************************************************************//**
+ * @brief	I2C Multimaster base class.
+ * 	Inherits from I2CMaster and I2CSlave.
+ **************************************************************************************************/
+class yahal::mcu::modules::I2CMultimaster :
+	public yahal::mcu::modules::I2CMaster,
+	public yahal::mcu::modules::I2CSlave
 {
 protected:			// CONTRUSTOR & DESTRUCTOR
 				I2CMultimaster(void);
@@ -83,30 +82,6 @@ protected:			// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
 	void			handleReceivedNack(void);
 	void			handleBufferTXEmpty(void);
 	void			handleBufferRXFull(void);
-
-
-
-/*
-private:
-	void			handleMasterReceivedNack(void);
-	void			handleMasterBufferTXEmpty(void);
-	void			handleMasterBufferRXFull(void);
-	void			handleSlaveReceivedStart(void);
-	void			handleSlaveReceivedStop(void);
-	void			handleSlaveBufferTXEmpty(void);
-	void			handleSlaveBufferRXFull(void);
-
-
-
-
-
-
-private:			// EVENT CALLBACKS
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleReceivedStart;
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleReceivedStop;
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleReceivedNack;
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleBufferTXEmpty;
-	yahal::mcu::modules::utility::Callback<yahal::mcu::modules::I2CMultimaster,void> _callbackHandleBufferRXFull;*/
 };
 
 

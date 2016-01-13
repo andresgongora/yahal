@@ -47,7 +47,7 @@ namespace yahal{ namespace mcu{ namespace modules{
 /***********************************************************************************************//**
  * @brief	Base class for all I2C Masters
  **************************************************************************************************/
-class yahal::mcu::modules::I2CMaster : virtual public yahal::mcu::modules::details::I2C_common
+class yahal::mcu::modules::I2CMaster : virtual public yahal::mcu::modules::details::I2CCommon
 {
 protected:			// CONSTRUCTOR & DESTRUCTOR
 				I2CMaster(void)	{}

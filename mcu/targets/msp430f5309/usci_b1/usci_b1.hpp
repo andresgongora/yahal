@@ -22,61 +22,71 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-/* ---------------------------------------------------------------------------------------------- */
 
-#include <targets/msp430f5309/irq/irq_handler.hpp>
+
+
+#ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+#include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include <msp430f5309.h>
+#include <stdint.h>
+#include <cstddef>
+#include "../../../modules/i2c/i2c_slave.hpp"
+#include "../irq/irq_handler.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-
-yahal::mcu::targets::msp430f5309::IRQHandler::IRQHandler(void) :
-	p_handler_uscib1_(NULL)
-{}
-
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+	class I2CSlave;
+}}}}
 
 
-/* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::IRQHandler::enableGlobalInterrupts(void) const
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::targets::msp430f5309::UsciB1 :
+	public yahal::mcu::modules::I2CSlave,
+	public yahal::mcu::targets::msp430f5309::IRQHandler::UsciB1
 {
-	_EINT();
-}
+public:
+				struct Configuration
+				{
+					uint8_t ownAddress;
+				};
 
 
-void yahal::mcu::targets::msp430f5309::IRQHandler::disableGlobalInterrupts(void) const
-{
-	_DINT();
-}
+				// CONSTRUCTOR
+				I2CSlave(const Configuration& configuration);
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
-
-
-void yahal::mcu::targets::msp430f5309::IRQHandler::setISRHandlerUsciB1(UsciB1* p_handler)
-{
-	p_handler_uscib1_ = p_handler;
-}
+private:			// INITIALIZATION
+	virtual void		doInit(void);
 
 
-
-void yahal::mcu::targets::msp430f5309::IRQHandler::irqUsciB1(UsciB1::IRQ::Type irq)
-{
-	if (p_handler_uscib1_) {
-		p_handler_uscib1_->isr(irq);
-	}
-}
-
-/* ---------------------------------------------------------------------------------------------- */
+private:			// I2C PROTOCOL
+	virtual void		writeBufferTX(uint8_t byte);
+	virtual uint8_t		readBufferRX(void);
+	virtual bool		isIncommingWrite(void);
 
 
+private:			// ISR
+	friend class		yahal::mcu::targets::msp430f5309::IRQHandler;
+	virtual void 		isr(IRQHandler::UsciB1::IRQ::Type irq);
 
+
+private:			// PRIVATE VARIABLES
+	const Configuration&	configuration_;
+};
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // MCU_DEVICE == MCU_MSP430F5309
+#endif	// MCU_DEVICE == MCU_MSP430F5309
+#endif	// __M430F5309_I2C_SLAVE_HPP_INCLUDED__
