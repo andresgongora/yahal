@@ -34,6 +34,7 @@
 
 
 
+
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{namespace rtos{
 	class Mutex;
@@ -47,9 +48,9 @@ namespace yahal{namespace rtos{
 class yahal::rtos::Mutex : public yahal::rtos::api::Mutex
 {
 public:
-	inline void		lock(void)	{}
-	inline bool		try_lock(void) 	{return true;}
-	inline void		unlock(void)	{}
+	inline void		lock(void)	{} ///<TODO: DISABLE GLOBAL INTERRUTPS
+	inline bool		try_lock(void) 	{return true;} ///<TODO: CHECK FOR GLOBAL INTERRUTPS ENABLED
+	inline void		unlock(void)	{} ///<TODO: ENABLE GLOBAL INTERRUTPS IF THEY WERE ENABLED
 };
 
 
