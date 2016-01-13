@@ -35,16 +35,16 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
+namespace yahal{ namespace mcu{ namespace modules{
 	class Clk;
-}}
+}}}
 
 
 
 /***********************************************************************************************//**
  * Base class for all system clock handling modules.
  **************************************************************************************************/
-class yahal::mcu::Clk : public yahal::mcu::details::BaseModule
+class yahal::mcu::modules::Clk : public yahal::mcu::modules::details::BaseModule
 {
 public:
 				struct Error{ enum Type{

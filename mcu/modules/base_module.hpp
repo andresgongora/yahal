@@ -40,9 +40,9 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace details{
+namespace yahal{ namespace mcu{ namespace modules{ namespace details{
 	class BaseModule;
-}}}
+}}}}
 
 
 
@@ -52,7 +52,7 @@ namespace yahal{ namespace mcu{ namespace details{
  * It also inherits from noncopyable, prohibiting the copy of any class, as they are asociated
  * to physical resources.
  **************************************************************************************************/
-class yahal::mcu::details::BaseModule :
+class yahal::mcu::modules::details::BaseModule :
 	public yahal::error::ErrorCode,
 	private yahal::utility::oop::NonCopyable,
 	private yahal::utility::oop::NonHeapable

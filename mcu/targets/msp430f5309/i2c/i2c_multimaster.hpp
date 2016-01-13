@@ -49,7 +49,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
  * @brief
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::I2C_multimaster :
-	public yahal::mcu::I2C_multimaster,
+	public yahal::mcu::modules::I2C_multimaster,
 	public yahal::mcu::targets::msp430f5309::IRQHandler::I2C
 {
 public:

@@ -28,12 +28,12 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::I2C_multimaster::I2C_multimaster(void)	{}
+yahal::mcu::modules::I2C_multimaster::I2C_multimaster(void)	{}
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-bool yahal::mcu::I2C_multimaster::writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2C_multimaster::writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
 {
 	bool arbitrationLost = true;
 	bool success = false;
@@ -51,7 +51,7 @@ bool yahal::mcu::I2C_multimaster::writeRegister(uint8_t slaveAddress, uint8_t re
 
 
 
-bool yahal::mcu::I2C_multimaster::write(uint8_t slaveAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2C_multimaster::write(uint8_t slaveAddress, uint8_t* data, std::size_t size)
 {
 	bool arbitrationLost = true;
 	bool success = false;
@@ -69,7 +69,7 @@ bool yahal::mcu::I2C_multimaster::write(uint8_t slaveAddress, uint8_t* data, std
 
 
 
-bool yahal::mcu::I2C_multimaster::readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2C_multimaster::readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
 {
 	bool arbitrationLost = true;
 	bool success = false;
@@ -87,7 +87,7 @@ bool yahal::mcu::I2C_multimaster::readRegister(uint8_t slaveAddress, uint8_t reg
 
 
 
-bool yahal::mcu::I2C_multimaster::read(uint8_t slaveAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2C_multimaster::read(uint8_t slaveAddress, uint8_t* data, std::size_t size)
 {
 	bool arbitrationLost = true;
 	bool success = false;
@@ -105,7 +105,7 @@ bool yahal::mcu::I2C_multimaster::read(uint8_t slaveAddress, uint8_t* data, std:
 
 
 
-bool yahal::mcu::I2C_multimaster::isSlavePresent(uint8_t slaveAddress)
+bool yahal::mcu::modules::I2C_multimaster::isSlavePresent(uint8_t slaveAddress)
 {
 	bool arbitrationLost = true;
 	bool success = false;
@@ -125,41 +125,41 @@ bool yahal::mcu::I2C_multimaster::isSlavePresent(uint8_t slaveAddress)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::I2C_multimaster::handleReceivedStart(void)
+void yahal::mcu::modules::I2C_multimaster::handleReceivedStart(void)
 {
 	if(isMaster())	{}
 	else		{I2C_slave::handleReceivedStart();}
 }
 
 
-void yahal::mcu::I2C_multimaster::handleReceivedStop(void)
+void yahal::mcu::modules::I2C_multimaster::handleReceivedStop(void)
 {
 	if(isMaster())	{}
 	else		{I2C_slave::handleReceivedStop();}
 }
 
 
-void yahal::mcu::I2C_multimaster::handleReceivedNack(void)
+void yahal::mcu::modules::I2C_multimaster::handleReceivedNack(void)
 {
 	if(isMaster())	{I2C_master::handleReceivedNack();}
 	else		{}
 }
 
-void yahal::mcu::I2C_multimaster::handleBufferTXEmpty(void)
+void yahal::mcu::modules::I2C_multimaster::handleBufferTXEmpty(void)
 {
 	if(isMaster())	{I2C_master::handleBufferTXEmpty();}
 	else		{I2C_slave::handleBufferTXEmpty();}
 }
 
 
-void yahal::mcu::I2C_multimaster::handleBufferRXFull(void)
+void yahal::mcu::modules::I2C_multimaster::handleBufferRXFull(void)
 {
 	if(isMaster())	{I2C_master::handleBufferRXFull();}
 	else		{I2C_slave::handleBufferRXFull();}
 }
 
 
-void yahal::mcu::I2C_multimaster::handleArbitrationLost(void)
+void yahal::mcu::modules::I2C_multimaster::handleArbitrationLost(void)
 {
 
 }

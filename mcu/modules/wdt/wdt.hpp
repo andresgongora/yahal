@@ -36,9 +36,9 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
+namespace yahal{ namespace mcu{ namespace modules{
 	class Wdt;
-}}
+}}}
 
 
 
@@ -46,7 +46,7 @@ namespace yahal{ namespace mcu{
 /***********************************************************************************************//**
  * @brief	Base class for all Watch Dog Timers.
  **************************************************************************************************/
-class yahal::mcu::Wdt : public yahal::mcu::details::BaseModule
+class yahal::mcu::modules::Wdt : public yahal::mcu::modules::details::BaseModule
 {
 public:
 				struct Error {enum Type {

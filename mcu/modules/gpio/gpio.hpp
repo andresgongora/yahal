@@ -35,17 +35,17 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
+namespace yahal{ namespace mcu{ namespace modules{
 	class Gpio;
-}}
+}}}
 
 
 
 /***********************************************************************************************//**
  * Base class for GPIO modules.
  **************************************************************************************************/
-class yahal::mcu::Gpio :
-	public yahal::mcu::details::BaseModule
+class yahal::mcu::modules::Gpio :
+	public yahal::mcu::modules::details::BaseModule
 {
 public:
 				/**
@@ -101,7 +101,7 @@ public:				// PORT ACCESS
  * Base class for all GPIO Ports.
  * Declared inside Gpio.
  **************************************************************************************************/
-class yahal::mcu::Gpio::Port
+class yahal::mcu::modules::Gpio::Port
 {
 public:				// CONFIGURATION ---------------------------------------------------
 	virtual bool		config(	Direction::Type direction = Direction::INPUT,
@@ -128,11 +128,11 @@ public:				// PIN ACCESS ------------------------------------------------------
  * Base class for all GPIO Pins.
  * Declared inside Gpio::Port
  **************************************************************************************************/
-class yahal::mcu::Gpio::Port::Pin
+class yahal::mcu::modules::Gpio::Port::Pin
 {
 public:
 				// CONSTRUCTOR & COPY ----------------------------------------------
-				Pin(yahal::mcu::Gpio::Port& port, uint8_t pinNumber);
+				Pin(yahal::mcu::modules::Gpio::Port& port, uint8_t pinNumber);
 
 
 				// CONFIGURATION ---------------------------------------------------
@@ -148,7 +148,7 @@ public:
 
 private:
 				// PRIVATE VARIABLES
-	yahal::mcu::Gpio::Port&	port_;
+	yahal::mcu::modules::Gpio::Port&	port_;
 	const uint8_t		pin_number_;
 };
 

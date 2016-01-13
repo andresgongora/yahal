@@ -31,7 +31,7 @@
 
 /** ====================================================================================== WRITE **/
 
-bool yahal::mcu::I2C_master::writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2C_master::writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -48,7 +48,7 @@ bool yahal::mcu::I2C_master::writeRegister(uint8_t slaveAddress, uint8_t registe
 }
 
 
-bool yahal::mcu::I2C_master::write(uint8_t slaveAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2C_master::write(uint8_t slaveAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -67,7 +67,7 @@ bool yahal::mcu::I2C_master::write(uint8_t slaveAddress, uint8_t* data, std::siz
 
 /** ======================================================================================= READ **/
 
-bool yahal::mcu::I2C_master::readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2C_master::readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -84,7 +84,7 @@ bool yahal::mcu::I2C_master::readRegister(uint8_t slaveAddress, uint8_t register
 }
 
 
-bool yahal::mcu::I2C_master::read(uint8_t slaveAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2C_master::read(uint8_t slaveAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -104,7 +104,7 @@ bool yahal::mcu::I2C_master::read(uint8_t slaveAddress, uint8_t* data, std::size
 /** ==================================================================================== UTILITY **/
 
 
-bool yahal::mcu::I2C_master::isSlavePresent(uint8_t slaveAddress)
+bool yahal::mcu::modules::I2C_master::isSlavePresent(uint8_t slaveAddress)
 {
 	uint8_t dummy;
 	write(slaveAddress, &dummy, 0);		/* This is the least invasive way to poll a slave.
@@ -116,7 +116,7 @@ bool yahal::mcu::I2C_master::isSlavePresent(uint8_t slaveAddress)
 
 /** ======================================================================================== IRQ **/
 
-void yahal::mcu::I2C_master::handleBufferTXEmpty(void)
+void yahal::mcu::modules::I2C_master::handleBufferTXEmpty(void)
 {
 	// This fuction might be entered because
 	// - Need to send register address, regardless if it is Write or Read 	-> Send RegAddr
@@ -150,7 +150,7 @@ void yahal::mcu::I2C_master::handleBufferTXEmpty(void)
 
 
 
-void yahal::mcu::I2C_master::handleBufferRXFull(void)
+void yahal::mcu::modules::I2C_master::handleBufferRXFull(void)
 {
 	// STORE DATA IN CASE ANOTHER IRQ HAPPENS
 	uint8_t currentTransmission = _numTransmitted;
@@ -177,7 +177,7 @@ void yahal::mcu::I2C_master::handleBufferRXFull(void)
 
 
 
-void yahal::mcu::I2C_master::handleReceivedNack(void)
+void yahal::mcu::modules::I2C_master::handleReceivedNack(void)
 {
 	if(pendingTransmissions() == _numTransmissions)
 		{setErrorCode(Error::SLAVE_NOT_REACHABLE);}
@@ -192,7 +192,7 @@ void yahal::mcu::I2C_master::handleReceivedNack(void)
 
 /** =============================================================================== TRANSMISSION **/
 
-bool yahal::mcu::I2C_master::transmit(void)
+bool yahal::mcu::modules::I2C_master::transmit(void)
 {
 	// CHECK FOR ERRORS
 	if     (_slaveAddress & 0x80)			{setErrorCode(Error::SLAVE_ADDRESS_NOT_7_BIT);}
@@ -220,7 +220,7 @@ bool yahal::mcu::I2C_master::transmit(void)
 }
 
 
-void yahal::mcu::I2C_master::sendStart(void)
+void yahal::mcu::modules::I2C_master::sendStart(void)
 {
 	// READ WITHOUT PREVIOUS WRITE
 	if(_direction == Direction::READ && not _sendRegisterAddressPending)
@@ -238,7 +238,7 @@ void yahal::mcu::I2C_master::sendStart(void)
 
 
 
-std::size_t yahal::mcu::I2C_master::pendingTransmissions(void)
+std::size_t yahal::mcu::modules::I2C_master::pendingTransmissions(void)
 {
 	return _numTransmissions - _numTransmitted;
 }

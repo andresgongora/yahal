@@ -33,16 +33,16 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
+namespace yahal{ namespace mcu{ namespace modules{ namespace details{
 	class IRQHandler;
-}}
+}}}}
 
 
 
 /***********************************************************************************************//**
  * @brief	Base class for all IRQ handlers.
  **************************************************************************************************/
-class yahal::mcu::IRQHandler :
+class yahal::mcu::modules::details::IRQHandler :
 	private yahal::utility::oop::NonCopyable,
 	private yahal::utility::oop::NonHeapable
 {

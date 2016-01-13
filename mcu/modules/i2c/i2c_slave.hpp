@@ -39,9 +39,9 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
+namespace yahal{ namespace mcu{ namespace modules{
 	class I2C_slave;
-}}
+}}}
 
 
 
@@ -50,7 +50,7 @@ namespace yahal{ namespace mcu{
  *
  *
  **************************************************************************************************/
-class yahal::mcu::I2C_slave : virtual public yahal::mcu::details::I2C_common
+class yahal::mcu::modules::I2C_slave : virtual public yahal::mcu::modules::details::I2C_common
 {
 public:
 				/**

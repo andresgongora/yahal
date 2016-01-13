@@ -47,13 +47,14 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Gpio : public yahal::mcu::Gpio
+class yahal::mcu::targets::msp430f5309::Gpio :
+	public yahal::mcu::modules::Gpio
 {
 public:
 				/**
 				 * Return reference to port.
 				 */
- 	yahal::mcu::Gpio::Port&	port(uint8_t portNumber);
+ 	yahal::mcu::modules::Gpio::Port& port(uint8_t portNumber);
 
 
 private:
@@ -66,7 +67,7 @@ private:
 
 
 				/* -------------------------------------------------------------- */
- 	class 			Port1 : public yahal::mcu::Gpio::Port
+ 	class 			Port1 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					bool	config(	Direction::Type direction = Direction::INPUT,
@@ -80,7 +81,7 @@ private:
 
 
  				/* -------------------------------------------------------------- */
- 	class 			Port2 : public yahal::mcu::Gpio::Port
+ 	class 			Port2 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					bool	config(	Direction::Type direction = Direction::INPUT,
@@ -94,7 +95,7 @@ private:
 
 
  				/* -------------------------------------------------------------- */
- 	class 			Port3 : public yahal::mcu::Gpio::Port
+ 	class 			Port3 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					bool	config(	Direction::Type direction = Direction::INPUT,
@@ -108,7 +109,7 @@ private:
 
 
  				/* -------------------------------------------------------------- */
- 	class 			Port4 : public yahal::mcu::Gpio::Port
+ 	class 			Port4 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					bool	config(	Direction::Type direction = Direction::INPUT,
@@ -122,7 +123,7 @@ private:
 
 
  				/* -------------------------------------------------------------- */
- 	class 			Port5 : public yahal::mcu::Gpio::Port
+ 	class 			Port5 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					bool	config(	Direction::Type direction = Direction::INPUT,
@@ -136,7 +137,7 @@ private:
 
 
  				/* -------------------------------------------------------------- */
- 	class 			Port6 : public yahal::mcu::Gpio::Port
+ 	class 			Port6 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					bool	config(	Direction::Type direction = Direction::INPUT,

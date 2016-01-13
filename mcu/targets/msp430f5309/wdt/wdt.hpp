@@ -48,7 +48,8 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Wdt : public yahal::mcu::Wdt
+class yahal::mcu::targets::msp430f5309::Wdt :
+	public yahal::mcu::modules::Wdt
 {
 public:
 				struct Configuration
