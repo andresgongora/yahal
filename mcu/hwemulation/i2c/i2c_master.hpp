@@ -53,8 +53,8 @@ class yahal::mcu::hwemulation::I2CMaster : public yahal::mcu::modules::I2CMaster
 public:
 	 	 	 	struct Configuration
 				{
-	 	 	 		yahal::mcu::modules::Gpio::Port::Pin sda;	///< Data.
-	 	 	 		yahal::mcu::modules::Gpio::Port::Pin scl;	///< Clock.
+	 	 	 		yahal::mcu::modules::Gpio::Port::Pin& sda;	///< Data.
+	 	 	 		yahal::mcu::modules::Gpio::Port::Pin& scl;	///< Clock.
 	 	 	 	};
 
 
@@ -67,7 +67,7 @@ public:
 
 
 private:			// MODULE IMPLEMENTATION
-	void			start(uint8_t slaveAddress, DIRECTION::Type direction);
+	void			start(uint8_t slave_address, Direction::Type direction);
 	void			stop(void);
 	void			acknowledge(bool ack);
 	void			writeBufferTX(uint8_t byte);
@@ -119,7 +119,7 @@ private:			// PIN
 	void			emulateReset(void);
 
 
-				struct BufferStatus{ enum type{
+				struct BufferStatus{ enum Type{
 					FULL,
 					EMPTY,
 					JUST_WRITTEN,
@@ -129,9 +129,9 @@ private:			// PIN
 
 
 				// Private variables
-	Configuration&		configuration_;
+	const Configuration&	configuration_;
 	uint8_t			slave_address_;
-	DIRECTION::Type		direction_;
+	Direction::Type		direction_;
 	uint8_t 		buffer_TX_;
 	uint8_t			buffer_RX_;
 	bool			end_start_;
