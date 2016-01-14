@@ -24,8 +24,8 @@
 
 
 
-#ifndef __YAHAL_MCU_GENERIC_MODULE_HPP_INCLUDED__
-#define __YAHAL_MCU_GENERIC_MODULE_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
 
 
 
@@ -100,4 +100,4 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_GENERIC_MODULE_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__

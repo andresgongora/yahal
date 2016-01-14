@@ -22,8 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
 #ifndef __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
 #define __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
 

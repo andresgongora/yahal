@@ -24,8 +24,8 @@
 
 	///TODO: Use a flag to enable TX and RX, and check if thos eare enabled when calling IRQ routines. User may call them by accident
 
-#ifndef __YAHAL_MCU_I2C_MULTIMASTER_HPP_INCLUDED__
-#define __YAHAL_MCU_I2C_MULTIMASTER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_I2C_MULTIMASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_I2C_MULTIMASTER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -87,4 +87,4 @@ protected:			// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_MCU_I2C_MULTIMASTER_HPP_INCLUDED__
+#endif 	// __YAHAL_MCU_MODULES_I2C_MULTIMASTER_HPP_INCLUDED__

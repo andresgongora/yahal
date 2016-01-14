@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_CLK_HPP_INCLUDED__
-#define __YAHAL_MCU_CLK_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_CLK_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_CLK_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */

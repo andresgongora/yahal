@@ -22,12 +22,13 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_TIMER_HPP_INCLUDED__
-#define __YAHAL_MCU_TIMER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
+#include <cstddef>
 #include "../base_module.hpp"
 
 
@@ -50,9 +51,32 @@ public:
 				};};
 
 
+				struct Mode{ enum Type{
+					UP,
+					UP_DOWN,
+					UP_GATED,
+					DOWN,
+					DOWN_UP,
+					DOWN_GATED,
+					CONTINUOUS,
+				};};
+
+				sruct Register{ enum Type{
+
+				};
+
+
+protected:
+				Timer(void){}
+
+public:
+	virtual bool		hasMode(Mode::Type mode) const = 0;
+	virtual bool		setMode(Mode::Type mode) = 0;
+	virtual std::size_t	getMaxCount(void) const = 0;
+
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_TIMER_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
