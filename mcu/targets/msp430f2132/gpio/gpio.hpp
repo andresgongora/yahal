@@ -98,9 +98,9 @@ private:
 
 
  				// PRIVATE INSTANCES -----------------------------------------------
- 	Port1			_port1;
- 	Port2			_port2;
- 	Port3			_port3;
+ 	Port1			port1_;
+ 	Port2			port2_;
+ 	Port3			port3_;
 };
 
 

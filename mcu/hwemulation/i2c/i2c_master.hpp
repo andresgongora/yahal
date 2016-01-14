@@ -129,8 +129,8 @@ private:			// PIN -------------------------------------------------------------
 
 
 				// HW EMULATION
-	uint8_t			_slaveAddress;
-	DIRECTION::Type		_direction;
+	uint8_t			slave_address_;
+	DIRECTION::Type		direction_;
 	uint8_t 		_bufferTX;
 	uint8_t			_bufferRX;
 	bool			_sendStart;

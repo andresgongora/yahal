@@ -44,12 +44,12 @@ void yahal::mcu::targets::msp430f5309::Gpio::doInit(void)
 
 	P1OUT = P2OUT = P3OUT = P4OUT = P5OUT = P6OUT = 0;	// Clear outputs
 
-	success &= _port1.config(Direction::INPUT, Resistor::DISABLED);
-	success &= _port2.config(Direction::INPUT, Resistor::DISABLED);
-	success &= _port3.config(Direction::INPUT, Resistor::DISABLED);
-	success &= _port4.config(Direction::INPUT, Resistor::DISABLED);
-	success &= _port5.config(Direction::INPUT, Resistor::DISABLED);
-	success &= _port6.config(Direction::INPUT, Resistor::DISABLED);
+	success &= port1_.config(Direction::INPUT, Resistor::DISABLED);
+	success &= port2_.config(Direction::INPUT, Resistor::DISABLED);
+	success &= port3_.config(Direction::INPUT, Resistor::DISABLED);
+	success &= port4_.config(Direction::INPUT, Resistor::DISABLED);
+	success &= port5_.config(Direction::INPUT, Resistor::DISABLED);
+	success &= port6_.config(Direction::INPUT, Resistor::DISABLED);
 
 	if(!success)	this->setErrorCode(Error::COULD_NOT_INITIALIZE_PORT);
 }
@@ -61,14 +61,14 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 
 	switch(portNumber)
 	{
-	case 1:	return _port1;
-	case 2:	return _port2;
-	case 3:	return _port3;
-	case 4:	return _port4;
-	case 5:	return _port5;
-	case 6:	return _port6;
+	case 1:	return port1_;
+	case 2:	return port2_;
+	case 3:	return port3_;
+	case 4:	return port4_;
+	case 5:	return port5_;
+	case 6:	return port6_;
 	default:assert(false);
-		return _port1;	///< Better return this than nothing.
+		return port1_;	///< Better return this than nothing.
 	}
 }
 

@@ -165,12 +165,12 @@ private:
 
 
  				// PRIVATE INSTANCES
- 	Port1			_port1;
- 	Port2			_port2;
- 	Port3			_port3;
- 	Port4			_port4;
- 	Port5			_port5;
- 	Port6			_port6;
+ 	Port1			port1_;
+ 	Port2			port2_;
+ 	Port3			port3_;
+ 	Port4			port4_;
+ 	Port5			port5_;
+ 	Port6			port6_;
 };
 
 

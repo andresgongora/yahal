@@ -35,12 +35,12 @@ bool yahal::mcu::modules::I2CMaster::writeRegister(uint8_t slaveAddress, uint8_t
 {
 	this->open();
 
-	_slaveAddress 		= slaveAddress;
-	_registerAddress	= registerAddress;
-	_sendRegisterAddress 	= true;
-	_numTransmissions	= size;
-	_pBuffer		= data;
-	_direction 		= Direction::WRITE;
+	slave_address_ 		= slaveAddress;
+	register_address_	= registerAddress;
+	send_register_address_ 	= true;
+	num_transmissions_	= size;
+	p_buffer_		= data;
+	direction_ 		= Direction::WRITE;
 
 	bool success = transmit();
 	this->close();
@@ -52,12 +52,12 @@ bool yahal::mcu::modules::I2CMaster::write(uint8_t slaveAddress, uint8_t* data, 
 {
 	this->open();
 
-	_slaveAddress 		= slaveAddress;
-	_registerAddress	= 0x00;
-	_sendRegisterAddress 	= false;
-	_numTransmissions	= size;
-	_pBuffer		= data;
-	_direction 		= Direction::WRITE;
+	slave_address_ 		= slaveAddress;
+	register_address_	= 0x00;
+	send_register_address_ 	= false;
+	num_transmissions_	= size;
+	p_buffer_		= data;
+	direction_ 		= Direction::WRITE;
 
 	bool success = transmit();
 	this->close();
@@ -71,12 +71,12 @@ bool yahal::mcu::modules::I2CMaster::readRegister(uint8_t slaveAddress, uint8_t 
 {
 	this->open();
 
-	_slaveAddress 		= slaveAddress;
-	_registerAddress	= registerAddress;
-	_sendRegisterAddress 	= true;
-	_numTransmissions	= size;
-	_pBuffer		= data;
-	_direction 		= Direction::READ;
+	slave_address_ 		= slaveAddress;
+	register_address_	= registerAddress;
+	send_register_address_ 	= true;
+	num_transmissions_	= size;
+	p_buffer_		= data;
+	direction_ 		= Direction::READ;
 
 	bool success = transmit();
 	this->close();
@@ -88,12 +88,12 @@ bool yahal::mcu::modules::I2CMaster::read(uint8_t slaveAddress, uint8_t* data, s
 {
 	this->open();
 
-	_slaveAddress 		= slaveAddress;
-	_registerAddress	= 0x00;
-	_sendRegisterAddress 	= false;
-	_numTransmissions	= size;
-	_pBuffer		= data;
-	_direction 		= Direction::READ;
+	slave_address_ 		= slaveAddress;
+	register_address_	= 0x00;
+	send_register_address_ 	= false;
+	num_transmissions_	= size;
+	p_buffer_		= data;
+	direction_ 		= Direction::READ;
 
 	bool success = transmit();
 	this->close();
@@ -124,23 +124,23 @@ void yahal::mcu::modules::I2CMaster::handleBufferTXEmpty(void)
 	// - This is a Write and there is data to be sent			-> Send data
 	// - All data has been sent (last byte just went out)			-> Stop
 
-	if(_sendRegisterAddressPending)
+	if(send_register_address_pending_)
 	{
-		_sendRegisterAddressPending = false;
-		writeBufferTX(_registerAddress);
+		send_register_address_pending_ = false;
+		writeBufferTX(register_address_);
 	}
-	else if(_direction == Direction::READ)
+	else if(direction_ == Direction::READ)
 	{
 		sendStart(); //restart
 	}
 	else if(pendingTransmissions())
 	{
 		// STORE DATA IN CASE ANOTHER IRQ HAPPENS
-		uint8_t currentTransmission = _numTransmitted;
-		_numTransmitted++;
+		uint8_t currentTransmission = num_transmitted_;
+		num_transmitted_++;
 
 		// SEND DATA
-		writeBufferTX(_pBuffer[currentTransmission]);
+		writeBufferTX(p_buffer_[currentTransmission]);
 	}
 	else // Nothing left to be done
 	{
@@ -153,8 +153,8 @@ void yahal::mcu::modules::I2CMaster::handleBufferTXEmpty(void)
 void yahal::mcu::modules::I2CMaster::handleBufferRXFull(void)
 {
 	// STORE DATA IN CASE ANOTHER IRQ HAPPENS
-	uint8_t currentTransmission = _numTransmitted;
-	_numTransmitted++;
+	uint8_t currentTransmission = num_transmitted_;
+	num_transmitted_++;
 
 	// PREPRARE TO RECEIVE LAST BYTE
 	if(pendingTransmissions() == 1) // Last byte is waiting in the shift register
@@ -165,13 +165,13 @@ void yahal::mcu::modules::I2CMaster::handleBufferRXFull(void)
 	volatile uint8_t receivedByte = readBufferRX();	// Free RX buffer
 
 
-	if(currentTransmission >= _numTransmissions)
+	if(currentTransmission >= num_transmissions_)
 	{
 		setErrorCode(Error::READ_OVERFLOW_ATTEMPT);
 	}
 	else
 	{
-		_pBuffer[currentTransmission] = receivedByte;
+		p_buffer_[currentTransmission] = receivedByte;
 	}
 }
 
@@ -179,7 +179,7 @@ void yahal::mcu::modules::I2CMaster::handleBufferRXFull(void)
 
 void yahal::mcu::modules::I2CMaster::handleReceivedNack(void)
 {
-	if(pendingTransmissions() == _numTransmissions)
+	if(pendingTransmissions() == num_transmissions_)
 		{setErrorCode(Error::SLAVE_NOT_REACHABLE);}
 
 	else
@@ -195,15 +195,15 @@ void yahal::mcu::modules::I2CMaster::handleReceivedNack(void)
 bool yahal::mcu::modules::I2CMaster::transmit(void)
 {
 	// CHECK FOR ERRORS
-	if     (_slaveAddress & 0x80)			{setErrorCode(Error::SLAVE_ADDRESS_NOT_7_BIT);}
-	else if(_numTransmissions>0 && _pBuffer == 0)	{setErrorCode(Error::INVALID_MESSAGE_BUFFER);}
-//	else if(_numTransmissions==0)			{setErrorCode(Error::ZERO_SIZE_MESSAGE);}
+	if     (slave_address_ & 0x80)			{setErrorCode(Error::SLAVE_ADDRESS_NOT_7_BIT);}
+	else if(num_transmissions_>0 && p_buffer_ == 0)	{setErrorCode(Error::INVALID_MESSAGE_BUFFER);}
+//	else if(num_transmissions_==0)			{setErrorCode(Error::ZERO_SIZE_MESSAGE);} ///< I now use 0 size messages to ping a slave
 
 
 	else // TRANSMISSION HAS NO ERRORS
 	{
-		_numTransmitted = 0;
-		_sendRegisterAddressPending = _sendRegisterAddress;
+		num_transmitted_ = 0;
+		send_register_address_pending_ = send_register_address_;	///< Flag is address TX is pending. Because we just started we copy the configuration value.
 
 
 		sendStart();
@@ -223,16 +223,16 @@ bool yahal::mcu::modules::I2CMaster::transmit(void)
 void yahal::mcu::modules::I2CMaster::sendStart(void)
 {
 	// READ WITHOUT PREVIOUS WRITE
-	if(_direction == Direction::READ && not _sendRegisterAddressPending)
+	if(direction_ == Direction::READ && not send_register_address_pending_)
 	{
-		start(_slaveAddress, Direction::READ);		// Sends START and starts receiving first byte
+		start(slave_address_, Direction::READ);		// Sends START and starts receiving first byte
 		if(pendingTransmissions() <= 1) {stop();} 	// Stop inmediately after first byte received
 	}
 
 	// WRITE OR READ WITH REGISTER ADDREESS
 	else
 	{
-		start(_slaveAddress, Direction::WRITE);
+		start(slave_address_, Direction::WRITE);
 	}
 }
 
@@ -240,7 +240,7 @@ void yahal::mcu::modules::I2CMaster::sendStart(void)
 
 std::size_t yahal::mcu::modules::I2CMaster::pendingTransmissions(void)
 {
-	return _numTransmissions - _numTransmitted;
+	return num_transmissions_ - num_transmitted_;
 }
 
 

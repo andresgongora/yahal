@@ -124,15 +124,15 @@ private:			// PRIVATE CONTROL METHODS
 
 
 private:			// PRIVATE VARIABLES
-	uint8_t			_slaveAddress;
-	uint8_t			_registerAddress;
-	bool			_sendRegisterAddress;
-	std::size_t		_numTransmissions;
-	uint8_t*		_pBuffer;
-	Direction::Type		_direction;
+	uint8_t			slave_address_;
+	uint8_t			register_address_;
+	bool			send_register_address_;
+	std::size_t		num_transmissions_;
+	uint8_t*		p_buffer_;
+	Direction::Type		direction_;
 
-	volatile std::size_t	_numTransmitted;		// Might be changed by ISR
-	volatile bool		_sendRegisterAddressPending;	// Might be changed by ISR
+	volatile std::size_t	num_transmitted_;		// Might be changed by ISR
+	volatile bool		send_register_address_pending_;	// Might be changed by ISR
 };
 
 

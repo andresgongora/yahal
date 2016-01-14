@@ -45,9 +45,9 @@ bool hal::uc::msp430f2132::Gpio::init(void)
 
 	P1OUT = P2OUT = P3OUT = 0;	// Clear outputs
 
-	success &= _port1.config(DIRECTION::INPUT, RESISTOR::DISABLED);
-	success &= _port2.config(DIRECTION::INPUT, RESISTOR::DISABLED);
-	success &= _port3.config(DIRECTION::INPUT, RESISTOR::DISABLED);
+	success &= port1_.config(DIRECTION::INPUT, RESISTOR::DISABLED);
+	success &= port2_.config(DIRECTION::INPUT, RESISTOR::DISABLED);
+	success &= port3_.config(DIRECTION::INPUT, RESISTOR::DISABLED);
 
 	if(!success)	this->setErrorCode(Error::COULD_NOT_INITIALIZE_PORT);
 	else		this->setInitialized();
@@ -59,9 +59,9 @@ hal::uc::Gpio::Port& hal::uc::msp430f2132::Gpio::port(uint8_t portNumber)
 {
 	switch(portNumber)
 	{
-	case 1: return _port1;
-	case 2: return _port2;
-	case 3: return _port3;
+	case 1: return port1_;
+	case 2: return port2_;
+	case 3: return port3_;
 	default:
 		this->setErrorCode(Error::TRYING_TO_ACCESS_NON_EXISTANT_PORT);
 		for(;;);	//TODO: TRAP

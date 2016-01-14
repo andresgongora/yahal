@@ -197,8 +197,8 @@ bool yahal::mcu::hwemulation::I2CMaster::receiveAck(void)
 
 void yahal::mcu::hwemulation::I2CMaster::emulateStart(void)
 {
-	bool 	readBit 	=  _direction == DIRECTION::READ ? true : false;
-	uint8_t composedAddress	= (_slaveAddress << 1) + readBit;
+	bool 	readBit 	=  direction_ == DIRECTION::READ ? true : false;
+	uint8_t composedAddress	= (slave_address_ << 1) + readBit;
 
 
 	sendStart();				// Send start sequence
@@ -209,9 +209,9 @@ void yahal::mcu::hwemulation::I2CMaster::emulateStart(void)
 	if(nack)
 	{
 		_receivedNack = true;		// NACK IRQ
-		_direction = DIRECTION::WRITE;	// IF READING, ABORT IT: This is needed so that in the emulaiton loop a STOP is sent as soon as possible
+		direction_ = DIRECTION::WRITE;	// IF READING, ABORT IT: This is needed so that in the emulaiton loop a STOP is sent as soon as possible
 	}
-	else if(_direction == DIRECTION::WRITE )
+	else if(direction_ == DIRECTION::WRITE )
 	{
 		_bufferTXStatus = BUFFER_STATUS::JUST_READ;	// TX IRQ
 	}
@@ -265,7 +265,7 @@ void yahal::mcu::hwemulation::I2CMaster::emulateReceiveBufferRX(void)
 	if(_sendStop)				// Stop reading -> NACK + STOP
 	{
 		sendNack();
-		_direction = DIRECTION::WRITE;
+		direction_ = DIRECTION::WRITE;
 	}
 	else					// Continue reading -> ACK
 	{
@@ -316,7 +316,7 @@ void yahal::mcu::hwemulation::I2CMaster::emulateLoop(void)
 		}
 
 		// STOP
-		else if(_sendStop && _direction == DIRECTION::WRITE)
+		else if(_sendStop && direction_ == DIRECTION::WRITE)
 		{
 			_sendStop = false;
 			emulateStop();
@@ -332,7 +332,7 @@ void yahal::mcu::hwemulation::I2CMaster::emulateLoop(void)
 		}
 
 		// READ
-		else if(_direction == DIRECTION::READ)
+		else if(direction_ == DIRECTION::READ)
 		{
 			emulateReceiveBufferRX();
 		}
@@ -365,7 +365,7 @@ void yahal::mcu::hwemulation::I2CMaster::emulateReset(void)
 	_bufferTXStatus = BUFFER_STATUS::EMPTY;
 	_bufferTXStatus = BUFFER_STATUS::EMPTY;
 	_receivedNack = false;
-	_direction = DIRECTION::WRITE;
+	direction_ = DIRECTION::WRITE;
 }
 
 
@@ -374,8 +374,8 @@ void yahal::mcu::hwemulation::I2CMaster::emulateReset(void)
 
 void yahal::mcu::hwemulation::I2CMaster::start(uint8_t slaveAddress, DIRECTION::Type direction)
 {
-	_direction = direction;
-	_slaveAddress = slaveAddress;
+	direction_ = direction;
+	slave_address_ = slaveAddress;
 	_sendStart = true;
 }
 
