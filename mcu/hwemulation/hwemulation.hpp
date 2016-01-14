@@ -29,15 +29,80 @@
 
 
 
-// LOAD CONFIGURATION
-#include "../config/hwemulation/hwemulation_config.hpp"
+
 
 
 // LOAD EMULATED MODULES
 #include "i2c/i2c_master.hpp"
 
 
+// LOAD CONFIGURATION
+#include "../config/hwemulation/hwemulation_config.hpp"
 
+
+
+
+
+
+
+/* =================================================================================================
+	INSTANCES
+================================================================================================= */
+
+namespace yahal{ namespace mcu{
+
+#ifdef	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1	\
+&&	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true
+	static hwemulation::I2CMaster		\
+	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1	\
+	(hwemulation::config::YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1);
+#endif
+#ifdef	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2	\
+&&	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true
+	static hwemulation::I2CMaster		\
+	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2	\
+	(hwemulation::config::YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2);
+#endif
+#ifdef	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3	\
+&&	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true
+	static hwemulation::I2CMaster		\
+	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3	\
+	(hwemulation::config::YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3);
+#endif
+
+
+}} // namespace yahal::mcu
+
+
+
+/* =================================================================================================
+	TARGET INITIALIZATION
+================================================================================================= */
+
+namespace yahal{ namespace mcu{ namespace details{
+
+
+void initHwemulation(void)
+{
+	// I2C
+	#ifdef	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1	\
+	&&	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true
+		YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1.init();
+	#endif
+	#ifdef	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2	\
+	&&	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true
+		YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2.init();
+	#endif
+	#ifdef	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3	\
+	&&	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true
+		YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3.init();
+	#endif
+}
+
+
+
+
+}}} // Namespace yahal::mcu::details
 
 
 

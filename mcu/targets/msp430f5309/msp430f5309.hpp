@@ -31,12 +31,13 @@
 #include "../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include <msp430f5309.h>
+
 
 
 /* =================================================================================================
 	MODULES
 ================================================================================================= */
-
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
 #include "gpio/gpio.hpp"
@@ -123,7 +124,8 @@ namespace yahal{ namespace mcu{ namespace details{
 void initIrq(void);	// Forward declaration
 
 /// Call all init functions for this targets modules.
-void initTarget(void) {
+void initTarget(void)
+{
 	// CLK
 	#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 	yahal::mcu::clk.init();

@@ -23,8 +23,6 @@
 	+-----------------------------------------------------------------------+	*/
 
 #include "i2c_master.hpp"
-#if __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__ == true
-
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -420,4 +418,3 @@ void yahal::mcu::hwemulation::I2CMaster::awaitTransmissionEnd(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__ == true
