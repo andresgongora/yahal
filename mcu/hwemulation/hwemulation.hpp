@@ -30,7 +30,7 @@
 
 
 // LOAD CONFIGURATION
-#include "../config/hwemulation_config.hpp"
+#include "../config/hwemulation/hwemulation_config.hpp"
 
 
 // LOAD EMULATED MODULES

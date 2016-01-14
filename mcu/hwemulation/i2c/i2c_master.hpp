@@ -29,8 +29,8 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../hwemulation_config.hpp"
-#ifdef __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__
+#include "../../config/hwemulation/hwemulation_config.hpp"
+#if __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__ == true
 
 #include <stdint.h>
 #include "../../modules/i2c/i2c_master.hpp"
@@ -45,22 +45,28 @@ namespace yahal{ namespace mcu{ namespace hwemulation{
 
 
 
-/* ============================================================================================== */
- *	DECLARATION::I2C_MASTER
- * ============================================================================================== */
-
-class yahal::mcu::hwemulation::I2CMaster : public yahal::mcu::I2CMaster
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::hwemulation::I2CMaster : public yahal::mcu::modules::I2CMaster
 {
 public:
-				// CONSTRUCTOR -----------------------------------------------------
-				I2CMaster(Gpio::Port::Pin sda, Gpio::Port::Pin scl);
+	 	 	 	struct Configuration
+				{
+	 	 	 		yahal::mcu::modules::Gpio::Port::Pin sda;	///< Data.
+	 	 	 		yahal::mcu::modules::Gpio::Port::Pin scl;	///< Clock.
+	 	 	 	};
+
+
+				// CONSTRUCTOR
+				I2CMaster(const Configuration& configuration);
 
 
 				// INITIALIZATION
-	bool			init(void);
+	virtual void		doInit(void);
 
 
-private:			// MODULE IMPLEMENTATION -------------------------------------------
+private:			// MODULE IMPLEMENTATION
 	void			start(uint8_t slaveAddress, DIRECTION::Type direction);
 	void			stop(void);
 	void			acknowledge(bool ack);
@@ -70,7 +76,7 @@ private:			// MODULE IMPLEMENTATION -------------------------------------------
 
 
 
-private:			// PIN -------------------------------------------------------------
+private:			// PIN
 	void			setSDA(bool b);
 	bool			getSDA(void);
 	void			setSCL(bool b);
@@ -78,19 +84,19 @@ private:			// PIN -------------------------------------------------------------
 
 
 
-				// BIT -------------------------------------------------------------
+				// BIT
 	void			sendBit(bool b);
 	bool			receiveBit(void);
 
 
 
-				// BYTE ------------------------------------------------------------
+				// BYTE
 	void			sendByte(uint8_t byte);
 	uint8_t			receiveByte(void);
 
 
 
-				// I2C PROTOCOL ----------------------------------------------------
+				// I2C PROTOCOL
 	void			sendStart(void);
 	void			sendStop(void);
 	void			sendAck(void);
@@ -99,7 +105,7 @@ private:			// PIN -------------------------------------------------------------
 
 
 
-				// CONTROL ---------------------------------------------------------
+				// CONTROL
 	void			emulateStart(void);
 	void			emulateStop(void);
 	void			emulateIRQTX(void);
@@ -113,13 +119,7 @@ private:			// PIN -------------------------------------------------------------
 	void			emulateReset(void);
 
 
-
-				// PIN
-	Gpio::Port::Pin 	_sda;
-	Gpio::Port::Pin		_scl;
-
-
-				struct BUFFER_STATUS{ enum type{
+				struct BufferStatus{ enum type{
 					FULL,
 					EMPTY,
 					JUST_WRITTEN,
@@ -128,19 +128,21 @@ private:			// PIN -------------------------------------------------------------
 
 
 
-				// HW EMULATION
+				// Private variables
+	Configuration&		configuration_;
 	uint8_t			slave_address_;
 	DIRECTION::Type		direction_;
-	uint8_t 		_bufferTX;
-	uint8_t			_bufferRX;
-	bool			_sendStart;
-	bool			_sendStop;
-	BUFFER_STATUS::Type	_bufferTXStatus;
-	BUFFER_STATUS::Type	_bufferRXStatus;
-	bool			_receivedNack;
+	uint8_t 		buffer_TX_;
+	uint8_t			buffer_RX_;
+	bool			end_start_;
+	bool			send_stop_;
+	BufferStatus::Type	buffer_TX_status_;
+	BufferStatus::Type	buffer_RX_status_;
+	bool			received_nack_;
 };
 
 
+
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__
+#endif // __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__ == true
 #endif // __YAHAL_MCU_HWEMULATION_I2C_MASTER_HPP_INCLUDED__

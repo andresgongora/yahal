@@ -22,41 +22,37 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+#include "i2c_master.hpp"
+#if __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__ == true
+
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "i2c_master.hpp"
-#ifdef __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__
 
-
-
-/* ============================================================================================== */
- *	DEFINITION::M430F2132_I2C_MASTER
- * ============================================================================================== */
-
-/** ============================================================================= INITIALIZATION **/
-
-bool yahal::mcu::hwemulation::I2CMaster::init()
-{
-	emulateReset();
-	this->setInitialized();
-	return true;
-}
-
-
-mcu::hwemulation::I2CMaster::I2CMaster(Gpio::Port::Pin sda, Gpio::Port::Pin scl) :
-	_sda(sda),
-	_scl(scl),
-	_sendStart(false),
-	_sendStop(false),
-	_bufferTXStatus(BUFFER_STATUS::EMPTY),
-	_bufferRXStatus(BUFFER_STATUS::EMPTY),
-	_receivedNack(false)
+yahal::mcu::hwemulation::I2CMaster::I2CMaster(const Configuration& configuration) :
+	configuration_(configuration),
+	end_start_(false),
+	send_stop_(false),
+	buffer_TX_status_(BufferStatus::EMPTY),
+	buffer_RX_status_(BufferStatus::EMPTY),
+	received_nack_(false)
 {}
 
 
 
-/** ======================================================================================== PIN **/
+/* ---------------------------------------------------------------------------------------------- */
+
+void yahal::mcu::hwemulation::I2CMaster::doInit()
+{
+	emulateReset();
+}
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
 
 void yahal::mcu::hwemulation::I2CMaster::setSDA(bool b)
 {
@@ -208,12 +204,12 @@ void yahal::mcu::hwemulation::I2CMaster::emulateStart(void)
 
 	if(nack)
 	{
-		_receivedNack = true;		// NACK IRQ
+		received_nack_ = true;		// NACK IRQ
 		direction_ = DIRECTION::WRITE;	// IF READING, ABORT IT: This is needed so that in the emulaiton loop a STOP is sent as soon as possible
 	}
 	else if(direction_ == DIRECTION::WRITE )
 	{
-		_bufferTXStatus = BUFFER_STATUS::JUST_READ;	// TX IRQ
+		buffer_TX_status_ = BufferStatus::JUST_READ;	// TX IRQ
 	}
 }
 
@@ -244,15 +240,15 @@ void yahal::mcu::hwemulation::I2CMaster::emulateIRQNack(void)
 
 void yahal::mcu::hwemulation::I2CMaster::emulateWriteBufferTX(uint8_t byte)
 {
-	_bufferTX = byte;			// Write to buffer
-	_bufferTXStatus = BUFFER_STATUS::JUST_WRITTEN;
+	buffer_TX_ = byte;			// Write to buffer
+	buffer_TX_status_ = BufferStatus::JUST_WRITTEN;
 }
 
 void yahal::mcu::hwemulation::I2CMaster::emulateSendBufferTX(void)
 {
-	sendByte(_bufferTX);
+	sendByte(buffer_TX_);
 	bool nack = receiveAck();		// NACK = 1; ACK = 0;
-	if(nack){_receivedNack = true;}
+	if(nack){received_nack_ = true;}
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -262,7 +258,7 @@ void yahal::mcu::hwemulation::I2CMaster::emulateReceiveBufferRX(void)
 	uint8_t byte = receiveByte();
 
 	// RESPOND
-	if(_sendStop)				// Stop reading -> NACK + STOP
+	if(send_stop_)				// Stop reading -> NACK + STOP
 	{
 		sendNack();
 		direction_ = DIRECTION::WRITE;
@@ -274,14 +270,14 @@ void yahal::mcu::hwemulation::I2CMaster::emulateReceiveBufferRX(void)
 
 
 	// WRITE BUFFER
-	_bufferRX = byte;
-	_bufferRXStatus = BUFFER_STATUS::JUST_WRITTEN;
+	buffer_RX_ = byte;
+	buffer_RX_status_ = BufferStatus::JUST_WRITTEN;
 }
 
 uint8_t	mcu::hwemulation::I2CMaster::emulateReadBufferRX(void)
 {
-	uint8_t byte = _bufferRX;		// Read buffer to auxiliar variable
-	_bufferRXStatus = BUFFER_STATUS::EMPTY;
+	uint8_t byte = buffer_RX_;		// Read buffer to auxiliar variable
+	buffer_RX_status_ = BufferStatus::EMPTY;
 	return byte;				// Return copied content of buffer
 }
 
@@ -295,39 +291,39 @@ void yahal::mcu::hwemulation::I2CMaster::emulateLoop(void)
 	while(busy)
 	{
 		// NACK IRQ
-		if(_receivedNack)
+		if(received_nack_)
 		{
-			_receivedNack = false;
+			received_nack_ = false;
 			emulateIRQNack();
 		}
 
 		// RX IRQ
-		else if(_bufferRXStatus == BUFFER_STATUS::JUST_WRITTEN)
+		else if(buffer_RX_status_ == BufferStatus::JUST_WRITTEN)
 		{
-			_bufferRXStatus = BUFFER_STATUS::FULL;
+			buffer_RX_status_ = BufferStatus::FULL;
 			emulateIRQRX();
 		}
 
 		// TX IRQ
-		else if(_bufferTXStatus == BUFFER_STATUS::JUST_READ)
+		else if(buffer_TX_status_ == BufferStatus::JUST_READ)
 		{
-			_bufferTXStatus = BUFFER_STATUS::EMPTY;
+			buffer_TX_status_ = BufferStatus::EMPTY;
 			emulateIRQTX();
 		}
 
 		// STOP
-		else if(_sendStop && direction_ == DIRECTION::WRITE)
+		else if(send_stop_ && direction_ == DIRECTION::WRITE)
 		{
-			_sendStop = false;
+			send_stop_ = false;
 			emulateStop();
 			busy = false;
 		}
 
 		// START
-		else if(_sendStart)
+		else if(end_start_)
 		{
 			busy = true;
-			_sendStart = false;
+			end_start_ = false;
 			emulateStart();
 		}
 
@@ -338,16 +334,16 @@ void yahal::mcu::hwemulation::I2CMaster::emulateLoop(void)
 		}
 
 		// WRITE
-		else if(_bufferTXStatus == BUFFER_STATUS::JUST_WRITTEN)
+		else if(buffer_TX_status_ == BufferStatus::JUST_WRITTEN)
 		{
 			emulateSendBufferTX();
-			_bufferTXStatus = BUFFER_STATUS::JUST_READ;
+			buffer_TX_status_ = BufferStatus::JUST_READ;
 		}
 
 		// DEFAULT: STOP
 		else
 		{
-			_sendStop = false;
+			send_stop_ = false;
 			emulateStop();
 			busy = false;
 		}
@@ -360,11 +356,11 @@ void yahal::mcu::hwemulation::I2CMaster::emulateLoop(void)
 
 void yahal::mcu::hwemulation::I2CMaster::emulateReset(void)
 {
-	_sendStart = false;
-	_sendStop = false;
-	_bufferTXStatus = BUFFER_STATUS::EMPTY;
-	_bufferTXStatus = BUFFER_STATUS::EMPTY;
-	_receivedNack = false;
+	end_start_ = false;
+	send_stop_ = false;
+	buffer_TX_status_ = BufferStatus::EMPTY;
+	buffer_TX_status_ = BufferStatus::EMPTY;
+	received_nack_ = false;
 	direction_ = DIRECTION::WRITE;
 }
 
@@ -376,13 +372,13 @@ void yahal::mcu::hwemulation::I2CMaster::start(uint8_t slaveAddress, DIRECTION::
 {
 	direction_ = direction;
 	slave_address_ = slaveAddress;
-	_sendStart = true;
+	end_start_ = true;
 }
 
 
 void yahal::mcu::hwemulation::I2CMaster::stop(void)
 {
-	_sendStop = true;			// Request STOP sequence ASAP
+	send_stop_ = true;			// Request STOP sequence ASAP
 }
 
 
@@ -413,4 +409,4 @@ void yahal::mcu::hwemulation::I2CMaster::awaitTransmissionEnd(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __SOFTWARE_I2C_MASTER_ENABLED__
+#endif	// __YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED__ == true
