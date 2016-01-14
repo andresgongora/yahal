@@ -58,20 +58,20 @@ void yahal::mcu::hwemulation::I2CMaster::setSDA(bool b)
 {
 	if(b)
 	{
-		configuration_.sda.config(yahal::mcu::modules::Gpio::Direction::INPUT);
+		configuration_.sda->config(yahal::mcu::modules::Gpio::Direction::INPUT);
 	}
 	else
 	{
-		configuration_.sda.set(0);
-		configuration_.sda.config(yahal::mcu::modules::Gpio::Direction::OUTPUT);
+		configuration_.sda->set(0);
+		configuration_.sda->config(yahal::mcu::modules::Gpio::Direction::OUTPUT);
 	}
 }
 
 
 bool yahal::mcu::hwemulation::I2CMaster::getSDA(void)
 {
-	configuration_.sda.config(yahal::mcu::modules::Gpio::Direction::INPUT);
-	return configuration_.sda.get();
+	configuration_.sda->config(yahal::mcu::modules::Gpio::Direction::INPUT);
+	return configuration_.sda->get();
 }
 
 
@@ -80,20 +80,20 @@ void yahal::mcu::hwemulation::I2CMaster::setSCL(bool b)
 {
 	if(b)
 	{
-		configuration_.scl.config(yahal::mcu::modules::Gpio::Direction::INPUT);
+		configuration_.scl->config(yahal::mcu::modules::Gpio::Direction::INPUT);
 	}
 	else
 	{
-		configuration_.scl.set(0);
-		configuration_.scl.config(yahal::mcu::modules::Gpio::Direction::OUTPUT);
+		configuration_.scl->set(0);
+		configuration_.scl->config(yahal::mcu::modules::Gpio::Direction::OUTPUT);
 	}
 }
 
 
 bool yahal::mcu::hwemulation::I2CMaster::getSCL(void)
 {
-	configuration_.scl.config(yahal::mcu::modules::Gpio::Direction::INPUT);
-	return configuration_.scl.get();
+	configuration_.scl->config(yahal::mcu::modules::Gpio::Direction::INPUT);
+	return configuration_.scl->get();
 }
 
 
