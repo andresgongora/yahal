@@ -47,7 +47,7 @@ class yahal::mcu::modules::details::IrqHandler :
 	private yahal::utility::oop::NonHeapable
 {
 protected:
-				Irq(void)	{}
+				IrqHandler(void)	{}
 
 
 public:

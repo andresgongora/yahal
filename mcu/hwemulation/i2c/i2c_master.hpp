@@ -48,8 +48,8 @@ class yahal::mcu::hwemulation::I2CMaster : public yahal::mcu::modules::I2CMaster
 public:
 	 	 	 	struct Configuration
 				{
-	 	 	 		yahal::mcu::modules::Gpio::Port::Pin* const sda;	///< Data.
-	 	 	 		yahal::mcu::modules::Gpio::Port::Pin* const scl;	///< Clock.
+	 	 	 		yahal::mcu::modules::Gpio::Port::Pin* sda;	///< Data.
+	 	 	 		yahal::mcu::modules::Gpio::Port::Pin* scl;	///< Clock.
 	 	 	 	};
 
 
