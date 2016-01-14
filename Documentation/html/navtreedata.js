@@ -1,13 +1,13 @@
 var NAVTREE =
 [
   [ "YAHAL", "index.html", [
-    [ "yahal", "md__home_andy__documentos__source_yahal__r_e_a_d_m_e.html", null ],
+    [ "yahal", "md__home_andy_Documentos_Source_yahal_README.html", null ],
+    [ "Todo List", "todo.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ]
+        [ "Functions", "namespacemembers_func.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -37,8 +37,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"longjmp__exception_8hpp.html",
-"targets__uid_8hpp.html#a7ffc938871f4a14221fa4242382b761d"
+"i2c__common_8hpp_source.html",
+"targets_2msp430f5309_2uscib1_2i2c_2i2c__slave_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

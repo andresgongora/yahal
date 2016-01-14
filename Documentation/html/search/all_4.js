@@ -7,9 +7,10 @@ var searchData=
   ['dco_5f4mhz',['DCO_4MHz',['../structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26a3ef4a28b1e6bf1a39b967791ffdb6bb7',1,'yahal::mcu::targets::msp430f5309::Clk::Frequency']]],
   ['dco_5f8mhz',['DCO_8MHz',['../structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_frequency.html#a32962c9ff596c457b230044a7f209b26afe003a1648f8e5fab5d85f53f93fb5ce',1,'yahal::mcu::targets::msp430f5309::Clk::Frequency']]],
   ['debug_5ftrap_2ehpp',['debug_trap.hpp',['../debug__trap_8hpp.html',1,'']]],
-  ['deliverrxbyte',['deliverRXByte',['../classyahal_1_1mcu_1_1_i2_c__slave_1_1_external_handler.html#a205e563b443eae40dae8c7d03b8ac5ac',1,'yahal::mcu::I2C_slave::ExternalHandler']]],
-  ['direction',['Direction',['../structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction.html',1,'yahal::mcu::details::I2C_common']]],
-  ['direction',['Direction',['../structyahal_1_1mcu_1_1_gpio_1_1_direction.html',1,'yahal::mcu::Gpio']]],
-  ['disabled',['DISABLED',['../structyahal_1_1mcu_1_1_gpio_1_1_resistor.html#a8f38e7b4a5f4a55cbc6b4d6f94c0f4e5a0b03abc26f722c74acf4527199cd3936',1,'yahal::mcu::Gpio::Resistor']]],
-  ['doinit',['doInit',['../classyahal_1_1mcu_1_1details_1_1_base_module.html#ab4333f0c7df8ae0bcf114fa206380ca5',1,'yahal::mcu::details::BaseModule']]]
+  ['deliverrxbyte',['deliverRXByte',['../classyahal_1_1mcu_1_1modules_1_1_i2_c_slave_1_1_external_handler.html#a1a5b2b41ded68f6af30ecf51e0f390ae',1,'yahal::mcu::modules::I2CSlave::ExternalHandler']]],
+  ['direction',['Direction',['../structyahal_1_1mcu_1_1modules_1_1details_1_1_i2_c_common_1_1_direction.html',1,'yahal::mcu::modules::details::I2CCommon']]],
+  ['direction',['Direction',['../structyahal_1_1mcu_1_1modules_1_1_gpio_1_1_direction.html',1,'yahal::mcu::modules::Gpio']]],
+  ['disabled',['DISABLED',['../structyahal_1_1mcu_1_1modules_1_1_gpio_1_1_resistor.html#a31dc451814e345e3029993e629392cd1ae8337f18574719fd5831bcf358767638',1,'yahal::mcu::modules::Gpio::Resistor']]],
+  ['disableglobalinterrupts',['disableGlobalInterrupts',['../classyahal_1_1mcu_1_1modules_1_1details_1_1_irq_handler.html#a2f2557b6fa61b2b427e2f51f4327922c',1,'yahal::mcu::modules::details::IrqHandler::disableGlobalInterrupts()'],['../classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_irq_handler.html#a1e5e3d49e51bd98e74f5bc8e3304505e',1,'yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts()']]],
+  ['doinit',['doInit',['../classyahal_1_1mcu_1_1hwemulation_1_1_i2_c_master.html#af9e8eaf13030e14e27e11c6bce862f35',1,'yahal::mcu::hwemulation::I2CMaster::doInit()'],['../classyahal_1_1mcu_1_1modules_1_1details_1_1_base_module.html#a3222e850113add272d3d573ecbe378d2',1,'yahal::mcu::modules::details::BaseModule::doInit()']]]
 ];

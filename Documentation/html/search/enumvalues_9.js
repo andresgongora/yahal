@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['read',['READ',['../structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_direction.html#a13e2000f0f779540af7efbc0f744b420af8bbbaa269a37f3c226d1604e416ac0d',1,'yahal::mcu::details::I2C_common::Direction']]],
-  ['read_5foverflow_5fattempt',['READ_OVERFLOW_ATTEMPT',['../structyahal_1_1mcu_1_1details_1_1_i2_c__common_1_1_error.html#a8b8e77837be54467fe7bc9ecb823453bac16d7c3aae194475c103e737d1f5aa6d',1,'yahal::mcu::details::I2C_common::Error']]],
-  ['received_5fnack',['RECEIVED_NACK',['../structyahal_1_1mcu_1_1_irq_1_1_i2_c.html#acd51c57af795744492ee0c003e79318aa97872eee6008ac32b2a98f3033779cd0',1,'yahal::mcu::Irq::I2C']]],
-  ['received_5fstart',['RECEIVED_START',['../structyahal_1_1mcu_1_1_irq_1_1_i2_c.html#acd51c57af795744492ee0c003e79318aa5010b47c037b904a195dd3027ae7747d',1,'yahal::mcu::Irq::I2C']]],
-  ['rx',['RX',['../structyahal_1_1mcu_1_1_irq_1_1_u_a_r_t.html#abaaf771ad4cd5f21a9177b95455dbc40afc0988e7db775bebea1de94a78557482',1,'yahal::mcu::Irq::UART']]],
-  ['rx_5fbuffer_5ffull',['RX_BUFFER_FULL',['../structyahal_1_1mcu_1_1_irq_1_1_i2_c.html#acd51c57af795744492ee0c003e79318aac8baf54dc9aebc3904faeb1f441fe031',1,'yahal::mcu::Irq::I2C']]]
+  ['transmission_5fprematurely_5fended',['TRANSMISSION_PREMATURELY_ENDED',['../structyahal_1_1mcu_1_1modules_1_1details_1_1_i2_c_common_1_1_error.html#a22aca175137130a90b9d1404d41e6a22ad8f13c943370055ec2f980ba1fe97012',1,'yahal::mcu::modules::details::I2CCommon::Error']]],
+  ['trying_5fto_5faccess_5fnon_5fexistant_5fpin',['TRYING_TO_ACCESS_NON_EXISTANT_PIN',['../structyahal_1_1mcu_1_1modules_1_1_gpio_1_1_error.html#a5b3ae1d00f0fb023b5cd46dcc38ae1c4a1d612dc19ae3169832af8c187fd1a514',1,'yahal::mcu::modules::Gpio::Error']]],
+  ['trying_5fto_5faccess_5fnon_5fexistant_5fport',['TRYING_TO_ACCESS_NON_EXISTANT_PORT',['../structyahal_1_1mcu_1_1modules_1_1_gpio_1_1_error.html#a5b3ae1d00f0fb023b5cd46dcc38ae1c4a477f5c642b556e5c2e5651eb075d0973',1,'yahal::mcu::modules::Gpio::Error']]]
 ];

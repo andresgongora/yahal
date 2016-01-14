@@ -1,6 +1,6 @@
 var msp430f5309_8hpp =
 [
-    [ "init", "msp430f5309_8hpp.html#a205570075595ce51600da37419be1ecc", null ],
-    [ "clk", "msp430f5309_8hpp.html#a8cf5bfbcd04214d5406c76d6ba02c5bf", null ],
-    [ "wdt", "msp430f5309_8hpp.html#af2b88a4e2b488c0c1aeedfcdd882319c", null ]
+    [ "initIrq", "msp430f5309_8hpp.html#a8cd960be084b5eed0abe51079fea4343", null ],
+    [ "initTarget", "msp430f5309_8hpp.html#ad93507717d491676faf069ed718904b0", null ],
+    [ "USCI_B1_ISR", "msp430f5309_8hpp.html#a50df6f4af2df137f01cb607caa56affe", null ]
 ];

@@ -7,7 +7,7 @@ var dir_30c75372601327d294475ba7afcef410 =
     [ "uart", "dir_24d8981d03e9b42713d2449e912af71d.html", "dir_24d8981d03e9b42713d2449e912af71d" ],
     [ "wdt", "dir_9fd49300b77c029add54a07156f7ca86.html", "dir_9fd49300b77c029add54a07156f7ca86" ],
     [ "base_module.hpp", "base__module_8hpp.html", [
-      [ "BaseModule", "classyahal_1_1mcu_1_1details_1_1_base_module.html", "classyahal_1_1mcu_1_1details_1_1_base_module" ]
+      [ "BaseModule", "classyahal_1_1mcu_1_1modules_1_1details_1_1_base_module.html", "classyahal_1_1mcu_1_1modules_1_1details_1_1_base_module" ]
     ] ],
     [ "modules.hpp", "modules_8hpp.html", null ]
 ];

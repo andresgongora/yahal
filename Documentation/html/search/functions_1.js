@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['awaittransmissionend',['awaitTransmissionEnd',['../classyahal_1_1mcu_1_1_i2_c__master.html#a18024f53f06966eedc51704ce23dff44',1,'yahal::mcu::I2C_master::awaitTransmissionEnd()'],['../classyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_i2_c__multimaster.html#ac25a66dc6b29abbfc64b08678b37e4e0',1,'yahal::mcu::targets::msp430f5309::I2C_multimaster::awaitTransmissionEnd()']]]
+  ['basemodule',['BaseModule',['../classyahal_1_1mcu_1_1modules_1_1details_1_1_base_module.html#a57a7197e0b1bef9a801b0bc1acb50600',1,'yahal::mcu::modules::details::BaseModule']]]
 ];

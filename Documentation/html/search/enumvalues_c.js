@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vlp',['VLP',['../structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_clk_1_1_clock_source.html#af428fee98d5769f0e2ffd1fb4d94e442a95a2115c8809baeb48a8238e8f08157f',1,'yahal::mcu::targets::msp430f5309::Clk::ClockSource']]]
+  ['zero_5fsize_5fmessage',['ZERO_SIZE_MESSAGE',['../structyahal_1_1mcu_1_1modules_1_1details_1_1_i2_c_common_1_1_error.html#a22aca175137130a90b9d1404d41e6a22aa6638353a697a35f227408accef8ec20',1,'yahal::mcu::modules::details::I2CCommon::Error']]]
 ];

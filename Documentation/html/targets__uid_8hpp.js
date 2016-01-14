@@ -1,8 +1,8 @@
 var targets__uid_8hpp =
 [
-    [ "MCU_EMPTY", "targets__uid_8hpp.html#ae66032d2a9df5b18fc0549c43cf45314", null ],
-    [ "MCU_MSP430F2013", "targets__uid_8hpp.html#a5f40c9e2cedeca6254bf95c97b98efa9", null ],
-    [ "MCU_MSP430F2132", "targets__uid_8hpp.html#a0b9811731928b5825a97148d3c543ed1", null ],
-    [ "MCU_MSP430F5309", "targets__uid_8hpp.html#a7ffc938871f4a14221fa4242382b761d", null ],
-    [ "MCU_PIC24FJ32GB002B", "targets__uid_8hpp.html#a532a00d503497a139600df76a33ac4ca", null ]
+    [ "YAHAL_MCU_EMPTY", "targets__uid_8hpp.html#afa50cd685a34c6a1817c728d600d39ae", null ],
+    [ "YAHAL_MCU_MSP430F2013", "targets__uid_8hpp.html#a87c1590df4e92d032e2b4f9f3ea6e0eb", null ],
+    [ "YAHAL_MCU_MSP430F2132", "targets__uid_8hpp.html#a37d0ea1ddaadd3a0bacd464f962b573b", null ],
+    [ "YAHAL_MCU_MSP430F5309", "targets__uid_8hpp.html#ad655c6a51a42fa3595b435e611142127", null ],
+    [ "YAHAL_MCU_PIC24FJ32GB002B", "targets__uid_8hpp.html#a130a084a056660acb482f4dce022ef8b", null ]
 ];

@@ -17,5 +17,8 @@ var dir_8bb5d490d7d093ca427901c60192f992 =
     [ "nonheapable.hpp", "nonheapable_8hpp.html", [
       [ "NonHeapable", "classyahal_1_1utility_1_1oop_1_1_non_heapable.html", "classyahal_1_1utility_1_1oop_1_1_non_heapable" ]
     ] ],
-    [ "publish_subscribe.hpp", "publish__subscribe_8hpp.html", null ]
+    [ "publish_subscribe.hpp", "publish__subscribe_8hpp.html", [
+      [ "Publisher", "classyahal_1_1utility_1_1oop_1_1_publisher.html", null ],
+      [ "Subscriber", "classyahal_1_1utility_1_1oop_1_1_subscriber.html", null ]
+    ] ]
 ];
