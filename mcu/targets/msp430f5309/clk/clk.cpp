@@ -145,4 +145,4 @@ uint32_t yahal::mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // MCU_DEVICE == MCU_MSP430F5309
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

@@ -70,17 +70,16 @@ private:			// I2C PROTOCOL
 	virtual bool		isIncommingWrite(void);
 
 
-private:			// ISR
-	friend class		yahal::mcu::targets::msp430f5309::IRQHandler;
+				// ISR
 	virtual void 		isr(UsciB1::IRQ::Type irq);
 
 
-private:			// PRIVATE VARIABLES
+				// PRIVATE VARIABLES
 	const Configuration&	configuration_;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// MCU_DEVICE == MCU_MSP430F5309
+#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif	// __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__

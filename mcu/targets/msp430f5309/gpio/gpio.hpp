@@ -176,5 +176,5 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // MCU_DEVICE == MCU_MSP430F5309
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__

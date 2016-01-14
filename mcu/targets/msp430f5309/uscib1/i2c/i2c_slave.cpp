@@ -105,4 +105,4 @@ void yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::isr(UsciB1::IRQ::Type i
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // MCU_DEVICE == MCU_MSP430F5309
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

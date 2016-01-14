@@ -326,4 +326,4 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)co
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // MCU_DEVICE == MCU_MSP430F5309
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
