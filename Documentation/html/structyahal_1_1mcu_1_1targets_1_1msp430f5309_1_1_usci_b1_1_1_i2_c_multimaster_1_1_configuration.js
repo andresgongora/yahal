@@ -1,0 +1,4 @@
+var structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_usci_b1_1_1_i2_c_multimaster_1_1_configuration =
+[
+    [ "ownAddress", "structyahal_1_1mcu_1_1targets_1_1msp430f5309_1_1_usci_b1_1_1_i2_c_multimaster_1_1_configuration.html#a2861418daba44797367c6c4b5ff15aaf", null ]
+];
