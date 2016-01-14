@@ -62,8 +62,8 @@ namespace yahal{ namespace mcu{
 
 	/* -------------------------------------------------------------------------------------- */
 
-	// IRQHandler
-	static targets::msp430f5309::IRQHandler irq_handler;
+	// IrqHandler
+	static targets::msp430f5309::IrqHandler irq_handler;
 
 	/* -------------------------------------------------------------------------------------- */
 
@@ -84,20 +84,20 @@ namespace yahal{ namespace mcu{
 	// USCIB1
 	#if	YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true	\
 	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE
-		static targets::msp430f5309::UsciB1::I2CSlave		\
+		static targets::msp430f5309::UsciB1::I2CSlave	\
 		YAHAL_MCU_MSP430F5309_USCIB1_NAME		\
 		(targets::msp430f5309::config::uscib1);
 
 	#elif	YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true	\
 	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER
-		static targets::msp430f5309::UsciB1::I2CMaster		\
+		static targets::msp430f5309::UsciB1::I2CMaster	\
 		YAHAL_MCU_MSP430F5309_USCIB1_NAME		\
 		(targets::msp430f5309::config::uscib1);
 
 	#elif	YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true	\
 	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
 		static targets::msp430f5309::UsciB1::I2CMultimaster	\
-		YAHAL_MCU_MSP430F5309_USCIB1_NAME	\
+		YAHAL_MCU_MSP430F5309_USCIB1_NAME			\
 		(targets::msp430f5309::config::uscib1);
 	#endif
 
@@ -120,37 +120,47 @@ namespace yahal{ namespace mcu{
 
 namespace yahal{ namespace mcu{ namespace details{
 
-	/// Call all init functions for this targets modules.
-	void initTarget(void)
-	{
-		// CLK
-		#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
-			yahal::mcu::clk.init();
-		#endif
+void initIrq(void);	// Forward declaration
 
-		// GPIO
-		#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
-			yahal::mcu::gpio.init();
-		#endif
+/// Call all init functions for this targets modules.
+void initTarget(void) {
+	// CLK
+	#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
+	yahal::mcu::clk.init();
+	#endif
 
-		// USCIB1
-		#if YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true
-			yahal::mcu::YAHAL_MCU_MSP430F5309_USCIB1_NAME.init();
-		#endif
+	// GPIO
+	#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
+	yahal::mcu::gpio.init();
+	#endif
 
-		// WDT
-		#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
-			yahal::mcu::wdt.init();
-		#endif
+	// USCIB1
+	#if YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true
+	yahal::mcu::YAHAL_MCU_MSP430F5309_USCIB1_NAME.init();
+	#endif
+
+	// WDT
+	#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
+	yahal::mcu::wdt.init();
+	#endif
+
+	// IrqHandler
+	initIrq();
+
+}
 
 
-		// IRQHandler
-		#if YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true
-			irq_handler.setISRHandlerUsciB1(&yahal::mcu::YAHAL_MCU_MSP430F5309_USCIB1_NAME);
-		#endif
-		// ...
-		irq_handler.enableGlobalInterrupts();
-	}
+/// Initialize everything IRQ related
+void initIrq(void)
+{
+	#if YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true
+	irq_handler.setISRHandlerUsciB1(&yahal::mcu::YAHAL_MCU_MSP430F5309_USCIB1_NAME);
+	#endif
+	// ...
+	irq_handler.enableGlobalInterrupts();
+}
+
+
 
 }}} // Namespace yahal::mcu::details
 

@@ -33,7 +33,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::IRQHandler::IRQHandler(void) :
+yahal::mcu::targets::msp430f5309::IrqHandler::IrqHandler(void) :
 	p_handler_uscib1_(NULL)
 {}
 
@@ -41,13 +41,13 @@ yahal::mcu::targets::msp430f5309::IRQHandler::IRQHandler(void) :
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::IRQHandler::enableGlobalInterrupts(void) const
+void yahal::mcu::targets::msp430f5309::IrqHandler::enableGlobalInterrupts(void) const
 {
 	_EINT();
 }
 
 
-void yahal::mcu::targets::msp430f5309::IRQHandler::disableGlobalInterrupts(void) const
+void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void) const
 {
 	_DINT();
 }
@@ -57,14 +57,14 @@ void yahal::mcu::targets::msp430f5309::IRQHandler::disableGlobalInterrupts(void)
 /* ---------------------------------------------------------------------------------------------- */
 
 
-void yahal::mcu::targets::msp430f5309::IRQHandler::setISRHandlerUsciB1(UsciB1* p_handler)
+void yahal::mcu::targets::msp430f5309::IrqHandler::setISRHandlerUsciB1(UsciB1* p_handler)
 {
 	p_handler_uscib1_ = p_handler;
 }
 
 
 
-void yahal::mcu::targets::msp430f5309::IRQHandler::irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::IRQ::Type irq)
+void yahal::mcu::targets::msp430f5309::IrqHandler::irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::IRQ::Type irq)
 {
 	if (p_handler_uscib1_) {
 		p_handler_uscib1_->isr(irq);

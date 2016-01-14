@@ -61,8 +61,7 @@ private:			// INITIALIZATION
 	void			doInit(void);
 
 
-
-private:			// MODULE IMPLEMENTATION
+				// MODULE IMPLEMENTATION
 	virtual void		start(uint8_t slaveAddress, Direction::Type direction);
 	virtual void		stop(void);
 	virtual void		writeBufferTX(uint8_t byte);
@@ -73,13 +72,15 @@ private:			// MODULE IMPLEMENTATION
 	virtual void		configureAsMaster(void);
 
 
+				// ISR
+	virtual void 		isr(UsciB1::IRQ::Type irq);
 
-private:			// PRIVATE VARIABLES
+
+				// PRIVATE VARIABLES
 	const Configuration&	configuration_;
 
 
-private:			// ISR
-	virtual void 		isr(UsciB1::IRQ::Type irq);
+
 };
 
 

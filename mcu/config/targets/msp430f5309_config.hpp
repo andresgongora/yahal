@@ -78,7 +78,17 @@ static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 
 
+/* =================================================================================================
+	USCIA0
+================================================================================================= */
 
+/* =================================================================================================
+	USCIB0
+================================================================================================= */
+
+/* =================================================================================================
+	USCIA1
+================================================================================================= */
 
 /* =================================================================================================
 	USCIB1
@@ -86,9 +96,9 @@ static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 // AVAILABLE MODES
 #define YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE		0
-#define YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER	1
+#define YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER		1
 #define YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER	2
-#define YAHAL_MCU_MSP430F5309_USCIB1_SPI 		3
+//#define YAHAL_MCU_MSP430F5309_USCIB1_SPI 		3	// Not implemented yet
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -97,18 +107,21 @@ static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 #define YAHAL_MCU_MSP430F5309_USCIB1_NAME		i2c1
 
 
+	// Slave
 #if	YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true	\
 &&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE
 	static const yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::Configuration uscib1 = {
 	/* Own Address	*/ 0x1E,
 	};
 
+	// Master
 #elif	YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true	\
 &&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER
 	static const yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::Configuration uscib1 = {
 	/* Nothing	*/
 	};
 
+	// Multimaster
 #elif	YAHAL_MCU_MSP430F5309_USCIB1_ENABLED == true	\
 &&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
 	static const yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::Configuration uscib1 = {
@@ -118,11 +131,13 @@ static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 
 
-
-
 /* =================================================================================================
-	I2C
+	X X X
 ================================================================================================= */
+
+
+
+
 
 
 }}}}}	// namespace yahal::mcu::targets::msp430f5309::config

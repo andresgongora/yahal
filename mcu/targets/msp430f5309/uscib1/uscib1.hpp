@@ -42,7 +42,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	class UsciB1;
-	class IRQHandler;	// Forward declaration
+	class IrqHandler;	// Forward declaration
 }}}}
 
 
@@ -70,7 +70,7 @@ public:
 				class I2CSlave;
 
 protected:
-	friend class		IRQHandler;
+	friend class		IrqHandler;
 	virtual void		isr(IRQ::Type irq) = 0;
 };
 
