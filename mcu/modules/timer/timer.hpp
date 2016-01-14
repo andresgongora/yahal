@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2015 - 2016, Individual contributors, see AUTHORS file.	|
+	| Copyright (c) 2015 - 2016 - 2016, Individual contributors, see AUTHORS file. |
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -22,41 +22,37 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+#ifndef __YAHAL_MCU_TIMER_HPP_INCLUDED__
+#define __YAHAL_MCU_TIMER_HPP_INCLUDED__
 
 
-#ifndef __MSP430F2132_WDT_HPP_INCLUDED__
-#define __MSP430F2132_WDT_HPP_INCLUDED__
+/* ---------------------------------------------------------------------------------------------- */
+#include <stdint.h>
+#include "../base_module.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "hal/mcu/devices/msp430f2132/msp430f2132.hpp"
-#ifdef __MSP430F2132_WDT_ENABLED__
-
-#include "hal/mcu/virtual/wdt/wdt.hpp"
-
+namespace yahal{ namespace mcu{ namespace modules{
+	class Timer;
+}}}
 
 
-/* ============================================================================================== */
- *	DECLARATION::WDT
- * ============================================================================================== */
-class hal::uc::msp430f2132::Wdt : public hal::uc::Wdt
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::modules::Timer : public yahal::mcu::modules::details::BaseModule
 {
 public:
-				// INITIALIZATION
-	bool			init(void);
-	void			reset(void);
+				struct Error{ enum Type{
+					NO_ERROR = NO_ERROR_CODE
+				};};
+
+
 };
 
 
-/* ============================================================================================== */
- *	hal::uc::msp430f2132::Wdt :: GLOBAL VARIABLE
- * ============================================================================================== */
-
-namespace hal{namespace uc{namespace msp430f2132{
-	extern hal::uc::msp430f2132::Wdt wdt;
-}}}
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __MSP430F2132_WDT_ENABLED__
-#endif // __MSP430F2132_WDT_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_TIMER_HPP_INCLUDED__

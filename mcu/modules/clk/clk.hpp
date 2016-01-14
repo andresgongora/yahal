@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2015, Individual contributors, see AUTHORS file. 	|
+	| Copyright (c) 2015 - 2016, Individual contributors, see AUTHORS file.	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -21,8 +21,6 @@
 	| along with this program.  If not, see <http://www.gnu.org/licenses/>. |
 	|									|
 	+-----------------------------------------------------------------------+	*/
-
-
 
 #ifndef __YAHAL_MCU_CLK_HPP_INCLUDED__
 #define __YAHAL_MCU_CLK_HPP_INCLUDED__
