@@ -26,6 +26,7 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include <msp430f5309.h>
+#include "../../../../error/assert.hpp"
 
 
 
@@ -44,7 +45,26 @@ void yahal::mcu::targets::msp430f5309::TimerA0::doInit(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-
+yahal::mcu::targets::msp430f5309::TimerA0::Ccr& \
+yahal::mcu::targets::msp430f5309::TimerA0::ccr(std::size_t module)
+{
+	switch (module) {
+	case 1:
+		return ccr1_;
+	case 2:
+		return ccr2_;
+	case 3:
+		return ccr3_;
+	case 4:
+		return ccr4_;
+	case 5:
+		return ccr5_;
+	case 6:
+		return ccr6_;
+	default:assert(false);
+		return ccr1_;	///< Better return this than nothing.
+	}
+}
 
 
 /* ---------------------------------------------------------------------------------------------- */

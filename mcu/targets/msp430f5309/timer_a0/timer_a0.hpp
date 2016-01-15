@@ -31,6 +31,8 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include <stdint.h>
+#include <cstddef>
 //#include "../../../modules/clk/clk.hpp"
 
 
@@ -45,12 +47,15 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::TimerA0
+class yahal::mcu::targets::msp430f5309::TimerA0 //INHERIT FROM TIMER!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 {
 public:
+
+
 				struct ClockSource{ enum Type{
 					VLP,
 				};};
+
 
 				struct Configuration
 				{
@@ -58,22 +63,74 @@ public:
 				};
 
 
-				class Timer;
-				class OutputCompare;
+				class Ccr// INHERIT FROM OC AND IC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				{
+				public:
+				protected:
+				};
 
 
 				// CONSTRUCTOR
 				TimerA0(const Configuration& configuration);
 
+	Ccr&			ccr(std::size_t module);
+
 
 
 private:			// INITIALIZATION
-	void			doInit(void);
+	virtual void		doInit(void);
+
+
+
+
+
+private:
+				class Ccr1 : public Ccr
+				{
+				public:
+
+				};
+
+				class Ccr2 : public Ccr
+				{
+				public:
+
+				};
+
+				class Ccr3 : public Ccr
+				{
+				public:
+
+				};
+
+				class Ccr4 : public Ccr
+				{
+				public:
+
+				};
+
+				class Ccr5 : public Ccr
+				{
+				public:
+
+				};
+
+				class Ccr6 : public Ccr
+				{
+				public:
+
+				};
 
 
 
 				// PRIVATE VARIABLES
 	const Configuration&	configuration_;
+	Ccr1			ccr1_;
+	Ccr2			ccr2_;
+	Ccr3			ccr3_;
+	Ccr4			ccr4_;
+	Ccr5			ccr5_;
+	Ccr6			ccr6_;
 };
 
 

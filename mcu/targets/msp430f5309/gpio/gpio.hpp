@@ -72,7 +72,7 @@ private:
 				 * The public initialization rountine is called init() and
 				 * is inherited from BaseModule.
 				 */
-	void			doInit(void);
+	virtual void		doInit(void);
 
 
 				/* -------------------------------------------------------------- */

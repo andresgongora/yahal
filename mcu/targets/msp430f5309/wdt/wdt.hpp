@@ -60,7 +60,7 @@ public:
 				Wdt(const Configuration& configuration);
 
 private:
-	void			doInit(void);
+	virtual void		doInit(void);
 
 public:
 				/**

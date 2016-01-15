@@ -58,7 +58,7 @@ public:
 
 
 private:			// INITIALIZATION
-	void			doInit(void);
+	virtual void		doInit(void);
 
 
 				// MODULE IMPLEMENTATION
