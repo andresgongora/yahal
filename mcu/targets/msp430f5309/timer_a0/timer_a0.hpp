@@ -33,7 +33,8 @@
 
 #include <stdint.h>
 #include <cstddef>
-//#include "../../../modules/clk/clk.hpp"
+#include "../../../modules/timer/timer.hpp"
+#include "../../../modules/output_compare/output_compare.hpp"
 
 
 
@@ -47,11 +48,10 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::TimerA0 //INHERIT FROM TIMER!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+class yahal::mcu::targets::msp430f5309::TimerA0 :
+	public yahal::mcu::modules::Timer
 {
 public:
-
-
 				struct ClockSource{ enum Type{
 					VLP,
 				};};
@@ -63,10 +63,13 @@ public:
 				};
 
 
-				class Ccr// INHERIT FROM OC AND IC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				class Ccr :
+					public yahal::mcu::modules::OutputCompare
 				{
 				public:
 				protected:
+				private:
+// DEBERIA QUITAR BASE MODULE DE TODAS PARTES?????????					virtual void doInit(){}
 				};
 
 

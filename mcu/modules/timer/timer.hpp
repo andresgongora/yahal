@@ -70,7 +70,7 @@ protected:
 				Timer(void){}
 
 public:
-	virtual std::size_t	getWidth(void) const = 0;
+/*	virtual std::size_t	getWidth(void) const = 0;
 	virtual std::size_t	getMaxCount(void) const = 0;
 
 	virtual bool		hasMode(Mode::Type mode) const = 0;
@@ -80,7 +80,7 @@ public:
 	virtual void		setComparator(std::size_t value) = 0;
 	virtual std::size_t	getCounter(void) const = 0;
 	virtual std::size_t	getComparator(void) const = 0;
-
+*/
 	/* EXPERIMENTAL
 	virtual bool		hasPreloadRegister(void) const = 0;
 	virtual bool		setPreloadRegister(std::size_t value) = 0;
