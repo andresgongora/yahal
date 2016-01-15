@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_OUTPUT_COMPARE_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_OUTPUT_COMPARE_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -35,7 +35,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace modules{
-	class Timer;
+	class OutputCompare;
 }}}
 
 
@@ -43,7 +43,7 @@ namespace yahal{ namespace mcu{ namespace modules{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::modules::Timer : public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::OutputCompare : public yahal::mcu::modules::details::BaseModule
 {
 public:
 				struct Error{ enum Type{
@@ -54,20 +54,22 @@ public:
 
 
 				struct Mode{ enum Type{
-					UP,
-					UP_DOWN,
-					UP_GATED,
-					DOWN,
-					DOWN_UP,
-					DOWN_GATED,
-					CONTINUOUS,
+					OUTPUT,
+					SET,
+					RESET,
+					TOGGLE,
+					TOGGLE_SET,
+					TOGGLE_RESET,
+					SET_RESET,
+					RESET_SET,
 				};};
 
 
 
 
 protected:
-				Timer(void){}
+				OutputCompare(void){}
+
 
 public:
 	virtual std::size_t	getWidth(void) const = 0;
@@ -76,18 +78,13 @@ public:
 	virtual bool		hasMode(Mode::Type mode) const = 0;
 	virtual bool		setMode(Mode::Type mode) = 0;
 
-	virtual void		setCounter(std::size_t value) = 0;
+	virtual void		resetCounter(std::size_t value) = 0;
 	virtual void		setComparator(std::size_t value) = 0;
 	virtual std::size_t	getCounter(void) const = 0;
-	virtual std::size_t	getComparator(void) const = 0;
-
-	/* EXPERIMENTAL
-	virtual bool		hasPreloadRegister(void) const = 0;
-	virtual bool		setPreloadRegister(std::size_t value) = 0;
-	virtual std::size_t	getPreloadRegister(void) const = 0;		*/
+//	virtual std::size_t	getComparator(void) const = 0;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_MODULES_OUTPUT_COMPARE_HPP_INCLUDED__

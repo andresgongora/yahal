@@ -20,6 +20,7 @@
 	 *
 	 *	- Cambiar el funcionamiento para imitar el de RTOS. Las clases base de modulos meterlas en el namespace modulos. Y el micro que implemente el chiringuito meterlo debajo de mcu. Pero no se hacer entonces con hwemulation
 	 *
+	 *	- Target modules are _NOT_ allowed to have public member functions or variables
 	*/
 
 

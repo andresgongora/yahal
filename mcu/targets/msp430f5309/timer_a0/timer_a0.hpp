@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2015 - 2016 - 2016, Individual contributors, see AUTHORS file. |
+	| Copyright (c) 2015 - 2016, Individual contributors, see AUTHORS file.	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -22,72 +22,62 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include <stdint.h>
-#include <cstddef>
-#include "../base_module.hpp"
+#ifndef __YAHAL_MCU_MSP430F5309_TIMER_A0_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_TIMER_A0_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class Timer;
-}}}
+#include "../../../config/mcu_config.hpp"
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+
+//#include "../../../modules/clk/clk.hpp"
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+	class TimerA0;
+}}}}
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::modules::Timer : public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::targets::msp430f5309::TimerA0
 {
 public:
-				struct Error{ enum Type{
-					NO_ERROR = NO_ERROR_CODE,
-					MODE_NOT_AVAILABLE,
-					OTHER
+				struct ClockSource{ enum Type{
+					VLP,
 				};};
 
-
-				struct Mode{ enum Type{
-					UP,
-					UP_DOWN,
-					UP_GATED,
-					DOWN,
-					DOWN_UP,
-					DOWN_GATED,
-					CONTINUOUS,
-				};};
+				struct Configuration
+				{
+					ClockSource::Type clockSource;
+				};
 
 
+				class Timer;
+				class OutputCompare;
 
 
-protected:
-				Timer(void){}
+				// CONSTRUCTOR
+				TimerA0(const Configuration& configuration);
 
-public:
-	virtual std::size_t	getWidth(void) const = 0;
-	virtual std::size_t	getMaxCount(void) const = 0;
 
-	virtual bool		hasMode(Mode::Type mode) const = 0;
-	virtual bool		setMode(Mode::Type mode) = 0;
 
-	virtual void		setCounter(std::size_t value) = 0;
-	virtual void		setComparator(std::size_t value) = 0;
-	virtual std::size_t	getCounter(void) const = 0;
-	virtual std::size_t	getComparator(void) const = 0;
+private:			// INITIALIZATION
+	void			doInit(void);
 
-	/* EXPERIMENTAL
-	virtual bool		hasPreloadRegister(void) const = 0;
-	virtual bool		setPreloadRegister(std::size_t value) = 0;
-	virtual std::size_t	getPreloadRegister(void) const = 0;		*/
+
+
+				// PRIVATE VARIABLES
+	const Configuration&	configuration_;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // __YAHAL_MCU_MSP430F5309_TIMER_A0_HPP_INCLUDED__
