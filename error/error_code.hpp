@@ -44,7 +44,7 @@ namespace yahal{ namespace error{
  * @brief	Base class for error code handling.
  *
  * 	This class stores the last error code that happened to a derived class.
- * 	It two public methods to check the existence and value of the last error code
+ * 	It has two public methods to check the existence and value of the last error code
  *	and two protected methods to set and clear the code.
  *	This base class also defines NO_ERROR_CODE (value = NULL) to signal a no error condition.
  *

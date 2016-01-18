@@ -53,15 +53,7 @@ public:
 				};};
 
 
-				struct Mode{ enum Type{
-					UP,
-					UP_DOWN,
-					UP_GATED,
-					DOWN,
-					DOWN_UP,
-					DOWN_GATED,
-					CONTINUOUS,
-				};};
+
 
 
 
@@ -70,21 +62,9 @@ protected:
 				Timer(void){}
 
 public:
-/*	virtual std::size_t	getWidth(void) const = 0;
-	virtual std::size_t	getMaxCount(void) const = 0;
-
-	virtual bool		hasMode(Mode::Type mode) const = 0;
-	virtual bool		setMode(Mode::Type mode) = 0;
-
-	virtual void		setCounter(std::size_t value) = 0;
-	virtual void		setComparator(std::size_t value) = 0;
-	virtual std::size_t	getCounter(void) const = 0;
-	virtual std::size_t	getComparator(void) const = 0;
-*/
-	/* EXPERIMENTAL
-	virtual bool		hasPreloadRegister(void) const = 0;
-	virtual bool		setPreloadRegister(std::size_t value) = 0;
-	virtual std::size_t	getPreloadRegister(void) const = 0;		*/
+	virtual void		set(std::size_t value) = 0;
+	virtual std::size_t	get(void) const = 0;
+	virtual void		reset(void) const = 0;
 };
 
 

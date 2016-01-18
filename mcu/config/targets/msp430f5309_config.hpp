@@ -41,7 +41,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 	CLK
 ================================================================================================= */
 
-#define	YAHAL_MCU_MSP430F5309_CLK_ENABLED		true
+#define	YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE		true
 
 static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 /* Frequency	*/ msp430f5309::Clk::Frequency::DCO_8MHz,
@@ -56,7 +56,7 @@ static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 	GPIO
 ================================================================================================= */
 
-#define	YAHAL_MCU_MSP430F5309_GPIO_ENABLED		true
+#define	YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE		true
 
 static const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 /* Nothing	*/
@@ -70,7 +70,7 @@ static const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 	WDT
 ================================================================================================= */
 
-#define	YAHAL_MCU_MSP430F5309_WDT_ENABLED		true
+#define	YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE		true
 
 static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 /* Nothing	*/
@@ -102,7 +102,7 @@ static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 /* ---------------------------------------------------------------------------------------------- */
 
-#define	YAHAL_MCU_MSP430F5309_USCIB1_ENABLED		true
+#define	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE		true
 #define YAHAL_MCU_MSP430F5309_USCIB1_MODE		YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
 #define YAHAL_MCU_MSP430F5309_USCIB1_NAME		i2c1
 

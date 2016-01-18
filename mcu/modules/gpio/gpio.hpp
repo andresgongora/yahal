@@ -101,20 +101,20 @@ public:				// PORT ACCESS
  **************************************************************************************************/
 class yahal::mcu::modules::Gpio::Port
 {
-public:				// CONFIGURATION ---------------------------------------------------
+public:				// CONFIGURATION
 	virtual bool		config(	Direction::Type direction = Direction::INPUT,
 					Resistor::Type resistor = Resistor::DISABLED,
 					uint8_t mask = 0xFF) = 0;
 
 
-public:				// CONTROL ---------------------------------------------------------
+public:				// CONTROL
 	virtual void		set(uint8_t value, uint8_t mask=0xFF) = 0;
 	virtual uint8_t		get(uint8_t mask=0xFF)const = 0;
 	virtual uint8_t		getOutput(uint8_t mask=0xFF)const = 0;
 	virtual void		toggle(uint8_t mask=0xFF);
 
 
-public:				// PIN ACCESS ------------------------------------------------------
+public:				// PIN ACCESS
 	class 			Pin;
 	Pin			pin(uint8_t pinNumber);
 	Pin			operator[](uint8_t pinNumber);

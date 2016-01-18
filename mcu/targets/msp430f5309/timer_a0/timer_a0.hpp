@@ -63,8 +63,7 @@ public:
 				};
 
 
-				class Ccr :
-					public yahal::mcu::modules::OutputCompare
+				class Ccr : public yahal::mcu::modules::OutputCompare
 				{
 				public:
 				protected:
