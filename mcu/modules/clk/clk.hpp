@@ -42,14 +42,11 @@ namespace yahal{ namespace mcu{ namespace modules{
 /***********************************************************************************************//**
  * Base class for all system clock handling modules.
  **************************************************************************************************/
-class yahal::mcu::modules::Clk : public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::Clk :
+	public yahal::mcu::modules::details::BaseModule
 {
 public:
-				struct Error{ enum Type{
-					NO_ERROR = NO_ERROR_CODE,
-					FREQUENCY_NOT_AVAILABLE,
-					OTHER
-				};};
+
 };
 
 

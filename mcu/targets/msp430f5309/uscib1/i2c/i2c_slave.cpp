@@ -42,7 +42,7 @@ yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::I2CSlave(const Configuration
 
 
 
-void yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::doInit(void)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::initHW(void)
 {
 	UCB1CTL1 |= UCSWRST;				///< Enable SW reset
 
@@ -81,20 +81,20 @@ bool yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::isIncommingWrite(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::isr(UsciB1::IRQ::Type irq)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::isr(UsciB1::Irq::Type irq)
 {
 	switch (irq)
 	{
-	case UsciB1::IRQ::I2C_START:
+	case UsciB1::Irq::I2C_START:
 		handleReceivedStart();
 		break;
-	case UsciB1::IRQ::I2C_STOP:
+	case UsciB1::Irq::I2C_STOP:
 		handleReceivedStop();
 		break;
-	case UsciB1::IRQ::I2C_TX_BUFFER_EMPTY:
+	case UsciB1::Irq::I2C_TX_BUFFER_EMPTY:
 		handleBufferTXEmpty();
 		break;
-	case UsciB1::IRQ::I2C_RX_BUFFER_FULL:
+	case UsciB1::Irq::I2C_RX_BUFFER_FULL:
 		handleBufferRXFull();
 		break;
 	default:

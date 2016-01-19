@@ -60,22 +60,17 @@ public:
 				Gpio(const Configuration& configuration);
 
 
-				/**
-				 * Return reference to port.
-				 */
+				 /// Return reference to port.
  	yahal::mcu::modules::Gpio::Port& port(uint8_t portNumber);
 
 
-private:
-				/**
-				 * Initialize module (private).
-				 * The public initialization rountine is called init() and
-				 * is inherited from BaseModule.
-				 */
-	virtual void		doInit(void);
+				/// Initialize module (private).
+				/// The public initialization rountine is called init() and
+				/// is inherited from BaseModule.
+	virtual bool		init(void);
 
 
-				/* -------------------------------------------------------------- */
+public:
  	class 			Port1 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
@@ -89,7 +84,7 @@ private:
 				};
 
 
- 				/* -------------------------------------------------------------- */
+
  	class 			Port2 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
@@ -103,7 +98,7 @@ private:
 				};
 
 
- 				/* -------------------------------------------------------------- */
+
  	class 			Port3 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
@@ -117,7 +112,7 @@ private:
 				};
 
 
- 				/* -------------------------------------------------------------- */
+
  	class 			Port4 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
@@ -131,7 +126,7 @@ private:
 				};
 
 
- 				/* -------------------------------------------------------------- */
+
  	class 			Port5 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
@@ -145,7 +140,7 @@ private:
 				};
 
 
- 				/* -------------------------------------------------------------- */
+
  	class 			Port6 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:

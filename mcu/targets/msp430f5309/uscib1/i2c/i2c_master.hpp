@@ -51,6 +51,7 @@ class yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster :
 public:
 				struct Configuration
 				{
+					std::size_t baud_rate_prescale;
 				};
 
 
@@ -60,11 +61,10 @@ public:
 
 
 private:			// INITIALIZATION
-	virtual void		doInit(void);
+	virtual void		initHW(void);
 
 
-
-private:			// MODULE IMPLEMENTATION
+				// MODULE IMPLEMENTATION
 	virtual void		start(uint8_t slaveAddress, Direction::Type direction);
 	virtual void		stop(void);
 	virtual void		writeBufferTX(uint8_t byte);
@@ -73,7 +73,7 @@ private:			// MODULE IMPLEMENTATION
 
 
 				// ISR
-	virtual void 		isr(UsciB1::IRQ::Type irq);
+	virtual void 		isr(UsciB1::Irq::Type irq);
 
 
 				// PRIVATE VARIABLES

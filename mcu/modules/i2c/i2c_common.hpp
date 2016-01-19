@@ -32,6 +32,8 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../base_module.hpp"
+#include "../../../error/error_code.hpp"
+#include "../../../rtos/rtos.hpp"
 
 
 
@@ -43,23 +45,22 @@ namespace yahal{ namespace mcu{ namespace modules{ namespace details{
 
 
 /***********************************************************************************************//**
- * Base class for all I2C modules.
- * This virtual class implements all common elements to all I2C operation modes.
+ * @brief	Base class for all I2C modules.
+ * This virtual class implements all common elements to all I2C operation modes (slave/master).
  **************************************************************************************************/
-class yahal::mcu::modules::details::I2CCommon : public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::details::I2CCommon :
+	public yahal::mcu::modules::details::BaseModule,
+	public yahal::error::ErrorCode
 {
 public:
-				/**
-				 * I/O operation direction
-				 */
+				/// I/O operation direction
 				struct Direction{ enum Type{
 					READ,
 					WRITE,
 				};};
 
-				/**
-				 * Error codes for I2C.
-				 */
+
+				/// Error codes for I2C.
 				struct Error{ enum Type{
 					NO_ERROR = NO_ERROR_CODE,
 					SLAVE_ADDRESS_NOT_7_BIT,
@@ -67,27 +68,48 @@ public:
 					SLAVE_DATA_NACK,
 					INVALID_MESSAGE_BUFFER,
 					READ_OVERFLOW_ATTEMPT,
-					ZERO_SIZE_MESSAGE,
 					TRANSMISSION_PREMATURELY_ENDED,
 				};};
 
 protected:
-				// CONSTRUCTOR & DESTRUCTOR
+				/// This is a base class.
 				I2CCommon(void)	{}
 
 
+public:
+				/// Public initialization method.
+				/// @see initHW()
+	virtual bool		init(void){
+					setErrorCode(NO_ERROR_CODE);
+					initHW();
+					return hasError();
+				}
 
-				// VIRTUAL FUNCTIONS
+protected:
+				/// Prepare module for exclusive operation.
+	void			open(void){
+					mutex_.lock();
+					setErrorCode(NO_ERROR_CODE);
+				}
 
-				/**
-				 * @brief	Write to output buffer. Let HW handle TX
-				 */
+				/// Releases module
+	void			close(void){
+					mutex_.unlock();
+				}
+
+
+				/// Write to output buffer. Let HW handle TX.
 	virtual void		writeBufferTX(uint8_t byte) = 0;
 
-				/*
-				 * @brief	Read input buffer.
-				 */
+
+				/// Read input buffer.
 	virtual uint8_t		readBufferRX(void) = 0;
+
+	virtual void		initHW(void) = 0;
+
+
+private:
+	yahal::rtos::Mutex	mutex_;	///< Mutex for exclusive access to each derived module
 };
 
 

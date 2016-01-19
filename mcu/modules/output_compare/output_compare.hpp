@@ -43,16 +43,10 @@ namespace yahal{ namespace mcu{ namespace modules{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::modules::OutputCompare : public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::OutputCompare :
+	public yahal::mcu::modules::details::BaseModule
 {
 public:
-				struct Error{ enum Type{
-					NO_ERROR = NO_ERROR_CODE,
-					MODE_NOT_AVAILABLE,
-					OTHER
-				};};
-
-
 				struct Mode{ enum Type{
 					OUTPUT,
 					SET,

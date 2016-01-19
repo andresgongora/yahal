@@ -40,7 +40,7 @@ yahal::mcu::hwemulation::I2CMaster::I2CMaster(const Configuration& configuration
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::hwemulation::I2CMaster::doInit()
+void yahal::mcu::hwemulation::I2CMaster::initHW()
 {
 	emulateReset();
 }

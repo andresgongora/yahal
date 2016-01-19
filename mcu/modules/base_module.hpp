@@ -34,8 +34,6 @@
 #include <cstddef>
 #include "../../utility/oop/noncopyable.hpp"
 #include "../../utility/oop/nonheapable.hpp"
-#include "../../error/error_code.hpp"
-#include "../../rtos/rtos.hpp"
 
 
 
@@ -47,55 +45,18 @@ namespace yahal{ namespace mcu{ namespace modules{ namespace details{
 
 
 /***********************************************************************************************//**
- * Base class for all MCU modules.
- * This class implements all methods that are common to all modules.
- * It also inherits from noncopyable, prohibiting the copy of any class, as they are asociated
- * to physical resources.
+ * @brief	Base class for all MCU modules, it makes modules non-copiable and non-heapable.
  **************************************************************************************************/
 class yahal::mcu::modules::details::BaseModule :
-	public yahal::error::ErrorCode,
 	private yahal::utility::oop::NonCopyable,
 	private yahal::utility::oop::NonHeapable
 {
 protected:
 				BaseModule(void)	{}
-				~BaseModule(void)	{}
-
 
 
 public:
-				/**
-				 * Public initialization method.
-				 * It calls doInit.
-				 * @see doInit()
-				 */
-	bool			init(void){
-					setErrorCode(NO_ERROR_CODE);
-					doInit();
-					return hasError();
-				}
-
-
-
-protected:
-				/** Prepare module for exclusive operation */
-	void			open(void){
-					mutex_.lock();
-					setErrorCode(NO_ERROR_CODE);
-				}
-
-				/** Releases module */
-	void			close(void){
-					mutex_.unlock();
-				}
-
-				/** Must be implemented by each module */
-	virtual void		doInit(void) = 0;
-
-
-
-private:
-	yahal::rtos::Mutex	mutex_;	///< Mutex for exclusive access to each derived module
+	virtual bool		init(void) = 0;
 };
 
 

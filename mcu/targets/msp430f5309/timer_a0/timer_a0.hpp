@@ -62,13 +62,22 @@ public:
 					ClockSource::Type clockSource;
 				};
 
+				struct Irq { enum Type {
+					I2C_START,
+					I2C_STOP,
+					I2C_TX_BUFFER_EMPTY,
+					I2C_RX_BUFFER_FULL,
+					I2C_ARBITRATION_LOST,
+					I2C_NACK,
+				};};
 
-				class Ccr : public yahal::mcu::modules::OutputCompare
+
+				class Ccr// : public yahal::mcu::modules::OutputCompare
 				{
 				public:
 				protected:
 				private:
-// DEBERIA QUITAR BASE MODULE DE TODAS PARTES?????????					virtual void doInit(){}
+// DEBERIA QUITAR BASE MODULE DE TODAS PARTES?????????					virtual void initHW(){}
 				};
 
 
@@ -80,7 +89,7 @@ public:
 
 
 private:			// INITIALIZATION
-	virtual void		doInit(void);
+	virtual void		initHW(void);
 
 
 

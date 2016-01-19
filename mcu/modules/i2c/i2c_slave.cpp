@@ -28,16 +28,16 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 yahal::mcu::modules::I2CSlave::I2CSlave(void) :
-	p_external_handler_(NULL)
+	p_event_handler_(NULL)
 {}
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::modules::I2CSlave::setExternalHandler(ExternalHandler* p_external_handler)
+void yahal::mcu::modules::I2CSlave::setEventHandler(EventHandler* p_event_handler)
 {
-	p_external_handler_ = p_external_handler;
+	p_event_handler_ = p_event_handler;
 }
 
 
@@ -45,11 +45,11 @@ void yahal::mcu::modules::I2CSlave::setExternalHandler(ExternalHandler* p_extern
 
 void yahal::mcu::modules::I2CSlave::handleReceivedStart(void)
 {
-	if (p_external_handler_) {
+	if (p_event_handler_) {
 		if (isIncommingWrite()) {
-			p_external_handler_->notifyStart(Direction::WRITE);
+			p_event_handler_->handleStart(Direction::WRITE);
 		} else {
-			p_external_handler_->notifyStart(Direction::READ);
+			p_event_handler_->handleStart(Direction::READ);
 		}
 	}
 }
@@ -58,8 +58,8 @@ void yahal::mcu::modules::I2CSlave::handleReceivedStart(void)
 
 void yahal::mcu::modules::I2CSlave::handleReceivedStop(void)
 {
-	if (p_external_handler_) {
-		p_external_handler_->notifyStop();
+	if (p_event_handler_) {
+		p_event_handler_->handleStop();
 	}
 }
 
@@ -69,8 +69,8 @@ void yahal::mcu::modules::I2CSlave::handleBufferTXEmpty(void)
 {
 	uint8_t byteToSend = 0xFF;	///< Default value 0xFF
 
-	if (p_external_handler_) {
-		byteToSend = p_external_handler_->requestTXByte();
+	if (p_event_handler_) {
+		byteToSend = p_event_handler_->handleTXByte();
 	}
 
 	writeBufferTX(byteToSend);	///< MASTER IS READING US -> Send next byte
@@ -82,8 +82,8 @@ void yahal::mcu::modules::I2CSlave::handleBufferRXFull(void)
 {
 	volatile uint8_t receivedByte = readBufferRX();	///< Read buffer in order to free it for next transmission
 
-	if (p_external_handler_) {
-		p_external_handler_->deliverRXByte(receivedByte);
+	if (p_event_handler_) {
+		p_event_handler_->handleRXByte(receivedByte);
 	}
 }
 

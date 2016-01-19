@@ -65,14 +65,18 @@ public:
 
 				// I2C
 	void 			setISRHandlerUsciB1(yahal::mcu::targets::msp430f5309::UsciB1* p_handler);
-	void 			irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::IRQ::Type irq);
+	static void 			irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::Type irq);
 
 
 
 private:
 				// POINTERS
-	yahal::mcu::targets::msp430f5309::UsciB1*			p_handler_uscib1_;
+	static yahal::mcu::targets::msp430f5309::UsciB1*			p_handler_uscib1_;
+
+	static void			USCI_B1_ISR(void);
 };
+
+
 
 
 /* ---------------------------------------------------------------------------------------------- */

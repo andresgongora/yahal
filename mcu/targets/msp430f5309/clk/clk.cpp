@@ -40,7 +40,7 @@ yahal::mcu::targets::msp430f5309::Clk::Clk(const Configuration& configuration) :
 
 
 
-void yahal::mcu::targets::msp430f5309::Clk::doInit(void)
+bool yahal::mcu::targets::msp430f5309::Clk::init(void)
 {
 	if(setFrequencyHz(configuration_.frequency))	// Set default frequency
 	{
@@ -83,7 +83,6 @@ void SetVCoreUp (unsigned int level)
 bool yahal::mcu::targets::msp430f5309::Clk::setFrequencyHz(uint32_t desiredFrequencyHz)
 {
 	bool success = true;
-	this->clearErrorCode();
 
 /*
 	switch(desiredFrequencyHz)

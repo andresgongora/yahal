@@ -46,50 +46,33 @@ class yahal::mcu::modules::Gpio :
 	public yahal::mcu::modules::details::BaseModule
 {
 public:
-				/**
-				 * Direction of GPIO pins
-				 */
+				/// Direction of GPIO pins
 				struct Direction{enum Type{
 					INPUT = false,
 					OUTPUT = true
 				};};
 
-
-				/**
-				 * Pull-up and pull-down resistor configuration
-				 */
+				/// Pull-up and pull-down resistor configuration
 				struct Resistor{enum Type{
 					DISABLED,
 					PULLUP,
 					PULLDOWN
 				};};
 
-				/**
-				 * GPIO errors
-				 */
-				struct Error{enum Type{
-					NO_ERROR = 0,
-					TRYING_TO_ACCESS_NON_EXISTANT_PORT,
-					TRYING_TO_ACCESS_NON_EXISTANT_PIN,
-					COULD_NOT_INITIALIZE_PORT,
-					PULLUP_Resistor_NOT_AVAILABLE,
-					PULLDOWN_Resistor_NOT_AVAILABLE,
-					OTHER
-				};};
+
+protected:
+				/// This is a base class.
+				Gpio(void) {}
 
 
-public:				// PORT ACCESS
+public:
 	class 			Port;
 
-				/**
-				 * Return reference to port.
-				 */
+				/// Return reference to port.
 	virtual Port&		port(uint8_t portNumber) = 0;
 
-				/**
-				 * Short wrapper for port(uint8_t portNumber).
-				 * @see port(uint8_t portNumber).
-				 */
+				/// Short wrapper for port(uint8_t portNumber).
+				/// @see port(uint8_t portNumber).
 	Port&			operator[](uint8_t portNumber);
 };
 
@@ -101,13 +84,18 @@ public:				// PORT ACCESS
  **************************************************************************************************/
 class yahal::mcu::modules::Gpio::Port
 {
+protected:
+				/// This is a base class.
+				Port(void) {}
+
+
 public:				// CONFIGURATION
 	virtual bool		config(	Direction::Type direction = Direction::INPUT,
 					Resistor::Type resistor = Resistor::DISABLED,
 					uint8_t mask = 0xFF) = 0;
 
 
-public:				// CONTROL
+				// CONTROL
 	virtual void		set(uint8_t value, uint8_t mask=0xFF) = 0;
 	virtual uint8_t		get(uint8_t mask=0xFF)const = 0;
 	virtual uint8_t		getOutput(uint8_t mask=0xFF)const = 0;
@@ -129,11 +117,10 @@ public:				// PIN ACCESS
 class yahal::mcu::modules::Gpio::Port::Pin
 {
 public:
-				// CONSTRUCTOR & COPY ----------------------------------------------
 				Pin(yahal::mcu::modules::Gpio::Port& port, uint8_t pinNumber);
 
 
-				// CONFIGURATION ---------------------------------------------------
+				// CONFIGURATION
 	bool			config(	Direction::Type direction = Direction::INPUT,
 					Resistor::Type resistor = Resistor::DISABLED);
 

@@ -38,7 +38,7 @@ yahal::mcu::targets::msp430f5309::Gpio::Gpio(const Configuration& configuration)
 {}
 
 
-void yahal::mcu::targets::msp430f5309::Gpio::doInit(void)
+bool yahal::mcu::targets::msp430f5309::Gpio::init(void)
 {
 	bool success = true;
 
@@ -51,7 +51,7 @@ void yahal::mcu::targets::msp430f5309::Gpio::doInit(void)
 	success &= port5_.config(Direction::INPUT, Resistor::DISABLED);
 	success &= port6_.config(Direction::INPUT, Resistor::DISABLED);
 
-	if(!success)	this->setErrorCode(Error::COULD_NOT_INITIALIZE_PORT);
+	return success;
 }
 
 

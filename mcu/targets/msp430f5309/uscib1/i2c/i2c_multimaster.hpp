@@ -49,6 +49,7 @@ public:
 				struct Configuration
 				{
 					uint8_t ownAddress;
+					std::size_t baud_rate_prescale;
 				};
 
 
@@ -58,7 +59,7 @@ public:
 
 
 private:			// INITIALIZATION
-	virtual void		doInit(void);
+	virtual void		initHW(void);
 
 
 				// MODULE IMPLEMENTATION
@@ -73,14 +74,11 @@ private:			// INITIALIZATION
 
 
 				// ISR
-	virtual void 		isr(UsciB1::IRQ::Type irq);
+	virtual void 		isr(UsciB1::Irq::Type irq);
 
 
 				// PRIVATE VARIABLES
 	const Configuration&	configuration_;
-
-
-
 };
 
 

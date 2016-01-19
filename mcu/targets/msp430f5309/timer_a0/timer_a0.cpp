@@ -38,7 +38,7 @@ yahal::mcu::targets::msp430f5309::TimerA0::TimerA0(const Configuration& configur
 
 
 
-void yahal::mcu::targets::msp430f5309::TimerA0::doInit(void)
+void yahal::mcu::targets::msp430f5309::TimerA0::initHW(void)
 {
 
 }

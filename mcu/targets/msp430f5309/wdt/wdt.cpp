@@ -35,9 +35,10 @@ yahal::mcu::targets::msp430f5309::Wdt::Wdt(const Configuration& configuration) :
 	configuration_(configuration)
 {}
 
-void yahal::mcu::targets::msp430f5309::Wdt::doInit(void)
+bool yahal::mcu::targets::msp430f5309::Wdt::init(void)
 {
 	WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
+	return true;
 }
 
 

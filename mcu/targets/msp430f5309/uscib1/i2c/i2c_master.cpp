@@ -40,14 +40,14 @@ yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::I2CMaster(const Configurati
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::doInit(void)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::initHW(void)
 {
 	UCB1CTL1 |= UCSWRST;				///< Enable SW reset while we configure the module
 	P4SEL |= BIT1 + BIT2;				///< Assign I2C pins to USCI_B0
 
 	UCB1CTL0 = UCMST | UCMODE_3 | UCSYNC;		///< I2C Master, synchronous mode
 	UCB1CTL1 = UCSSEL__SMCLK | UCSWRST | UCTR;	///< Use SMCLK
-	UCB1BRW = 12;					///< fSCL = SMCLK/12 = ~100kHz TODO: CALCULATE ASKING CLK!
+	UCB1BRW = configuration_.baud_rate_prescale;
 
 	UCB1CTL1 &= ~UCSWRST;				///< Clear SW reset, resume operation
 
@@ -105,17 +105,17 @@ void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::awaitTransmissionEnd(v
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::isr(UsciB1::IRQ::Type irq)
+void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::isr(UsciB1::Irq::Type irq)
 {
 	switch (irq)
 	{
-	case UsciB1::IRQ::I2C_TX_BUFFER_EMPTY:
+	case UsciB1::Irq::I2C_TX_BUFFER_EMPTY:
 		handleBufferTXEmpty();
 		break;
-	case UsciB1::IRQ::I2C_RX_BUFFER_FULL:
+	case UsciB1::Irq::I2C_RX_BUFFER_FULL:
 		handleBufferRXFull();
 		break;
-	case UsciB1::IRQ::I2C_NACK:
+	case UsciB1::Irq::I2C_NACK:
 		handleReceivedNack();
 		break;
 	default:

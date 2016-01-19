@@ -76,11 +76,11 @@ public:
 
 
 
-private:			// INITIALIZATION
-	virtual void		doInit(void);
+				// INITIALIZATION
+	virtual bool		init(void);
 
 
-
+private:
 				// CONFIGURATION
 	bool			setFrequencyHz(uint32_t desiredFrequencyHz);
 	uint32_t		getFrequencyHz(void);

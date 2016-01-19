@@ -59,8 +59,8 @@ public:
 				// CONSTRUCTOR
 				Wdt(const Configuration& configuration);
 
-private:
-	virtual void		doInit(void);
+
+	virtual bool		init(void);
 
 public:
 				/**

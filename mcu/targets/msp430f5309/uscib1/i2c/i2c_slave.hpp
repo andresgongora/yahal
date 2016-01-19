@@ -61,17 +61,17 @@ public:
 
 
 private:			// INITIALIZATION
-	virtual void		doInit(void);
+	virtual void		initHW(void);
 
 
-private:			// I2C PROTOCOL
+			// I2C PROTOCOL
 	virtual void		writeBufferTX(uint8_t byte);
 	virtual uint8_t		readBufferRX(void);
 	virtual bool		isIncommingWrite(void);
 
 
 				// ISR
-	virtual void 		isr(UsciB1::IRQ::Type irq);
+	virtual void 		isr(UsciB1::Irq::Type irq);
 
 
 				// PRIVATE VARIABLES
