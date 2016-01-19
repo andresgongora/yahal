@@ -44,35 +44,27 @@
 
 
 
-// LOAD MCU CONFIGURATION
+/* ---------------------------------------------------------------------------------------------- */
 #include "config/mcu_config.hpp"
-
-
-// LOAD CODE
 #include "modules/modules.hpp"
 #include "targets/targets.hpp"
 #include "hwemulation/hwemulation.hpp"
 
 
-namespace yahal{ namespace mcu{
 
-	void init(void)
-	{
-		yahal::mcu::details::initTarget();
-		yahal::mcu::details::initHwemulation();
-	}
-
-}} // namespace yahal::mcu
-
-
-
-namespace yahal{ namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{
 	class Mcu;
-}}
+}
 
-class yahal::mcu::Mcu :
-	public yahal::mcu::targets::Target,
-	public yahal::mcu::hwemulation::HWEmulation
+
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::Mcu :
+	public yahal::mcu::Target
+//	public yahal::mcu::HWEmulation
 {
 public:
 	void			init(void){

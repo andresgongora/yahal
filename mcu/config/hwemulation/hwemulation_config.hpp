@@ -29,6 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../../targets/targets.hpp"
+#include "../../hwemulation/i2c/i2c_master.hpp"
 
 
 
@@ -42,7 +43,7 @@ namespace yahal{ namespace mcu{ namespace hwemulation{ namespace config{
 	I2C
 ================================================================================================= */
 
-#define YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE	true
+#define YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE	false
 
 #define YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1		i2c4
 //#define YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2	i2c5
@@ -51,15 +52,15 @@ namespace yahal{ namespace mcu{ namespace hwemulation{ namespace config{
 
 #if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
 &&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1)
-	static const yahal::mcu::hwemulation::I2CMaster::Configuration	\
+	const yahal::mcu::hwemulation::I2CMaster::Configuration	\
 	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1 = {
-	/* sda		*/ &yahal::mcu::targets::Target::gpio[1][0],
-	/* sdc		*/ &yahal::mcu::gpio[1][1],
+	/* sda		*/ &yahal::mcu::Target::gpio[1][0],
+	/* sdc		*/ &yahal::mcu::Target::gpio[1][1],
 	};
 #endif
 #if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
 &&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2)
-	static const yahal::mcu::hwemulation::I2CMaster::Configuration	\
+	const yahal::mcu::hwemulation::I2CMaster::Configuration	\
 	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2 = {
 	/* sda		*/ &yahal::mcu::gpio[1][0],
 	/* sdc		*/ &yahal::mcu::gpio[1][1],
@@ -67,7 +68,7 @@ namespace yahal{ namespace mcu{ namespace hwemulation{ namespace config{
 #endif
 #if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
 &&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3)
-	static const yahal::mcu::hwemulation::I2CMaster::Configuration	\
+	const yahal::mcu::hwemulation::I2CMaster::Configuration	\
 	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3 = {
 	/* sda		*/ &yahal::mcu::gpio[1][0],
 	/* sdc		*/ &yahal::mcu::gpio[1][1],

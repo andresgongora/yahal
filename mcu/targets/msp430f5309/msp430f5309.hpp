@@ -33,12 +33,8 @@
 
 #include <msp430f5309.h>
 
-
-
-/* =================================================================================================
-	MODULES
-================================================================================================= */
 #include "../../config/targets/msp430f5309_config.hpp"
+
 
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
@@ -46,167 +42,36 @@
 #include "uscib1/i2c/i2c_master.hpp"
 #include "uscib1/i2c/i2c_slave.hpp"
 #include "uscib1/i2c/i2c_multimaster.hpp"
-
 #include "irq/irq_handler.hpp"
 
 
 
-
-/* =================================================================================================
-	INSTANCES
-================================================================================================= */
-
+/* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
-
-	/* -------------------------------------------------------------------------------------- */
-
-	// IrqHandler
-	extern targets::msp430f5309::IrqHandler irq_handler;
-
-	/* -------------------------------------------------------------------------------------- */
-
-	// CLK
-	#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
-		extern targets::msp430f5309::Clk clk;
-	#endif
-
-	/* -------------------------------------------------------------------------------------- */
-
-	// GPIO
-	#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
-		extern targets::msp430f5309::Gpio gpio;
-	#endif
-
-	/* -------------------------------------------------------------------------------------- */
-
-	// USCIB1
-	#if	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE
-		extern targets::msp430f5309::UsciB1::I2CSlave	\
-		YAHAL_MCU_MSP430F5309_USCIB1_NAME		\
-		(targets::msp430f5309::config::uscib1);
-
-	#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER
-		extern targets::msp430f5309::UsciB1::I2CMaster	\
-		YAHAL_MCU_MSP430F5309_USCIB1_NAME		\
-		(targets::msp430f5309::config::uscib1);
-
-	#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
-		extern targets::msp430f5309::UsciB1::I2CMultimaster	\
-		YAHAL_MCU_MSP430F5309_USCIB1_NAME;
-	#endif
-
-	/* -------------------------------------------------------------------------------------- */
-
-	// WDT
-	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-		extern targets::msp430f5309::Wdt wdt;
-	#endif
-
-}} // Namespace yahal::mcu
-
-
-
-
-
-/* =================================================================================================
-	TARGET INITIALIZATION
-================================================================================================= */
-
-namespace yahal{ namespace mcu{ namespace details{
-
-
-/// Call all init functions for this targets modules.
-void initTarget(void);
-
-
-/// Initialize everything Irq related
-void initIrq(void);
-
-
-
-}}} // Namespace yahal::mcu::details
-
-
-
-
-
-namespace yahal{ namespace mcu{ namespace targets{
 	class Target;
-}}}
+}}
 
-class yahal::mcu::targets::Target
+
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::Target
 {
 public:
-	/*Target(void) :
-		// CLK
-		#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
-			clk(yahal::mcu::targets::msp430f5309::config::clk),
-		#endif
+	//protected:
+	Target(void);
 
-		// GPIO
-		#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
-			gpio(yahal::mcu::targets::msp430f5309::config::gpio),
-		#endif
 
-					// USCI_B1
-		#if	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-		&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE
-			YAHAL_MCU_MSP430F5309_USCIB1_NAME(yahal::mcu::targets::msp430f5309::config::uscib1),
+	/// Initialize all modules.
+	void init(void);
 
-		#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-		&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER
-			YAHAL_MCU_MSP430F5309_USCIB1_NAME(yahal::mcu::targets::msp430f5309::config::uscib1),
 
-		#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-		&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
-			YAHAL_MCU_MSP430F5309_USCIB1_NAME(yahal::mcu::targets::msp430f5309::config::uscib1),
-		#endif
-
-					// WDT
-		#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-			wdt(yahal::mcu::targets::msp430f5309::config::wdt),
-		#endif
-
-					constructor_guard_(NULL) {
-	}*/
-
-	// -----------------------------------------------------------------------------------------
-
-	void init(void){
-		// CLK
-		#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
-			clk.init();
-		#endif
-
-		// GPIO
-		#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
-			gpio.init();
-		#endif
-
-		// USCIB1
-		#if	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-		&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE
-			YAHAL_MCU_MSP430F5309_USCIB1_NAME.init();
-
-		#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-		&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER
-			YAHAL_MCU_MSP430F5309_USCIB1_NAME.init();
-
-		#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-		&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
-			YAHAL_MCU_MSP430F5309_USCIB1_NAME.init();
-		#endif
-
-		// WDT
-		#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-			wdt.init();
-		#endif
-	}
-
-	// -----------------------------------------------------------------------------------------
+public:
+	// WDT
+	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
+		static yahal::mcu::targets::msp430f5309::Wdt wdt;
+	#endif
 
 	// CLK
 	#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
@@ -233,11 +98,6 @@ public:
 	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
 		static yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster
 		YAHAL_MCU_MSP430F5309_USCIB1_NAME;
-	#endif
-
-	// WDT
-	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-		static yahal::mcu::targets::msp430f5309::Wdt wdt;
 	#endif
 };
 

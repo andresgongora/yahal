@@ -50,7 +50,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 
 #define	YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE		true
 
-static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
+const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 /* Frequency	*/ msp430f5309::Clk::Frequency::DCO_8MHz,
 /* Clock Source */ msp430f5309::Clk::ClockSource::VLP,
 };
@@ -65,7 +65,7 @@ static const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 
 #define	YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE		true
 
-static const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
+const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 /* Nothing	*/
 };
 
@@ -79,7 +79,7 @@ static const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 
 #define	YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE		true
 
-static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
+const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 /* Nothing	*/
 };
 
@@ -117,21 +117,21 @@ static const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 	// Slave
 #if	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
 &&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE
-	static const yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::Configuration uscib1 = {
+	const yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::Configuration uscib1 = {
 	/* Own Address		*/ 0x1E,
 	};
 
 	// Master
 #elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
 &&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER
-	static const yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::Configuration uscib1 = {
+	const yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::Configuration uscib1 = {
 	/* baud_rate_prescale	*/ 32,
 	};
 
 	// Multimaster
 #elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
 &&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
-	static const yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::Configuration uscib1 = {
+	const yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::Configuration uscib1 = {
 	/* Own Address		*/ 0x1E,
 	/* baud_rate_prescale	*/ 32,
 	};
