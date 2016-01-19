@@ -45,11 +45,10 @@ namespace yahal{ namespace mcu{
  **************************************************************************************************/
 class yahal::mcu::HWEmulation
 {
-public:
-//protected:
-	HWEmulation(void);
+protected:
+			HWEmulation(void);
 
-	void init(void);
+	void 		init(void);
 
 
 

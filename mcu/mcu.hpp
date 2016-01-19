@@ -53,23 +53,23 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{
+namespace yahal{ namespace mcu{
 	class Mcu;
-}
+}}
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::Mcu :
-	public yahal::mcu::Target
-//	public yahal::mcu::HWEmulation
+class yahal::mcu::Mcu :
+	public yahal::mcu::Target,
+	public yahal::mcu::HWEmulation
 {
 public:
 	void			init(void){
 					Target::init();
-//					HWEmulation::init();
+					HWEmulation::init();
 				}
 };
 

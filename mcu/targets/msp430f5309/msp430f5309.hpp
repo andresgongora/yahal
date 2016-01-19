@@ -31,10 +31,7 @@
 #include "../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include <msp430f5309.h>
-
 #include "../../config/targets/msp430f5309_config.hpp"
-
 
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
@@ -42,7 +39,7 @@
 #include "uscib1/i2c/i2c_master.hpp"
 #include "uscib1/i2c/i2c_slave.hpp"
 #include "uscib1/i2c/i2c_multimaster.hpp"
-#include "irq/irq_handler.hpp"
+//#include "irq/irq_handler.hpp"
 
 
 
@@ -58,8 +55,7 @@ namespace yahal{ namespace mcu{
  **************************************************************************************************/
 class yahal::mcu::Target
 {
-public:
-	//protected:
+protected:
 	Target(void);
 
 

@@ -22,11 +22,14 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
 #ifndef __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
 #define __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+#include "../mcu_config.hpp"
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "../../targets/msp430f5309/clk/clk.hpp"
 #include "../../targets/msp430f5309/wdt/wdt.hpp"
@@ -36,12 +39,10 @@
 #include "../../targets/msp430f5309/uscib1/i2c/i2c_multimaster.hpp"
 
 
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-
-
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace config{
+
 
 
 /* =================================================================================================
@@ -57,8 +58,6 @@ const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 
 
 
-
-
 /* =================================================================================================
 	GPIO
 ================================================================================================= */
@@ -68,8 +67,6 @@ const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 /* Nothing	*/
 };
-
-
 
 
 
@@ -148,20 +145,11 @@ const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 
 
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
 }}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================================================================== */
-
 
 
 
