@@ -23,6 +23,7 @@
 	+-----------------------------------------------------------------------+	*/
 
 #include "i2c_master.hpp"
+#include "../../../error/assert.hpp"
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -34,7 +35,10 @@ yahal::mcu::hwemulation::I2CMaster::I2CMaster(const Configuration& configuration
 	buffer_TX_status_(BufferStatus::EMPTY),
 	buffer_RX_status_(BufferStatus::EMPTY),
 	received_nack_(false)
-{}
+{
+	assert(configuration_.scl != NULL);
+	assert(configuration_.sda != NULL);
+}
 
 
 

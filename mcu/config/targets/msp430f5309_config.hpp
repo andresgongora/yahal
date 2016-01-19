@@ -28,7 +28,14 @@
 #ifndef __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
 #define __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
 
-#include "../../targets/msp430f5309/msp430f5309.hpp"
+#include "../../targets/msp430f5309/clk/clk.hpp"
+#include "../../targets/msp430f5309/wdt/wdt.hpp"
+#include "../../targets/msp430f5309/gpio/gpio.hpp"
+#include "../../targets/msp430f5309/uscib1/i2c/i2c_master.hpp"
+#include "../../targets/msp430f5309/uscib1/i2c/i2c_slave.hpp"
+#include "../../targets/msp430f5309/uscib1/i2c/i2c_multimaster.hpp"
+
+
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 

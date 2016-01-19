@@ -28,6 +28,7 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include <msp430f5309.h>
+//#include "../msp430f5309.hpp"
 
 
 
@@ -56,14 +57,19 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-
+/*
 void yahal::mcu::targets::msp430f5309::IrqHandler::setISRHandlerUsciB1(UsciB1* p_handler)
 {
 	p_handler_uscib1_ = p_handler;
 }
+*/
 
 
 
+
+/* =================================================================================================
+	USCI_B1
+================================================================================================= */
 void yahal::mcu::targets::msp430f5309::IrqHandler::irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::Type irq)
 {
 	if (p_handler_uscib1_) {
@@ -71,39 +77,65 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::irqUsciB1(yahal::mcu::targets
 	}
 }
 
-/* ---------------------------------------------------------------------------------------------- */
+
+#if	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true					\
+&&(	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE		\
+||	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER		\
+||	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER	)
+		yahal::mcu::targets::msp430f5309::UsciB1* const				\
+		yahal::mcu::targets::msp430f5309::IrqHandler::p_handler_uscib1_= 	\
+		&yahal::mcu::YAHAL_MCU_MSP430F5309_USCIB1_NAME;
+#else
+		yahal::mcu::targets::msp430f5309::UsciB1* const				\
+		yahal::mcu::targets::msp430f5309::IrqHandler::p_handler_uscib1_= 0;
+#endif
 
 
-yahal::mcu::targets::msp430f5309::UsciB1* yahal::mcu::targets::msp430f5309::IrqHandler::p_handler_uscib1_=0;
+
+
 #pragma vector = USCI_B1_VECTOR
 __interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::USCI_B1_ISR(void)
 {
-	switch (__even_in_range(UCB1IV, 12))
-	{
-	case 0: ///< Vector 00: No interrupts
-		break;
-	case 2: ///< Vector 02: Arbitration Lost
-		irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_ARBITRATION_LOST);
-		break;
-	case 4: ///< Vector 04: Nack
-		irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_NACK);
-		break;
-	case 6: ///< Vector 06: Start
-		irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_START);
-		break;
-	case 8: ///< Vector 08: Stop
-		irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_STOP);
-		break;
-	case 10: ///< Vector 10: RX Full
-		irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_RX_BUFFER_FULL);
-		break;
-	case 12: ///< Vector 12: TX Empty
-		irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_TX_BUFFER_EMPTY);
-		break;
-	default:
-		break;
-	}
+	#if	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE
 
+	// -----------------------------------------------------------------------------------------
+
+
+	#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER
+
+	// -----------------------------------------------------------------------------------------
+
+	#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
+
+		switch (__even_in_range(UCB1IV, 12))
+		{
+		case  0: ///< Vector 00: No interrupts
+			break;
+		case  2: ///< Vector 02: Arbitration Lost
+			yahal::mcu::irq_handler.irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_ARBITRATION_LOST);
+			break;
+		case  4: ///< Vector 04: Nack
+			yahal::mcu::irq_handler.irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_NACK);
+			break;
+		case  6: ///< Vector 06: Start
+			yahal::mcu::irq_handler.irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_START);
+			break;
+		case  8: ///< Vector 08: Stop
+			yahal::mcu::irq_handler.irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_STOP);
+			break;
+		case 10: ///< Vector 10: RX Full
+			yahal::mcu::irq_handler.irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_RX_BUFFER_FULL);
+			break;
+		case 12: ///< Vector 12: TX Empty
+			yahal::mcu::irq_handler.irqUsciB1(yahal::mcu::targets::msp430f5309::UsciB1::Irq::I2C_TX_BUFFER_EMPTY);
+			break;
+		default:
+			break;
+		}
+	#endif
 }
 
 

@@ -42,7 +42,9 @@
 
 
 
-
+namespace yahal{ namespace mcu{ namespace hwemulation {
+	class HWEmulation;
+}}}
 
 
 /* =================================================================================================
@@ -51,19 +53,19 @@
 
 namespace yahal{ namespace mcu{
 
-#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
+#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
 &&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1)
 	static hwemulation::I2CMaster		\
 	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1	\
 	(hwemulation::config::YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1);
 #endif
-#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
+#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
 &&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2)
 	static hwemulation::I2CMaster		\
 	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2	\
 	(hwemulation::config::YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2);
 #endif
-#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
+#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
 &&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3)
 	static hwemulation::I2CMaster		\
 	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3	\
@@ -85,15 +87,15 @@ namespace yahal{ namespace mcu{ namespace details{
 void initHwemulation(void)
 {
 	// I2C
-	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
+	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
 	&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1)
 		YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1.init();
 	#endif
-	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
+	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
 	&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2)
 		YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2.init();
 	#endif
-	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
+	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
 	&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3)
 		YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3.init();
 	#endif
@@ -105,6 +107,71 @@ void initHwemulation(void)
 }}} // Namespace yahal::mcu::details
 
 
+class yahal::mcu::hwemulation::HWEmulation
+{
+	/*
+public:
+	HWEmulation(void) :
+			//I2C
+		#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+		&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1)
+			YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1
+			(hwemulation::config::YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1);
+		#endif
+		#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+		&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2)
+			YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2
+			(hwemulation::config::YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2);
+		#endif
+		#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+		&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3)
+			YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3
+			(hwemulation::config::YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3);
+		#endif
+
+		constructor_guard_(NULL) {
+	}
+
+	// -----------------------------------------------------------------------------------------
+
+	void init(void) {
+		// I2C
+		#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+		&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1)
+			YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1.init();
+		#endif
+		#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+		&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2)
+			YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2.init();
+		#endif
+		#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+		&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3)
+			YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3.init();
+		#endif
+	}
+
+	// -----------------------------------------------------------------------------------------
+
+	// I2C
+	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+	&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1)
+		yahal::mcu::hwemulation::I2CMaster YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1;
+	#endif
+	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+	&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2)
+		yahal::mcu::hwemulation::I2CMaster YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2;
+	#endif
+	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+	&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3)
+		yahal::mcu::hwemulation::I2CMaster YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3;
+	#endif
+
+	// -----------------------------------------------------------------------------------------
+
+private:
+	const int constructor_guard_;
+	*/
+};
 
 
 /* ---------------------------------------------------------------------------------------------- */

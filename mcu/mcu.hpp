@@ -66,5 +66,21 @@ namespace yahal{ namespace mcu{
 
 
 
+namespace yahal{ namespace mcu{
+	class Mcu;
+}}
+
+class yahal::mcu::Mcu :
+	public yahal::mcu::targets::Target,
+	public yahal::mcu::hwemulation::HWEmulation
+{
+public:
+	void			init(void){
+					Target::init();
+//					HWEmulation::init();
+				}
+};
+
+
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// __YAHAL_MCU_HPP_INCLUDED__
