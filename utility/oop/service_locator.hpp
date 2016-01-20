@@ -24,62 +24,36 @@
 
 
 
-
-#ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
+#ifndef __YAHAL_UTILITY_OOP_SERVICE_LOCATOR_HPP_INCLUDED__
+#define __YAHAL_UTILITY_OOP_SERVICE_LOCATOR_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../../config/mcu_config.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-
-#include <stdint.h>
-#include <cstddef>
-#include "../../../../modules/i2c/i2c_slave.hpp"
-#include "../uscib1.hpp"
-
+namespace yahal{ namespace utility{ namespace oop{
+	template <typename T_SERVICE> class ServiceLocator;
+}}}
 
 
 
 /***********************************************************************************************//**
- * @brief
+ *
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave :
-	public yahal::mcu::modules::I2CSlave,
-	public yahal::mcu::targets::msp430f5309::UsciB1
+template <typename T_SERVICE>
+class yahal::utility::oop::ServiceLocator
 {
 public:
-				struct Configuration
-				{
-					uint8_t ownAddress;
-				};
+	T_SERVICE&		operator()(void){
+					return service_;
+				}
 
 
-				// CONSTRUCTOR
-				I2CSlave(const Configuration& configuration);
+private:
+	static T_SERVICE*	service_;
 
-
-private:			// INITIALIZATION
-	virtual void		initHW(void);
-
-
-			// I2C PROTOCOL
-	virtual void		writeBufferTX(uint8_t byte);
-	virtual uint8_t		readBufferRX(void);
-	virtual bool		isIncommingWrite(void);
-
-
-				// ISR
-	virtual void 		isr(UsciB1::Irq::Type irq);
-
-
-				// PRIVATE VARIABLES
-	const Configuration&	configuration_;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif	// __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
+#endif 	// __YAHAL_UTILITY_OOP_SERVICE_LOCATOR_HPP_INCLUDED__

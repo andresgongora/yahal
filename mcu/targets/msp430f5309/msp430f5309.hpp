@@ -36,10 +36,10 @@
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
 #include "gpio/gpio.hpp"
-#include "uscib1/i2c/i2c_master.hpp"
-#include "uscib1/i2c/i2c_slave.hpp"
-#include "uscib1/i2c/i2c_multimaster.hpp"
-//#include "irq/irq_handler.hpp"
+#include "usci_b1/i2c/i2c_master.hpp"
+#include "usci_b1/i2c/i2c_slave.hpp"
+#include "usci_b1/i2c/i2c_multimaster.hpp"
+#include "irq/irq_handler.hpp"
 
 
 
@@ -79,23 +79,26 @@ public:
 		static yahal::mcu::targets::msp430f5309::Gpio gpio;
 	#endif
 
-	// USCIB1
-	#if	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_SLAVE
+	// USCI_B1
+	#if	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
 		static yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave
-		YAHAL_MCU_MSP430F5309_USCIB1_NAME;
+		YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
 
-	#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MASTER
+	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
 		static yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster
-		YAHAL_MCU_MSP430F5309_USCIB1_NAME;
+		YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
 
-	#elif	YAHAL_MCU_MSP430F5309_USCIB1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCIB1_MODE == YAHAL_MCU_MSP430F5309_USCIB1_I2C_MULTIMASTER
+	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
+	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 		static yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster
-		YAHAL_MCU_MSP430F5309_USCIB1_NAME;
+		YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
 	#endif
 };
+
+
+
 
 
 

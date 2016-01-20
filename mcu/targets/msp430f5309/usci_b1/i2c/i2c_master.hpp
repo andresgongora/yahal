@@ -22,9 +22,11 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
 
+
+
+#ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CMASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_USCIB1_I2CMASTER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -33,28 +35,28 @@
 
 #include <stdint.h>
 #include <cstddef>
-#include "../../../../modules/i2c/i2c_multimaster.hpp"
-#include "../uscib1.hpp"
+#include "../../../../modules/i2c/i2c_master.hpp"
+#include "../../usci_b1/usci_b1.hpp"
+
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster :
-	public yahal::mcu::modules::I2CMultimaster,
+class yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster :
+	public yahal::mcu::modules::I2CMaster,
 	public yahal::mcu::targets::msp430f5309::UsciB1
 {
 public:
 				struct Configuration
 				{
-					uint8_t ownAddress;
 					std::size_t baud_rate_prescale;
 				};
 
 
 				// CONSTRUCTOR
-				I2CMultimaster(const Configuration& configuration);
+				I2CMaster(const Configuration& configuration);
 
 
 
@@ -68,9 +70,6 @@ private:			// INITIALIZATION
 	virtual void		writeBufferTX(uint8_t byte);
 	virtual uint8_t		readBufferRX(void);
 	virtual void		awaitTransmissionEnd(void);
-	virtual bool		isIncommingWrite(void);
-	virtual bool		isMaster(void);
-	virtual void		configureAsMaster(void);
 
 
 				// ISR
@@ -84,5 +83,5 @@ private:			// INITIALIZATION
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif // __YAHAL_MCU_M430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
+#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif	// __YAHAL_MCU_M430F5309_USCIB1_I2CMASTER_HPP_INCLUDED__

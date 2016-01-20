@@ -25,63 +25,61 @@
 
 
 
-#ifndef __YAHAL_MCU_M430F5309_USCIB1_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_USCIB1_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/mcu_config.hpp"
+#include "../../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-//#include "../irq/irq_handler.hpp"
+#include <stdint.h>
+#include <cstddef>
+#include "../../../../modules/i2c/i2c_slave.hpp"
+#include "../usci_b1.hpp"
 
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class UsciB1;
-	class IrqHandler;	// Forward declaration
-}}}}
 
 
 
 /***********************************************************************************************//**
- * @brief	Base class for the USCI_B1 HW Module, used for I2C and SPI.
+ * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::UsciB1
+class yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave :
+	public yahal::mcu::modules::I2CSlave,
+	public yahal::mcu::targets::msp430f5309::UsciB1
 {
-protected:
-				/// This is a base class
-				UsciB1(void) {}
-
 public:
+				struct Configuration
+				{
+					uint8_t ownAddress;
+				};
 
 
-				class I2CMaster;
-				class I2CMultimaster;
-				class I2CSlave;
-				class Spi;
+				// CONSTRUCTOR
+				I2CSlave(const Configuration& configuration);
 
-protected:
-	friend class		IrqHandler;
 
-				struct Irq { enum Type {
-					I2C_START,
-					I2C_STOP,
-					I2C_TX_BUFFER_EMPTY,
-					I2C_RX_BUFFER_FULL,
-					I2C_ARBITRATION_LOST,
-					I2C_NACK,
-				};};
+private:			// INITIALIZATION
+	virtual void		initHW(void);
 
-	virtual void		isr(Irq::Type irq) = 0;
+
+			// I2C PROTOCOL
+	virtual void		writeBufferTX(uint8_t byte);
+	virtual uint8_t		readBufferRX(void);
+	virtual bool		isIncommingWrite(void);
+
+
+				// ISR
+	virtual void 		isr(UsciB1::Irq::Type irq);
+
+
+				// PRIVATE VARIABLES
+	const Configuration&	configuration_;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif	// __YAHAL_MCU_M430F5309_USCIB1_HPP_INCLUDED__
-
+#endif	// __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__

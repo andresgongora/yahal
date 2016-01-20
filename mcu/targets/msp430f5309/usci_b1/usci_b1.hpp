@@ -22,8 +22,11 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_M430F5309_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_IRQ_HANDLER_HPP_INCLUDED__
+
+
+
+#ifndef __YAHAL_MCU_M430F5309_USCI_B1_HPP_INCLUDED__
+#define __YAHAL_MCU_M430F5309_USCI_B1_HPP_INCLUDED__
 
 
 
@@ -31,43 +34,54 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../config/targets/msp430f5309_config.hpp"
-#include "../../../modules/irq/irq_handler.hpp"
-#include "../usci_b1/usci_b1.hpp"
+//#include "../irq/irq_handler.hpp"
+
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class IrqHandler;
+	class UsciB1;
+	class IrqHandler;	// Forward declaration
 }}}}
 
 
 
 /***********************************************************************************************//**
- * @brief
+ * @brief	Base class for the USCI_B1 HW Module, used for I2C and SPI.
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IrqHandler :
-	public yahal::mcu::modules::details::IrqHandler
+class yahal::mcu::targets::msp430f5309::UsciB1
 {
+protected:
+				/// This is a base class
+				UsciB1(void) {}
+
 public:
-				// IRQ Control
-	virtual void		enableGlobalInterrupts(void) const;
-	virtual void		disableGlobalInterrupts(void) const;
 
 
+				class I2CMaster;
+				class I2CMultimaster;
+				class I2CSlave;
+				class Spi;
 
-private:
-				// HANDLERS
-	static void		USCI_B1_ISR(void);
+protected:
+	friend class		IrqHandler;
 
-				// POINTERS
-	static UsciB1* const	p_handler_usci_b1_;
+				struct Irq { enum Type {
+					I2C_START,
+					I2C_STOP,
+					I2C_TX_BUFFER_EMPTY,
+					I2C_RX_BUFFER_FULL,
+					I2C_ARBITRATION_LOST,
+					I2C_NACK,
+				};};
+
+	virtual void		isr(Irq::Type irq) = 0;
 };
-
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif 	// __YAHAL_MCU_M430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_M430F5309_USCI_B1_HPP_INCLUDED__
+

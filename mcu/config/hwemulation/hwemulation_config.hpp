@@ -43,7 +43,7 @@ namespace yahal{ namespace mcu{ namespace hwemulation{ namespace config{
 	I2C
 ================================================================================================= */
 
-#define YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE	true
+#define YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE	false
 
 #define YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1		i2c4
 //#define YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2	i2c5
