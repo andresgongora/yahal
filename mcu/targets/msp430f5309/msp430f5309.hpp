@@ -39,10 +39,94 @@
 #include "usci_b1/i2c/i2c_master.hpp"
 #include "usci_b1/i2c/i2c_slave.hpp"
 #include "usci_b1/i2c/i2c_multimaster.hpp"
+#include "timer_a0/timer_a0.hpp"
 #include "irq/irq_handler.hpp"
 
 
 
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{
+
+// WDT
+#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
+	extern targets::msp430f5309::Wdt wdt;
+#endif
+
+
+// CLK
+#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+	extern targets::msp430f5309::Clk clk;
+#endif
+
+
+// GPIO
+#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+	extern targets::msp430f5309::Gpio gpio;
+#endif
+
+
+// USCI_B1
+#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
+		extern targets::msp430f5309::UsciB1::I2CSlave YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
+		extern targets::msp430f5309::UsciB1::I2CMaster YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
+		extern targets::msp430f5309::UsciB1::I2CMultimaster YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SPI
+		extern targets::msp430f5309::UsciB1::Spi YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+	#endif
+#endif
+
+
+// TIMER_A0
+#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+	extern targets::msp430f5309::TimerA0 timer_a0;
+#endif
+
+
+
+// IRQ
+extern targets::msp430f5309::IrqHandler Irq;
+
+
+
+namespace targets {
+	bool init(void);
+}
+
+
+
+
+
+
+
+
+}} // yahal::mcu
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if false
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Target;
@@ -96,7 +180,7 @@ public:
 		YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
 	#endif
 };
-
+#endif
 
 
 

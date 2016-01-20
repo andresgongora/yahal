@@ -62,7 +62,9 @@ private:
 	static void		USCI_B1_ISR(void);
 
 				// POINTERS
-	static UsciB1* const	p_handler_usci_b1_;
+	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+	static UsciB1&		handler_usci_b1_;
+	#endif
 };
 
 

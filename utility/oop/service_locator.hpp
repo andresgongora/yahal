@@ -43,7 +43,7 @@ template <typename T_SERVICE>
 class yahal::utility::oop::ServiceLocator
 {
 public:
-	T_SERVICE&		operator()(void){
+	static T_SERVICE&	operator()(void){
 					return service_;
 				}
 

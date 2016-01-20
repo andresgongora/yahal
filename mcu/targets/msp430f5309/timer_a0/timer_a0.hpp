@@ -57,9 +57,17 @@ public:
 				};};
 
 
+				struct Mode{ enum Type{
+					STOP		= 0,
+					UP_CCR0 	= 1,
+					CONTINUOUS	= 2,
+					UP_DOWN		= 3,
+				};};
+
+
 				struct Configuration
 				{
-					ClockSource::Type clockSource;
+					ClockSource::Type clock_source;
 				};
 
 				struct Irq { enum Type {
@@ -72,12 +80,29 @@ public:
 				};};
 
 
-				class Ccr// : public yahal::mcu::modules::OutputCompare
+				class OutputCompare
 				{
 				public:
-				protected:
-				private:
-// DEBERIA QUITAR BASE MODULE DE TODAS PARTES?????????					virtual void initHW(){}
+					struct Mode{ enum Type{
+						OUTPUT		= 0,
+						SET		= 1,
+						TOGGLE_RESET	= 2,
+						SET_RESET	= 3,
+						TOGGLE		= 4,
+						RESET		= 5,
+						TOGGLE_SET	= 6,
+						RESET_SET	= 7
+					};};
+
+					virtual void setOutput(bool b) = 0;
+					virtual bool getOutput(void) = 0;
+					virtual void setMode(Mode::Type mode) = 0;
+				};
+
+				class Ccr :
+					public OutputCompare
+				{
+
 				};
 
 
@@ -88,60 +113,69 @@ public:
 
 
 
-private:			// INITIALIZATION
-	virtual void		initHW(void);
+public:				// INITIALIZATION
+	virtual bool		init(void);
 
 
 
 
 
 private:
+				class Ccr0 : public Ccr
+				{
+				public:
+					void setOutput(bool b);
+					bool getOutput(void);
+					void setMode(Mode::Type mode);
+
+				};
+
 				class Ccr1 : public Ccr
 				{
 				public:
+					void setOutput(bool b);
+					bool getOutput(void);
+					void setMode(Mode::Type mode);
 
 				};
 
 				class Ccr2 : public Ccr
 				{
 				public:
+					void setOutput(bool b);
+					bool getOutput(void);
+					void setMode(Mode::Type mode);
 
 				};
 
 				class Ccr3 : public Ccr
 				{
 				public:
+					void setOutput(bool b);
+					bool getOutput(void);
+					void setMode(Mode::Type mode);
 
 				};
 
 				class Ccr4 : public Ccr
 				{
 				public:
+					void setOutput(bool b);
+					bool getOutput(void);
+					void setMode(Mode::Type mode);
 
 				};
 
-				class Ccr5 : public Ccr
-				{
-				public:
-
-				};
-
-				class Ccr6 : public Ccr
-				{
-				public:
-
-				};
 
 
 
 				// PRIVATE VARIABLES
 	const Configuration&	configuration_;
+	Ccr0			ccr0_;
 	Ccr1			ccr1_;
 	Ccr2			ccr2_;
 	Ccr3			ccr3_;
 	Ccr4			ccr4_;
-	Ccr5			ccr5_;
-	Ccr6			ccr6_;
 };
 
 

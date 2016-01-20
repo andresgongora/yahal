@@ -52,6 +52,35 @@
 
 
 
+
+
+
+
+
+
+namespace yahal{ namespace mcu{
+
+bool init(void)
+{
+	bool success = true;
+
+	success &= targets::init();
+
+	return success;
+}
+
+}}
+
+
+
+
+
+
+
+
+
+
+#if false
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Mcu;
@@ -62,6 +91,7 @@ namespace yahal{ namespace mcu{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
+
 class yahal::mcu::Mcu :
 	public yahal::mcu::Target,
 	public yahal::mcu::HWEmulation
@@ -72,7 +102,7 @@ public:
 					HWEmulation::init();
 				}
 };
-
+#endif
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// __YAHAL_MCU_HPP_INCLUDED__

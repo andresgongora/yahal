@@ -38,9 +38,9 @@ yahal::mcu::targets::msp430f5309::TimerA0::TimerA0(const Configuration& configur
 
 
 
-void yahal::mcu::targets::msp430f5309::TimerA0::initHW(void)
+bool yahal::mcu::targets::msp430f5309::TimerA0::init(void)
 {
-
+	return true;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -49,6 +49,8 @@ yahal::mcu::targets::msp430f5309::TimerA0::Ccr& \
 yahal::mcu::targets::msp430f5309::TimerA0::ccr(std::size_t module)
 {
 	switch (module) {
+	case 0:
+		return ccr0_;
 	case 1:
 		return ccr1_;
 	case 2:
@@ -57,14 +59,146 @@ yahal::mcu::targets::msp430f5309::TimerA0::ccr(std::size_t module)
 		return ccr3_;
 	case 4:
 		return ccr4_;
-	case 5:
-		return ccr5_;
-	case 6:
-		return ccr6_;
 	default:assert(false);
-		return ccr1_;	///< Better return this than nothing.
+		return ccr0_;	///< Better return this than nothing.
 	}
 }
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr0::setOutput(bool b)
+{
+	if (b) {
+		TA0CCTL0 |= 0x0001;
+	} else {
+		TA0CCTL0 &= ~0x0001;
+	}
+}
+
+
+bool yahal::mcu::targets::msp430f5309::TimerA0::Ccr0::getOutput(void)
+{
+	return TA0CCTL0 & 0x0001;
+}
+
+
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr0::setMode(Mode::Type mode)
+{
+	uint16_t aux = TA0CCTL0;
+	aux &= 0xFF1F;
+	aux |= (mode << 7);
+	TA0CCTL0 = aux;
+}
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr1::setOutput(bool b)
+{
+	if (b) {
+		TA0CCTL1 |= 0x0001;
+	} else {
+		TA0CCTL1 &= ~0x0001;
+	}
+}
+
+
+bool yahal::mcu::targets::msp430f5309::TimerA0::Ccr1::getOutput(void)
+{
+	return TA0CCTL1 & 0x0001;
+}
+
+
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr1::setMode(Mode::Type mode)
+{
+	uint16_t aux = TA0CCTL1;
+	aux &= 0xFF1F;
+	aux |= (mode << 7);
+	TA0CCTL1 = aux;
+}
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr2::setOutput(bool b)
+{
+	if (b) {
+		TA0CCTL2 |= 0x0001;
+	} else {
+		TA0CCTL2 &= ~0x0001;
+	}
+}
+
+
+bool yahal::mcu::targets::msp430f5309::TimerA0::Ccr2::getOutput(void)
+{
+	return TA0CCTL2 & 0x0001;
+}
+
+
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr2::setMode(Mode::Type mode)
+{
+	uint16_t aux = TA0CCTL2;
+	aux &= 0xFF1F;
+	aux |= (mode << 7);
+	TA0CCTL2 = aux;
+}
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr3::setOutput(bool b)
+{
+	if (b) {
+		TA0CCTL3 |= 0x0001;
+	} else {
+		TA0CCTL3 &= ~0x0001;
+	}
+}
+
+bool yahal::mcu::targets::msp430f5309::TimerA0::Ccr3::getOutput(void)
+{
+	return TA0CCTL3 & 0x0001;
+}
+
+
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr3::setMode(Mode::Type mode)
+{
+	uint16_t aux = TA0CCTL3;
+	aux &= 0xFF1F;
+	aux |= (mode << 7);
+	TA0CCTL3 = aux;
+}
+
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr4::setOutput(bool b)
+{
+	if (b) {
+		TA0CCTL4 |= 0x0001;
+	} else {
+		TA0CCTL4 &= ~0x0001;
+	}
+}
+
+bool yahal::mcu::targets::msp430f5309::TimerA0::Ccr4::getOutput(void)
+{
+	return TA0CCTL4 & 0x0001;
+}
+
+
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr4::setMode(Mode::Type mode)
+{
+	uint16_t aux = TA0CCTL4;
+	aux &= 0xFF1F;
+	aux |= (mode << 7);
+	TA0CCTL4 = aux;
+}
+
+
 
 
 /* ---------------------------------------------------------------------------------------------- */

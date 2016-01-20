@@ -57,11 +57,12 @@ public:
 
 protected:
 				Timer(void){}
-
+/*
 public:
 	virtual void		set(std::size_t value) = 0;
 	virtual std::size_t	get(void) const = 0;
 	virtual void		reset(void) const = 0;
+*/
 };
 
 

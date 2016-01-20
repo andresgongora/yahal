@@ -64,32 +64,30 @@ __interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::USCI_B1_ISR(void)
 	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
 	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 
-		if (p_handler_usci_b1_) {
-			switch (__even_in_range(UCB1IV, 12))
-			{
-			case  0: ///< Vector 00: No interrupts
-				break;
-			case  2: ///< Vector 02: Arbitration Lost
-				p_handler_usci_b1_->isr(UsciB1::Irq::I2C_ARBITRATION_LOST);
-				break;
-			case  4: ///< Vector 04: Nack
-				p_handler_usci_b1_->isr(UsciB1::Irq::I2C_NACK);
-				break;
-			case  6: ///< Vector 06: Start
-				p_handler_usci_b1_->isr(UsciB1::Irq::I2C_START);
-				break;
-			case  8: ///< Vector 08: Stop
-				p_handler_usci_b1_->isr(UsciB1::Irq::I2C_STOP);
-				break;
-			case 10: ///< Vector 10: RX Full
-				p_handler_usci_b1_->isr(UsciB1::Irq::I2C_RX_BUFFER_FULL);
-				break;
-			case 12: ///< Vector 12: TX Empty
-				p_handler_usci_b1_->isr(UsciB1::Irq::I2C_TX_BUFFER_EMPTY);
-				break;
-			default:
-				break;
-			}
+		switch (__even_in_range(UCB1IV, 12))
+		{
+		case  0: ///< Vector 00: No interrupts
+			break;
+		case  2: ///< Vector 02: Arbitration Lost
+			handler_usci_b1_.isr(UsciB1::Irq::I2C_ARBITRATION_LOST);
+			break;
+		case  4: ///< Vector 04: Nack
+			handler_usci_b1_.isr(UsciB1::Irq::I2C_NACK);
+			break;
+		case  6: ///< Vector 06: Start
+			handler_usci_b1_.isr(UsciB1::Irq::I2C_START);
+			break;
+		case  8: ///< Vector 08: Stop
+			handler_usci_b1_.isr(UsciB1::Irq::I2C_STOP);
+			break;
+		case 10: ///< Vector 10: RX Full
+			handler_usci_b1_.isr(UsciB1::Irq::I2C_RX_BUFFER_FULL);
+			break;
+		case 12: ///< Vector 12: TX Empty
+			handler_usci_b1_.isr(UsciB1::Irq::I2C_TX_BUFFER_EMPTY);
+			break;
+		default:
+			break;
 		}
 	#endif
 }
