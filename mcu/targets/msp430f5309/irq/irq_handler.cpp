@@ -47,6 +47,7 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 /* =================================================================================================
 	USCI_B1
 ================================================================================================= */
+#if	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
 #pragma vector = USCI_B1_VECTOR
 __interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::USCI_B1_ISR(void)
 {
@@ -91,7 +92,7 @@ __interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::USCI_B1_ISR(void)
 		}
 	#endif
 }
-
+#endif
 
 
 

@@ -101,13 +101,13 @@ const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 // AVAILABLE MODES
 #define YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE		0
-#define YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER		1
+#define YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER	1
 #define YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER	2
 //#define YAHAL_MCU_MSP430F5309_USCI_B1_SPI 		3	// Not implemented yet
 
 /* ---------------------------------------------------------------------------------------------- */
 
-#define	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE	true
+#define	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE	false
 #define YAHAL_MCU_MSP430F5309_USCI_B1_MODE		YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 #define YAHAL_MCU_MSP430F5309_USCI_B1_NAME		i2c1
 
@@ -144,7 +144,12 @@ const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 #define	YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE	true
 
 const yahal::mcu::targets::msp430f5309::TimerA0::Configuration timer_a0 = {
-/* clock_source	*/ TimerA0::ClockSource::VLP,
+/* clock_source		*/ TimerA0::ClockSource::VLP,
+/* ccr0_output_enable	*/ false,
+/* ccr1_output_enable	*/ false,
+/* ccr2_output_enable	*/ false,
+/* ccr3_output_enable	*/ false,
+/* ccr4_output_enable	*/ false,
 };
 
 
@@ -164,6 +169,11 @@ const yahal::mcu::targets::msp430f5309::TimerA0::Configuration timer_a0 = {
 
 
 
+/* =================================================================================================
+	IRQ
+================================================================================================= */
+
+#define	YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE	true
 
 
 

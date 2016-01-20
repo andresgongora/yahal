@@ -74,7 +74,10 @@ namespace yahal{ namespace mcu{
 
 
 // IRQ
+#if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
 	targets::msp430f5309::IrqHandler Irq;
+#endif
+
 
 
 
@@ -121,7 +124,9 @@ bool yahal::mcu::targets::init(void)
 
 
 	// IRQ
+	#if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
 	Irq.enableGlobalInterrupts();
+	#endif
 
 	return success;
 }

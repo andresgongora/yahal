@@ -58,8 +58,8 @@ private:
 	static void* operator new(std::size_t,void*);
 	static void* operator new[](std::size_t);
 	static void* operator new[](std::size_t,void*);
-	static void  operator delete(void*);
-	static void  operator delete[](void*);
+//	static void  operator delete(void*);
+//	static void  operator delete[](void*);
 };
 
 

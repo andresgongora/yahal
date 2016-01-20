@@ -22,10 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
-
 #ifndef __YAHAL_MCU_WDT_HPP_INCLUDED__
 #define __YAHAL_MCU_WDT_HPP_INCLUDED__
 

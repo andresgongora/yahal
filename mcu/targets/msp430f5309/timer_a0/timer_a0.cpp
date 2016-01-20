@@ -43,6 +43,35 @@ bool yahal::mcu::targets::msp430f5309::TimerA0::init(void)
 	return true;
 }
 
+
+void yahal::mcu::targets::msp430f5309::TimerA0::set(std::size_t value)
+{
+	TA0R = static_cast<uint16_t>(value);
+}
+
+
+std::size_t yahal::mcu::targets::msp430f5309::TimerA0::get(void) const
+{
+	return TA0R;
+}
+
+
+void yahal::mcu::targets::msp430f5309::TimerA0::reset(void) const
+{
+	TA0R = 0;
+}
+
+
+void yahal::mcu::targets::msp430f5309::TimerA0::setMode(Mode::Type mode)
+{
+	uint16_t aux = TA0CTL;
+	aux &= 0xFFCF;
+	aux |= (mode << 4);
+	TA0CTL = aux;
+}
+
+
+
 /* ---------------------------------------------------------------------------------------------- */
 
 yahal::mcu::targets::msp430f5309::TimerA0::Ccr& \
@@ -87,7 +116,7 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr0::setMode(Mode::Type mode)
 {
 	uint16_t aux = TA0CCTL0;
 	aux &= 0xFF1F;
-	aux |= (mode << 7);
+	aux |= (mode << 5);
 	TA0CCTL0 = aux;
 }
 
@@ -114,7 +143,7 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr1::setMode(Mode::Type mode)
 {
 	uint16_t aux = TA0CCTL1;
 	aux &= 0xFF1F;
-	aux |= (mode << 7);
+	aux |= (mode << 5);
 	TA0CCTL1 = aux;
 }
 
@@ -141,7 +170,7 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr2::setMode(Mode::Type mode)
 {
 	uint16_t aux = TA0CCTL2;
 	aux &= 0xFF1F;
-	aux |= (mode << 7);
+	aux |= (mode << 5);
 	TA0CCTL2 = aux;
 }
 
@@ -167,7 +196,7 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr3::setMode(Mode::Type mode)
 {
 	uint16_t aux = TA0CCTL3;
 	aux &= 0xFF1F;
-	aux |= (mode << 7);
+	aux |= (mode << 5);
 	TA0CCTL3 = aux;
 }
 
@@ -194,7 +223,7 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr4::setMode(Mode::Type mode)
 {
 	uint16_t aux = TA0CCTL4;
 	aux &= 0xFF1F;
-	aux |= (mode << 7);
+	aux |= (mode << 5);
 	TA0CCTL4 = aux;
 }
 

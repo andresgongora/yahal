@@ -47,8 +47,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IrqHandler :
-	public yahal::mcu::modules::details::IrqHandler
+class yahal::mcu::targets::msp430f5309::IrqHandler : public yahal::mcu::modules::details::IrqHandler
 {
 public:
 				// IRQ Control
@@ -58,12 +57,11 @@ public:
 
 
 private:
-				// HANDLERS
-	static void		USCI_B1_ISR(void);
 
-				// POINTERS
+	// USCI_B1
 	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
-	static UsciB1&		handler_usci_b1_;
+		static void		USCI_B1_ISR(void);
+		static UsciB1&		handler_usci_b1_;
 	#endif
 };
 

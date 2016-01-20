@@ -22,9 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
 #ifndef __YAHAL_MCU_MSP430F5309_WDT_HPP_INCLUDED__
 #define __YAHAL_MCU_MSP430F5309_WDT_HPP_INCLUDED__
 
@@ -48,8 +45,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Wdt :
-	public yahal::mcu::modules::Wdt
+class yahal::mcu::targets::msp430f5309::Wdt : public yahal::mcu::modules::Wdt
 {
 public:
 				struct Configuration

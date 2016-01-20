@@ -68,6 +68,11 @@ public:
 				struct Configuration
 				{
 					ClockSource::Type clock_source;
+					bool	ccr0_output_enable;
+					bool	ccr1_output_enable;
+					bool	ccr2_output_enable;
+					bool	ccr3_output_enable;
+					bool	ccr4_output_enable;
 				};
 
 				struct Irq { enum Type {
@@ -115,6 +120,10 @@ public:
 
 public:				// INITIALIZATION
 	virtual bool		init(void);
+	virtual void		set(std::size_t value);
+	virtual std::size_t	get(void) const;
+	virtual void		reset(void) const;
+	void			setMode(Mode::Type mode);
 
 
 
