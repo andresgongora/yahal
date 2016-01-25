@@ -107,7 +107,7 @@ const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 /* ---------------------------------------------------------------------------------------------- */
 
-#define	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE	false
+#define	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE	true
 #define YAHAL_MCU_MSP430F5309_USCI_B1_MODE		YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 #define YAHAL_MCU_MSP430F5309_USCI_B1_NAME		i2c1
 
@@ -173,7 +173,7 @@ const yahal::mcu::targets::msp430f5309::TimerA0::Configuration timer_a0 = {
 	IRQ
 ================================================================================================= */
 
-#define	YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE	false
+#define	YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE	true
 
 
 

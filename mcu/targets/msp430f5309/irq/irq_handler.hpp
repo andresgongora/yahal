@@ -50,13 +50,17 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 class yahal::mcu::targets::msp430f5309::IrqHandler : public yahal::mcu::modules::details::IrqHandler
 {
 public:
-				// IRQ Control
-	virtual void		enableGlobalInterrupts(void) const;
-	virtual void		disableGlobalInterrupts(void) const;
+	static IrqHandler&	getInstance(void);
+
+	virtual void		enableGlobalInterrupts(void);
+	virtual void		disableGlobalInterrupts(void);
 
 
 
 private:
+				IrqHandler(void) {};		///< Singleton
+	static IrqHandler	instance_;
+
 
 	// USCI_B1
 	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true

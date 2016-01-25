@@ -42,8 +42,8 @@
  * @brief
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster :
-	public yahal::mcu::modules::I2CMultimaster,
-	public yahal::mcu::targets::msp430f5309::UsciB1
+	public yahal::mcu::targets::msp430f5309::UsciB1,
+	public yahal::mcu::modules::I2CMultimaster
 {
 public:
 				struct Configuration
@@ -52,14 +52,15 @@ public:
 					std::size_t baud_rate_prescale;
 				};
 
-
-				// CONSTRUCTOR
-				I2CMultimaster(const Configuration& configuration);
+				// -----------------------------------------------------------------
 
 
+public:
+	static I2CMultimaster&	getInstance(void);
+	bool			init(const Configuration& configuration);
 
-private:			// INITIALIZATION
-	virtual void		initHW(void);
+private:
+				I2CMultimaster() {}	///< Singleton
 
 
 				// MODULE IMPLEMENTATION
@@ -73,12 +74,10 @@ private:			// INITIALIZATION
 	virtual void		configureAsMaster(void);
 
 
-				// ISR
 	virtual void 		isr(UsciB1::Irq::Type irq);
 
 
-				// PRIVATE VARIABLES
-	const Configuration&	configuration_;
+	static I2CMultimaster	instance_;
 };
 
 

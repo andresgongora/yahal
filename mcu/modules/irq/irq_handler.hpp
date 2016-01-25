@@ -42,9 +42,7 @@ namespace yahal{ namespace mcu{ namespace modules{ namespace details{
 /***********************************************************************************************//**
  * @brief	Base class for all IRQ handlers.
  **************************************************************************************************/
-class yahal::mcu::modules::details::IrqHandler :
-	private yahal::utility::oop::NonCopyable,
-	private yahal::utility::oop::NonHeapable
+class yahal::mcu::modules::details::IrqHandler
 {
 protected:
 				IrqHandler(void)	{}
@@ -52,8 +50,8 @@ protected:
 
 public:
 				// CONFIGURATION
-	virtual void		enableGlobalInterrupts(void) const = 0;
-	virtual void		disableGlobalInterrupts(void) const = 0;
+	virtual void		enableGlobalInterrupts(void) = 0;
+	virtual void		disableGlobalInterrupts(void) = 0;
 };
 
 

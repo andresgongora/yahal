@@ -42,7 +42,7 @@ namespace yahal{ namespace mcu{ namespace modules{
 /***********************************************************************************************//**
  * @brief	Base class for all Watch Dog Timers.
  **************************************************************************************************/
-class yahal::mcu::modules::Wdt : public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::Wdt
 {
 public:
 				struct Error {enum Type {

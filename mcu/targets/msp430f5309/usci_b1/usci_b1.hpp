@@ -52,21 +52,13 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::UsciB1
 {
-protected:
-				/// This is a base class
-				UsciB1(void) {}
-
 public:
-
-
 				class I2CMaster;
 				class I2CMultimaster;
 				class I2CSlave;
 				class Spi;
 
 protected:
-	friend class		IrqHandler;
-
 				struct Irq { enum Type {
 					I2C_START,
 					I2C_STOP,
@@ -76,6 +68,13 @@ protected:
 					I2C_NACK,
 				};};
 
+				// -----------------------------------------------------------------
+protected:
+				/// This is a base class
+				UsciB1(void) {}
+
+
+	friend class		IrqHandler;
 	virtual void		isr(Irq::Type irq) = 0;
 };
 

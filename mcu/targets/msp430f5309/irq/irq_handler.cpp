@@ -31,13 +31,25 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::IrqHandler::enableGlobalInterrupts(void) const
+yahal::mcu::targets::msp430f5309::IrqHandler
+yahal::mcu::targets::msp430f5309::IrqHandler::instance_;
+
+yahal::mcu::targets::msp430f5309::IrqHandler&
+yahal::mcu::targets::msp430f5309::IrqHandler::getInstance(void)
+{
+	return instance_;
+}
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
+void yahal::mcu::targets::msp430f5309::IrqHandler::enableGlobalInterrupts(void)
 {
 	_EINT();
 }
 
 
-void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void) const
+void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 {
 	_DINT();
 }
@@ -47,51 +59,56 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 /* =================================================================================================
 	USCI_B1
 ================================================================================================= */
-#if	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
-#pragma vector = USCI_B1_VECTOR
-__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::USCI_B1_ISR(void)
-{
-	#if	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
+#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
 
 
 
 
-	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
+	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
 
 
 
-	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
+	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 
-		switch (__even_in_range(UCB1IV, 12))
+		yahal::mcu::targets::msp430f5309::UsciB1&
+		yahal::mcu::targets::msp430f5309::IrqHandler::handler_usci_b1_ =
+			yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::getInstance();
+
+
+		#pragma vector = USCI_B1_VECTOR
+		__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::USCI_B1_ISR(void)
 		{
-		case  0: ///< Vector 00: No interrupts
-			break;
-		case  2: ///< Vector 02: Arbitration Lost
-			handler_usci_b1_.isr(UsciB1::Irq::I2C_ARBITRATION_LOST);
-			break;
-		case  4: ///< Vector 04: Nack
-			handler_usci_b1_.isr(UsciB1::Irq::I2C_NACK);
-			break;
-		case  6: ///< Vector 06: Start
-			handler_usci_b1_.isr(UsciB1::Irq::I2C_START);
-			break;
-		case  8: ///< Vector 08: Stop
-			handler_usci_b1_.isr(UsciB1::Irq::I2C_STOP);
-			break;
-		case 10: ///< Vector 10: RX Full
-			handler_usci_b1_.isr(UsciB1::Irq::I2C_RX_BUFFER_FULL);
-			break;
-		case 12: ///< Vector 12: TX Empty
-			handler_usci_b1_.isr(UsciB1::Irq::I2C_TX_BUFFER_EMPTY);
-			break;
-		default:
-			break;
+			switch (__even_in_range(UCB1IV, 12))
+			{
+			case  0: ///< Vector 00: No interrupts
+				break;
+			case  2: ///< Vector 02: Arbitration Lost
+				handler_usci_b1_.isr(UsciB1::Irq::I2C_ARBITRATION_LOST);
+				break;
+			case  4: ///< Vector 04: Nack
+				handler_usci_b1_.isr(UsciB1::Irq::I2C_NACK);
+				break;
+			case  6: ///< Vector 06: Start
+				handler_usci_b1_.isr(UsciB1::Irq::I2C_START);
+				break;
+			case  8: ///< Vector 08: Stop
+				handler_usci_b1_.isr(UsciB1::Irq::I2C_STOP);
+				break;
+			case 10: ///< Vector 10: RX Full
+				handler_usci_b1_.isr(UsciB1::Irq::I2C_RX_BUFFER_FULL);
+				break;
+			case 12: ///< Vector 12: TX Empty
+				handler_usci_b1_.isr(UsciB1::Irq::I2C_TX_BUFFER_EMPTY);
+				break;
+			default:
+				break;
+			}
 		}
+
+	#else
+		#error "USCI_B1_MODE is not valid"
 	#endif
-}
 #endif
 
 

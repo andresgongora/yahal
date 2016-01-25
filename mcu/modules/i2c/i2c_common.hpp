@@ -48,9 +48,7 @@ namespace yahal{ namespace mcu{ namespace modules{ namespace details{
  * @brief	Base class for all I2C modules.
  * This virtual class implements all common elements to all I2C operation modes (slave/master).
  **************************************************************************************************/
-class yahal::mcu::modules::details::I2CCommon :
-	public yahal::mcu::modules::details::BaseModule,
-	public yahal::error::ErrorCode
+class yahal::mcu::modules::details::I2CCommon :	public yahal::error::ErrorCode
 {
 public:
 				/// I/O operation direction
@@ -76,14 +74,7 @@ protected:
 				I2CCommon(void)	{}
 
 
-public:
-				/// Public initialization method.
-				/// @see initHW()
-	virtual bool		init(void){
-					setErrorCode(NO_ERROR_CODE);
-					initHW();
-					return hasError();
-				}
+
 
 protected:
 				/// Prepare module for exclusive operation.
@@ -104,8 +95,6 @@ protected:
 
 				/// Read input buffer.
 	virtual uint8_t		readBufferRX(void) = 0;
-
-	virtual void		initHW(void) = 0;
 
 
 private:

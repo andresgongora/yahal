@@ -22,11 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
 #include "i2c_multimaster.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
@@ -35,26 +30,33 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::I2CMultimaster(const Configuration& configuration) :
-	configuration_(configuration)
-{}
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::instance_;
+
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster&
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::getInstance(void)
+{
+	return instance_;
+}
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::initHW(void)
+bool yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::init(const Configuration& configuration)
 {
 	UCB1CTL1 |= UCSWRST;				///< Enable SW reset while we configure the module
 	P4SEL |= BIT1 + BIT2;				///< Assign I2C pins to USCI_B0
 
 	UCB1CTL0 = UCMST + UCMODE_3 + UCSYNC + UCMM;	///< I2C Master, synchronous mode, multimaster
 	UCB1CTL1 = UCSSEL__SMCLK + UCSWRST + UCTR;	///< Use SMCLK
-	UCB1BRW = configuration_.baud_rate_prescale;
-	UCB1I2COA = configuration_.ownAddress + UCGCEN;	///< Enable general call
+	UCB1BRW = configuration.baud_rate_prescale;
+	UCB1I2COA = configuration.ownAddress + UCGCEN;	///< Enable general call
 	UCB1CTL1 &= ~UCSWRST;				///< Clear SW reset, resume operation
 
 	UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;///< Enable Interrupts
+
+	return true;
 }
 
 

@@ -42,9 +42,11 @@ namespace yahal{ namespace mcu{ namespace modules{
 /***********************************************************************************************//**
  * Base class for all system clock handling modules.
  **************************************************************************************************/
-class yahal::mcu::modules::Clk :
-	public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::Clk
 {
+protected:
+				Clk(void) {}
+
 public:
 
 };

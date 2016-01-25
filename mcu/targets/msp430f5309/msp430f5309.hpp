@@ -68,13 +68,15 @@ namespace yahal{ namespace mcu{
 // USCI_B1
 #if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
 	#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
-		extern targets::msp430f5309::UsciB1::I2CSlave YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+		extern yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
 	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
-		extern targets::msp430f5309::UsciB1::I2CMaster YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+		extern yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
 	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
-		extern targets::msp430f5309::UsciB1::I2CMultimaster YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+		extern yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster& YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
 	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SPI
-		extern targets::msp430f5309::UsciB1::Spi YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+		extern yahal::mcu::targets::msp430f5309::UsciB1::Spi YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+	#else
+		#error "USCI_B1_MODE is not valid"
 	#endif
 #endif
 
@@ -87,8 +89,9 @@ namespace yahal{ namespace mcu{
 
 
 // IRQ
-extern targets::msp430f5309::IrqHandler Irq;
-
+#if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
+	extern yahal::mcu::targets::msp430f5309::IrqHandler& Irq;
+#endif
 
 
 namespace targets {

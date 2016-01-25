@@ -42,8 +42,7 @@ namespace yahal{ namespace mcu{ namespace modules{
 /***********************************************************************************************//**
  * Base class for GPIO modules.
  **************************************************************************************************/
-class yahal::mcu::modules::Gpio :
-	public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::Gpio
 {
 public:
 				/// Direction of GPIO pins
