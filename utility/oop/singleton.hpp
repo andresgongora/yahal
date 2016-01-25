@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015 - 2016, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015 - 2016, Individual contributors, see AUTHORS file.	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -17,48 +17,53 @@
 	| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		|
 	| GNU General Public License for more details.				|
 	|									|
-	| You should have received a copy of the GNU General Public License	|
+	| You should have received a heap of the GNU General Public License	|
 	| along with this program.  If not, see <http://www.gnu.org/licenses/>. |
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
 
 
-#ifndef __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
+#ifndef __YAHAL_UTILITY_OOP_SINGLETON_HPP_INCLUDED__
+#define __YAHAL_UTILITY_OOP_SINGLETON_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include <stdint.h>
-#include <cstddef>
-#include "../../utility/oop/noncopyable.hpp"
-#include "../../utility/oop/nonheapable.hpp"
+#include "is_base_of.hpp"
+#include "../../error/static_assert.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{ namespace details{
-	class BaseModule;
-}}}}
+namespace yahal{ namespace utility{ namespace oop{
+	template <typename T_DERIVED> class Singleton;
+}}}
 
 
 
 /***********************************************************************************************//**
- * @brief	Base class for all MCU modules, it makes modules non-copiable and non-heapable.
+ *
  **************************************************************************************************/
-class yahal::mcu::modules::details::BaseModule /*:
-	private yahal::utility::oop::NonCopyable,
-	private yahal::utility::oop::NonHeapable*/
+template <typename T_DERIVED>
+class yahal::utility::oop::Singleton
 {
-protected:
-				BaseModule(void)	{}
-
-
 public:
-//	virtual bool		init(void) = 0;
+	static T_DERIVED&	getInstance(void) { return instance_;}
+
+
+private:
+				Singleton(void) {
+					static_assert(IS_BASE_OF(Singleton<T_DERIVED>, T_DERIVED));
+				}
+				friend class T_DERIVED;
+
+private:
+	static T_DERIVED	instance_;
 };
+
+template <typename T_DERIVED> T_DERIVED yahal::utility::oop::Singleton<T_DERIVED>::instance_;
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
+#endif 	// __YAHAL_UTILITY_OOP_SINGLETON_HPP_INCLUDED__

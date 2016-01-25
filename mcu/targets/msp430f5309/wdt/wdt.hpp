@@ -49,23 +49,20 @@ class yahal::mcu::targets::msp430f5309::Wdt : public yahal::mcu::modules::Wdt
 {
 public:
 				struct Configuration
-				{
-				};
+				{};
 
-				// CONSTRUCTOR
-				Wdt(const Configuration& configuration);
-
-
-	virtual bool		init(void);
-
+				// -----------------------------------------------------------------
 public:
-				/**
-				 * Reset WDT counter if WDT enabled.
-				 */
-	void			reset(void);
+	static Wdt&		getInstance(void);	///< Get singleton instance
+	bool			init(const Configuration& configuration);
+	void			reset(void);		///< Reset WDT counter (if enabled)
+
 
 private:
+				Wdt(void){}		///< Singleton
+	static Wdt		instance_;
 	const Configuration&	configuration_;
+
 };
 
 

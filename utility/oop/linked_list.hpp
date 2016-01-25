@@ -34,8 +34,8 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
-	template <typename T> class LinkedListNode;
-	template <typename T> class LinkedList;
+	template <typename T_NODE> class LinkedListNode;
+	template <typename T_NODE> class LinkedList;
 }}}
 
 

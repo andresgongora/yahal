@@ -64,7 +64,7 @@ bool init(void)
 {
 	bool success = true;
 
-	success &= targets::init();
+	success &= yahal::mcu::targets::init();
 
 	return success;
 }

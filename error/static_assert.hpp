@@ -34,12 +34,19 @@
 
 #ifndef __cpp_static_assert
 
-	/**
-	 *	Create array of size 1 if true, and of size -1 if false, which can not be compiled.
-	 *	message will be used as array name.
-	 */
-	#define static_assert(condition, message)\
+/***********************************************************************************************//**
+ *	Create array of size 1 if true, and of size -1 if false, which can not be compiled.
+ **************************************************************************************************/
+	#define static_assert(condition)\
 		typedef int CONCATENATE(ASSERTMACRO, __LINE__)[(condition) ? 1 : -1]
+
+
+
+/***********************************************************************************************//**
+ *	Create array of size 1 if true, and of size -1 if false, which can not be compiled.
+ *	message is ignored
+ **************************************************************************************************/
+//	#define static_assert(condition, message)	static_assert(condition)
 #endif
 
 

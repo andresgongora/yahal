@@ -5,7 +5,7 @@
 	|		https://github.com/andresgongora/yahal 			|
 	|									|
 	|									|
-	| Copyright (c) 2005-2015 - 2016, Individual contributors, see AUTHORS file 	|
+	| Copyright (c) 2015 - 2016, Individual contributors, see AUTHORS file.	|
 	| 									|
 	| This program is free software: you can redistribute it and/or modify	|
 	| it under the terms of the GNU General Public License as published by	|
@@ -17,48 +17,57 @@
 	| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		|
 	| GNU General Public License for more details.				|
 	|									|
-	| You should have received a copy of the GNU General Public License	|
+	| You should have received a heap of the GNU General Public License	|
 	| along with this program.  If not, see <http://www.gnu.org/licenses/>. |
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
 
 
-#ifndef __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
+#ifndef __YAHAL_UTILITY_OOP_IS_BASE_OF_HPP_INCLUDED__
+#define __YAHAL_UTILITY_OOP_IS_BASE_OF_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include <stdint.h>
-#include <cstddef>
-#include "../../utility/oop/noncopyable.hpp"
-#include "../../utility/oop/nonheapable.hpp"
+#include "is_base_of.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{ namespace details{
-	class BaseModule;
-}}}}
+namespace yahal{ namespace utility{ namespace oop{
+	template <typename T_BASE, typename T_DERIVED> struct is_base_of;
+}}}
 
 
 
 /***********************************************************************************************//**
- * @brief	Base class for all MCU modules, it makes modules non-copiable and non-heapable.
+ *	Check whether T_Derived is derived from T_Base.
  **************************************************************************************************/
-class yahal::mcu::modules::details::BaseModule /*:
-	private yahal::utility::oop::NonCopyable,
-	private yahal::utility::oop::NonHeapable*/
+template <typename T_BASE, typename T_DERIVED>
+struct yahal::utility::oop::is_base_of
 {
-protected:
-				BaseModule(void)	{}
+private:
+    typedef char yes[1];
+    typedef char no[2];
 
+    static yes& test(T_BASE*);
+    static no& test(...);
+
+    static T_DERIVED* get(void);
 
 public:
-//	virtual bool		init(void) = 0;
+    static const bool value = sizeof(test(get())) == sizeof(yes);
 };
 
 
+
+/***********************************************************************************************//**
+ *	Helper macro for yahal::utility::oop::is_base_of
+ **************************************************************************************************/
+#define IS_BASE_OF(Base, Derived) (yahal::utility::oop::is_base_of<Base,Derived>::value)
+
+
+
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
+#endif 	// __YAHAL_UTILITY_OOP_IS_BASE_OF_HPP_INCLUDED__

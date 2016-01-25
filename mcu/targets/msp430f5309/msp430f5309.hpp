@@ -49,19 +49,19 @@ namespace yahal{ namespace mcu{
 
 // WDT
 #if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-	extern targets::msp430f5309::Wdt wdt;
+	extern yahal::mcu::targets::msp430f5309::Wdt& wdt;
 #endif
 
 
 // CLK
 #if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
-	extern targets::msp430f5309::Clk clk;
+	extern yahal::mcu::targets::msp430f5309::Clk& clk;
 #endif
 
 
 // GPIO
 #if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
-	extern targets::msp430f5309::Gpio gpio;
+	extern yahal::mcu::targets::msp430f5309::Gpio& gpio;
 #endif
 
 
@@ -81,7 +81,7 @@ namespace yahal{ namespace mcu{
 
 // TIMER_A0
 #if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
-	extern targets::msp430f5309::TimerA0 timer_a0;
+//	extern yahal::mcu::targets::msp430f5309::TimerA0 timer_a0;
 #endif
 
 

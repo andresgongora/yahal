@@ -33,12 +33,20 @@
 	GPIO
 ================================================================================================= */
 
-yahal::mcu::targets::msp430f5309::Gpio::Gpio(const Configuration& configuration) :
-	configuration_(configuration)
-{}
+/* ---------------------------------------------------------------------------------------------- */
+
+yahal::mcu::targets::msp430f5309::Gpio yahal::mcu::targets::msp430f5309::Gpio::instance_;
+
+yahal::mcu::targets::msp430f5309::Gpio& yahal::mcu::targets::msp430f5309::Gpio::getInstance(void)
+{
+	return instance_;
+}
 
 
-bool yahal::mcu::targets::msp430f5309::Gpio::init(void)
+
+/* ---------------------------------------------------------------------------------------------- */
+
+bool yahal::mcu::targets::msp430f5309::Gpio::init(const Configuration& configuration)
 {
 	bool success = true;
 

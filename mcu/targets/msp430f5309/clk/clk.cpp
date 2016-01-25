@@ -31,18 +31,22 @@
 
 
 
+/* ---------------------------------------------------------------------------------------------- */
+
+yahal::mcu::targets::msp430f5309::Clk yahal::mcu::targets::msp430f5309::Clk::instance_;
+
+yahal::mcu::targets::msp430f5309::Clk& yahal::mcu::targets::msp430f5309::Clk::getInstance(void)
+{
+	return instance_;
+}
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::Clk::Clk(const Configuration& configuration) :
-	configuration_(configuration)
-{}
-
-
-
-bool yahal::mcu::targets::msp430f5309::Clk::init(void)
+bool yahal::mcu::targets::msp430f5309::Clk::init(const Configuration& configuration)
 {
-	if(setFrequencyHz(configuration_.frequency))	// Set default frequency
+	if(setFrequencyHz(configuration.frequency))	// Set default frequency
 	{
 	}
 	else
@@ -51,6 +55,8 @@ bool yahal::mcu::targets::msp430f5309::Clk::init(void)
 	}
 	return true;
 }
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -141,6 +147,8 @@ uint32_t yahal::mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
 {
 	return 0;
 }
+
+
 
 
 

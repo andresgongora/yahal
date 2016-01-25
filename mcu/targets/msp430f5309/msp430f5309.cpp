@@ -35,19 +35,19 @@ namespace yahal{ namespace mcu{
 
 // WDT
 #if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-	targets::msp430f5309::Wdt wdt(targets::msp430f5309::config::wdt);
+	targets::msp430f5309::Wdt& wdt = targets::msp430f5309::Wdt::getInstance();
 #endif
 
 
 // CLK
 #if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
-	targets::msp430f5309::Clk clk(targets::msp430f5309::config::clk);
+	targets::msp430f5309::Clk& clk = targets::msp430f5309::Clk::getInstance();
 #endif
 
 
 // GPIO
 #if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
-	targets::msp430f5309::Gpio gpio(targets::msp430f5309::config::gpio);
+	targets::msp430f5309::Gpio& gpio = targets::msp430f5309::Gpio::getInstance();
 #endif
 
 
@@ -67,7 +67,8 @@ namespace yahal{ namespace mcu{
 #endif
 
 
-// GPIO
+/*
+// TIMER A0
 #if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
 	targets::msp430f5309::TimerA0 timer_a0(targets::msp430f5309::config::timer_a0);
 #endif
@@ -77,7 +78,7 @@ namespace yahal{ namespace mcu{
 #if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
 	targets::msp430f5309::IrqHandler Irq;
 #endif
-
+*/
 
 
 
@@ -95,19 +96,19 @@ bool yahal::mcu::targets::init(void)
 
 	// WDT
 	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-		success &= wdt.init();
+		success &= wdt.init(yahal::mcu::targets::msp430f5309::config::wdt);
 	#endif
 
 
 	// CLK
 	#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
-		success &= clk.init();
+		success &= clk.init(yahal::mcu::targets::msp430f5309::config::clk);
 	#endif
 
 
 	// GPIO
 	#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
-		success &= gpio.init();
+		success &= gpio.init(yahal::mcu::targets::msp430f5309::config::gpio);
 	#endif
 
 
@@ -117,15 +118,15 @@ bool yahal::mcu::targets::init(void)
 	#endif
 
 
-	// USCI_B1
+	// TIMER A0
 	#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
-		success &= timer_a0.init();
+//		success &= timer_a0.init();
 	#endif
 
 
 	// IRQ
 	#if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
-	Irq.enableGlobalInterrupts();
+//	Irq.enableGlobalInterrupts();
 	#endif
 
 	return success;

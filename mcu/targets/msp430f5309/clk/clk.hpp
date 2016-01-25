@@ -37,6 +37,7 @@
 #include "../../../modules/clk/clk.hpp"
 
 
+
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	class Clk;
@@ -47,8 +48,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Clk :
-	public yahal::mcu::modules::Clk
+class yahal::mcu::targets::msp430f5309::Clk : public yahal::mcu::modules::Clk
 {
 public:
 				struct Frequency{enum Type{
@@ -70,26 +70,21 @@ public:
 					ClockSource::Type clockSource;
 				};
 
+				// -----------------------------------------------------------------
 
-				// CONSTRUCTOR
-				Clk(const Configuration& configuration);
-
-
-
-				// INITIALIZATION
-	virtual bool		init(void);
+public:
+	static Clk&		getInstance(void);	///< Get singleton instance
+	bool			init(const Configuration& configuration);
 
 
 private:
-				// CONFIGURATION
+				Clk(void){}		///< Singleton
+
 	bool			setFrequencyHz(uint32_t desiredFrequencyHz);
 	uint32_t		getFrequencyHz(void);
 
-
-				// CONFIGURATION
-	const Configuration&	configuration_;
+	static Clk 		instance_;
 };
-
 
 
 /* ---------------------------------------------------------------------------------------------- */

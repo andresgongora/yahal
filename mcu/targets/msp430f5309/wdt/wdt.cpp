@@ -28,13 +28,21 @@
 #include <msp430f5309.h>
 
 
+
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::Wdt::Wdt(const Configuration& configuration) :
-	configuration_(configuration)
-{}
+yahal::mcu::targets::msp430f5309::Wdt yahal::mcu::targets::msp430f5309::Wdt::instance_;
 
-bool yahal::mcu::targets::msp430f5309::Wdt::init(void)
+yahal::mcu::targets::msp430f5309::Wdt& yahal::mcu::targets::msp430f5309::Wdt::getInstance(void)
+{
+	return instance_;
+}
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
+bool yahal::mcu::targets::msp430f5309::Wdt::init(const Configuration& configuration)
 {
 	WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
 	return true;
@@ -43,8 +51,7 @@ bool yahal::mcu::targets::msp430f5309::Wdt::init(void)
 
 void yahal::mcu::targets::msp430f5309::Wdt::reset(void)
 {
-	//TODO!!!
-	init();	// Call this for now.
+	for(;;); //TODO!
 }
 
 

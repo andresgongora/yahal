@@ -47,119 +47,103 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Gpio :
-	public yahal::mcu::modules::Gpio
+class yahal::mcu::targets::msp430f5309::Gpio : public yahal::mcu::modules::Gpio
 {
 public:
-
 				struct Configuration
 				{};
 
 
-				// CONSTRUCTOR
-				Gpio(const Configuration& configuration);
+				class Port1 : public yahal::mcu::modules::Gpio::Port
+				{
+				public:
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
+							uint8_t mask = 0xFF);
+
+					void	set(uint8_t value, uint8_t mask=0xFF);
+					uint8_t	get(uint8_t mask=0xFF)const;
+					uint8_t	getOutput(uint8_t mask=0xFF)const;
+				};
 
 
-				 /// Return reference to port.
- 	yahal::mcu::modules::Gpio::Port& port(uint8_t portNumber);
+				class Port2 : public yahal::mcu::modules::Gpio::Port
+				{
+				public:
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
+							uint8_t mask = 0xFF);
+
+					void	set(uint8_t value, uint8_t mask=0xFF);
+					uint8_t	get(uint8_t mask=0xFF)const;
+					uint8_t	getOutput(uint8_t mask=0xFF)const;
+				};
 
 
-				/// Initialize module (private).
-				/// The public initialization rountine is called init() and
-				/// is inherited from BaseModule.
-	virtual bool		init(void);
+				class Port3 : public yahal::mcu::modules::Gpio::Port
+				{
+				public:
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
+							uint8_t mask = 0xFF);
+
+					void	set(uint8_t value, uint8_t mask=0xFF);
+					uint8_t	get(uint8_t mask=0xFF)const;
+					uint8_t	getOutput(uint8_t mask=0xFF)const;
+				};
 
 
+				class Port4 : public yahal::mcu::modules::Gpio::Port
+				{
+				public:
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
+							uint8_t mask = 0xFF);
+
+					void	set(uint8_t value, uint8_t mask=0xFF);
+					uint8_t	get(uint8_t mask=0xFF)const;
+					uint8_t	getOutput(uint8_t mask=0xFF)const;
+				};
+
+
+				class Port5 : public yahal::mcu::modules::Gpio::Port
+				{
+				public:
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
+							uint8_t mask = 0xFF);
+
+					void	set(uint8_t value, uint8_t mask=0xFF);
+					uint8_t	get(uint8_t mask=0xFF)const;
+					uint8_t	getOutput(uint8_t mask=0xFF)const;
+				};
+
+
+				class Port6 : public yahal::mcu::modules::Gpio::Port
+				{
+				public:
+					bool	config(	Direction::Type direction = Direction::INPUT,
+							Resistor::Type resistor = Resistor::DISABLED,
+							uint8_t mask = 0xFF);
+
+					void	set(uint8_t value, uint8_t mask=0xFF);
+					uint8_t	get(uint8_t mask=0xFF)const;
+					uint8_t	getOutput(uint8_t mask=0xFF)const;
+				};
+
+				// -----------------------------------------------------------------
 public:
- 	class 			Port1 : public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
-
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
-				};
+	static Gpio&		getInstance(void);		///< Get singleton instance
+	bool			init(const Configuration& configuration);
+	Port& 			port(uint8_t portNumber);	///< Get port
 
 
+private:
+				Gpio(void){}			///< Singleton
 
- 	class 			Port2 : public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
-
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
-				};
-
-
-
- 	class 			Port3 : public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
-
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
-				};
-
-
-
- 	class 			Port4 : public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
-
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
-				};
-
-
-
- 	class 			Port5 : public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
-
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
-				};
-
-
-
- 	class 			Port6 : public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
-
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
-				};
-
-
-
- 				// CONFIGURATION
+	static Gpio		instance_;
 	const Configuration&	configuration_;
 
-
- 				// PRIVATE INSTANCES
  	Port1			port1_;
  	Port2			port2_;
  	Port3			port3_;
