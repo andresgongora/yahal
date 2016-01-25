@@ -26,7 +26,7 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "msp430f5309.hpp"
-#include "../../config/targets/msp430f5309/msp430f5309_config.hpp"
+#include "../../config/targets/msp430f5309/config.hpp"
 
 
 #if false
@@ -195,19 +195,19 @@ bool yahal::mcu::Target::init(void)
 
 	// WDT
 	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-		success &= wdt.init(yahal::mcu::targets::msp430f5309::config::wdt);
+		success &= wdt.init();
 	#endif
 
 
 	// CLK
 	#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
-		success &= clk.init(yahal::mcu::targets::msp430f5309::config::clk);
+		success &= clk.init();
 	#endif
 
 
 	// GPIO
 	#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
-		success &= gpio.init(yahal::mcu::targets::msp430f5309::config::gpio);
+		success &= gpio.init();
 	#endif
 
 

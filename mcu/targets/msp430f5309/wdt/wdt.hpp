@@ -31,6 +31,9 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
+
 #include "../../../modules/wdt/wdt.hpp"
 
 
@@ -54,18 +57,20 @@ public:
 				// -----------------------------------------------------------------
 public:
 	static Wdt&		getInstance(void);	///< Get singleton instance
-	bool			init(const Configuration& configuration);
+	bool			init(void);
 	virtual void		reset(void);		///< Reset WDT counter (if enabled)
 
 
 private:
-				Wdt(void){}		///< Singleton
+				Wdt(const Configuration& configuration);	///< Singleton
 	static Wdt		instance_;
+	const Configuration&	configuration_;
 
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif // YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_WDT_HPP_INCLUDED__

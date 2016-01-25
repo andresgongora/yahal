@@ -27,13 +27,17 @@
 #include "clk.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+
+#include "../../../config/targets/msp430f5309/clk.hpp"
 #include <msp430f5309.h>
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::Clk yahal::mcu::targets::msp430f5309::Clk::instance_;
+yahal::mcu::targets::msp430f5309::Clk yahal::mcu::targets::msp430f5309::Clk::instance_(yahal::mcu::targets::msp430f5309::config::clk);
 
 yahal::mcu::targets::msp430f5309::Clk& yahal::mcu::targets::msp430f5309::Clk::getInstance(void)
 {
@@ -44,9 +48,13 @@ yahal::mcu::targets::msp430f5309::Clk& yahal::mcu::targets::msp430f5309::Clk::ge
 
 /* ---------------------------------------------------------------------------------------------- */
 
-bool yahal::mcu::targets::msp430f5309::Clk::init(const Configuration& configuration)
+yahal::mcu::targets::msp430f5309::Clk::Clk(const Configuration& configuration) :
+	configuration_(configuration)
+{}
+
+bool yahal::mcu::targets::msp430f5309::Clk::init(void)
 {
-	if(setFrequencyHz(configuration.frequency))	// Set default frequency
+	if(setFrequencyHz(configuration_.frequency))	// Set default frequency
 	{
 	}
 	else
@@ -153,4 +161,5 @@ uint32_t yahal::mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif	// YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+#endif 	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

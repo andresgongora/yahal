@@ -34,6 +34,9 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+
 #include "../../../modules/clk/clk.hpp"
 
 
@@ -74,19 +77,21 @@ public:
 
 public:
 	static Clk&		getInstance(void);	///< Get singleton instance
-	bool			init(const Configuration& configuration);
+	bool			init(void);
 
 
-private:
-				Clk(void){}		///< Singleton
+public:
+				Clk(const Configuration& configuration);	///< Singleton
 
 	bool			setFrequencyHz(uint32_t desiredFrequencyHz);
 	uint32_t		getFrequencyHz(void);
 
 	static Clk 		instance_;
+	const Configuration&	configuration_;
 };
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif // YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_CLK_HPP_INCLUDED__

@@ -25,8 +25,14 @@
 #include "gpio.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+
+#include "../../../config/targets/msp430f5309/gpio.hpp"
+
 #include <msp430f5309.h>
 #include "../../../../error/assert.hpp"
+#include "../../empty/gpio/gpio.hpp"
 
 
 /* =================================================================================================
@@ -35,7 +41,9 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::Gpio yahal::mcu::targets::msp430f5309::Gpio::instance_;
+yahal::mcu::targets::msp430f5309::Gpio	\
+yahal::mcu::targets::msp430f5309::Gpio::instance_(yahal::mcu::targets::msp430f5309::config::gpio);
+
 
 yahal::mcu::targets::msp430f5309::Gpio& yahal::mcu::targets::msp430f5309::Gpio::getInstance(void)
 {
@@ -46,7 +54,13 @@ yahal::mcu::targets::msp430f5309::Gpio& yahal::mcu::targets::msp430f5309::Gpio::
 
 /* ---------------------------------------------------------------------------------------------- */
 
-bool yahal::mcu::targets::msp430f5309::Gpio::init(const Configuration& configuration)
+yahal::mcu::targets::msp430f5309::Gpio::Gpio(const Configuration& configuration) :
+	configuration_(configuration)
+{}
+
+
+
+bool yahal::mcu::targets::msp430f5309::Gpio::init(void)
 {
 	bool success = true;
 
@@ -75,8 +89,10 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 	case 4:	return Port4::getInstance();
 	case 5:	return Port5::getInstance();
 	case 6:	return Port6::getInstance();
-	default:assert(false);
-		return Port1::getInstance();	///< Better return this than nothing.
+
+	default:
+		static yahal::mcu::targets::empty::Gpio::EmptyPort empty_port;
+		return empty_port;	///< Better return this than nothing.
 	}
 }
 
@@ -406,4 +422,5 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)co
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif // YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

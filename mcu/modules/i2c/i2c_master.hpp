@@ -22,10 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
-
 #ifndef __YAHAL_MCU_MODULES_I2C_MASTER_HPP_INCLUDED__
 #define __YAHAL_MCU_MODULES_I2C_MASTER_HPP_INCLUDED__
 

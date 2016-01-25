@@ -27,7 +27,7 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "targets/targets_uid.hpp"
+#include "../targets/targets_uid.hpp"
 
 
 #define YAHAL_MCU_TARGET 			YAHAL_MCU_MSP430F5309

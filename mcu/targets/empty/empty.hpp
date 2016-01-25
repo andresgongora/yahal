@@ -22,53 +22,15 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#include "wdt.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-
-#include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-
-#include "../../../config/targets/msp430f5309/wdt.hpp"
-
-#include <msp430f5309.h>
+#ifndef __YAHAL_MCU_EMPTY_HPP_INCLUDED__
+#define __YAHAL_MCU_EMPTY_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-
-yahal::mcu::targets::msp430f5309::Wdt	\
-yahal::mcu::targets::msp430f5309::Wdt::instance_(yahal::mcu::targets::msp430f5309::config::wdt);
-
-yahal::mcu::targets::msp430f5309::Wdt& yahal::mcu::targets::msp430f5309::Wdt::getInstance(void)
-{
-	return instance_;
-}
+#include "gpio/gpio.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-
-yahal::mcu::targets::msp430f5309::Wdt::Wdt(const Configuration& configuration) :
-	configuration_(configuration)
-{}
-
-bool yahal::mcu::targets::msp430f5309::Wdt::init(void)
-{
-	WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-	return true;
-}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-
-void yahal::mcu::targets::msp430f5309::Wdt::reset(void)
-{
-	for(;;); //TODO!
-}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif	// __YAHAL_MCU_EMPTY_HPP_INCLUDED__

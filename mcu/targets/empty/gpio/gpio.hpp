@@ -22,53 +22,51 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#include "wdt.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-
-#include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-
-#include "../../../config/targets/msp430f5309/wdt.hpp"
-
-#include <msp430f5309.h>
+#ifndef __YAHAL_MCU_EMPTY_GPIO_HPP_INCLUDED__
+#define __YAHAL_MCU_EMPTY_GPIO_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#include "../../../modules/gpio/gpio.hpp"
 
-yahal::mcu::targets::msp430f5309::Wdt	\
-yahal::mcu::targets::msp430f5309::Wdt::instance_(yahal::mcu::targets::msp430f5309::config::wdt);
 
-yahal::mcu::targets::msp430f5309::Wdt& yahal::mcu::targets::msp430f5309::Wdt::getInstance(void)
+
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
+	class Gpio;
+}}}}
+
+
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::targets::empty::Gpio : public yahal::mcu::modules::Gpio
 {
-	return instance_;
-}
+public:
+				class EmptyPort : public yahal::mcu::modules::Gpio::Port
+				{
+				public:
+					virtual bool	config(	Direction::Type direction = Direction::INPUT,
+								Resistor::Type resistor = Resistor::DISABLED,
+								uint8_t mask = 0xFF) {}
+
+					virtual void	set(uint8_t value, uint8_t mask=0xFF) {}
+					virtual uint8_t	get(uint8_t mask=0xFF)const {return false;}
+					virtual uint8_t	getOutput(uint8_t mask=0xFF)const {return false;}
+
+				};
+
+
+	virtual Port& 		port(uint8_t portNumber) {return empty_port;}
+
+
+private:
+	EmptyPort		empty_port;
+};
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-
-yahal::mcu::targets::msp430f5309::Wdt::Wdt(const Configuration& configuration) :
-	configuration_(configuration)
-{}
-
-bool yahal::mcu::targets::msp430f5309::Wdt::init(void)
-{
-	WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-	return true;
-}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-
-void yahal::mcu::targets::msp430f5309::Wdt::reset(void)
-{
-	for(;;); //TODO!
-}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif	// __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__

@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_M430F5309_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
 
 
 
@@ -31,7 +31,8 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../config/targets/msp430f5309/msp430f5309_config.hpp"
+#include "../../../../rtos/rtos.hpp"
+#include "../../../config/targets/msp430f5309/config.hpp"
 #include "../../../modules/irq/irq_handler.hpp"
 #include "../usci_b1/usci_b1.hpp"
 
@@ -74,4 +75,4 @@ private:
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif 	// __YAHAL_MCU_M430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#endif 	// __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__

@@ -31,7 +31,7 @@
 #include "../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../config/targets/msp430f5309/msp430f5309_config.hpp"
+#include "../../config/targets/msp430f5309/config.hpp"
 
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"

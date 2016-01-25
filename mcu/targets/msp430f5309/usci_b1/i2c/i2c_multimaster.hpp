@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MSP430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
 
 
 
@@ -84,4 +84,4 @@ private:
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif // __YAHAL_MCU_M430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
+#endif // __YAHAL_MCU_MSP430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__
