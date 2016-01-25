@@ -55,13 +55,12 @@ public:
 public:
 	static Wdt&		getInstance(void);	///< Get singleton instance
 	bool			init(const Configuration& configuration);
-	void			reset(void);		///< Reset WDT counter (if enabled)
+	virtual void		reset(void);		///< Reset WDT counter (if enabled)
 
 
 private:
 				Wdt(void){}		///< Singleton
 	static Wdt		instance_;
-	const Configuration&	configuration_;
 
 };
 

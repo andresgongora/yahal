@@ -52,12 +52,12 @@ bool yahal::mcu::targets::msp430f5309::Gpio::init(const Configuration& configura
 
 	P1OUT = P2OUT = P3OUT = P4OUT = P5OUT = P6OUT = 0;	// Clear outputs
 
-	success &= port1_.config(Direction::INPUT, Resistor::DISABLED);
-	success &= port2_.config(Direction::INPUT, Resistor::DISABLED);
-	success &= port3_.config(Direction::INPUT, Resistor::DISABLED);
-	success &= port4_.config(Direction::INPUT, Resistor::DISABLED);
-	success &= port5_.config(Direction::INPUT, Resistor::DISABLED);
-	success &= port6_.config(Direction::INPUT, Resistor::DISABLED);
+	success &= Port1::getInstance().config(Direction::INPUT, Resistor::DISABLED);
+	success &= Port2::getInstance().config(Direction::INPUT, Resistor::DISABLED);
+	success &= Port3::getInstance().config(Direction::INPUT, Resistor::DISABLED);
+	success &= Port4::getInstance().config(Direction::INPUT, Resistor::DISABLED);
+	success &= Port5::getInstance().config(Direction::INPUT, Resistor::DISABLED);
+	success &= Port6::getInstance().config(Direction::INPUT, Resistor::DISABLED);
 
 	return success;
 }
@@ -69,14 +69,14 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 
 	switch(portNumber)
 	{
-	case 1:	return port1_;
-	case 2:	return port2_;
-	case 3:	return port3_;
-	case 4:	return port4_;
-	case 5:	return port5_;
-	case 6:	return port6_;
+	case 1:	return Port1::getInstance();
+	case 2:	return Port2::getInstance();
+	case 3:	return Port3::getInstance();
+	case 4:	return Port4::getInstance();
+	case 5:	return Port5::getInstance();
+	case 6:	return Port6::getInstance();
 	default:assert(false);
-		return port1_;	///< Better return this than nothing.
+		return Port1::getInstance();	///< Better return this than nothing.
 	}
 }
 
@@ -86,8 +86,20 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 	PORT 1
 ================================================================================================= */
 
+yahal::mcu::targets::msp430f5309::Gpio::Port1
+yahal::mcu::targets::msp430f5309::Gpio::Port1::instance_;
+
+
+yahal::mcu::targets::msp430f5309::Gpio::Port1&
+yahal::mcu::targets::msp430f5309::Gpio::Port1::getInstance(void)
+{
+	return instance_;
+}
+
+
 bool yahal::mcu::targets::msp430f5309::Gpio::Port1::config(Direction::Type direction,
-		Resistor::Type resistor, uint8_t mask) {
+							   Resistor::Type resistor,
+							   uint8_t mask) {
 	// WRITE CONFIGURATION
 	P1SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
 	P1DIR = (direction == Direction::OUTPUT ? P1DIR | mask : P1DIR & (~mask));
@@ -127,8 +139,20 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::getOutput(uint8_t mask)co
 	PORT 2
 ================================================================================================= */
 
+yahal::mcu::targets::msp430f5309::Gpio::Port2
+yahal::mcu::targets::msp430f5309::Gpio::Port2::instance_;
+
+
+yahal::mcu::targets::msp430f5309::Gpio::Port2&
+yahal::mcu::targets::msp430f5309::Gpio::Port2::getInstance(void)
+{
+	return instance_;
+}
+
+
 bool yahal::mcu::targets::msp430f5309::Gpio::Port2::config(Direction::Type direction,
-							   Resistor::Type resistor, uint8_t mask)
+							   Resistor::Type resistor,
+							   uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P2SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
@@ -169,8 +193,20 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port2::getOutput(uint8_t mask)co
 	PORT 3
 ================================================================================================= */
 
+yahal::mcu::targets::msp430f5309::Gpio::Port3
+yahal::mcu::targets::msp430f5309::Gpio::Port3::instance_;
+
+
+yahal::mcu::targets::msp430f5309::Gpio::Port3&
+yahal::mcu::targets::msp430f5309::Gpio::Port3::getInstance(void)
+{
+	return instance_;
+}
+
+
 bool yahal::mcu::targets::msp430f5309::Gpio::Port3::config(Direction::Type direction,
-							   Resistor::Type resistor, uint8_t mask)
+							   Resistor::Type resistor,
+							   uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P3SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
@@ -211,8 +247,20 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port3::getOutput(uint8_t mask)co
 	PORT 4
 ================================================================================================= */
 
+yahal::mcu::targets::msp430f5309::Gpio::Port4
+yahal::mcu::targets::msp430f5309::Gpio::Port4::instance_;
+
+
+yahal::mcu::targets::msp430f5309::Gpio::Port4&
+yahal::mcu::targets::msp430f5309::Gpio::Port4::getInstance(void)
+{
+	return instance_;
+}
+
+
 bool yahal::mcu::targets::msp430f5309::Gpio::Port4::config(Direction::Type direction,
-							   Resistor::Type resistor, uint8_t mask)
+							   Resistor::Type resistor,
+							   uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P4SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
@@ -253,8 +301,20 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port4::getOutput(uint8_t mask)co
 	PORT 5
 ================================================================================================= */
 
+yahal::mcu::targets::msp430f5309::Gpio::Port5
+yahal::mcu::targets::msp430f5309::Gpio::Port5::instance_;
+
+
+yahal::mcu::targets::msp430f5309::Gpio::Port5&
+yahal::mcu::targets::msp430f5309::Gpio::Port5::getInstance(void)
+{
+	return instance_;
+}
+
+
 bool yahal::mcu::targets::msp430f5309::Gpio::Port5::config(Direction::Type direction,
-							   Resistor::Type resistor, uint8_t mask)
+							   Resistor::Type resistor,
+							   uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P5SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
@@ -295,8 +355,20 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port5::getOutput(uint8_t mask)co
 	PORT 6
 ================================================================================================= */
 
+yahal::mcu::targets::msp430f5309::Gpio::Port6
+yahal::mcu::targets::msp430f5309::Gpio::Port6::instance_;
+
+
+yahal::mcu::targets::msp430f5309::Gpio::Port6&
+yahal::mcu::targets::msp430f5309::Gpio::Port6::getInstance(void)
+{
+	return instance_;
+}
+
+
 bool yahal::mcu::targets::msp430f5309::Gpio::Port6::config(Direction::Type direction,
-							   Resistor::Type resistor, uint8_t mask)
+							   Resistor::Type resistor,
+							   uint8_t mask)
 {
 	// WRITE CONFIGURATION
 	P6SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT

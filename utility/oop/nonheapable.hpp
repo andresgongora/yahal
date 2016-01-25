@@ -48,18 +48,16 @@ namespace yahal{ namespace utility{ namespace oop{
  **************************************************************************************************/
 class yahal::utility::oop::NonHeapable
 {
-protected:			// Allow only derived classes
-				NonHeapable()	{}
-				~NonHeapable()	{}
-
+protected:
+				NonHeapable(void)			{}
 
 private:
-/*	static void* operator new(std::size_t);
-	static void* operator new(std::size_t,void*);
-	static void* operator new[](std::size_t);
-	static void* operator new[](std::size_t,void*);
-	static void  operator delete(void*);
-	static void  operator delete[](void*);*/
+	inline static void*	operator new(std::size_t)		{return static_cast<void*>(NULL);}
+	inline static void*	operator new(std::size_t,void*)		{return static_cast<void*>(NULL);}
+	inline static void*	operator new[](std::size_t)		{return static_cast<void*>(NULL);}
+	inline static void*	operator new[](std::size_t,void*)	{return static_cast<void*>(NULL);}
+	inline static void 	operator delete(void*)			{}
+	inline static void 	operator delete[](void*)		{}
 };
 
 

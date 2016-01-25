@@ -173,7 +173,7 @@ const yahal::mcu::targets::msp430f5309::TimerA0::Configuration timer_a0 = {
 	IRQ
 ================================================================================================= */
 
-#define	YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE	true
+#define	YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE	false
 
 
 

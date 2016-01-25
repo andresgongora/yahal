@@ -43,14 +43,12 @@ namespace yahal{ namespace utility{ namespace oop{
  **************************************************************************************************/
 class yahal::utility::oop::NonCopyable
 {
-protected:			// Allow only derived classes
-				NonCopyable()	{}
-				~NonCopyable()	{}
+protected:
+				NonCopyable(void) {}
 
-
-private:			// PROHIBIT COPY
+private:
 	explicit		NonCopyable(const NonCopyable&);
-				NonCopyable& operator=(const NonCopyable&);
+	NonCopyable& 		operator=(const NonCopyable&);
 };
 
 

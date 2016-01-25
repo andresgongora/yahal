@@ -133,8 +133,8 @@ public:
 
 private:
 				// PRIVATE VARIABLES
-	yahal::mcu::modules::Gpio::Port&	port_;
-	const uint8_t				pin_number_;
+	Gpio::Port&		port_;
+	const uint8_t		pin_number_;
 };
 
 

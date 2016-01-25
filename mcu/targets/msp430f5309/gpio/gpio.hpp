@@ -57,78 +57,108 @@ public:
 				class Port1 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
+					static Port1&	getInstance(void);
+					virtual bool	config(	Direction::Type direction = Direction::INPUT,
+								Resistor::Type resistor = Resistor::DISABLED,
+								uint8_t mask = 0xFF);
 
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
+					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual uint8_t	get(uint8_t mask=0xFF)const;
+					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
+
+				private:
+							Port1(void){}	///< Singleton
+					static Port1	instance_;
 				};
 
 
 				class Port2 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
+					static Port2&	getInstance(void);
+					virtual bool	config(	Direction::Type direction = Direction::INPUT,
+								Resistor::Type resistor = Resistor::DISABLED,
+								uint8_t mask = 0xFF);
 
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
+					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual uint8_t	get(uint8_t mask=0xFF)const;
+					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
+
+				private:
+							Port2(void){}	///< Singleton
+					static Port2	instance_;
 				};
 
 
 				class Port3 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
+					static Port3&	getInstance(void);
+					virtual bool	config(	Direction::Type direction = Direction::INPUT,
+								Resistor::Type resistor = Resistor::DISABLED,
+								uint8_t mask = 0xFF);
 
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
+					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual uint8_t	get(uint8_t mask=0xFF)const;
+					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
+
+				private:
+							Port3(void){}	///< Singleton
+					static Port3	instance_;
 				};
 
 
 				class Port4 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
+					static Port4&	getInstance(void);
+					virtual bool	config(	Direction::Type direction = Direction::INPUT,
+								Resistor::Type resistor = Resistor::DISABLED,
+								uint8_t mask = 0xFF);
 
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
+					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual uint8_t	get(uint8_t mask=0xFF)const;
+					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
+
+				private:
+							Port4(void){}	///< Singleton
+					static Port4	instance_;
 				};
 
 
 				class Port5 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
+					static Port5&	getInstance(void);
+					virtual bool	config(	Direction::Type direction = Direction::INPUT,
+								Resistor::Type resistor = Resistor::DISABLED,
+								uint8_t mask = 0xFF);
 
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
+					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual uint8_t	get(uint8_t mask=0xFF)const;
+					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
+
+				private:
+							Port5(void){}	///< Singleton
+					static Port5	instance_;
 				};
 
 
 				class Port6 : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
-					bool	config(	Direction::Type direction = Direction::INPUT,
-							Resistor::Type resistor = Resistor::DISABLED,
-							uint8_t mask = 0xFF);
+					static Port6&	getInstance(void);
+					virtual bool	config(	Direction::Type direction = Direction::INPUT,
+								Resistor::Type resistor = Resistor::DISABLED,
+								uint8_t mask = 0xFF);
 
-					void	set(uint8_t value, uint8_t mask=0xFF);
-					uint8_t	get(uint8_t mask=0xFF)const;
-					uint8_t	getOutput(uint8_t mask=0xFF)const;
+					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual uint8_t	get(uint8_t mask=0xFF)const;
+					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
+
+				private:
+							Port6(void){}	///< Singleton
+					static Port6	instance_;
 				};
 
 				// -----------------------------------------------------------------
@@ -140,16 +170,7 @@ public:
 
 private:
 				Gpio(void){}			///< Singleton
-
-	static Gpio		instance_;
-	const Configuration&	configuration_;
-
- 	Port1			port1_;
- 	Port2			port2_;
- 	Port3			port3_;
- 	Port4			port4_;
- 	Port5			port5_;
- 	Port6			port6_;
+ 	static Gpio		instance_;
 };
 
 
