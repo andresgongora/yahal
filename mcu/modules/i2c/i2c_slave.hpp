@@ -22,10 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
-
 #ifndef __YAHAL_MCU_MODULES_I2C_SLAVE_HPP_INCLUDED__
 #define __YAHAL_MCU_MODULES_I2C_SLAVE_HPP_INCLUDED__
 
@@ -34,7 +30,6 @@
 #include <stdint.h>
 #include <cstddef>
 #include "i2c_common.hpp"
-#include "../../../utility/oop/noncopyable.hpp"
 
 
 

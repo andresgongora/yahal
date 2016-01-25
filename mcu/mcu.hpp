@@ -56,7 +56,7 @@
 
 
 
-
+#if false ////
 
 namespace yahal{ namespace mcu{
 
@@ -71,20 +71,20 @@ bool init(void)
 
 }}
 
+#endif
 
 
 
 
 
-
-
-
-
-#if false
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Mcu;
 }}
+
+
+extern yahal::mcu::Mcu& mcu;
+
 
 
 
@@ -93,16 +93,28 @@ namespace yahal{ namespace mcu{
  **************************************************************************************************/
 
 class yahal::mcu::Mcu :
-	public yahal::mcu::Target,
-	public yahal::mcu::HWEmulation
+	public yahal::mcu::Target
 {
 public:
-	void			init(void){
-					Target::init();
-					HWEmulation::init();
+	bool			init(void){
+					bool success = true;
+
+					success &= Target::init();
+					//HWEmulation::init();
+
+					return success;
 				}
+
+	static Mcu&		getInstance(void);
+
+private:
+				Mcu(void) {}
+	static Mcu		instance_;
+
 };
-#endif
+
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif	// __YAHAL_MCU_HPP_INCLUDED__

@@ -22,9 +22,6 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-
 #ifndef __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
 #define __YAHAL_MCU_M430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
 

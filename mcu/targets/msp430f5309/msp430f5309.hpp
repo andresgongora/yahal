@@ -31,7 +31,7 @@
 #include "../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../config/targets/msp430f5309_config.hpp"
+#include "../../config/targets/msp430f5309/msp430f5309_config.hpp"
 
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
@@ -43,7 +43,7 @@
 #include "irq/irq_handler.hpp"
 
 
-
+#if false
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 
@@ -90,7 +90,7 @@ namespace yahal{ namespace mcu{
 
 // IRQ
 #if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
-	extern yahal::mcu::targets::msp430f5309::IrqHandler& Irq;
+	extern yahal::mcu::targets::msp430f5309::IrqHandler& irq;
 #endif
 
 
@@ -107,6 +107,7 @@ namespace targets {
 
 }} // yahal::mcu
 /* ---------------------------------------------------------------------------------------------- */
+#endif
 
 
 
@@ -129,7 +130,6 @@ namespace targets {
 
 
 
-#if false
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Target;
@@ -147,43 +147,56 @@ protected:
 
 
 	/// Initialize all modules.
-	void init(void);
+	bool init(void);
 
 
 public:
 	// WDT
 	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-		static yahal::mcu::targets::msp430f5309::Wdt wdt;
+		yahal::mcu::targets::msp430f5309::Wdt& wdt;
 	#endif
+
 
 	// CLK
 	#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
-		static yahal::mcu::targets::msp430f5309::Clk clk;
+		yahal::mcu::targets::msp430f5309::Clk& clk;
 	#endif
+
 
 	// GPIO
 	#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
-		static yahal::mcu::targets::msp430f5309::Gpio gpio;
+		yahal::mcu::targets::msp430f5309::Gpio& gpio;
 	#endif
+
 
 	// USCI_B1
-	#if	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
-		static yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave
-		YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+		#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
+			yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+		#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
+			yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+		#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
+			yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster& YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+		#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SPI
+			yahal::mcu::targets::msp430f5309::UsciB1::Spi YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+		#else
+			#error "USCI_B1_MODE is not valid"
+		#endif
+	#endif
 
-	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
-		static yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster
-		YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
 
-	#elif	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
-	&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
-		static yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster
-		YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
+	// TIMER_A0
+	#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+	//	yahal::mcu::targets::msp430f5309::TimerA0 timer_a0;
+	#endif
+
+
+	// IRQ
+	#if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
+		yahal::mcu::targets::msp430f5309::IrqHandler& irq;
 	#endif
 };
-#endif
+
 
 
 

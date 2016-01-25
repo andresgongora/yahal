@@ -22,34 +22,17 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__
-#define __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__
+#include "mcu.hpp"
 
+yahal::mcu::Mcu yahal::mcu::Mcu::instance_;
 
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace utility{ namespace oop{
-	class NonCopyable;
-}}}
-
-
-
-/***********************************************************************************************//**
- * Non Copyable base class.
- * Each class that inherits from this class can not be copied.
- * Its constructor and asignment operator are protected and private respectively. *
- **************************************************************************************************/
-class yahal::utility::oop::NonCopyable
+yahal::mcu::Mcu& yahal::mcu::Mcu::getInstance()
 {
-protected:
-				NonCopyable(void) {}
+	return instance_;
+}
 
-private:
-	explicit		NonCopyable(const NonCopyable&);
-	NonCopyable& 		operator=(const NonCopyable&);
-};
 
+yahal::mcu::Mcu& mcu = yahal::mcu::Mcu::getInstance();
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__

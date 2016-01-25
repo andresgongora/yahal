@@ -22,56 +22,29 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_M430F5309_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_M430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
+#define __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/mcu_config.hpp"
+#include "../../mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../config/targets/msp430f5309/msp430f5309_config.hpp"
-#include "../../../modules/irq/irq_handler.hpp"
-#include "../usci_b1/usci_b1.hpp"
 
+#define	YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE		false
 
+#define	YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE		false
 
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class IrqHandler;
-}}}}
+#define	YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE		false
 
+#define	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE	false
 
+#define	YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE	false
 
-/***********************************************************************************************//**
- * @brief
- **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IrqHandler : public yahal::mcu::modules::details::IrqHandler
-{
-public:
-	static IrqHandler&	getInstance(void);
-
-	virtual void		enableGlobalInterrupts(void);
-	virtual void		disableGlobalInterrupts(void);
-
-
-
-private:
-				IrqHandler(void) {};		///< Singleton
-	static IrqHandler	instance_;
-
-
-	// USCI_B1
-	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
-		static void		USCI_B1_ISR(void);
-		static UsciB1&		handler_usci_b1_;
-	#endif
-};
-
-
+#define	YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE		true
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif 	// __YAHAL_MCU_M430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__

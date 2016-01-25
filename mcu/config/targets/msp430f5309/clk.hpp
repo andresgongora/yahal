@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
-#define __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_CLK_HPP_INCLUDED__
+#define __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_CLK_HPP_INCLUDED__
 
 
 
@@ -50,7 +50,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 	CLK
 ================================================================================================= */
 
-#define	YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE		true
+#define	YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE		false
 
 const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 /* Frequency	*/ msp430f5309::Clk::Frequency::DCO_8MHz,
@@ -63,7 +63,7 @@ const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
 	GPIO
 ================================================================================================= */
 
-#define	YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE		true
+#define	YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE		false
 
 const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 /* Nothing	*/
@@ -75,7 +75,7 @@ const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 	WDT
 ================================================================================================= */
 
-#define	YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE		true
+#define	YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE		false
 
 const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 /* Nothing	*/
@@ -187,4 +187,4 @@ const yahal::mcu::targets::msp430f5309::TimerA0::Configuration timer_a0 = {
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif // __YAHAL_MCU_TARGETS_MSP430F5309_CONFIGHPP_INCLUDED__
+#endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_CLK_HPP_INCLUDED__
