@@ -31,6 +31,9 @@
 #include "../../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
+
 #include <stdint.h>
 #include <cstddef>
 #include "../../../../modules/i2c/i2c_multimaster.hpp"
@@ -54,13 +57,13 @@ public:
 
 				// -----------------------------------------------------------------
 
-
 public:
 	static I2CMultimaster&	getInstance(void);
-	bool			init(const Configuration& configuration);
+	bool			init(void);
+
 
 private:
-				I2CMultimaster() {}	///< Singleton
+				I2CMultimaster(const Configuration& configuration);	///< Singleton
 
 
 				// MODULE IMPLEMENTATION
@@ -78,10 +81,12 @@ private:
 
 
 	static I2CMultimaster	instance_;
+	const Configuration&	configuration_;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif // YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_USCIB1_I2CMULTIMASTER_HPP_INCLUDED__

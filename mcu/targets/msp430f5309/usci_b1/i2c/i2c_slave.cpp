@@ -25,6 +25,10 @@
 #include "i2c_slave.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
+
+#include "../../../../config/targets/msp430f5309/usci_b1.hpp"
 #include <msp430f5309.h>
 
 
@@ -41,7 +45,7 @@ void yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::initHW(void)
 	UCB1CTL1 |= UCSWRST;				///< Enable SW reset
 
 	P4SEL |= 0x06;					///< Config GPIO pins
-	UCB1CTL1 = UCSSEL__SMCLK + UCSWRST;		///< SMCLK clock source (keep SW reset)
+	UCB1CTL1 = UCSSEL__SMUSCI_B1 + UCSWRST;		///< SMUSCI_B1 clock source (keep SW reset)
 	UCB1CTL0 = UCMODE_3 + UCSYNC;			///< I2C mode + syncrhonous
 	UCB1I2COA = configuration_.ownAddress;		///< Set own slave address
 	UCB1CTL1 &= ~UCSWRST;				///< Clear SW Reset
@@ -99,4 +103,5 @@ void yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::isr(UsciB1::Irq::Type i
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif // YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

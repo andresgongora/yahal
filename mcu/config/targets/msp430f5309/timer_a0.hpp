@@ -22,29 +22,35 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
-#define __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A0_HPP_INCLUDED__
+#define __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A0_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../mcu_config.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+#include "config.hpp"
+#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+
+#include "../../../targets/msp430f5309/timer_a0/timer_a0.hpp"
 
 
-#define	YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE		false
 
-#define	YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE		false
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace config{
+/* ---------------------------------------------------------------------------------------------- */
 
-#define	YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE		false
 
-#define	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE	false
+const yahal::mcu::targets::msp430f5309::TimerA0::Configuration timer_a0 = {
+/* clock_source		*/ TimerA0::ClockSource::VLP,
+/* ccr0_output_enable	*/ false,
+/* ccr1_output_enable	*/ false,
+/* ccr2_output_enable	*/ false,
+/* ccr3_output_enable	*/ false,
+/* ccr4_output_enable	*/ false,
+};
 
-#define	YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE	false
-
-#define	YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE		true
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
+}}}}}	// namespace yahal::mcu::targets::msp430f5309::config
+#endif // YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+#endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A0_HPP_INCLUDED__

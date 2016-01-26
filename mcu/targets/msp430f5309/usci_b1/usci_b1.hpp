@@ -34,7 +34,10 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-//#include "../irq/irq_handler.hpp"
+#include "../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+
+
 
 
 
@@ -53,10 +56,17 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 class yahal::mcu::targets::msp430f5309::UsciB1
 {
 public:
-				class I2CMaster;
-				class I2CMultimaster;
-				class I2CSlave;
-				class Spi;
+	#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
+		class I2CSlave;
+	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
+		class I2CMaster;
+	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
+		class I2CMultimaster;
+	#elif  YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SPI
+		class Spi;
+	#else
+		#error "USCI_B1_MODE is not valid"
+	#endif
 
 protected:
 				struct Irq { enum Type {
@@ -81,6 +91,7 @@ protected:
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif	// YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
 #endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif	// __YAHAL_MCU_MSP430F5309_USCI_B1_HPP_INCLUDED__
 

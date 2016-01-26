@@ -31,10 +31,13 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+
 #include <stdint.h>
 #include <cstddef>
-#include "../../../modules/timer/timer.hpp"
-#include "../../../modules/output_compare/output_compare.hpp"
+//#include "../../../modules/timer/timer.hpp"
+//#include "../../../modules/output_compare/output_compare.hpp"
 
 
 
@@ -48,8 +51,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::TimerA0 :
-	public yahal::mcu::modules::Timer
+class yahal::mcu::targets::msp430f5309::TimerA0
 {
 public:
 				struct ClockSource{ enum Type{
@@ -76,12 +78,6 @@ public:
 				};
 
 				struct Irq { enum Type {
-					I2C_START,
-					I2C_STOP,
-					I2C_TX_BUFFER_EMPTY,
-					I2C_RX_BUFFER_FULL,
-					I2C_ARBITRATION_LOST,
-					I2C_NACK,
 				};};
 
 
@@ -110,85 +106,96 @@ public:
 
 				};
 
-
-				// CONSTRUCTOR
-				TimerA0(const Configuration& configuration);
-
-	Ccr&			ccr(std::size_t module);
-
-
-
-public:				// INITIALIZATION
-	virtual bool		init(void);
-	virtual void		set(std::size_t value);
-	virtual std::size_t	get(void) const;
-	virtual void		reset(void) const;
-	void			setMode(Mode::Type mode);
-
-
-
-
-
+				// -----------------------------------------------------------------
 private:
 				class Ccr0 : public Ccr
 				{
 				public:
-					void setOutput(bool b);
-					bool getOutput(void);
-					void setMode(Mode::Type mode);
+					static Ccr0&	getInstance(void);
+					virtual void	setOutput(bool b);
+					virtual bool	getOutput(void);
+					virtual void	setMode(Mode::Type mode);
 
+				private:
+							Ccr0(void);	///< Singleton
+					static Ccr0 	instance_;
 				};
 
 				class Ccr1 : public Ccr
 				{
 				public:
-					void setOutput(bool b);
-					bool getOutput(void);
-					void setMode(Mode::Type mode);
+					static Ccr1&	getInstance(void);
+					virtual void	setOutput(bool b);
+					virtual bool	getOutput(void);
+					virtual void	setMode(Mode::Type mode);
 
+				private:
+							Ccr1(void);	///< Singleton
+					static Ccr1 	instance_;
 				};
 
 				class Ccr2 : public Ccr
 				{
 				public:
-					void setOutput(bool b);
-					bool getOutput(void);
-					void setMode(Mode::Type mode);
+					static Ccr2&	getInstance(void);
+					virtual void	setOutput(bool b);
+					virtual bool	getOutput(void);
+					virtual void	setMode(Mode::Type mode);
 
+				private:
+							Ccr2(void);	///< Singleton
+					static Ccr2 	instance_;
 				};
 
 				class Ccr3 : public Ccr
 				{
 				public:
-					void setOutput(bool b);
-					bool getOutput(void);
-					void setMode(Mode::Type mode);
+					static Ccr3&	getInstance(void);
+					virtual void	setOutput(bool b);
+					virtual bool	getOutput(void);
+					virtual void	setMode(Mode::Type mode);
 
+				private:
+							Ccr3(void);	///< Singleton
+					static Ccr3 	instance_;
 				};
 
 				class Ccr4 : public Ccr
 				{
 				public:
-					void setOutput(bool b);
-					bool getOutput(void);
-					void setMode(Mode::Type mode);
+					static Ccr4&	getInstance(void);
+					virtual void	setOutput(bool b);
+					virtual bool	getOutput(void);
+					virtual void	setMode(Mode::Type mode);
 
+				private:
+							Ccr4(void);	///< Singleton
+					static Ccr4 	instance_;
 				};
 
+				// -----------------------------------------------------------------
+public:
+	static TimerA0&		getInstance(void);
+	bool			init(void);
+
+	Ccr&			ccr(std::size_t module);
+
+	void			set(std::size_t value);
+	std::size_t		get(void) const;
+	void			reset(void) const;
+	void			setMode(Mode::Type mode);
 
 
+private:
+				TimerA0(const Configuration& configuration);	///< Singleton
 
-				// PRIVATE VARIABLES
+	static TimerA0		instance_;
 	const Configuration&	configuration_;
-	Ccr0			ccr0_;
-	Ccr1			ccr1_;
-	Ccr2			ccr2_;
-	Ccr3			ccr3_;
-	Ccr4			ccr4_;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif // YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_TIMER_A0_HPP_INCLUDED__

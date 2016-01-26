@@ -43,7 +43,7 @@
 #include "irq/irq_handler.hpp"
 
 
-#if false
+
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 
@@ -83,7 +83,7 @@ namespace yahal{ namespace mcu{
 
 // TIMER_A0
 #if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
-//	extern yahal::mcu::targets::msp430f5309::TimerA0 timer_a0;
+	extern yahal::mcu::targets::msp430f5309::TimerA0& timer_a0;
 #endif
 
 
@@ -100,41 +100,17 @@ namespace targets {
 
 
 
-
-
-
-
-
 }} // yahal::mcu
+
+
+
+
 /* ---------------------------------------------------------------------------------------------- */
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#if false ////
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Target;
 }}
-
 
 
 /***********************************************************************************************//**
@@ -196,10 +172,7 @@ public:
 		yahal::mcu::targets::msp430f5309::IrqHandler& irq;
 	#endif
 };
-
-
-
-
+#endif
 
 
 /* ---------------------------------------------------------------------------------------------- */

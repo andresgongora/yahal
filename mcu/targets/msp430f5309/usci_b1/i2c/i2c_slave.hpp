@@ -31,6 +31,9 @@
 #include "../../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
+
 #include <stdint.h>
 #include <cstddef>
 #include "../../../../modules/i2c/i2c_slave.hpp"
@@ -78,5 +81,6 @@ private:			// INITIALIZATION
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif	// __YAHAL_MCU_MSP430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__
+#endif // YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // __YAHAL_MCU_MSP430F5309_USCIB1_I2CSLAVE_HPP_INCLUDED__

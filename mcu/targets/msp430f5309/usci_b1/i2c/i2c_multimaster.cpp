@@ -25,13 +25,17 @@
 #include "i2c_multimaster.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
+
+#include "../../../../config/targets/msp430f5309/usci_b1.hpp"
 #include <msp430f5309.h>
 
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster
-yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::instance_;
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster	\
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::instance_(yahal::mcu::targets::msp430f5309::config::usci_b1);
 
 yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster&
 yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::getInstance(void)
@@ -43,15 +47,21 @@ yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::getInstance(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-bool yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::init(const Configuration& configuration)
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::I2CMultimaster(const Configuration& configuration) :
+	configuration_(configuration)
+{}
+
+
+
+bool yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::init(void)
 {
 	UCB1CTL1 |= UCSWRST;				///< Enable SW reset while we configure the module
 	P4SEL |= BIT1 + BIT2;				///< Assign I2C pins to USCI_B0
 
 	UCB1CTL0 = UCMST + UCMODE_3 + UCSYNC + UCMM;	///< I2C Master, synchronous mode, multimaster
 	UCB1CTL1 = UCSSEL__SMCLK + UCSWRST + UCTR;	///< Use SMCLK
-	UCB1BRW = configuration.baud_rate_prescale;
-	UCB1I2COA = configuration.ownAddress + UCGCEN;	///< Enable general call
+	UCB1BRW = configuration_.baud_rate_prescale;
+	UCB1I2COA = configuration_.ownAddress + UCGCEN;	///< Enable general call
 	UCB1CTL1 &= ~UCSWRST;				///< Clear SW reset, resume operation
 
 	UCB1IE |= UCRXIE + UCTXIE + UCNACKIE + UCSTTIE + UCSTPIE;///< Enable Interrupts
@@ -171,4 +181,5 @@ void yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::isr(UsciB1::Irq::
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif // YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

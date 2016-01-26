@@ -25,6 +25,10 @@
 #include "i2c_master.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../../../../config/targets/msp430f5309/config.hpp"
+#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
+
+#include "../../../../config/targets/msp430f5309/usci_b1.hpp"
 #include <msp430f5309.h>
 
 
@@ -45,7 +49,7 @@ void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::initHW(void)
 	P4SEL |= BIT1 + BIT2;				///< Assign I2C pins to USCI_B0
 
 	UCB1CTL0 = UCMST | UCMODE_3 | UCSYNC;		///< I2C Master, synchronous mode
-	UCB1CTL1 = UCSSEL__SMCLK | UCSWRST | UCTR;	///< Use SMCLK
+	UCB1CTL1 = UCSSEL__SMUSCI_B1 | UCSWRST | UCTR;	///< Use SMUSCI_B1
 	UCB1BRW = configuration_.baud_rate_prescale;
 
 	UCB1CTL1 &= ~UCSWRST;				///< Clear SW reset, resume operation
@@ -123,4 +127,5 @@ void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::isr(UsciB1::Irq::Type 
 }
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif // YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

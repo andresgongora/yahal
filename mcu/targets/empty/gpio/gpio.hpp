@@ -50,7 +50,7 @@ public:
 				public:
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
 								Resistor::Type resistor = Resistor::DISABLED,
-								uint8_t mask = 0xFF) {}
+								uint8_t mask = 0xFF) {return true;}
 
 					virtual void	set(uint8_t value, uint8_t mask=0xFF) {}
 					virtual uint8_t	get(uint8_t mask=0xFF)const {return false;}
@@ -60,7 +60,6 @@ public:
 
 
 	virtual Port& 		port(uint8_t portNumber) {return empty_port;}
-
 
 private:
 	EmptyPort		empty_port;

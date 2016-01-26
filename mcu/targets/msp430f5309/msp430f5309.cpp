@@ -28,8 +28,17 @@
 #include "msp430f5309.hpp"
 #include "../../config/targets/msp430f5309/config.hpp"
 
+#include "clk/clk.hpp"
+#include "wdt/wdt.hpp"
+#include "gpio/gpio.hpp"
+#include "usci_b1/i2c/i2c_master.hpp"
+#include "usci_b1/i2c/i2c_slave.hpp"
+#include "usci_b1/i2c/i2c_multimaster.hpp"
+#include "timer_a0/timer_a0.hpp"
+#include "irq/irq_handler.hpp"
 
-#if false
+
+
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 
@@ -67,60 +76,54 @@ namespace yahal{ namespace mcu{
 #endif
 
 
-/*
 // TIMER A0
 #if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
-	yahal::mcu::targets::msp430f5309::TimerA0 timer_a0(targets::msp430f5309::config::timer_a0);
+	yahal::mcu::targets::msp430f5309::TimerA0& timer_a0 = yahal::mcu::targets::msp430f5309::TimerA0::getInstance();
 #endif
-*/
+
 
 //IRQ
 #if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
 	yahal::mcu::targets::msp430f5309::IrqHandler& irq = yahal::mcu::targets::msp430f5309::IrqHandler::getInstance();
 #endif
 
-
-
-
 }} // yahal::mcu
+
+
+
 /* ---------------------------------------------------------------------------------------------- */
-
-
-
-
 
 bool yahal::mcu::targets::init(void)
 {
-
 	bool success = true;
 
 	// WDT
 	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
-		success &= wdt.init(yahal::mcu::targets::msp430f5309::config::wdt);
+		success &= wdt.init();
 	#endif
 
 
 	// CLK
 	#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
-		success &= clk.init(yahal::mcu::targets::msp430f5309::config::clk);
+		success &= clk.init();
 	#endif
 
 
 	// GPIO
 	#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
-		success &= gpio.init(yahal::mcu::targets::msp430f5309::config::gpio);
+		success &= gpio.init();
 	#endif
 
 
 	// USCI_B1
 	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
-		success &= YAHAL_MCU_MSP430F5309_USCI_B1_NAME.init(yahal::mcu::targets::msp430f5309::config::usci_b1);
+		success &= YAHAL_MCU_MSP430F5309_USCI_B1_NAME.init();
 	#endif
 
 
 	// TIMER A0
 	#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
-//		success &= timer_a0.init();
+		success &= timer_a0.init();
 	#endif
 
 
@@ -131,11 +134,11 @@ bool yahal::mcu::targets::init(void)
 
 	return success;
 }
-#endif
 
 
 
 
+#if false /////
 /* ---------------------------------------------------------------------------------------------- */
 yahal::mcu::Target::Target(void) :
 	// WDT
@@ -213,7 +216,7 @@ bool yahal::mcu::Target::init(void)
 
 	// USCI_B1
 	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
-		success &= YAHAL_MCU_MSP430F5309_USCI_B1_NAME.init(yahal::mcu::targets::msp430f5309::config::usci_b1);
+		success &= YAHAL_MCU_MSP430F5309_USCI_B1_NAME.init();
 	#endif
 
 
@@ -230,7 +233,7 @@ bool yahal::mcu::Target::init(void)
 
 	return success;
 }// init
-
+#endif
 
 
 /* ---------------------------------------------------------------------------------------------- */

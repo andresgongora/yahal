@@ -31,10 +31,6 @@
 #include "../../mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include <mcu/targets/msp430f5309/usci_b1/i2c/i2c_master.hpp>
-#include <mcu/targets/msp430f5309/usci_b1/i2c/i2c_slave.hpp>
-#include <mcu/targets/msp430f5309/usci_b1/i2c/i2c_multimaster.hpp>
-#include "../../../targets/msp430f5309/timer_a0/timer_a0.hpp"
 
 
 
@@ -46,38 +42,19 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 /* =================================================================================================
 	CLK
 ================================================================================================= */
-
 #define	YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE		true
-#if false
-const yahal::mcu::targets::msp430f5309::Clk::Configuration clk = {
-/* Frequency	*/ msp430f5309::Clk::Frequency::DCO_8MHz,
-/* Clock Source */ msp430f5309::Clk::ClockSource::VLP,
-};
-#endif
 
 
 /* =================================================================================================
 	GPIO
 ================================================================================================= */
-
 #define	YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE		true
-#if false
-const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
-/* Nothing	*/
-};
-#endif
 
 
 /* =================================================================================================
 	WDT
 ================================================================================================= */
-
 #define	YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE		true
-#if false
-const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
-/* Nothing	*/
-};
-#endif
 
 
 /* =================================================================================================
@@ -104,50 +81,15 @@ const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 /* ---------------------------------------------------------------------------------------------- */
 
-#define	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE	false
+#define	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE	true
 #define YAHAL_MCU_MSP430F5309_USCI_B1_MODE		YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 #define YAHAL_MCU_MSP430F5309_USCI_B1_NAME		i2c1
-
-#if false
-	// Slave
-#if	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
-&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
-	const yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave::Configuration usci_b1 = {
-	/* Own Address		*/ 0x1E,
-	};
-
-	// Master
-#elif	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
-&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
-	const yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::Configuration usci_b1 = {
-	/* baud_rate_prescale	*/ 32,
-	};
-
-	// Multimaster
-#elif	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true	\
-&&	YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
-	const yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::Configuration usci_b1 = {
-	/* Own Address		*/ 0x1E,
-	/* baud_rate_prescale	*/ 32,
-	};
-#endif
-#endif
 
 
 /* =================================================================================================
 	TIMER_A0
 ================================================================================================= */
-
-#define	YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE	false
-
-const yahal::mcu::targets::msp430f5309::TimerA0::Configuration timer_a0 = {
-/* clock_source		*/ TimerA0::ClockSource::VLP,
-/* ccr0_output_enable	*/ false,
-/* ccr1_output_enable	*/ false,
-/* ccr2_output_enable	*/ false,
-/* ccr3_output_enable	*/ false,
-/* ccr4_output_enable	*/ false,
-};
+#define	YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE	true
 
 
 

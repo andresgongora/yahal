@@ -55,9 +55,6 @@
 
 
 
-
-#if false ////
-
 namespace yahal{ namespace mcu{
 
 bool init(void)
@@ -71,27 +68,22 @@ bool init(void)
 
 }}
 
-#endif
 
 
 
 
 
+#if false ////
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Mcu;
 }}
 
-
 extern yahal::mcu::Mcu& mcu;
-
-
-
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-
 class yahal::mcu::Mcu :
 	public yahal::mcu::Target
 {
@@ -112,7 +104,7 @@ private:
 	static Mcu		instance_;
 
 };
-
+#endif
 
 
 

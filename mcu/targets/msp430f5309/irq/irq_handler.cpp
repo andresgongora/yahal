@@ -26,6 +26,10 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include <msp430f5309.h>
+#include "../usci_b1/usci_b1.hpp"
+#include "../usci_b1/i2c/i2c_slave.hpp"
+#include "../usci_b1/i2c/i2c_master.hpp"
+#include "../usci_b1/i2c/i2c_multimaster.hpp"
 
 
 
