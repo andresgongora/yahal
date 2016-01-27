@@ -40,7 +40,9 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 
 
 const yahal::mcu::targets::msp430f5309::TimerA0::Configuration timer_a0 = {
-/* clock_source		*/ TimerA0::ClockSource::VLP,
+/* clock_source		*/ TimerA0::ClockSource::SMCLK,
+/* divider		*/ TimerA0::Divider::DIVIDER_1,
+/* mode			*/ TimerA0::Mode::CONTINUOUS,
 /* ccr0_output_enable	*/ false,
 /* ccr1_output_enable	*/ false,
 /* ccr2_output_enable	*/ false,

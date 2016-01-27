@@ -58,6 +58,16 @@ yahal::mcu::targets::msp430f5309::TimerA0::TimerA0(const Configuration& configur
 
 bool yahal::mcu::targets::msp430f5309::TimerA0::init(void)
 {
+	uint16_t conf = 0;
+
+	conf |= (configuration_.clock_source << 8);	///< Select clock source
+	conf |= (configuration_.divider << 6);		///< Select clock divider
+	conf |= (configuration_.mode << 4);		///< Select mode
+	conf |= TAIE;					///< Enable IRQ
+
+	TA0CTL = conf;
+
+
 	return true;
 }
 
@@ -76,17 +86,17 @@ std::size_t yahal::mcu::targets::msp430f5309::TimerA0::get(void) const
 
 void yahal::mcu::targets::msp430f5309::TimerA0::reset(void) const
 {
-	TA0R = 0;
+	TA0CTL |= TACLR;
 }
 
-
+/* Removed. Mode is selected during init
 void yahal::mcu::targets::msp430f5309::TimerA0::setMode(Mode::Type mode)
 {
 	uint16_t aux = TA0CTL;
 	aux &= 0xFFCF;
 	aux |= (mode << 4);
 	TA0CTL = aux;
-}
+}*/
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -157,6 +167,11 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr0::setMode(Mode::Type mode)
 }
 
 
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr0::setComparator(uint16_t value)
+{
+	TA0CCR0 = value;
+}
+
 
 /* =================================================================================================
 	TIMER A0 CCR1
@@ -200,6 +215,12 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr1::setMode(Mode::Type mode)
 	aux &= 0xFF1F;
 	aux |= (mode << 5);
 	TA0CCTL1 = aux;
+}
+
+
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr1::setComparator(uint16_t value)
+{
+	TA0CCR1 = value;
 }
 
 
@@ -249,6 +270,11 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr2::setMode(Mode::Type mode)
 }
 
 
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr2::setComparator(uint16_t value)
+{
+	TA0CCR2 = value;
+}
+
 
 /* =================================================================================================
 	TIMER A0 CCR3
@@ -295,6 +321,11 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr3::setMode(Mode::Type mode)
 
 
 
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr3::setComparator(uint16_t value)
+{
+	TA0CCR3 = value;
+}
+
 
 /* =================================================================================================
 	TIMER A0 CCR4
@@ -339,6 +370,11 @@ void yahal::mcu::targets::msp430f5309::TimerA0::Ccr4::setMode(Mode::Type mode)
 	TA0CCTL4 = aux;
 }
 
+
+void yahal::mcu::targets::msp430f5309::TimerA0::Ccr4::setComparator(uint16_t value)
+{
+	TA0CCR4 = value;
+}
 
 
 

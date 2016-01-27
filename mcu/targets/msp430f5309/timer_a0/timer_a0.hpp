@@ -38,7 +38,7 @@
 #include <cstddef>
 //#include "../../../modules/timer/timer.hpp"
 //#include "../../../modules/output_compare/output_compare.hpp"
-
+#include "../../../../utility/oop/publish_subscribe.hpp"
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -51,11 +51,14 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::TimerA0
+class yahal::mcu::targets::msp430f5309::TimerA0 : public yahal::utility::oop::Publisher<int>
 {
 public:
 				struct ClockSource{ enum Type{
-					VLP,
+					TA0CLK 	= 0,
+					ACLK	= 1,
+					SMCLK	= 2,
+					INCLK	= 3
 				};};
 
 
@@ -67,14 +70,24 @@ public:
 				};};
 
 
+				struct Divider{ enum Type{
+					DIVIDER_1	= 0,
+					DIVIDER_2	= 1,
+					DIVIDER_4	= 2,
+					DIVIDER_8	= 3,
+				};};
+
+
 				struct Configuration
 				{
 					ClockSource::Type clock_source;
-					bool	ccr0_output_enable;
-					bool	ccr1_output_enable;
-					bool	ccr2_output_enable;
-					bool	ccr3_output_enable;
-					bool	ccr4_output_enable;
+					Divider::Type divider;
+					Mode::Type mode;
+					bool ccr0_output_enable : 1;
+					bool ccr1_output_enable : 1;
+					bool ccr2_output_enable : 1;
+					bool ccr3_output_enable : 1;
+					bool ccr4_output_enable : 1;
 				};
 
 				struct Irq { enum Type {
@@ -98,13 +111,18 @@ public:
 					virtual void setOutput(bool b) = 0;
 					virtual bool getOutput(void) = 0;
 					virtual void setMode(Mode::Type mode) = 0;
+					virtual void setComparator(uint16_t value) = 0;
+
+				protected:
+					OutputCompare(void) {}
 				};
 
-				class Ccr :
-					public OutputCompare
+				class Ccr : public OutputCompare
 				{
-
+				protected:
+					Ccr(void) {}
 				};
+
 
 				// -----------------------------------------------------------------
 private:
@@ -115,6 +133,7 @@ private:
 					virtual void	setOutput(bool b);
 					virtual bool	getOutput(void);
 					virtual void	setMode(Mode::Type mode);
+					virtual void	setComparator(uint16_t value);
 
 				private:
 							Ccr0(void);	///< Singleton
@@ -128,6 +147,7 @@ private:
 					virtual void	setOutput(bool b);
 					virtual bool	getOutput(void);
 					virtual void	setMode(Mode::Type mode);
+					virtual void	setComparator(uint16_t value);
 
 				private:
 							Ccr1(void);	///< Singleton
@@ -141,6 +161,7 @@ private:
 					virtual void	setOutput(bool b);
 					virtual bool	getOutput(void);
 					virtual void	setMode(Mode::Type mode);
+					virtual void	setComparator(uint16_t value);
 
 				private:
 							Ccr2(void);	///< Singleton
@@ -154,6 +175,7 @@ private:
 					virtual void	setOutput(bool b);
 					virtual bool	getOutput(void);
 					virtual void	setMode(Mode::Type mode);
+					virtual void	setComparator(uint16_t value);
 
 				private:
 							Ccr3(void);	///< Singleton
@@ -167,11 +189,15 @@ private:
 					virtual void	setOutput(bool b);
 					virtual bool	getOutput(void);
 					virtual void	setMode(Mode::Type mode);
+					virtual void	setComparator(uint16_t value);
 
 				private:
 							Ccr4(void);	///< Singleton
 					static Ccr4 	instance_;
 				};
+
+				// -----------------------------------------------------------------
+public:
 
 				// -----------------------------------------------------------------
 public:
@@ -183,7 +209,7 @@ public:
 	void			set(std::size_t value);
 	std::size_t		get(void) const;
 	void			reset(void) const;
-	void			setMode(Mode::Type mode);
+//	void			setMode(Mode::Type mode);
 
 
 private:
