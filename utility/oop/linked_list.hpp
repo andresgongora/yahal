@@ -146,7 +146,7 @@ public:
 
 					if (position >= size_) {
 						/// Try to detect this error in debug mode
-						_DEBUG_TRAP();
+						assert(false);
 
 						/// If trying to access non-existant node,
 						/// point instead to last node instead.

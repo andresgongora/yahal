@@ -35,7 +35,10 @@
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
 	template <typename T_MSG> class Publisher;
+	template <> class Publisher<void>;
+
 	template <typename T_MSG> class Subscriber;
+	template <> class Subscriber<void>;
 }}}
 
 
@@ -109,6 +112,9 @@ private:
 
 
 
+
+
+
 /***********************************************************************************************//**
  * @brief	Subscriber base class. Any derived class can subscribe to subscribers of type T_MSG.
  *
@@ -142,6 +148,64 @@ public:
 };
 
 
+
+/***********************************************************************************************//**
+ * @brief	Subscriber void specialization.
+ **************************************************************************************************/
+template <>
+class yahal::utility::oop::Subscriber<void> :
+	public yahal::utility::oop::LinkedListNode<yahal::utility::oop::Subscriber<void> >
+{
+protected:
+				Subscriber(void);
+
+private:
+	friend class		yahal::utility::oop::Publisher<void>;
+	virtual void		notify(void) = 0;
+
+public:
+	void			subscribeTo(yahal::utility::oop::Publisher<void>* p_publisher);
+};
+
+
+
+/***********************************************************************************************//**
+ * @brief	Publisher void specialization.
+ **************************************************************************************************/
+template<>
+class yahal::utility::oop::Publisher<void>
+{
+public:
+				/// Used by Subscribers to subscribe.
+	void			subscribe(yahal::utility::oop::Subscriber<void>* p_new_subscriber)
+				{
+					subscribers_.pushBack(p_new_subscriber);
+				}
+
+				/// Tublish a message to all subscribers
+	void			publish(void) const
+				{
+					std::size_t size = subscribers_.size();	///< Get number of subscribers
+					std::size_t i;
+
+					for (i = 0; i < size; i++) {
+						subscribers_[i]->notify();
+					}
+				}
+
+
+private:
+				/// Linked list of type Subscribers
+	yahal::utility::oop::LinkedList< yahal::utility::oop::Subscriber<void> > subscribers_;
+
+};
+
+
+// Not elegant, but I did this to avoid linking errors
+inline void yahal::utility::oop::Subscriber<void>::subscribeTo(yahal::utility::oop::Publisher<void>* p_publisher)
+{
+	p_publisher->subscribe(this);
+}
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif 	// __YAHAL_UTILITY_OOP_PUBLISH_SUBSCRIBE_HPP_INCLUDED__
