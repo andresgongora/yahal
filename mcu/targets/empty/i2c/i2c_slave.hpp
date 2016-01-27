@@ -22,71 +22,33 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#include "i2c_slave.hpp"
+#ifndef __YAHAL_MCU_EMPTY_I2C_SLAVE_HPP_INCLUDED__
+#define __YAHAL_MCU_EMPTY_I2C_SLAVE_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-yahal::mcu::modules::I2CSlave::I2CSlave(void) :
-	p_event_handler_(NULL)
-{}
+#include "../../../modules/i2c/i2c_slave.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
+	class I2CSlave;
+}}}}
 
-void yahal::mcu::modules::I2CSlave::setEventHandler(EventHandler* p_event_handler)
+
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::targets::empty::I2CSlave : public yahal::mcu::modules::I2CSlave
 {
-	p_event_handler_ = p_event_handler;
-}
-
-
-/* ---------------------------------------------------------------------------------------------- */
-
-void yahal::mcu::modules::I2CSlave::handleReceivedStart(void)
-{
-	if (p_event_handler_) {
-		if (isIncommingWrite()) {
-			p_event_handler_->handleStart(Direction::WRITE);
-		} else {
-			p_event_handler_->handleStart(Direction::READ);
-		}
-	}
-}
-
-
-
-void yahal::mcu::modules::I2CSlave::handleReceivedStop(void)
-{
-	if (p_event_handler_) {
-		p_event_handler_->handleStop();
-	}
-}
-
-
-
-void yahal::mcu::modules::I2CSlave::handleBufferTXEmpty(void)
-{
-	uint8_t byteToSend = 0xFF;	///< Default value 0xFF
-
-	if (p_event_handler_) {
-		byteToSend = p_event_handler_->handleTXByte();
-	}
-
-	writeBufferTX(byteToSend);	///< MASTER IS READING US -> Send next byte
-}
-
-
-
-void yahal::mcu::modules::I2CSlave::handleBufferRXFull(void)
-{
-	volatile uint8_t receivedByte = readBufferRX();	///< Read buffer in order to free it for next transmission
-
-	if (p_event_handler_) {
-		p_event_handler_->handleRXByte(receivedByte);
-	}
-}
+public:
+	virtual void		setEventHandler(EventHandler* const p_event_handler) {}
+};
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif	// __YAHAL_MCU_MSP430F5309_I2C_SLAVE_HPP_INCLUDED__

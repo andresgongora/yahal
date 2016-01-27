@@ -24,22 +24,21 @@
 
 
 
-#ifndef __YAHAL_MCU_MODULES_I2C_COMMON_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_I2C_COMMON_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_I2C_COMMON_MANAGER_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_I2C_COMMON_MANAGER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
-#include "../base_module.hpp"
-#include "../../../error/error_code.hpp"
-#include "../../../rtos/rtos.hpp"
+#include "../../../../rtos/rtos.hpp"
+#include "../i2c_common.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace modules{ namespace details{
-	class I2CCommon;
+	class I2CCommonManager;
 }}}}
 
 
@@ -48,32 +47,39 @@ namespace yahal{ namespace mcu{ namespace modules{ namespace details{
  * @brief	Base class for all I2C modules.
  * This virtual class implements all common elements to all I2C operation modes (slave/master).
  **************************************************************************************************/
-class yahal::mcu::modules::details::I2CCommon :	public yahal::error::ErrorCode
+class yahal::mcu::modules::details::I2CCommonManager :
+	virtual public yahal::mcu::modules::details::I2CCommon
 {
-public:
-				/// I/O operation direction
-				struct Direction{ enum Type{
-					READ,
-					WRITE,
-				};};
-
-
-				/// Error codes for I2C.
-				struct Error{ enum Type{
-					NO_ERROR = NO_ERROR_CODE,
-					SLAVE_ADDRESS_NOT_7_BIT,
-					SLAVE_NOT_REACHABLE,
-					SLAVE_DATA_NACK,
-					INVALID_MESSAGE_BUFFER,
-					READ_OVERFLOW_ATTEMPT,
-					TRANSMISSION_PREMATURELY_ENDED,
-				};};
-
 protected:
-				I2CCommon(void) {}
+				/// This is a base class.
+				I2CCommonManager(void) {}
+
+
+				/// Prepare module for exclusive operation.
+	void			open(void){
+					mutex_.lock();
+					setErrorCode(NO_ERROR_CODE);
+				}
+
+				/// Releases module
+	void			close(void){
+					mutex_.unlock();
+				}
+
+
+				/// Write to output buffer. Let HW handle TX.
+	virtual void		writeBufferTX(uint8_t byte) = 0;
+
+
+				/// Read input buffer.
+	virtual uint8_t		readBufferRX(void) = 0;
+
+
+private:
+	yahal::rtos::Mutex	mutex_;	///< Mutex for exclusive access to each derived module
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_MCU_MODULES_I2C_COMMON_HPP_INCLUDED__
+#endif 	// __YAHAL_MCU_MODULES_I2C_COMMON_MANAGER_HPP_INCLUDED__

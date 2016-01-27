@@ -38,7 +38,7 @@
 
 #include <stdint.h>
 #include <cstddef>
-#include "../../../../modules/i2c/i2c_master.hpp"
+#include "../../../../modules/i2c/manager/i2c_master_manager.hpp"
 #include "../../usci_b1/usci_b1.hpp"
 
 
@@ -48,7 +48,7 @@
  * @brief
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster :
-	public yahal::mcu::modules::I2CMaster,
+	public yahal::mcu::modules::I2CMasterManager,
 	public yahal::mcu::targets::msp430f5309::UsciB1
 {
 public:

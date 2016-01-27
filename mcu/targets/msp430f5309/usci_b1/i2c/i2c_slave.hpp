@@ -36,7 +36,7 @@
 
 #include <stdint.h>
 #include <cstddef>
-#include "../../../../modules/i2c/i2c_slave.hpp"
+#include "../../../../modules/i2c/manager/i2c_slave_manager.hpp"
 #include "../usci_b1.hpp"
 
 
@@ -46,7 +46,7 @@
  * @brief
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave :
-	public yahal::mcu::modules::I2CSlave,
+	public yahal::mcu::modules::I2CSlaveManager,
 	public yahal::mcu::targets::msp430f5309::UsciB1
 {
 public:

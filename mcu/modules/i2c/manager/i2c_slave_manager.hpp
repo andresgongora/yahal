@@ -22,58 +22,57 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-#ifndef __YAHAL_MCU_MODULES_I2C_COMMON_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_I2C_COMMON_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_I2C_SLAVE_MANAGER_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_I2C_SLAVE_MANAGER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
-#include "../base_module.hpp"
-#include "../../../error/error_code.hpp"
-#include "../../../rtos/rtos.hpp"
+#include "i2c_common_manager.hpp"
+#include "../i2c_slave.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{ namespace details{
-	class I2CCommon;
-}}}}
+namespace yahal{ namespace mcu{ namespace modules{
+	class I2CSlaveManager;
+}}}
 
 
 
 /***********************************************************************************************//**
- * @brief	Base class for all I2C modules.
- * This virtual class implements all common elements to all I2C operation modes (slave/master).
+ * @brief	Base class for all I2C slaves
  **************************************************************************************************/
-class yahal::mcu::modules::details::I2CCommon :	public yahal::error::ErrorCode
+class yahal::mcu::modules::I2CSlaveManager :
+	virtual public yahal::mcu::modules::details::I2CCommonManager,
+	public yahal::mcu::modules::I2CSlave
 {
 public:
-				/// I/O operation direction
-				struct Direction{ enum Type{
-					READ,
-					WRITE,
-				};};
+				/// Set pointer to class that will handle all slave events.
+	virtual void		setEventHandler(EventHandler* p_event_handler);
 
-
-				/// Error codes for I2C.
-				struct Error{ enum Type{
-					NO_ERROR = NO_ERROR_CODE,
-					SLAVE_ADDRESS_NOT_7_BIT,
-					SLAVE_NOT_REACHABLE,
-					SLAVE_DATA_NACK,
-					INVALID_MESSAGE_BUFFER,
-					READ_OVERFLOW_ATTEMPT,
-					TRANSMISSION_PREMATURELY_ENDED,
-				};};
-
+				// -----------------------------------------------------------------
 protected:
-				I2CCommon(void) {}
+				// I2C PROTOCOL -> IMPLEMENT
+	virtual bool		isIncommingWrite(void) = 0;
+
+				// -----------------------------------------------------------------
+protected:
+				I2CSlaveManager(void);
+
+
+				// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
+	virtual void		handleReceivedStart(void);	///< Attend Start IRQs
+	virtual void		handleReceivedStop(void);	///< Attend Stop IRQs
+	virtual void		handleBufferTXEmpty(void);	///< Attend next TX byte requested
+	virtual void		handleBufferRXFull(void);	///< Attend RX
+
+
+private:
+	EventHandler*		p_event_handler_;
 };
 
 
-
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_MCU_MODULES_I2C_COMMON_HPP_INCLUDED__
+#endif 	// __YAHAL_MCU_MODULES_I2C_SLAVE_MANAGER_HPP_INCLUDED__

@@ -24,39 +24,67 @@
 
 	///TODO: Use a flag to enable TX and RX, and check if thos eare enabled when calling IRQ routines. User may call them by accident
 
-#ifndef __YAHAL_MCU_MODULES_I2C_MULTIMASTER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_I2C_MULTIMASTER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_I2C_MULTIMASTER_MANAGER_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_I2C_MULTIMASTER_MANAGER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
-#include "i2c_master.hpp"
-#include "i2c_slave.hpp"
+#include "../i2c_multimaster.hpp"
+#include "i2c_master_manager.hpp"
+#include "i2c_slave_manager.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace modules{
-	class I2CMultimaster;
+	class I2CMultimasterManager;
 }}}
 
 
 
 
 /***********************************************************************************************//**
- * @brief	I2C Multimaster base class.
+ * @brief	I2C MultimasterManager base class.
  * 	Inherits from I2CMaster and I2CSlave.
  **************************************************************************************************/
-class yahal::mcu::modules::I2CMultimaster :
-	public yahal::mcu::modules::I2CMaster,
-	public yahal::mcu::modules::I2CSlave
+class yahal::mcu::modules::I2CMultimasterManager :
+	public yahal::mcu::modules::I2CMultimaster,
+	public yahal::mcu::modules::I2CMasterManager,
+	public yahal::mcu::modules::I2CSlaveManager
 {
+public:
+	bool virtual 		writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size);
+	bool virtual		write(uint8_t slaveAddress, uint8_t* data, std::size_t size);
+	bool virtual		readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size);
+	bool virtual		read(uint8_t slaveAddress, uint8_t* data, std::size_t size);
+	bool virtual		isSlavePresent(uint8_t slaveAddress);
+
+	virtual void		setEventHandler(EventHandler* const p_event_handler);
+
+				// -----------------------------------------------------------------
+
+protected:
+	virtual bool		isMaster(void) = 0;
+	virtual void		configureAsMaster(void) = 0;
+
+				// -----------------------------------------------------------------
+
 protected:			// CONTRUSTOR & DESTRUCTOR
-				I2CMultimaster(void) {}
+				I2CMultimasterManager(void);
+
+
+				// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
+	void			handleArbitrationLost(void);
+	void			handleReceivedStart(void);
+	void			handleReceivedStop(void);
+	void			handleReceivedNack(void);
+	void			handleBufferTXEmpty(void);
+	void			handleBufferRXFull(void);
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_MCU_MODULES_I2C_MULTIMASTER_HPP_INCLUDED__
+#endif 	// __YAHAL_MCU_MODULES_I2C_MULTIMASTER_MANAGER_HPP_INCLUDED__

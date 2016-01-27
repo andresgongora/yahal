@@ -28,7 +28,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
-#include "../../modules/i2c/i2c_master.hpp"
+#include "../../modules/i2c/manager/i2c_master_manager.hpp"
 #include "../../modules/gpio/gpio.hpp"
 
 
@@ -43,7 +43,7 @@ namespace yahal{ namespace mcu{ namespace hwemulation{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::hwemulation::I2CMaster : public yahal::mcu::modules::I2CMaster
+class yahal::mcu::hwemulation::I2CMaster : public yahal::mcu::modules::I2CMasterManager
 {
 public:
 	 	 	 	struct Configuration

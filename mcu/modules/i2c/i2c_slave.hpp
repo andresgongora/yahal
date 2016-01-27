@@ -47,43 +47,29 @@ namespace yahal{ namespace mcu{ namespace modules{
  **************************************************************************************************/
 class yahal::mcu::modules::I2CSlave : virtual public yahal::mcu::modules::details::I2CCommon
 {
+protected:			/// This is a base class.
+				I2CSlave(void) {}
+
 public:
 				/// This class allows derived classes to be notified of slave events.
 				class EventHandler
 				{
 				protected:
-							 EventHandler(void) {}
-					virtual		~EventHandler(void) {}
+							EventHandler(void) {}
 
 				public:
 					virtual void	handleStart(Direction::Type)= 0;/// Signal a start has been received
 					virtual void	handleStop(void) = 0; 		/// Signal a stop has been received
 					virtual void	handleRXByte(uint8_t) = 0; 	/// Delivers received byte to handler
 					virtual uint8_t	handleTXByte(void) = 0; 	/// Request next byte to be sent to handler
+
+					virtual		~EventHandler(void) {}
 				};
 
+				// -----------------------------------------------------------------
 
 				/// Set pointer to class that will handle all slave events.
-	void			setEventHandler(EventHandler* p_event_handler);
-
-
-protected:			/// This is a base class.
-				I2CSlave(void);
-
-
-				// I2C PROTOCOL -> IMPLEMENT
-	virtual bool		isIncommingWrite(void) = 0;
-
-
-				// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
-	virtual void		handleReceivedStart(void);	///< Attend Start IRQs
-	virtual void		handleReceivedStop(void);	///< Attend Stop IRQs
-	virtual void		handleBufferTXEmpty(void);	///< Attend next TX byte requested
-	virtual void		handleBufferRXFull(void);	///< Attend RX
-
-
-private:
-	EventHandler*		p_event_handler_;
+	virtual void		setEventHandler(EventHandler* const p_event_handler) = 0;
 };
 
 

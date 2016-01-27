@@ -22,58 +22,68 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
-#ifndef __YAHAL_MCU_MODULES_I2C_COMMON_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_I2C_COMMON_HPP_INCLUDED__
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include <stdint.h>
-#include <cstddef>
-#include "../base_module.hpp"
-#include "../../../error/error_code.hpp"
-#include "../../../rtos/rtos.hpp"
+#ifndef __YAHAL_MCU_EMPTY_I2C_MULTIMASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_EMPTY_I2C_MULTIMASTER_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{ namespace details{
-	class I2CCommon;
+#include "../../../modules/i2c/i2c_multimaster.hpp"
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
+	class I2CMultimaster;
 }}}}
 
 
 
 /***********************************************************************************************//**
- * @brief	Base class for all I2C modules.
- * This virtual class implements all common elements to all I2C operation modes (slave/master).
+ * @brief
  **************************************************************************************************/
-class yahal::mcu::modules::details::I2CCommon :	public yahal::error::ErrorCode
+class yahal::mcu::targets::empty::I2CMultimaster : public yahal::mcu::modules::I2CMultimaster
 {
 public:
-				/// I/O operation direction
-				struct Direction{ enum Type{
-					READ,
-					WRITE,
-				};};
+	virtual bool 		writeRegister(	uint8_t slaveAddress,
+						uint8_t registerAddress,
+						uint8_t* data,
+						std::size_t size) {
+					return true;
+				}
 
 
-				/// Error codes for I2C.
-				struct Error{ enum Type{
-					NO_ERROR = NO_ERROR_CODE,
-					SLAVE_ADDRESS_NOT_7_BIT,
-					SLAVE_NOT_REACHABLE,
-					SLAVE_DATA_NACK,
-					INVALID_MESSAGE_BUFFER,
-					READ_OVERFLOW_ATTEMPT,
-					TRANSMISSION_PREMATURELY_ENDED,
-				};};
+	virtual bool 		write(	uint8_t slaveAddress,
+					uint8_t* data,
+					std::size_t size) {
+					return true;
+				}
 
-protected:
-				I2CCommon(void) {}
+
+	virtual bool 		readRegister(	uint8_t slaveAddress,
+						uint8_t registerAddress,
+						uint8_t* data,
+						std::size_t size) {
+					return true;
+				}
+
+
+	virtual bool		read(	uint8_t slaveAddress,
+					uint8_t* data,
+					std::size_t size) {
+					return true;
+				}
+
+
+	virtual bool 		isSlavePresent(uint8_t slaveAddress) {
+					return true;
+				}
+
+
+	virtual void		setEventHandler(EventHandler* const p_event_handler) {}
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_MCU_MODULES_I2C_COMMON_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_HPP_INCLUDED__

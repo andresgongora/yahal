@@ -25,13 +25,13 @@
 
 
 
-#include "i2c_master.hpp"
+#include "i2c_master_manager.hpp"
 
 /* ============================================================================================== */
 
 /** ====================================================================================== WRITE **/
 
-bool yahal::mcu::modules::I2CMaster::writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2CMasterManager::writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -48,7 +48,7 @@ bool yahal::mcu::modules::I2CMaster::writeRegister(uint8_t slaveAddress, uint8_t
 }
 
 
-bool yahal::mcu::modules::I2CMaster::write(uint8_t slaveAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2CMasterManager::write(uint8_t slaveAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -67,7 +67,7 @@ bool yahal::mcu::modules::I2CMaster::write(uint8_t slaveAddress, uint8_t* data, 
 
 /** ======================================================================================= READ **/
 
-bool yahal::mcu::modules::I2CMaster::readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2CMasterManager::readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -84,7 +84,7 @@ bool yahal::mcu::modules::I2CMaster::readRegister(uint8_t slaveAddress, uint8_t 
 }
 
 
-bool yahal::mcu::modules::I2CMaster::read(uint8_t slaveAddress, uint8_t* data, std::size_t size)
+bool yahal::mcu::modules::I2CMasterManager::read(uint8_t slaveAddress, uint8_t* data, std::size_t size)
 {
 	this->open();
 
@@ -104,7 +104,7 @@ bool yahal::mcu::modules::I2CMaster::read(uint8_t slaveAddress, uint8_t* data, s
 /** ==================================================================================== UTILITY **/
 
 
-bool yahal::mcu::modules::I2CMaster::isSlavePresent(uint8_t slaveAddress)
+bool yahal::mcu::modules::I2CMasterManager::isSlavePresent(uint8_t slaveAddress)
 {
 	uint8_t dummy;
 	write(slaveAddress, &dummy, 0);		/* This is the least invasive way to poll a slave.
@@ -116,7 +116,7 @@ bool yahal::mcu::modules::I2CMaster::isSlavePresent(uint8_t slaveAddress)
 
 /** ======================================================================================== IRQ **/
 
-void yahal::mcu::modules::I2CMaster::handleBufferTXEmpty(void)
+void yahal::mcu::modules::I2CMasterManager::handleBufferTXEmpty(void)
 {
 	// This fuction might be entered because
 	// - Need to send register address, regardless if it is Write or Read 	-> Send RegAddr
@@ -150,7 +150,7 @@ void yahal::mcu::modules::I2CMaster::handleBufferTXEmpty(void)
 
 
 
-void yahal::mcu::modules::I2CMaster::handleBufferRXFull(void)
+void yahal::mcu::modules::I2CMasterManager::handleBufferRXFull(void)
 {
 	// STORE DATA IN CASE ANOTHER IRQ HAPPENS
 	uint8_t currentTransmission = num_transmitted_;
@@ -177,7 +177,7 @@ void yahal::mcu::modules::I2CMaster::handleBufferRXFull(void)
 
 
 
-void yahal::mcu::modules::I2CMaster::handleReceivedNack(void)
+void yahal::mcu::modules::I2CMasterManager::handleReceivedNack(void)
 {
 	if(pendingTransmissions() == num_transmissions_)
 		{setErrorCode(Error::SLAVE_NOT_REACHABLE);}
@@ -193,7 +193,7 @@ void yahal::mcu::modules::I2CMaster::handleReceivedNack(void)
 /* =================================================================================================
 ================================================================================================= */
 
-bool yahal::mcu::modules::I2CMaster::transmit(void)
+bool yahal::mcu::modules::I2CMasterManager::transmit(void)
 {
 	// CHECK FOR ERRORS
 	if     (slave_address_ & 0x80)			{setErrorCode(Error::SLAVE_ADDRESS_NOT_7_BIT);}
@@ -221,7 +221,7 @@ bool yahal::mcu::modules::I2CMaster::transmit(void)
 }
 
 
-void yahal::mcu::modules::I2CMaster::sendStart(void)
+void yahal::mcu::modules::I2CMasterManager::sendStart(void)
 {
 	// READ WITHOUT PREVIOUS WRITE
 	if(direction_ == Direction::READ && not send_register_address_pending_)
@@ -239,7 +239,7 @@ void yahal::mcu::modules::I2CMaster::sendStart(void)
 
 
 
-std::size_t yahal::mcu::modules::I2CMaster::pendingTransmissions(void)
+std::size_t yahal::mcu::modules::I2CMasterManager::pendingTransmissions(void)
 {
 	return num_transmissions_ - num_transmitted_;
 }

@@ -36,7 +36,7 @@
 
 #include <stdint.h>
 #include <cstddef>
-#include "../../../../modules/i2c/i2c_multimaster.hpp"
+#include "../../../../modules/i2c/manager/i2c_multimaster_manager.hpp"
 #include "../usci_b1.hpp"
 
 
@@ -46,7 +46,7 @@
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster :
 	public yahal::mcu::targets::msp430f5309::UsciB1,
-	public yahal::mcu::modules::I2CMultimaster
+	public yahal::mcu::modules::I2CMultimasterManager
 {
 public:
 				struct Configuration
@@ -54,6 +54,18 @@ public:
 					uint8_t ownAddress;
 					std::size_t baud_rate_prescale;
 				};
+
+				// -----------------------------------------------------------------
+private:
+				// MODULE IMPLEMENTATION
+	virtual void		start(uint8_t slaveAddress, Direction::Type direction);
+	virtual void		stop(void);
+	virtual void		writeBufferTX(uint8_t byte);
+	virtual uint8_t		readBufferRX(void);
+	virtual void		awaitTransmissionEnd(void);
+	virtual bool		isIncommingWrite(void);
+	virtual bool		isMaster(void);
+	virtual void		configureAsMaster(void);
 
 				// -----------------------------------------------------------------
 
@@ -64,17 +76,6 @@ public:
 
 private:
 				I2CMultimaster(const Configuration& configuration);	///< Singleton
-
-
-				// MODULE IMPLEMENTATION
-	virtual void		start(uint8_t slaveAddress, Direction::Type direction);
-	virtual void		stop(void);
-	virtual void		writeBufferTX(uint8_t byte);
-	virtual uint8_t		readBufferRX(void);
-	virtual void		awaitTransmissionEnd(void);
-	virtual bool		isIncommingWrite(void);
-	virtual bool		isMaster(void);
-	virtual void		configureAsMaster(void);
 
 
 	virtual void 		isr(UsciB1::Irq::Type irq);
