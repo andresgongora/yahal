@@ -12,6 +12,8 @@
 	 *
 	 *
 	 *	- Target modules are _NOT_ allowed to have public member functions or variables
+	 *
+	 *	- Añadir patilla a timer A1
 	*/
 
 

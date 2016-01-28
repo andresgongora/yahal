@@ -22,31 +22,37 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MODULES_CLK_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_CLK_HPP_INCLUDED__
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include <stdint.h>
-#include "../base_module.hpp"
+#ifndef __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
+#define __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class Clk;
-}}}
+#include "config.hpp"
+#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
+
+#include "../../../targets/msp430f5309/timer_a1/timer_a1.hpp"
 
 
 
-/***********************************************************************************************//**
- * Base class for all system clock handling modules.
- **************************************************************************************************/
-class yahal::mcu::modules::Clk
-{
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace config{
+/* ---------------------------------------------------------------------------------------------- */
+
+
+const yahal::mcu::targets::msp430f5309::TimerA1::Configuration timer_a1 = {
+/* clock_source		*/ TimerA1::ClockSource::SMCLK,
+/* divider		*/ TimerA1::Divider::DIVIDER_1,
+/* mode			*/ TimerA1::Mode::UP_CCR0,
+/* ccr0_output_enable	*/ false,
+/* ccr1_output_enable	*/ false,
+/* ccr2_output_enable	*/ false,
+/* ccr3_output_enable	*/ false,
+/* ccr4_output_enable	*/ false,
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_CLK_HPP_INCLUDED__
+}}}}}	// namespace yahal::mcu::targets::msp430f5309::config
+#endif // YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
+#endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__

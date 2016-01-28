@@ -47,9 +47,6 @@ namespace yahal{ namespace mcu{ namespace modules{
  **************************************************************************************************/
 class yahal::mcu::modules::I2CSlave : virtual public yahal::mcu::modules::details::I2CCommon
 {
-protected:			/// This is a base class.
-				I2CSlave(void) {}
-
 public:
 				/// This class allows derived classes to be notified of slave events.
 				class EventHandler

@@ -59,6 +59,52 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 }
 
 
+/* =================================================================================================
+	TIMER_A1
+================================================================================================= */
+#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
+
+	yahal::mcu::targets::msp430f5309::TimerA1&	\
+		yahal::mcu::targets::msp430f5309::IrqHandler::handler_timer_a1_ =	\
+			yahal::mcu::targets::msp430f5309::TimerA1::getInstance();
+
+	#pragma vector = TIMER1_A1_VECTOR
+	__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::TIMER1_A1_ISR(void)
+	{
+		switch (__even_in_range(TA1IV,14)) {
+		case  0: ///< Vector 00: No interrupts
+			break;
+		case  2: ///< Vector 02: CCR1
+			handler_timer_a1_.isr(msp430f5309::TimerA1::Irq::CCR1);
+			break;
+		case  4: ///< Vector 04: CCR2
+			handler_timer_a1_.isr(msp430f5309::TimerA1::Irq::CCR2);
+			break;
+		case  6: ///< Vector 06: reserved
+			break;
+		case  8: ///< Vector 08: reserved
+			break;
+		case 10: ///< Vector 10: reserved
+			break;
+		case 12: ///< Vector 12: reserved
+			break;
+		case 14: ///< Vector 14: TA1
+			handler_timer_a1_.isr(msp430f5309::TimerA1::Irq::TIMER);
+			break;
+		default:
+			break;
+		}
+	}
+
+
+	#pragma vector = TIMER1_A0_VECTOR
+	__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::TIMER1_A0_ISR(void)
+	{
+		handler_timer_a1_.isrCcr0();
+	}
+#endif
+
+
 
 /* =================================================================================================
 	USCI_B1
@@ -75,8 +121,8 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 
 	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 
-		yahal::mcu::targets::msp430f5309::UsciB1&
-		yahal::mcu::targets::msp430f5309::IrqHandler::handler_usci_b1_ =
+		yahal::mcu::targets::msp430f5309::UsciB1&	\
+		yahal::mcu::targets::msp430f5309::IrqHandler::handler_usci_b1_ =	\
 			yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::getInstance();
 
 

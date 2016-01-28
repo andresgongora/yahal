@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MSP430F5309_TIMER_A0_HPP_INCLUDED__
-#define __YAHAL_MCU_MSP430F5309_TIMER_A0_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MSP430F5309_TIMER_A1_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_TIMER_A1_HPP_INCLUDED__
 
 
 
@@ -32,18 +32,20 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
 
 #include <stdint.h>
 #include <cstddef>
-//#include "../../../modules/timer/timer.hpp"
+#include "../../../modules/timer/timer_16.hpp"
 //#include "../../../modules/output_compare/output_compare.hpp"
 #include "../../../../utility/oop/publish_subscribe.hpp"
 
 
+
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class TimerA0;
+	class TimerA1;
+	class IrqHandler;	//Forward declaration
 }}}}
 
 
@@ -51,11 +53,11 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::TimerA0 : public yahal::utility::oop::Publisher<void>
+class yahal::mcu::targets::msp430f5309::TimerA1 : public yahal::mcu::modules::Timer16
 {
 public:
 				struct ClockSource{ enum Type{
-					TA0CLK 	= 0,
+					TA1CLK 	= 0,
 					ACLK	= 1,
 					SMCLK	= 2,
 					INCLK	= 3
@@ -90,11 +92,16 @@ public:
 					bool ccr4_output_enable : 1;
 				};
 
+private:
 				struct Irq { enum Type {
+					TIMER,
+					CCR1,
+					CCR2
 				};};
 
-
-				class OutputCompare
+				// -----------------------------------------------------------------
+public:
+				class OutputCompare  : public yahal::utility::oop::Publisher<void>
 				{
 				public:
 					struct Mode{ enum Type{
@@ -126,20 +133,6 @@ public:
 
 				// -----------------------------------------------------------------
 private:
-				class Ccr0 : public Ccr
-				{
-				public:
-					static Ccr0&	getInstance(void);
-					virtual void	setOutput(bool b);
-					virtual bool	getOutput(void);
-					virtual void	setMode(Mode::Type mode);
-					virtual void	setComparator(uint16_t value);
-
-				private:
-							Ccr0(void);	///< Singleton
-					static Ccr0 	instance_;
-				};
-
 				class Ccr1 : public Ccr
 				{
 				public:
@@ -168,60 +161,34 @@ private:
 					static Ccr2 	instance_;
 				};
 
-				class Ccr3 : public Ccr
-				{
-				public:
-					static Ccr3&	getInstance(void);
-					virtual void	setOutput(bool b);
-					virtual bool	getOutput(void);
-					virtual void	setMode(Mode::Type mode);
-					virtual void	setComparator(uint16_t value);
-
-				private:
-							Ccr3(void);	///< Singleton
-					static Ccr3 	instance_;
-				};
-
-				class Ccr4 : public Ccr
-				{
-				public:
-					static Ccr4&	getInstance(void);
-					virtual void	setOutput(bool b);
-					virtual bool	getOutput(void);
-					virtual void	setMode(Mode::Type mode);
-					virtual void	setComparator(uint16_t value);
-
-				private:
-							Ccr4(void);	///< Singleton
-					static Ccr4 	instance_;
-				};
+				// -----------------------------------------------------------------
+public:
+	virtual void		setCount(uint16_t count);
+	virtual uint16_t	getCount(void) const;
+	virtual void		setPeriod(uint16_t period);
+	virtual void		reset(void);
 
 				// -----------------------------------------------------------------
 public:
+				static TimerA1&		getInstance(void);
+				bool			init(void);
 
-				// -----------------------------------------------------------------
-public:
-	static TimerA0&		getInstance(void);
-	bool			init(void);
-
-	Ccr&			ccr(std::size_t module);
-
-	void			set(std::size_t value);
-	std::size_t		get(void) const;
-	void			reset(void) const;
-//	void			setMode(Mode::Type mode);
-
+				Ccr&			ccr(std::size_t module);
 
 private:
-				TimerA0(const Configuration& configuration);	///< Singleton
+				TimerA1(const Configuration& configuration);	///< Singleton
 
-	static TimerA0		instance_;
+	friend class		yahal::mcu::targets::msp430f5309::IrqHandler;
+	void			isrCcr0(void);
+	void			isr(Irq::Type);
+
+	static TimerA1		instance_;
 	const Configuration&	configuration_;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+#endif // YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif // __YAHAL_MCU_MSP430F5309_TIMER_A0_HPP_INCLUDED__
+#endif // __YAHAL_MCU_MSP430F5309_TIMER_A1_HPP_INCLUDED__

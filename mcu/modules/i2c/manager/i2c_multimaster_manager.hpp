@@ -70,18 +70,17 @@ protected:
 	virtual void		configureAsMaster(void) = 0;
 
 				// -----------------------------------------------------------------
-
-protected:			// CONTRUSTOR & DESTRUCTOR
+protected:
 				I2CMultimasterManager(void);
 
 
 				// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
-	void			handleArbitrationLost(void);
-	void			handleReceivedStart(void);
-	void			handleReceivedStop(void);
-	void			handleReceivedNack(void);
-	void			handleBufferTXEmpty(void);
-	void			handleBufferRXFull(void);
+	virtual void		handleArbitrationLost(void);
+	virtual void		handleReceivedStart(void);
+	virtual void		handleReceivedStop(void);
+	virtual void		handleReceivedNack(void);
+	virtual void		handleBufferTXEmpty(void);
+	virtual void		handleBufferRXFull(void);
 };
 
 

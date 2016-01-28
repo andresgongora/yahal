@@ -58,12 +58,7 @@ public:
 					PULLDOWN
 				};};
 
-
-protected:
-				/// This is a base class.
-				Gpio(void) {}
-
-
+				// -----------------------------------------------------------------
 public:
 	class 			Port;
 

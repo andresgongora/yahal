@@ -22,20 +22,20 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_TIMER_16_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_TIMER_16_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
-#include <cstddef>
 #include "../base_module.hpp"
+#include "../../../utility/oop/publish_subscribe.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace modules{
-	class Timer;
+	class Timer16;
 }}}
 
 
@@ -43,20 +43,25 @@ namespace yahal{ namespace mcu{ namespace modules{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::modules::Timer :
-	public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::Timer16 :
+	public yahal::mcu::modules::details::BaseModule,
+	public yahal::utility::oop::Publisher<int>
 {
-protected:
-				Timer(void){}
-
 public:
-	virtual void		set(std::size_t value) = 0;
-	virtual std::size_t	get(void) const = 0;
-	virtual void		reset(void) const = 0;
+				struct Event { enum Type {
+					OVERFLOW,
+					PERIOD,
+				};};
 
+				// -----------------------------------------------------------------
+public:
+	virtual void		setCount(uint16_t count) = 0;
+	virtual uint16_t	getCount(void) const = 0;
+	virtual void		setPeriod(uint16_t period) = 0;
+	virtual void		reset(void) = 0;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_TIMER_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_MODULES_TIMER_16_HPP_INCLUDED__

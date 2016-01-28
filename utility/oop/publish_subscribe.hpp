@@ -201,11 +201,14 @@ private:
 };
 
 
+
 // Not elegant, but I did this to avoid linking errors
 inline void yahal::utility::oop::Subscriber<void>::subscribeTo(yahal::utility::oop::Publisher<void>* p_publisher)
 {
 	p_publisher->subscribe(this);
 }
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif 	// __YAHAL_UTILITY_OOP_PUBLISH_SUBSCRIBE_HPP_INCLUDED__

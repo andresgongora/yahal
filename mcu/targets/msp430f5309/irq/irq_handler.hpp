@@ -34,6 +34,7 @@
 #include "../../../../rtos/rtos.hpp"
 #include "../../../config/targets/msp430f5309/config.hpp"
 #include "../../../modules/irq/irq_handler.hpp"
+#include "../timer_a1/timer_a1.hpp"
 #include "../usci_b1/usci_b1.hpp"
 
 
@@ -61,6 +62,14 @@ public:
 private:
 				IrqHandler(void) {};		///< Singleton
 	static IrqHandler	instance_;
+
+
+	// TIMER_A1
+	#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
+		static void		TIMER1_A1_ISR(void);
+		static void		TIMER1_A0_ISR(void);
+		static TimerA1&		handler_timer_a1_;
+	#endif
 
 
 	// USCI_B1

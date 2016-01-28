@@ -52,8 +52,6 @@ class yahal::mcu::modules::I2CMultimaster :
 	public yahal::mcu::modules::I2CMaster,
 	public yahal::mcu::modules::I2CSlave
 {
-protected:			// CONTRUSTOR & DESTRUCTOR
-				I2CMultimaster(void) {}
 };
 
 

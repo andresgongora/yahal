@@ -67,6 +67,8 @@ bool yahal::mcu::targets::msp430f5309::TimerA0::init(void)
 
 	TA0CTL = conf;
 
+//	P2SEL =
+
 
 	return true;
 }
@@ -144,11 +146,7 @@ yahal::mcu::targets::msp430f5309::TimerA0::Ccr0::Ccr0(void)
 
 void yahal::mcu::targets::msp430f5309::TimerA0::Ccr0::setOutput(bool b)
 {
-	if (b) {
-		TA0CCTL0 |= 0x0001;
-	} else {
-		TA0CCTL0 &= ~0x0001;
-	}
+	b ? TA0CCTL0 |= 0x0001 : TA0CCTL0 &= ~0x0001;
 }
 
 
@@ -195,11 +193,7 @@ yahal::mcu::targets::msp430f5309::TimerA0::Ccr1::Ccr1(void)
 
 void yahal::mcu::targets::msp430f5309::TimerA0::Ccr1::setOutput(bool b)
 {
-	if (b) {
-		TA0CCTL1 |= 0x0001;
-	} else {
-		TA0CCTL1 &= ~0x0001;
-	}
+	b ? TA0CCTL1 |= 0x0001 : TA0CCTL1 &= ~0x0001;
 }
 
 
@@ -247,11 +241,7 @@ yahal::mcu::targets::msp430f5309::TimerA0::Ccr2::Ccr2(void)
 
 void yahal::mcu::targets::msp430f5309::TimerA0::Ccr2::setOutput(bool b)
 {
-	if (b) {
-		TA0CCTL2 |= 0x0001;
-	} else {
-		TA0CCTL2 &= ~0x0001;
-	}
+	b ? TA0CCTL2 |= 0x0001 : TA0CCTL2 &= ~0x0001;
 }
 
 
@@ -298,11 +288,7 @@ yahal::mcu::targets::msp430f5309::TimerA0::Ccr3::Ccr3(void)
 
 void yahal::mcu::targets::msp430f5309::TimerA0::Ccr3::setOutput(bool b)
 {
-	if (b) {
-		TA0CCTL3 |= 0x0001;
-	} else {
-		TA0CCTL3 &= ~0x0001;
-	}
+	b ? TA0CCTL3 |= 0x0001 : TA0CCTL3 &= ~0x0001;
 }
 
 bool yahal::mcu::targets::msp430f5309::TimerA0::Ccr3::getOutput(void)
@@ -349,11 +335,7 @@ yahal::mcu::targets::msp430f5309::TimerA0::Ccr4::Ccr4(void)
 
 void yahal::mcu::targets::msp430f5309::TimerA0::Ccr4::setOutput(bool b)
 {
-	if (b) {
-		TA0CCTL4 |= 0x0001;
-	} else {
-		TA0CCTL4 &= ~0x0001;
-	}
+	b ? TA0CCTL4 |= 0x0001 : TA0CCTL4 &= ~0x0001;
 }
 
 bool yahal::mcu::targets::msp430f5309::TimerA0::Ccr4::getOutput(void)

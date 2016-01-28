@@ -51,10 +51,6 @@ class yahal::mcu::modules::details::I2CCommonManager :
 	virtual public yahal::mcu::modules::details::I2CCommon
 {
 protected:
-				/// This is a base class.
-				I2CCommonManager(void) {}
-
-
 				/// Prepare module for exclusive operation.
 	void			open(void){
 					mutex_.lock();

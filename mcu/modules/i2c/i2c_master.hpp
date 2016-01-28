@@ -45,9 +45,6 @@ namespace yahal{ namespace mcu{ namespace modules{
  **************************************************************************************************/
 class yahal::mcu::modules::I2CMaster : virtual public yahal::mcu::modules::details::I2CCommon
 {
-protected:
-				I2CMaster(void)	{}
-
 public:
 	virtual bool 		writeRegister(	uint8_t slaveAddress,
 						uint8_t registerAddress,

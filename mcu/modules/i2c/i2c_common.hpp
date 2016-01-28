@@ -68,9 +68,6 @@ public:
 					READ_OVERFLOW_ATTEMPT,
 					TRANSMISSION_PREMATURELY_ENDED,
 				};};
-
-protected:
-				I2CCommon(void) {}
 };
 
 

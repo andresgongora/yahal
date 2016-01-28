@@ -94,10 +94,6 @@ protected:			// I2C PROTOCOL -> IMPLEMENT
 
 				// -----------------------------------------------------------------
 
-protected:			// CONSTRUCTOR & DESTRUCTOR
-				I2CMasterManager(void)	{}
-
-
 protected:			// I2C EVENTS -> TO BE USED BY IMPLEMENTATION (ISR)
 	virtual void		handleBufferTXEmpty(void);
 	virtual void		handleBufferRXFull(void);

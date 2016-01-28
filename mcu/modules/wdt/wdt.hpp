@@ -50,10 +50,7 @@ public:
 					OTHER
 				};};
 
-
-protected:
-				Wdt(void) {}
-
+				// -----------------------------------------------------------------
 public:
 				/**
 				 * Reset watch dog timer count.
