@@ -101,9 +101,8 @@ private:
 
 				// -----------------------------------------------------------------
 public:
-				class OutputCompare  :
-					public yahal::mcu::modules::Timer16::OutputCompare,
-					public yahal::utility::oop::Publisher<void>
+				class Ccr  :
+					public yahal::mcu::modules::Timer16::OutputCompare
 				{
 				public:
 					struct Mode{ enum Type{
@@ -118,14 +117,8 @@ public:
 					};};
 
 					virtual void	setOutput(bool b) = 0;
+					virtual void	setMode(Mode::Type mode) = 0;
 				};
-
-				class Ccr : public OutputCompare
-				{
-				protected:
-					Ccr(void) {}
-				};
-
 
 				// -----------------------------------------------------------------
 private:
@@ -135,7 +128,7 @@ private:
 					static Ccr1&	getInstance(void);
 					virtual bool	getOutput(void);
 					virtual void	setOutput(bool b);
-					virtual void	setMode(std::size_t mode);
+					virtual void	setMode(Mode::Type mode);
 					virtual void	setComparator(uint16_t value);
 
 				private:
@@ -149,7 +142,7 @@ private:
 					static Ccr2&	getInstance(void);
 					virtual bool	getOutput(void);
 					virtual void	setOutput(bool b);
-					virtual void	setMode(std::size_t mode);
+					virtual void	setMode(Mode::Type mode);
 					virtual void	setComparator(uint16_t value);
 
 				private:

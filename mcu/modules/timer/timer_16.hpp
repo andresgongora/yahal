@@ -61,7 +61,6 @@ protected:
 				public:
 					virtual bool 	getOutput(void) = 0;
 					virtual void 	setComparator(uint16_t value) = 0;
-					virtual void	setMode(std::size_t mode) = 0;
 				};
 
 
