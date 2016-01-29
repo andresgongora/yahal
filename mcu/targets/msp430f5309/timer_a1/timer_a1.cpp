@@ -179,11 +179,11 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getOutput(void)
 }
 
 
-void yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setMode(Mode::Type mode)
+void yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setMode(std::size_t mode)
 {
 	uint16_t aux = TA1CCTL1;
 	aux &= 0xFF1F;
-	aux |= (mode << 5);
+	aux |= ((mode & 0x07 ) << 5);
 	TA1CCTL1 = aux;
 
 	//TODO: No me gusta esto aqui: controla el puerto 2.0
@@ -231,11 +231,11 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getOutput(void)
 }
 
 
-void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setMode(Mode::Type mode)
+void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setMode(std::size_t mode)
 {
 	uint16_t aux = TA1CCTL2;
 	aux &= 0xFF1F;
-	aux |= (mode << 5);
+	aux |= ((mode & 0x07 ) << 5);
 	TA1CCTL2 = aux;
 }
 

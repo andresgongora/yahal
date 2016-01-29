@@ -54,6 +54,25 @@ public:
 				};};
 
 				// -----------------------------------------------------------------
+protected:
+				class OutputCompare :
+					public yahal::mcu::modules::details::BaseModule
+				{
+				public:
+					virtual bool 	getOutput(void) = 0;
+					virtual void 	setComparator(uint16_t value) = 0;
+					virtual void	setMode(std::size_t mode) = 0;
+				};
+
+
+
+				class InputCapture :
+					public yahal::mcu::modules::details::BaseModule
+				{
+
+				};
+
+				// -----------------------------------------------------------------
 public:
 	virtual void		setCount(uint16_t count) = 0;
 	virtual uint16_t	getCount(void) const = 0;
