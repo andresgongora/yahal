@@ -29,7 +29,6 @@
 /* ---------------------------------------------------------------------------------------------- */
 #include <cstdlib>
 #include "linked_list.hpp"
-#include "../../error/static_assert.hpp"
 
 
 
