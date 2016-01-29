@@ -29,6 +29,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 #include <cstdlib>
 #include "linked_list.hpp"
+#include "../../error/static_assert.hpp"
 
 
 
@@ -93,25 +94,14 @@ public:
 					subscribers_.pushBack(p_new_subscriber);
 				}
 
-				/// Tublish a message to all subscribers
-	void			publish(T_MSG message) const
-				{
-					std::size_t size = subscribers_.size();	///< Get number of subscribers
-					std::size_t i;
-
-					for (i = 0; i < size; i++) {
-						subscribers_[i]->notify(message);
-					}
-				}
+				/// Tublish a message to all subscribersç
+	void			publish(T_MSG message) const;
 
 
 private:
 				/// Linked list of type Subscribers
 	yahal::utility::oop::LinkedList< yahal::utility::oop::Subscriber<T_MSG> > subscribers_;
 };
-
-
-
 
 
 
@@ -136,8 +126,7 @@ private:
 
 				/// This function receives any published message.
 				/// Todo: mecahnism to detect source publisher.
-	virtual void		notify(T_MSG message) = 0;
-
+	virtual void		notify(T_MSG message) = 0;	///<TODO: Maybe pass by reference if T_MSG is an object?
 
 
 public:
@@ -149,23 +138,22 @@ public:
 
 
 
-/***********************************************************************************************//**
- * @brief	Subscriber void specialization.
- **************************************************************************************************/
-template <>
-class yahal::utility::oop::Subscriber<void> :
-	public yahal::utility::oop::LinkedListNode<yahal::utility::oop::Subscriber<void> >
+// Not elegant, but I did this to avoid linking errors
+template <typename T_MSG>
+inline void yahal::utility::oop::Publisher<T_MSG>::publish(T_MSG message) const
 {
-protected:
-				Subscriber(void);
+	std::size_t size = subscribers_.size();	///< Get number of subscribers
+	std::size_t i;
 
-private:
-	friend class		yahal::utility::oop::Publisher<void>;
-	virtual void		notify(void) = 0;
+	for (i = 0; i < size; i++) {
+		subscribers_[i]->notify(message);
+	}
+}
 
-public:
-	void			subscribeTo(yahal::utility::oop::Publisher<void>* p_publisher);
-};
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
 
 
 
@@ -183,15 +171,7 @@ public:
 				}
 
 				/// Tublish a message to all subscribers
-	void			publish(void) const
-				{
-					std::size_t size = subscribers_.size();	///< Get number of subscribers
-					std::size_t i;
-
-					for (i = 0; i < size; i++) {
-						subscribers_[i]->notify();
-					}
-				}
+	void			publish(void) const;
 
 
 private:
@@ -202,10 +182,39 @@ private:
 
 
 
-// Not elegant, but I did this to avoid linking errors
-inline void yahal::utility::oop::Subscriber<void>::subscribeTo(yahal::utility::oop::Publisher<void>* p_publisher)
+
+/***********************************************************************************************//**
+ * @brief	Subscriber void specialization.
+ **************************************************************************************************/
+template <>
+class yahal::utility::oop::Subscriber<void> :
+	public yahal::utility::oop::LinkedListNode<yahal::utility::oop::Subscriber<void> >
 {
-	p_publisher->subscribe(this);
+protected:
+				Subscriber(void);
+
+private:
+	friend class		yahal::utility::oop::Publisher<void>;
+	virtual void		notify(void) = 0;
+
+
+public:
+	void			subscribeTo(yahal::utility::oop::Publisher<void>* p_publisher) {
+					p_publisher->subscribe(this);
+				}
+};
+
+
+
+// Not elegant, but I did this to avoid linking errors
+inline void yahal::utility::oop::Publisher<void>::publish(void) const
+{
+	std::size_t size = subscribers_.size();	///< Get number of subscribers
+	std::size_t i;
+
+	for (i = 0; i < size; i++) {
+		subscribers_[i]->notify();
+	}
 }
 
 
