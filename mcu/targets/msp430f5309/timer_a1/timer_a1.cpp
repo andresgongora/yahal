@@ -134,10 +134,10 @@ void yahal::mcu::targets::msp430f5309::TimerA1::isr(Irq::Type irq)
 		publish(Event::OVERFLOW);
 		break;
 	case Irq::CCR1:
-		publish(1); //TODO
+		publish(Event::CCR1); //TODO
 		break;
 	case Irq::CCR2:
-		publish(2); //TODO
+		publish(Event::CCR2); //TODO
 		break;
 	default:
 		break;
@@ -181,14 +181,20 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getOutput(void)
 
 void yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setMode(Mode::Type mode)
 {
-	uint16_t aux = TA1CCTL1;
-	aux &= 0xFF1F;
-	aux |= (mode << 5);
-	TA1CCTL1 = aux;
+	if (mode == Mode::OFF) {
+		/// DISCONNECT GPIO (input & GPIO mode)
+		P2DIR &= ~1;
+		P2SEL &= ~1;
 
-	//TODO: No me gusta esto aqui: controla el puerto 2.0
-	P2DIR |= 1;
-	P2SEL |= 1;
+		TA1CCTL1 &= 0xFF1F;		///< SET TO MODE::OUTPUT(0)
+	} else {
+		uint16_t aux = TA1CCTL1;
+		aux &= 0xFF1F;
+		aux |= (mode << 5);
+		TA1CCTL1 = aux;
+		P2SEL |= 1;	///< Output
+		P2DIR |= 1;
+	}
 }
 
 
@@ -233,10 +239,14 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getOutput(void)
 
 void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setMode(Mode::Type mode)
 {
-	uint16_t aux = TA1CCTL2;
-	aux &= 0xFF1F;
-	aux |= (mode << 5);
-	TA1CCTL2 = aux;
+	if (mode == Mode::OFF) {
+		TA1CCTL2 &= 0xFF1F;		///< SET TO MODE::OUTPUT(0)
+	} else {
+		uint16_t aux = TA1CCTL2;
+		aux &= 0xFF1F;
+		aux |= (mode << 5);
+		TA1CCTL2 = aux;
+	}
 }
 
 

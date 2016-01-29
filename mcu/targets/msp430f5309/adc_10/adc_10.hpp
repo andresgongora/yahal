@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MSP430F5309_ADC_10_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_ADC_10_HPP_INCLUDED__
 
 
 
@@ -31,18 +31,19 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../../rtos/rtos.hpp"
 #include "../../../config/targets/msp430f5309/config.hpp"
-#include "../../../modules/irq/irq_handler.hpp"
-#include "../timer_a1/timer_a1.hpp"
-#include "../usci_b1/usci_b1.hpp"
-#include "../adc_10/adc_10.hpp"
+#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+
+#include <stdint.h>
+#include <cstddef>
+
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class IrqHandler;
+	class Adc10;
+	class IrqHandler;	//Forward declaration
 }}}}
 
 
@@ -50,46 +51,67 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IrqHandler : public yahal::mcu::modules::details::IrqHandler
+class yahal::mcu::targets::msp430f5309::Adc10
 {
 public:
-	static IrqHandler&	getInstance(void);
+				struct ClockSource{ enum Type{
+					TA1CLK 	= 0,
+					ACLK	= 1,
+					SMCLK	= 2,
+					INCLK	= 3
+				};};
 
-	virtual void		enableGlobalInterrupts(void);
-	virtual void		disableGlobalInterrupts(void);
 
+				struct Mode{ enum Type{
+					STOP		= 0,
+					UP_CCR0 	= 1,
+					CONTINUOUS	= 2,
+					UP_DOWN		= 3,
+				};};
+
+
+				struct Divider{ enum Type{
+					DIVIDER_1	= 0,
+					DIVIDER_2	= 1,
+					DIVIDER_4	= 2,
+					DIVIDER_8	= 3,
+				};};
+
+
+				struct Configuration
+				{
+				};
+
+private:
+				struct Irq { enum Type {
+				};};
+
+				// -----------------------------------------------------------------
+
+
+				// -----------------------------------------------------------------
+public:
+
+
+				// -----------------------------------------------------------------
+public:
+				static Adc10&		getInstance(void);
+				bool			init(void);
 
 
 private:
-				IrqHandler(void) {};		///< Singleton
-	static IrqHandler	instance_;
+				Adc10(const Configuration& configuration);	///< Singleton
 
+	friend class		yahal::mcu::targets::msp430f5309::IrqHandler;
+	void			isr(Irq::Type);
 
-	// ADC_10
-	#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
-		static void		ADC_10_ISR(void);
-		static Adc10&		handler_adc_10_;
-	#endif
-
-
-	// TIMER_A1
-	#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
-		static void		TIMER1_A1_ISR(void);
-		static void		TIMER1_A0_ISR(void);
-		static TimerA1&		handler_timer_a1_;
-	#endif
-
-
-	// USCI_B1
-	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
-		static void		USCI_B1_ISR(void);
-		static UsciB1&		handler_usci_b1_;
-	#endif
+	static Adc10		instance_;
+	const Configuration&	configuration_;
 };
 
 
 
-
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif 	// __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#endif // YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // __YAHAL_MCU_MSP430F5309_ADC_10_HPP_INCLUDED__

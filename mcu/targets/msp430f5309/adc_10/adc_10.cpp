@@ -22,32 +22,64 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
-#define __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
+#include <mcu/targets/msp430f5309/adc_10/adc_10.hpp>
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+
+#include <msp430f5309.h>
+#include "../../../config/targets/msp430f5309/adc_10.hpp"
+
+
+
+/* =================================================================================================
+	TIMER A1
+================================================================================================= */
+
+yahal::mcu::targets::msp430f5309::Adc10	\
+yahal::mcu::targets::msp430f5309::Adc10::instance_(yahal::mcu::targets::msp430f5309::config::adc_10);
+
+
+yahal::mcu::targets::msp430f5309::Adc10&
+yahal::mcu::targets::msp430f5309::Adc10::getInstance(void)
+{
+	return instance_;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+yahal::mcu::targets::msp430f5309::Adc10::Adc10(const Configuration& configuration) :
+	configuration_(configuration)
+{}
+
+
+
+
+bool yahal::mcu::targets::msp430f5309::Adc10::init(void)
+{
+	uint16_t conf = 0;
+
+
+	return true;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "config.hpp"
-#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
 
-#include "../../../targets/msp430f5309/timer_a1/timer_a1.hpp"
+void yahal::mcu::targets::msp430f5309::Adc10::isr(Irq::Type irq)
+{
+	switch (irq) {
 
-
-
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace config{
-/* ---------------------------------------------------------------------------------------------- */
-
-
-const yahal::mcu::targets::msp430f5309::TimerA1::Configuration timer_a1 = {
-/* clock_source		*/ TimerA1::ClockSource::SMCLK,
-/* divider		*/ TimerA1::Divider::DIVIDER_1,
-/* mode			*/ TimerA1::Mode::UP_CCR0,
-};
+	default:
+		break;
+	}
+}
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-}}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-#endif // YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
-#endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
+#endif // YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

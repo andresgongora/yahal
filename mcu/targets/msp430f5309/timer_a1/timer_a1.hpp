@@ -85,12 +85,8 @@ public:
 					ClockSource::Type clock_source;
 					Divider::Type divider;
 					Mode::Type mode;
-					bool ccr0_output_enable : 1;
-					bool ccr1_output_enable : 1;
-					bool ccr2_output_enable : 1;
-					bool ccr3_output_enable : 1;
-					bool ccr4_output_enable : 1;
 				};
+
 
 				struct Event { enum Type {
 					OVERFLOW= Timer16::Event::OVERFLOW,
@@ -110,7 +106,8 @@ private:
 				// -----------------------------------------------------------------
 public:
 				class Ccr  :
-					public yahal::mcu::modules::Timer16::OutputCompare
+					public yahal::mcu::modules::Timer16::OutputCompare,
+					public yahal::mcu::modules::Timer16::InputCapture
 				{
 				public:
 					struct Mode{ enum Type{
@@ -121,7 +118,8 @@ public:
 						TOGGLE		= 4,
 						RESET		= 5,
 						TOGGLE_SET	= 6,
-						RESET_SET	= 7
+						RESET_SET	= 7,
+						OFF		= 0xFF
 					};};
 
 					virtual void	setOutput(bool b) = 0;

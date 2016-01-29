@@ -73,9 +73,15 @@ namespace yahal{ namespace mcu{
 #endif
 
 
-// TIMER A1
+// TIMER_A1
 #if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
 	yahal::mcu::targets::msp430f5309::TimerA1& timer_a1 = yahal::mcu::targets::msp430f5309::TimerA1::getInstance();
+#endif
+
+
+// ADC_10
+#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+	yahal::mcu::targets::msp430f5309::Adc10& adc_10 = yahal::mcu::targets::msp430f5309::Adc10::getInstance();
 #endif
 
 
@@ -118,15 +124,21 @@ bool yahal::mcu::targets::init(void)
 	#endif
 
 
-	// TIMER A0
+	// TIMER_A0
 	#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
 		success &= timer_a0.init();
 	#endif
 
 
-	// TIMER A1
+	// TIMER_A1
 	#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
 		success &= timer_a1.init();
+	#endif
+
+
+	// ADC_10
+	#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+		success &= adc_10.init();
 	#endif
 
 

@@ -39,7 +39,7 @@
 #include "usci_b1/i2c/i2c_master.hpp"
 #include "usci_b1/i2c/i2c_slave.hpp"
 #include "usci_b1/i2c/i2c_multimaster.hpp"
-#include "timer_a0/timer_a0.hpp"
+#include "adc_10/adc_10.hpp"
 #include "timer_a1/timer_a1.hpp"
 #include "irq/irq_handler.hpp"
 
@@ -88,9 +88,15 @@ namespace yahal{ namespace mcu{
 #endif
 
 
-// TIMER_A0
+// TIMER_A1
 #if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
 	extern yahal::mcu::targets::msp430f5309::TimerA1& timer_a1;
+#endif
+
+
+// ADC_10
+#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+	extern yahal::mcu::targets::msp430f5309::Adc10& adc_10;
 #endif
 
 

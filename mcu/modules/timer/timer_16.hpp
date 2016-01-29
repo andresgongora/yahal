@@ -49,8 +49,8 @@ class yahal::mcu::modules::Timer16 :
 {
 public:
 				struct Event { enum Type {
-					OVERFLOW,
-					PERIOD,
+					OVERFLOW= -1,
+					PERIOD	= 0,
 				};};
 
 				// -----------------------------------------------------------------
