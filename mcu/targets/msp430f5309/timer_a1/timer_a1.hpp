@@ -92,6 +92,14 @@ public:
 					bool ccr4_output_enable : 1;
 				};
 
+				struct Event { enum Type {
+					OVERFLOW= Timer16::Event::OVERFLOW,
+					PERIOD	= Timer16::Event::PERIOD,
+					CCR1	= 1,
+					CCR2	= 2
+				};};
+
+
 private:
 				struct Irq { enum Type {
 					TIMER,
