@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "config.hpp"
-#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
 
 #include "../../../targets/msp430f5309/wdt/wdt.hpp"
 
@@ -46,5 +46,5 @@ const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
 
 /* ---------------------------------------------------------------------------------------------- */
 }}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-#endif	// YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
+#endif	// YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
 #endif	// __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_WDT_HPP_INCLUDED__

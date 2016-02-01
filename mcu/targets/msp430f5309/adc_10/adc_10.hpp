@@ -32,7 +32,7 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 
 #include <stdint.h>
 #include <cstddef>
@@ -95,8 +95,11 @@ public:
 
 				// -----------------------------------------------------------------
 public:
-				static Adc10&		getInstance(void);
-				bool			init(void);
+	static Adc10&		getInstance(void);
+	bool			init(void);
+
+	uint16_t		convert(void);
+	void			setChannel(std::size_t channel);
 
 
 private:
@@ -112,6 +115,6 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+#endif // YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_ADC_10_HPP_INCLUDED__

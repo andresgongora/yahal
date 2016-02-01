@@ -22,32 +22,57 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
-#define __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MSP430F5309_POWER_MANAGER_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_POWER_MANAGER_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "config.hpp"
-#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
+#include "../../../config/mcu_config.hpp"
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../targets/msp430f5309/timer_a1/timer_a1.hpp"
+//#include "../../../config/targets/msp430f5309/config.hpp"
+//#if YAHAL_MCU_MSP430F5309_POWER_MANAGER_ENABLED == true
+
+//#include "../../../modules/wdt/wdt.hpp"
+#include <stdint.h>
 
 
-
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace config{
 /* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+	class PowerManager;
+}}}}
 
 
-const yahal::mcu::targets::msp430f5309::TimerA1::Configuration timer_a1 = {
-/* clock_source		*/ TimerA1::ClockSource::SMCLK,
-/* divider		*/ TimerA1::Divider::DIVIDER_1,
-/* mode			*/ TimerA1::Mode::UP_CCR0,
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::targets::msp430f5309::PowerManager
+{
+public:
+				struct VCore{ enum Type{
+					MILIVOLT_3600,
+					MILIVOLT_2400,
+					MILIVOLT_2200,
+				};};
+
+
+				// -----------------------------------------------------------------
+
+public:
+	static PowerManager&	getInstance(void);	///< Get singleton instance
+
+	void			setVCoreLevel(uint8_t level);
+
+private:
+				PowerManager(void);	///< Singleton
+	static PowerManager	instance_;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-}}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-#endif // YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
-#endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
+//#endif // YAHAL_MCU_MSP430F5309_POWER_MANAGER_ENABLED == true
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // __YAHAL_MCU_MSP430F5309_POWER_MANAGER_HPP_INCLUDED__

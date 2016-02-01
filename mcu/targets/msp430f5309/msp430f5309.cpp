@@ -34,25 +34,25 @@
 namespace yahal{ namespace mcu{
 
 // WDT
-#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
 	yahal::mcu::targets::msp430f5309::Wdt& wdt = yahal::mcu::targets::msp430f5309::Wdt::getInstance();
 #endif
 
 
 // CLK
-#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 	yahal::mcu::targets::msp430f5309::Clk& clk = yahal::mcu::targets::msp430f5309::Clk::getInstance();
 #endif
 
 
 // GPIO
-#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 	yahal::mcu::targets::msp430f5309::Gpio& gpio = yahal::mcu::targets::msp430f5309::Gpio::getInstance();
 #endif
 
 
 // USCI_B1
-#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
 	#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
 		yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave YAHAL_MCU_MSP430F5309_USCI_B1_NAME(targets::msp430f5309::config::usci_b1);
 	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
@@ -68,25 +68,25 @@ namespace yahal{ namespace mcu{
 
 
 // TIMER A0
-#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_TIMER_A0_ENABLED == true
 	yahal::mcu::targets::msp430f5309::TimerA0& timer_a0 = yahal::mcu::targets::msp430f5309::TimerA0::getInstance();
 #endif
 
 
 // TIMER_A1
-#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
 	yahal::mcu::targets::msp430f5309::TimerA1& timer_a1 = yahal::mcu::targets::msp430f5309::TimerA1::getInstance();
 #endif
 
 
 // ADC_10
-#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 	yahal::mcu::targets::msp430f5309::Adc10& adc_10 = yahal::mcu::targets::msp430f5309::Adc10::getInstance();
 #endif
 
 
 //IRQ
-#if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_IRQ_ENABLED == true
 	yahal::mcu::targets::msp430f5309::IrqHandler& irq = yahal::mcu::targets::msp430f5309::IrqHandler::getInstance();
 #endif
 
@@ -101,49 +101,49 @@ bool yahal::mcu::targets::init(void)
 	bool success = true;
 
 	// WDT
-	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
 		success &= wdt.init();
 	#endif
 
 
 	// CLK
-	#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 		success &= clk.init();
 	#endif
 
 
 	// GPIO
-	#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 		success &= gpio.init();
 	#endif
 
 
 	// USCI_B1
-	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
 		success &= YAHAL_MCU_MSP430F5309_USCI_B1_NAME.init();
 	#endif
 
 
 	// TIMER_A0
-	#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_TIMER_A0_ENABLED == true
 		success &= timer_a0.init();
 	#endif
 
 
 	// TIMER_A1
-	#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
 		success &= timer_a1.init();
 	#endif
 
 
 	// ADC_10
-	#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 		success &= adc_10.init();
 	#endif
 
 
 	// IRQ
-	#if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_IRQ_ENABLED == true
 		irq.enableGlobalInterrupts();
 	#endif
 
@@ -157,25 +157,25 @@ bool yahal::mcu::targets::init(void)
 /* ---------------------------------------------------------------------------------------------- */
 yahal::mcu::Target::Target(void) :
 	// WDT
-	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
 		wdt(yahal::mcu::targets::msp430f5309::Wdt::getInstance()),
 	#endif
 
 
 	// CLK
-	#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 		clk(yahal::mcu::targets::msp430f5309::Clk::getInstance()),
 	#endif
 
 
 	// GPIO
-	#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 		gpio(yahal::mcu::targets::msp430f5309::Gpio::getInstance()),
 	#endif
 
 
 	// USCI_B1
-	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
 		#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
 			yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave YAHAL_MCU_MSP430F5309_USCI_B1_NAME(targets::msp430f5309::config::usci_b1);
 		#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
@@ -192,13 +192,13 @@ yahal::mcu::Target::Target(void) :
 
 	/*
 	// TIMER A0
-	#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_TIMER_A0_ENABLED == true
 		yahal::mcu::targets::msp430f5309::TimerA0 timer_a0(targets::msp430f5309::config::timer_a0);
 	#endif
 	*/
 
 	//IRQ
-	#if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_IRQ_ENABLED == true
 		irq(yahal::mcu::targets::msp430f5309::IrqHandler::getInstance())
 	#endif
 {}// Constructor
@@ -212,37 +212,37 @@ bool yahal::mcu::Target::init(void)
 	bool success = true;
 
 	// WDT
-	#if YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
 		success &= wdt.init();
 	#endif
 
 
 	// CLK
-	#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 		success &= clk.init();
 	#endif
 
 
 	// GPIO
-	#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 		success &= gpio.init();
 	#endif
 
 
 	// USCI_B1
-	#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
 		success &= YAHAL_MCU_MSP430F5309_USCI_B1_NAME.init();
 	#endif
 
 
 	// TIMER A0
-	#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_TIMER_A0_ENABLED == true
 //		success &= timer_a0.init();
 	#endif
 
 
 	// IRQ
-	#if YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE == true
+	#if YAHAL_MCU_MSP430F5309_IRQ_ENABLED == true
 		irq.enableGlobalInterrupts();
 	#endif
 

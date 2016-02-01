@@ -63,7 +63,7 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 /* =================================================================================================
 	ADC_10
 ================================================================================================= */
-#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 
 	yahal::mcu::targets::msp430f5309::Adc10&	\
 		yahal::mcu::targets::msp430f5309::IrqHandler::handler_adc_10_ =	\
@@ -106,7 +106,7 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 /* =================================================================================================
 	TIMER_A1
 ================================================================================================= */
-#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
 
 	yahal::mcu::targets::msp430f5309::TimerA1&	\
 		yahal::mcu::targets::msp430f5309::IrqHandler::handler_timer_a1_ =	\
@@ -153,7 +153,7 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 /* =================================================================================================
 	USCI_B1
 ================================================================================================= */
-#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
 	#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
 
 

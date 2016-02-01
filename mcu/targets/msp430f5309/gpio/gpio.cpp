@@ -26,7 +26,7 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 
 #include "../../../config/targets/msp430f5309/gpio.hpp"
 
@@ -422,5 +422,5 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)co
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+#endif // YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

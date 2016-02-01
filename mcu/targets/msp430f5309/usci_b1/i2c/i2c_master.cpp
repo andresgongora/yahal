@@ -26,7 +26,7 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "../../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
+#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
 
 #include "../../../../config/targets/msp430f5309/usci_b1.hpp"
 #include <msp430f5309.h>
@@ -127,5 +127,5 @@ void yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::isr(UsciB1::Irq::Type 
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
+#endif // YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

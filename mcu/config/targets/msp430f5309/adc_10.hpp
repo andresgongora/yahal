@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "config.hpp"
-#if YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 
 #include "../../../targets/msp430f5309/adc_10/adc_10.hpp"
 
@@ -46,5 +46,5 @@ const yahal::mcu::targets::msp430f5309::Adc10::Configuration adc_10 = {
 
 /* ---------------------------------------------------------------------------------------------- */
 }}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-#endif // YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE == true
+#endif // YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 #endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_ADC_10_HPP_INCLUDED__

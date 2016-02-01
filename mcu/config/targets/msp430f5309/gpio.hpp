@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "config.hpp"
-#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 
 #include "../../../targets/msp430f5309/gpio/gpio.hpp"
 
@@ -46,5 +46,5 @@ const yahal::mcu::targets::msp430f5309::Gpio::Configuration gpio = {
 
 /* ---------------------------------------------------------------------------------------------- */
 }}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-#endif // YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+#endif // YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 #endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_GPIO_HPP_INCLUDED__

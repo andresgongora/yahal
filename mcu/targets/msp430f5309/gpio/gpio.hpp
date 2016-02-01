@@ -33,7 +33,7 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 
 #include <stdint.h>
 #include "../../../modules/gpio/gpio.hpp"
@@ -180,6 +180,6 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE == true
+#endif // YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__

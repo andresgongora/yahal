@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "config.hpp"
-#if YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_TIMER_A0_ENABLED == true
 
 #include "../../../targets/msp430f5309/timer_a0/timer_a0.hpp"
 
@@ -54,5 +54,5 @@ const yahal::mcu::targets::msp430f5309::TimerA0::Configuration timer_a0 = {
 
 /* ---------------------------------------------------------------------------------------------- */
 }}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-#endif // YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE == true
+#endif // YAHAL_MCU_MSP430F5309_TIMER_A0_ENABLED == true
 #endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A0_HPP_INCLUDED__

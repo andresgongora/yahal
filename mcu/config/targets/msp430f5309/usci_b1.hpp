@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "config.hpp"
-#if YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
 
 #include "../../../targets/msp430f5309/usci_b1/i2c/i2c_slave.hpp"
 #include "../../../targets/msp430f5309/usci_b1/i2c/i2c_master.hpp"
@@ -75,5 +75,5 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 
 /* ---------------------------------------------------------------------------------------------- */
 }}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-#endif // YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE == true
+#endif // YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
 #endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_USCI_B1_HPP_INCLUDED__

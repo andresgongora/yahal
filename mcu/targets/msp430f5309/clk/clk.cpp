@@ -28,10 +28,11 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 
 #include "../../../config/targets/msp430f5309/clk.hpp"
 #include <msp430f5309.h>
+#include "../power_manager/power_manager.hpp"
 
 
 
@@ -54,13 +55,7 @@ yahal::mcu::targets::msp430f5309::Clk::Clk(const Configuration& configuration) :
 
 bool yahal::mcu::targets::msp430f5309::Clk::init(void)
 {
-	if(setFrequencyHz(configuration_.frequency))	// Set default frequency
-	{
-	}
-	else
-	{
-		//TODO: set error code
-	}
+	setFrequencyHz(configuration_.frequency);
 	return true;
 }
 
@@ -68,85 +63,19 @@ bool yahal::mcu::targets::msp430f5309::Clk::init(void)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void SetVCoreUp (unsigned int level)
-{
-	// Open PMM registers for write access
-	PMMCTL0_H = 0xA5;
-	// Make sure no flags are set for iterative sequences
-//	while ((PMMIFG & SVSMHDLYIFG) == 0);
-//	while ((PMMIFG & SVSMLDLYIFG) == 0);
-	// Set SVS/SVM high side new level
-	SVSMHCTL = SVSHE + SVSHRVL0 * level + SVMHE + SVSMHRRL0 * level;
-	// Set SVM low side to new level
-	SVSMLCTL = SVSLE + SVMLE + SVSMLRRL0 * level;
-	// Wait till SVM is settled
-	while ((PMMIFG & SVSMLDLYIFG) == 0);
-	// Clear already set flags
-	PMMIFG &= ~(SVMLVLRIFG + SVMLIFG);
-	// Set VCore to new level
-	PMMCTL0_L = PMMCOREV0 * level;
-	// Wait till new level reached
-	if ((PMMIFG & SVMLIFG))
-	while ((PMMIFG & SVMLVLRIFG) == 0);
-	// Set SVS/SVM low side to new level
-	SVSMLCTL = SVSLE + SVSLRVL0 * level + SVMLE + SVSMLRRL0 * level;
-	// Lock PMM registers for write access
-	PMMCTL0_H = 0x00;
-}
 
 
 bool yahal::mcu::targets::msp430f5309::Clk::setFrequencyHz(uint32_t desiredFrequencyHz)
 {
-	bool success = true;
+	//TODO: User user selected frequency
 
-/*
-	switch(desiredFrequencyHz)
-	{
-	case Frequency::DCO_1MHz:
-		UCSCTL0 =
-		DCOCTL	=  CALDCO_1MHZ;			// Set DCO step + modulation
-		BCSCTL1	=  CALBC1_1MHZ; 		// Set range
-		_frequencyHz = Frequency::DCO_1MHz;	// Store
-		break;
-
-	case Frequency::DCO_8MHz:
-		DCOCTL	=  CALDCO_8MHZ;  		// Set DCO step + modulation
-		BCSCTL1	=  CALBC1_8MHZ; 		// Set range
-		_frequencyHz = Frequency::DCO_8MHz;	// Store
-		break;
-
-	case Frequency::DCO_16MHz:
-		DCOCTL	=  CALDCO_16MHZ;  		// Set DCO step + modulation
-		BCSCTL1	=  CALBC1_16MHZ; 		// Set range
-		_frequencyHz = Frequency::DCO_16MHz;	// Store
-		break;
-
-	default:
-		success = false;
-		this->setErrorCode(Error::FREQUENCY_NOT_AVAILABLE);
-		break;
-	}
-
-
-	// TODO: FINISH THIS!!!!!
-	BCSCTL2	=  0x00;			// MCLK = DCO = SMCLK
-	_freqMHzPeripherals = getFreqMHzCPU();
-	BCSCTL3	|= LFXT1S_2;			// LFXT1 = VLO
-	IFG1 	&= ~OFIFG;			// Clear OSCFault flag
-*/
-	SetVCoreUp(3); // Increase core voltage to allow higher frequencies
+	yahal::mcu::targets::msp430f5309::PowerManager::getInstance().setVCoreLevel(3); // Increase core voltage to allow higher frequencies
 	UCSCTL1 |= DCORSEL1 + DCORSEL2; //6
 	UCSCTL2 = FLLD__16 + 0x1F;	// Approx 16Mhz
 	UCSCTL3 = SELREF__REFOCLK;
 	UCSCTL4 = SELM__DCOCLK + SELS__DCOCLK + SELA__REFOCLK;
 
-
-	//INFO!!!!!
-	//TODO!!!!
-	//http://e2e.ti.com/support/microcontrollers/msp430/f/166/p/227228/799351
-
-
-	return success;
+	return true;
 }
 
 
@@ -161,5 +90,5 @@ uint32_t yahal::mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE == true
+#endif	// YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 #endif 	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

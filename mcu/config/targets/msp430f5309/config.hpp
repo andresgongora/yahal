@@ -42,19 +42,19 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 /* =================================================================================================
 	CLK
 ================================================================================================= */
-#define	YAHAL_MCU_MSP430F5309_CLK_INSTANTIATE		true
+#define	YAHAL_MCU_MSP430F5309_CLK_ENABLED		true
 
 
 /* =================================================================================================
 	GPIO
 ================================================================================================= */
-#define	YAHAL_MCU_MSP430F5309_GPIO_INSTANTIATE		true
+#define	YAHAL_MCU_MSP430F5309_GPIO_ENABLED		true
 
 
 /* =================================================================================================
 	WDT
 ================================================================================================= */
-#define	YAHAL_MCU_MSP430F5309_WDT_INSTANTIATE		true
+#define	YAHAL_MCU_MSP430F5309_WDT_ENABLED		true
 
 
 /* =================================================================================================
@@ -81,7 +81,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 
 /* ---------------------------------------------------------------------------------------------- */
 
-#define	YAHAL_MCU_MSP430F5309_USCI_B1_INSTANTIATE	true
+#define	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED	true
 #define YAHAL_MCU_MSP430F5309_USCI_B1_MODE		YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
 #define YAHAL_MCU_MSP430F5309_USCI_B1_NAME		i2c1
 
@@ -89,13 +89,13 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 /* =================================================================================================
 	TIMER_A0
 ================================================================================================= */
-#define	YAHAL_MCU_MSP430F5309_TIMER_A0_INSTANTIATE	false
+#define	YAHAL_MCU_MSP430F5309_TIMER_A0_ENABLED	false
 
 
 /* =================================================================================================
 	TIMER_A1
 ================================================================================================= */
-#define	YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE	true
+#define	YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED	true
 
 
 /* =================================================================================================
@@ -110,7 +110,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 /* =================================================================================================
 	ADC_10
 ================================================================================================= */
-#define	YAHAL_MCU_MSP430F5309_ADC_10_INSTANTIATE	true
+#define	YAHAL_MCU_MSP430F5309_ADC_10_ENABLED	true
 
 
 
@@ -118,7 +118,7 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namesp
 	IRQ
 ================================================================================================= */
 
-#define	YAHAL_MCU_MSP430F5309_IRQ_INSTANTIATE	true
+#define	YAHAL_MCU_MSP430F5309_IRQ_ENABLED	true
 
 
 

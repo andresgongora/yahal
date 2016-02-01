@@ -24,7 +24,7 @@
 
 #include "timer_a1.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-#if YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
+#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
 
 #include <msp430f5309.h>
 #include "../../../config/targets/msp430f5309/timer_a1.hpp"
@@ -259,5 +259,5 @@ void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setComparator(uint16_t val
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_TIMER_A1_INSTANTIATE == true
+#endif // YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

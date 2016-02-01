@@ -43,14 +43,14 @@ namespace yahal{ namespace mcu{ namespace hwemulation{ namespace config{
 	I2C
 ================================================================================================= */
 
-#define YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE	false
+#define YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED	false
 
 #define YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1		i2c4
 //#define YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2	i2c5
 //#define YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3	i2c6
 
 
-#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
 &&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1)
 	const yahal::mcu::hwemulation::I2CMaster::Configuration	\
 	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1 = {
@@ -58,7 +58,7 @@ namespace yahal{ namespace mcu{ namespace hwemulation{ namespace config{
 	/* sdc		*/ &yahal::mcu::Target::gpio[1][1],
 	};
 #endif
-#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
 &&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2)
 	const yahal::mcu::hwemulation::I2CMaster::Configuration	\
 	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2 = {
@@ -66,7 +66,7 @@ namespace yahal{ namespace mcu{ namespace hwemulation{ namespace config{
 	/* sdc		*/ &yahal::mcu::gpio[1][1],
 	};
 #endif
-#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_INSTANTIATE == true	\
+#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
 &&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3)
 	const yahal::mcu::hwemulation::I2CMaster::Configuration	\
 	YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3 = {
