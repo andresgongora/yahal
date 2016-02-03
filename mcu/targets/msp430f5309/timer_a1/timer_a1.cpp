@@ -51,7 +51,7 @@ yahal::mcu::targets::msp430f5309::TimerA1::getInstance(void)
 
 yahal::mcu::targets::msp430f5309::TimerA1::TimerA1(const Configuration& configuration) :
 	configuration_(configuration)
-{}
+{init();}
 
 
 

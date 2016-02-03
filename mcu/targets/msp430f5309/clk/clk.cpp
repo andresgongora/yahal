@@ -42,6 +42,7 @@ yahal::mcu::targets::msp430f5309::Clk yahal::mcu::targets::msp430f5309::Clk::ins
 
 yahal::mcu::targets::msp430f5309::Clk& yahal::mcu::targets::msp430f5309::Clk::getInstance(void)
 {
+
 	return instance_;
 }
 

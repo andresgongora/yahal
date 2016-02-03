@@ -93,6 +93,7 @@ public:
 					subscribers_.pushBack(p_new_subscriber);
 				}
 
+protected:
 				/// Tublish a message to all subscribersç
 	void			publish(T_MSG message) const;
 
@@ -169,6 +170,7 @@ public:
 					subscribers_.pushBack(p_new_subscriber);
 				}
 
+protected:
 				/// Tublish a message to all subscribers
 	void			publish(void) const;
 

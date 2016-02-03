@@ -64,7 +64,7 @@ bool yahal::mcu::targets::msp430f5309::Gpio::init(void)
 {
 	bool success = true;
 
-	P1OUT = P2OUT = P3OUT = P4OUT = P5OUT = P6OUT = 0;	// Clear outputs
+/*	P1OUT = P2OUT = P3OUT = P4OUT = P5OUT = P6OUT = 0;	// Clear outputs
 
 	success &= Port1::getInstance().config(Direction::INPUT, Resistor::DISABLED);
 	success &= Port2::getInstance().config(Direction::INPUT, Resistor::DISABLED);
@@ -72,7 +72,7 @@ bool yahal::mcu::targets::msp430f5309::Gpio::init(void)
 	success &= Port4::getInstance().config(Direction::INPUT, Resistor::DISABLED);
 	success &= Port5::getInstance().config(Direction::INPUT, Resistor::DISABLED);
 	success &= Port6::getInstance().config(Direction::INPUT, Resistor::DISABLED);
-
+*/
 	return success;
 }
 

@@ -132,13 +132,13 @@ bool yahal::mcu::targets::init(void)
 
 	// TIMER_A1
 	#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
-		success &= timer_a1.init();
+//		success &= timer_a1.init();
 	#endif
 
 
 	// ADC_10
 	#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
-		success &= adc_10.init();
+//		success &= adc_10.init();
 	#endif
 
 
@@ -146,6 +146,7 @@ bool yahal::mcu::targets::init(void)
 	#if YAHAL_MCU_MSP430F5309_IRQ_ENABLED == true
 		irq.enableGlobalInterrupts();
 	#endif
+
 
 	return success;
 }

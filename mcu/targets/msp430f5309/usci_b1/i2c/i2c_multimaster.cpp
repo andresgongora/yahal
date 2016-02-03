@@ -49,7 +49,8 @@ yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::getInstance(void)
 
 yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster::I2CMultimaster(const Configuration& configuration) :
 	configuration_(configuration)
-{}
+{
+}
 
 
 
