@@ -55,7 +55,7 @@ public:
 				struct Direction{ enum Type{
 					READ,
 					WRITE,
-				};};
+				};}static const Direction;
 
 
 				/// Error codes for I2C.
@@ -67,7 +67,7 @@ public:
 					INVALID_MESSAGE_BUFFER,
 					READ_OVERFLOW_ATTEMPT,
 					TRANSMISSION_PREMATURELY_ENDED,
-				};};
+				};}static const Error;
 };
 
 

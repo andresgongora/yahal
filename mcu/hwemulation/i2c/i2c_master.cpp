@@ -23,82 +23,59 @@
 	+-----------------------------------------------------------------------+	*/
 
 #include "i2c_master.hpp"
-#include "../../../error/assert.hpp"
 
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::hwemulation::I2CMaster::I2CMaster(const Configuration& configuration) :
-	configuration_(configuration),
+yahal::mcu::hwemulation::I2CMaster::I2CMaster(	yahal::mcu::modules::Gpio::Port::Pin& sda,
+						yahal::mcu::modules::Gpio::Port::Pin& scl) :
+	sda_(sda),
+	scl_(scl),
 	end_start_(false),
 	send_stop_(false),
 	buffer_TX_status_(BufferStatus::EMPTY),
 	buffer_RX_status_(BufferStatus::EMPTY),
 	received_nack_(false)
 {
-	assert(configuration_.scl != NULL);
-	assert(configuration_.sda != NULL);
-}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-
-void yahal::mcu::hwemulation::I2CMaster::initHW()
-{
 	emulateReset();
 }
-
-
-
-
-
 
 /* ---------------------------------------------------------------------------------------------- */
 
 void yahal::mcu::hwemulation::I2CMaster::setSDA(bool b)
 {
-	if(b)
-	{
-		configuration_.sda->config(yahal::mcu::modules::Gpio::Direction::INPUT);
-	}
-	else
-	{
-		configuration_.sda->set(0);
-		configuration_.sda->config(yahal::mcu::modules::Gpio::Direction::OUTPUT);
+	if (b) {
+		sda_.config(yahal::mcu::modules::Gpio::Direction::INPUT);
+	} else {
+		sda_.set(0);
+		sda_.config(yahal::mcu::modules::Gpio::Direction::OUTPUT);
 	}
 }
 
 
 bool yahal::mcu::hwemulation::I2CMaster::getSDA(void)
 {
-	configuration_.sda->config(yahal::mcu::modules::Gpio::Direction::INPUT);
-	return configuration_.sda->get();
+	sda_.config(yahal::mcu::modules::Gpio::Direction::INPUT);
+	return sda_.get();
 }
-
 
 
 void yahal::mcu::hwemulation::I2CMaster::setSCL(bool b)
 {
-	if(b)
-	{
-		configuration_.scl->config(yahal::mcu::modules::Gpio::Direction::INPUT);
-	}
-	else
-	{
-		configuration_.scl->set(0);
-		configuration_.scl->config(yahal::mcu::modules::Gpio::Direction::OUTPUT);
+	if (b) {
+		scl_.config(yahal::mcu::modules::Gpio::Direction::INPUT);
+	} else {
+		scl_.set(0);
+		scl_.config(yahal::mcu::modules::Gpio::Direction::OUTPUT);
 	}
 }
 
 
 bool yahal::mcu::hwemulation::I2CMaster::getSCL(void)
 {
-	configuration_.scl->config(yahal::mcu::modules::Gpio::Direction::INPUT);
-	return configuration_.scl->get();
+	scl_.config(yahal::mcu::modules::Gpio::Direction::INPUT);
+	return scl_.get();
 }
-
-
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -124,19 +101,15 @@ bool yahal::mcu::hwemulation::I2CMaster::receiveBit(void)
 	return b;
 }
 
-
-
 /* ---------------------------------------------------------------------------------------------- */
 
 void yahal::mcu::hwemulation::I2CMaster::sendByte(uint8_t byte)
 {
-	for(int8_t i=7; i>=0; i--)
-	{
-		bool b = (byte>>i) & 0x01;
+	for (int8_t i = 7; i >= 0; i--) {
+		bool b = (byte >> i) & 0x01;
 		sendBit(b);
 	}
 }
-
 
 
 uint8_t yahal::mcu::hwemulation::I2CMaster::receiveByte(void)
@@ -144,16 +117,13 @@ uint8_t yahal::mcu::hwemulation::I2CMaster::receiveByte(void)
 	uint8_t byte = 0;
 	bool b;
 
-	for(int8_t i=7; i>=0; i--)
-	{
+	for (int8_t i = 7; i >= 0; i--) {
 		b = receiveBit();
-		byte |= (b<<i);
+		byte |= (b << i);
 	}
 
 	return byte;
 }
-
-
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -192,8 +162,6 @@ bool yahal::mcu::hwemulation::I2CMaster::receiveAck(void)
 	return receiveBit();
 }
 
-
-
 /* ---------------------------------------------------------------------------------------------- */
 
 void yahal::mcu::hwemulation::I2CMaster::emulateStart(void)
@@ -207,25 +175,20 @@ void yahal::mcu::hwemulation::I2CMaster::emulateStart(void)
 	bool nack = receiveAck();		// Get: NACK = 1; ACK = 0;
 
 
-	if(nack)
-	{
+	if (nack) {
 		received_nack_ = true;		// NACK IRQ
-		direction_ = Direction::WRITE;	// IF READING, ABORT IT: This is needed so that in the emulaiton loop a STOP is sent as soon as possible
-	}
-	else if(direction_ == Direction::WRITE )
-	{
+		direction_ = Direction::WRITE;// IF READING, ABORT IT: This is needed so that in the emulaiton loop a STOP is sent as soon as possible
+	} else if (direction_ == Direction::WRITE) {
 		buffer_TX_status_ = BufferStatus::JUST_READ;	// TX IRQ
 	}
 }
+
 
 void yahal::mcu::hwemulation::I2CMaster::emulateStop(void)
 {
 	sendStop();
 }
 
-
-
-//--------------------------------------------------------------------------------------------------
 
 void yahal::mcu::hwemulation::I2CMaster::emulateIRQTX(void)
 {
@@ -244,9 +207,6 @@ void yahal::mcu::hwemulation::I2CMaster::emulateIRQNack(void)
 }
 
 
-
-//--------------------------------------------------------------------------------------------------
-
 void yahal::mcu::hwemulation::I2CMaster::emulateWriteBufferTX(uint8_t byte)
 {
 	buffer_TX_ = byte;			// Write to buffer
@@ -261,21 +221,15 @@ void yahal::mcu::hwemulation::I2CMaster::emulateSendBufferTX(void)
 }
 
 
-
-//--------------------------------------------------------------------------------------------------
-
 void yahal::mcu::hwemulation::I2CMaster::emulateReceiveBufferRX(void)
 {
 	uint8_t byte = receiveByte();
 
 	// RESPOND
-	if(send_stop_)				// Stop reading -> NACK + STOP
-	{
+	if (send_stop_)	{			// Stop reading -> NACK + STOP
 		sendNack();
 		direction_ = Direction::WRITE;
-	}
-	else					// Continue reading -> ACK
-	{
+	} else {				// Continue reading -> ACK
 		sendAck();
 	}
 
@@ -285,14 +239,13 @@ void yahal::mcu::hwemulation::I2CMaster::emulateReceiveBufferRX(void)
 	buffer_RX_status_ = BufferStatus::JUST_WRITTEN;
 }
 
+
 uint8_t	yahal::mcu::hwemulation::I2CMaster::emulateReadBufferRX(void)
 {
 	uint8_t byte = buffer_RX_;		// Read buffer to auxiliar variable
 	buffer_RX_status_ = BufferStatus::EMPTY;
 	return byte;				// Return copied content of buffer
 }
-
-
 
 //--------------------------------------------------------------------------------------------------
 
@@ -367,6 +320,7 @@ void yahal::mcu::hwemulation::I2CMaster::emulateLoop(void)
 
 }
 
+
 void yahal::mcu::hwemulation::I2CMaster::emulateReset(void)
 {
 	end_start_ = false;
@@ -377,9 +331,7 @@ void yahal::mcu::hwemulation::I2CMaster::emulateReset(void)
 	direction_ = Direction::WRITE;
 }
 
-
-
-/** ====================================================================== MODULE IMPLEMENTATION **/
+/* ---------------------------------------------------------------------------------------------- */
 
 void yahal::mcu::hwemulation::I2CMaster::start(uint8_t slave_address, Direction::Type direction)
 {
@@ -392,12 +344,6 @@ void yahal::mcu::hwemulation::I2CMaster::start(uint8_t slave_address, Direction:
 void yahal::mcu::hwemulation::I2CMaster::stop(void)
 {
 	send_stop_ = true;			// Request STOP sequence ASAP
-}
-
-
-void yahal::mcu::hwemulation::I2CMaster::acknowledge(bool ack)
-{
-
 }
 
 
@@ -417,8 +363,5 @@ void yahal::mcu::hwemulation::I2CMaster::awaitTransmissionEnd(void)
 {
 	emulateLoop();
 }
-
-
-
 
 /* ---------------------------------------------------------------------------------------------- */

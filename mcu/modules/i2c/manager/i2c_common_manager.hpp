@@ -54,7 +54,7 @@ protected:
 				/// Prepare module for exclusive operation.
 	void			open(void){
 					mutex_.lock();
-					setErrorCode(NO_ERROR_CODE);
+					clearErrorCode();
 				}
 
 				/// Releases module

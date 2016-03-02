@@ -61,7 +61,7 @@ public:
 					ACLK	= 1,
 					SMCLK	= 2,
 					INCLK	= 3
-				};};
+				};}static const CLOCK_SOURCE;
 
 
 				struct Mode{ enum Type{
@@ -69,7 +69,7 @@ public:
 					UP_CCR0 	= 1,
 					CONTINUOUS	= 2,
 					UP_DOWN		= 3,
-				};};
+				};}static const MODE;
 
 
 				struct Divider{ enum Type{
@@ -77,7 +77,7 @@ public:
 					DIVIDER_2	= 1,
 					DIVIDER_4	= 2,
 					DIVIDER_8	= 3,
-				};};
+				};}static const DIVIDER;
 
 
 				struct Configuration

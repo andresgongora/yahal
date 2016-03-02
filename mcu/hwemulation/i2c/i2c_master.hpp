@@ -30,6 +30,7 @@
 #include <stdint.h>
 #include "../../modules/i2c/manager/i2c_master_manager.hpp"
 #include "../../modules/gpio/gpio.hpp"
+#include "../../../utility/oop/noncopyable.hpp"
 
 
 
@@ -43,40 +44,29 @@ namespace yahal{ namespace mcu{ namespace hwemulation{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::hwemulation::I2CMaster : public yahal::mcu::modules::I2CMasterManager
+class yahal::mcu::hwemulation::I2CMaster :
+	public yahal::mcu::modules::I2CMasterManager,
+	public yahal::utility::oop::NonCopyable
 {
 public:
-	 	 	 	struct Configuration
-				{
-	 	 	 		yahal::mcu::modules::Gpio::Port::Pin* sda;	///< Data.
-	 	 	 		yahal::mcu::modules::Gpio::Port::Pin* scl;	///< Clock.
-	 	 	 	};
+				I2CMaster(yahal::mcu::modules::Gpio::Port::Pin& sda,
+					  yahal::mcu::modules::Gpio::Port::Pin& scl);
 
 
-				// CONSTRUCTOR
-				I2CMaster(const Configuration& configuration);
+private:
+				struct BufferStatus{ enum Type{
+					FULL,
+					EMPTY,
+					JUST_WRITTEN,
+					JUST_READ,
+				};};
 
 
-				// INITIALIZATION
-	virtual void		initHW(void);
-
-
-private:			// MODULE IMPLEMENTATION
-	void			start(uint8_t slave_address, Direction::Type direction);
-	void			stop(void);
-	void			acknowledge(bool ack);
-	void			writeBufferTX(uint8_t byte);
-	uint8_t			readBufferRX(void);
-	void			awaitTransmissionEnd(void);
-
-
-
-private:			// PIN
+				// PIN
 	void			setSDA(bool b);
 	bool			getSDA(void);
 	void			setSCL(bool b);
 	bool			getSCL(void);
-
 
 
 				// BIT
@@ -84,11 +74,9 @@ private:			// PIN
 	bool			receiveBit(void);
 
 
-
 				// BYTE
 	void			sendByte(uint8_t byte);
 	uint8_t			receiveByte(void);
-
 
 
 				// I2C PROTOCOL
@@ -97,7 +85,6 @@ private:			// PIN
 	void			sendAck(void);
 	void			sendNack(void);
 	bool			receiveAck(void);
-
 
 
 				// CONTROL
@@ -114,17 +101,15 @@ private:			// PIN
 	void			emulateReset(void);
 
 
-				struct BufferStatus{ enum Type{
-					FULL,
-					EMPTY,
-					JUST_WRITTEN,
-					JUST_READ,
-				};};
-
+				// MODULE IMPLEMENTATION
+	virtual void		start(uint8_t slave_address, Direction::Type direction);
+	virtual void		stop(void);
+	virtual void		writeBufferTX(uint8_t byte);
+	virtual uint8_t		readBufferRX(void);
+	virtual void		awaitTransmissionEnd(void);
 
 
 				// Private variables
-	const Configuration&	configuration_;
 	uint8_t			slave_address_;
 	Direction::Type		direction_;
 	uint8_t 		buffer_TX_;
@@ -134,6 +119,9 @@ private:			// PIN
 	BufferStatus::Type	buffer_TX_status_;
 	BufferStatus::Type	buffer_RX_status_;
 	bool			received_nack_;
+
+	yahal::mcu::modules::Gpio::Port::Pin& sda_;
+	yahal::mcu::modules::Gpio::Port::Pin& scl_;
 };
 
 

@@ -63,7 +63,7 @@ bool yahal::mcu::targets::msp430f5309::Adc10::init(void)
 	P6SEL = 0xFF;
 	ADC10CTL0 = ADC10SHT_4 + ADC10ON;
 	ADC10CTL1 = ADC10SHP + ADC10SSEL_3 + ADC10DIV_7;
-	ADC10CTL2 = ADC10RES;
+	ADC10CTL2 = ADC10RES;					///< 10 bit resolution
 	setReference(VoltageReference::VEREFP_VEREFN);		///<WARNING_ Enables ENC
 
 	ADC10CTL0 |= ADC10ENC;	///< Enable ADC10ENC
@@ -130,11 +130,11 @@ bool yahal::mcu::targets::msp430f5309::Adc10::setMode(uint8_t mode)
 
 		ADC10CTL1 = (ADC10CTL1 & 0xFFF9) | (mode << 1);
 
-		if (mode == Mode::SINGLE_AUTOSCAN || mode == Mode::SINGLE_CHANNEL) {
-			ADC10IE &= ~ADC10IE0;	// IRQ not needed
-		} else {
+	//	if (mode == Mode::SINGLE_AUTOSCAN || mode == Mode::SINGLE_CHANNEL) {
+	//		ADC10IE &= ~ADC10IE0;	// IRQ not needed
+	//	} else {
 			ADC10IE |= ADC10IE0;
-		}
+	//	}
 
 		enable();
 		success = true;
@@ -192,7 +192,7 @@ void yahal::mcu::targets::msp430f5309::Adc10::readConvertionBuffer(void)
 	uint8_t channel = getChannel();
 	uint16_t raw_data = getRawData();
 
-	handler_->handleAdc(channell, raw_data);
+	handler_->handleAdc(channel, raw_data);
 }
 
 

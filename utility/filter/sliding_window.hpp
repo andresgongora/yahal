@@ -24,88 +24,90 @@
 
 
 
-#ifndef __SLIDING_WINDOW_HPP_INCLUDED__
-#define __SLIDING_WINDOW_HPP_INCLUDED__
+#ifndef __YAHAL_UTILITY_FILTER_SLIDING_WINDOW_HPP_INCLUDED__
+#define __YAHAL_UTILITY_FILTER_SLIDING_WINDOW_HPP_INCLUDED__
 
 
-/** ---- INCLUDE ------------------------------------------------------------------------------- **/
+/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstdlib>
 
 
 
-/** ---- NAMESPACE ----------------------------------------------------------------------------- **/
-namespace hal{ namespace utility{
-	template <class T_data, std::size_t T_bufferSize> class SlidingWindow;
-}}
+/* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace utility{ namespace filter{
+	template <class T_DATA, std::size_t T_BUFFER_SIZE> class SlidingWindow;
+}}}
 
 
 
-/* ============================================================================================== */
- *	hal::utility::CircularBuffer
- * ============================================================================================== */
-
-template <class T_data, std::size_t T_bufferSize>
-class hal::utility::SlidingWindow
+/***********************************************************************************************//**
+ * @brief	Sliding window filter.
+ *
+ * Add data with push(), and retrieve the mean with mean().
+ *
+ **************************************************************************************************/
+template <class T_DATA, std::size_t T_BUFFER_SIZE>
+class yahal::utility::filter::SlidingWindow
 {
 public:				// CONSTRUCTOR
-				SlidingWindow() : _full(false), _index(0) {}
+				SlidingWindow() : index_(0) {}
 
 
-
-public:				// PUSH & POP
-	void			push(T_data data)
+public:				// PUSH
+	void			push(T_DATA data)
 				{
-					_buffer[_index++] = data;
-					if(_index >= maxSize())
+					buffer_[index_++] = data;	///< Add new data to buffer
+					if(index_ >= maxSize())		///< Determine if at end of buffer
 					{
-						_index = 0;
-						_full = true;
+						index_ = 0;		///< Return index to start
+						full_ = true;		///< Set full flag permanently to true
 					}
 				}
 
-	T_data			mean(void)
-				{
+	T_DATA			mean(void) const {
 
-					T_data aux = 0;		//TODO: WARNING: might overflow
+					T_DATA aux = 0;
 					std::size_t numElements;
 					std::size_t i;
 
-					if(_full)	{numElements = maxSize();}
-					else		{numElements = _index;}
+					if (full_) 	{numElements = maxSize();}
+					else 		{numElements = index_;}
 
-					if(numElements > 0)
-					{
-						for(i=0; i<numElements; i++)	{aux += _buffer[i];}
-						return aux/numElements;
+					if (numElements > 0) {
+						for (i = 0; i < numElements; i++) {
+							aux += buffer_[i];
+						}
+						return aux / numElements;
+					} else {
+						return 0;
 					}
-					else	return 0;
 
 
 
 
 				}
 
-	std::size_t		maxSize(void)
-				{
-					return T_bufferSize;
+	std::size_t		maxSize(void) const {
+					return T_BUFFER_SIZE;
 				}
 
 
-	std::size_t		size(void)
-				{
-					if(_full)	{return maxSize();}
-					else		{return _index;}
+	std::size_t		size(void) const {
+					if (full_) {
+						return maxSize();	///< If the buffer is full the index_ can not be used to determine the size
+					} else {
+						return index_;		///< While filling the buffer up, the size is equal to the index
+					}
 				}
-
 
 
 private:			// PRIVATE VARIABLES
-	T_data			_buffer[T_bufferSize];
-	bool			_full;
-	std::size_t		_index;
+	T_DATA			buffer_[T_BUFFER_SIZE];
+	bool			full_;
+	std::size_t		index_;
 };
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__SLIDING_WINDOW_HPP_INCLUDED__
+#endif 	//__YAHAL_UTILITY_FILTER_SLIDING_WINDOW_HPP_INCLUDED__

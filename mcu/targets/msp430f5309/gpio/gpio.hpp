@@ -56,6 +56,10 @@ public:
 				struct Configuration
 				{};
 
+				static const Gpio::Direction Direction;
+				static const Gpio::Resistor Resistor;
+
+				// -----------------------------------------------------------------
 
 				class Port1 : public yahal::mcu::modules::Gpio::Port
 				{

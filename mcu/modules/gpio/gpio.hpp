@@ -49,14 +49,14 @@ public:
 				struct Direction{enum Type{
 					INPUT = false,
 					OUTPUT = true
-				};};
+				};}static const DIRECTION;
 
 				/// Pull-up and pull-down resistor configuration
 				struct Resistor{enum Type{
 					DISABLED,
 					PULLUP,
 					PULLDOWN
-				};};
+				};} static const RESISTOR;
 
 				// -----------------------------------------------------------------
 public:

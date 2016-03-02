@@ -51,7 +51,7 @@ public:
 				struct Event { enum Type {
 					OVERFLOW= -1,
 					PERIOD	= 0,
-				};};
+				};}static const Event;
 
 				// -----------------------------------------------------------------
 protected:
