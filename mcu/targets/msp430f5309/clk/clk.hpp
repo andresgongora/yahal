@@ -52,18 +52,24 @@ public:
 					DCO_8MHz = 8000000,
 					DCO_16MHz = 16000000,
 					DCO_32MHz = 32000000
-				};}static const FREQUENCY;
+				};} static const FREQUENCY;
 
 				struct ClockSource{ enum Type{
 					VLP,
 				};};
+
+				struct VCore{ enum Type{
+					MILIVOLT_3600,
+					MILIVOLT_2400,
+					MILIVOLT_2200,
+				};} static const V_CORE;
 
 				// -----------------------------------------------------------------
 public:
 				Clk(void);
 	bool			setFrequencyHz(uint32_t desiredFrequencyHz);
 	uint32_t		getFrequencyHz(void);
-
+	void			setVCoreLevel(uint8_t level);
 
 
 

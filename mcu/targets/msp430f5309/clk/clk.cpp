@@ -26,7 +26,6 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include <msp430f5309.h>
-#include "../power_manager/power_manager.hpp"
 
 
 
@@ -41,7 +40,7 @@ bool yahal::mcu::targets::msp430f5309::Clk::setFrequencyHz(uint32_t desiredFrequ
 {
 	//TODO: User user selected frequency
 
-	yahal::mcu::targets::msp430f5309::PowerManager::getInstance().setVCoreLevel(3); // Increase core voltage to allow higher frequencies
+	setVCoreLevel(3); // Increase core voltage to allow higher frequencies
 	UCSCTL1 |= DCORSEL1 + DCORSEL2; //6
 	UCSCTL2 = FLLD__16 + 0x1F;	// Approx 16Mhz
 	UCSCTL3 = SELREF__REFOCLK;
@@ -55,6 +54,37 @@ bool yahal::mcu::targets::msp430f5309::Clk::setFrequencyHz(uint32_t desiredFrequ
 uint32_t yahal::mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
 {
 	return 0;
+}
+
+
+
+void yahal::mcu::targets::msp430f5309::Clk::setVCoreLevel(uint8_t level)
+{
+	uint8_t current_level = PMMCTL0_L & 0x03;
+	if (current_level +1 < level) {					///< If difference greater than 1
+		setVCoreLevel(level -1);				///< Increase iteratively
+	} else if (current_level > level ) {
+		return; ///<TODO: Decreasin Vcore is different from increasing in. Not implemented jet
+	}
+
+
+	PMMCTL0_H = 0xA5;						///< Open PMM registers for write access
+
+	SVSMHCTL = SVSHE + SVSHRVL0 * level + SVMHE + SVSMHRRL0 * level;///< Set SVS/SVM high side new level
+	SVSMLCTL = SVSLE + SVMLE + SVSMLRRL0 * level;			///< Set SVM low side to new level
+
+	while ((PMMIFG & SVSMLDLYIFG) == 0);				///< Wait till SVM is settled
+
+	PMMIFG &= ~(SVMLVLRIFG + SVMLIFG);				///< Clear already set flags
+	PMMCTL0_L = PMMCOREV0 * level;					///< Set VCore to new level
+
+	if ((PMMIFG & SVMLIFG)) {
+		while ((PMMIFG & SVMLVLRIFG) == 0);			///< Wait till new level reached
+	}
+
+	SVSMLCTL = SVSLE + SVSLRVL0 * level + SVMLE + SVSMLRRL0 * level;///< Set SVS/SVM low side to new level
+
+	PMMCTL0_H = 0x00;						///< Lock PMM registers for write access
 }
 
 
