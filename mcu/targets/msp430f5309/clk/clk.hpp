@@ -26,29 +26,23 @@
 #define __YAHAL_MCU_MSP430F5309_CLK_HPP_INCLUDED__
 
 
-
 /* ---------------------------------------------------------------------------------------------- */
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
-
+#include "../msp430f5309_namespace.hpp"
 #include "../../../modules/clk/clk.hpp"
+#include "../../../../utility/oop/singleton.hpp"
 
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class Clk;
-}}}}
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Clk : public yahal::mcu::modules::Clk
+class yahal::mcu::targets::msp430f5309::Clk :
+	public yahal::mcu::modules::Clk,
+	public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::Clk>
 {
 public:
 				struct Frequency{enum Type{
@@ -58,37 +52,26 @@ public:
 					DCO_8MHz = 8000000,
 					DCO_16MHz = 16000000,
 					DCO_32MHz = 32000000
-				};};
+				};}static const FREQUENCY;
 
 				struct ClockSource{ enum Type{
 					VLP,
 				};};
 
-				struct Configuration
-				{
-					Frequency::Type	frequency;
-					ClockSource::Type clockSource;
-				};
-
 				// -----------------------------------------------------------------
-
 public:
-	static Clk&		getInstance(void);	///< Get singleton instance
-	bool			init(void);
-
-
-public:
-				Clk(const Configuration& configuration);	///< Singleton
-
+				Clk(void);
 	bool			setFrequencyHz(uint32_t desiredFrequencyHz);
 	uint32_t		getFrequencyHz(void);
 
-	static Clk 		instance_;
-	const Configuration&	configuration_;
+
+
+
+
 };
 
 
+
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_CLK_HPP_INCLUDED__

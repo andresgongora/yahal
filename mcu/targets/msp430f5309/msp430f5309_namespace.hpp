@@ -22,29 +22,26 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_WDT_HPP_INCLUDED__
-#define __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_WDT_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "config.hpp"
-#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
-
-#include "../../../targets/msp430f5309/wdt/wdt.hpp"
+#include "../../config/mcu_config.hpp"
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 
+namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
+	class Adc10;
+	class Clk;
+	class Gpio;
+	class Wdt;
+	class IrqHandler;
+}}}}
 
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace config{
-/* ---------------------------------------------------------------------------------------------- */
-
-
-const yahal::mcu::targets::msp430f5309::Wdt::Configuration wdt = {
-/* Nothing	*/
-};
 
 
 /* ---------------------------------------------------------------------------------------------- */
-}}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-#endif	// YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
-#endif	// __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_WDT_HPP_INCLUDED__
+#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif	// __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__

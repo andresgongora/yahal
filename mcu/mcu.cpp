@@ -22,9 +22,9 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#if false///
-#include "mcu.hpp"
 
+#include "mcu.hpp"
+/*
 yahal::mcu::Mcu yahal::mcu::Mcu::instance_;
 
 yahal::mcu::Mcu& yahal::mcu::Mcu::getInstance()
@@ -34,6 +34,6 @@ yahal::mcu::Mcu& yahal::mcu::Mcu::getInstance()
 
 
 yahal::mcu::Mcu& mcu = yahal::mcu::Mcu::getInstance();
-#endif
+*/
 
 /* ---------------------------------------------------------------------------------------------- */

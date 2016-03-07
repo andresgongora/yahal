@@ -25,11 +25,6 @@
 #include "gpio.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
-
-#include "../../../config/targets/msp430f5309/gpio.hpp"
-
 #include <msp430f5309.h>
 #include "../../../../error/assert.hpp"
 #include "../../empty/gpio/gpio.hpp"
@@ -38,44 +33,15 @@
 /* =================================================================================================
 	GPIO
 ================================================================================================= */
-
-/* ---------------------------------------------------------------------------------------------- */
-
-yahal::mcu::targets::msp430f5309::Gpio	\
-yahal::mcu::targets::msp430f5309::Gpio::instance_(yahal::mcu::targets::msp430f5309::config::gpio);
-
+/*
+yahal::mcu::targets::msp430f5309::Gpio yahal::mcu::targets::msp430f5309::Gpio::instance_;
 
 yahal::mcu::targets::msp430f5309::Gpio& yahal::mcu::targets::msp430f5309::Gpio::getInstance(void)
 {
 	return instance_;
 }
 
-
-
 /* ---------------------------------------------------------------------------------------------- */
-
-yahal::mcu::targets::msp430f5309::Gpio::Gpio(const Configuration& configuration) :
-	configuration_(configuration)
-{}
-
-
-
-bool yahal::mcu::targets::msp430f5309::Gpio::init(void)
-{
-	bool success = true;
-
-/*	P1OUT = P2OUT = P3OUT = P4OUT = P5OUT = P6OUT = 0;	// Clear outputs
-
-	success &= Port1::getInstance().config(Direction::INPUT, Resistor::DISABLED);
-	success &= Port2::getInstance().config(Direction::INPUT, Resistor::DISABLED);
-	success &= Port3::getInstance().config(Direction::INPUT, Resistor::DISABLED);
-	success &= Port4::getInstance().config(Direction::INPUT, Resistor::DISABLED);
-	success &= Port5::getInstance().config(Direction::INPUT, Resistor::DISABLED);
-	success &= Port6::getInstance().config(Direction::INPUT, Resistor::DISABLED);
-*/
-	return success;
-}
-
 
 yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
 {
@@ -101,16 +67,6 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 /* =================================================================================================
 	PORT 1
 ================================================================================================= */
-
-yahal::mcu::targets::msp430f5309::Gpio::Port1
-yahal::mcu::targets::msp430f5309::Gpio::Port1::instance_;
-
-
-yahal::mcu::targets::msp430f5309::Gpio::Port1&
-yahal::mcu::targets::msp430f5309::Gpio::Port1::getInstance(void)
-{
-	return instance_;
-}
 
 
 bool yahal::mcu::targets::msp430f5309::Gpio::Port1::config(Direction::Type direction,
@@ -155,17 +111,6 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::getOutput(uint8_t mask)co
 	PORT 2
 ================================================================================================= */
 
-yahal::mcu::targets::msp430f5309::Gpio::Port2
-yahal::mcu::targets::msp430f5309::Gpio::Port2::instance_;
-
-
-yahal::mcu::targets::msp430f5309::Gpio::Port2&
-yahal::mcu::targets::msp430f5309::Gpio::Port2::getInstance(void)
-{
-	return instance_;
-}
-
-
 bool yahal::mcu::targets::msp430f5309::Gpio::Port2::config(Direction::Type direction,
 							   Resistor::Type resistor,
 							   uint8_t mask)
@@ -208,17 +153,6 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port2::getOutput(uint8_t mask)co
 /* =================================================================================================
 	PORT 3
 ================================================================================================= */
-
-yahal::mcu::targets::msp430f5309::Gpio::Port3
-yahal::mcu::targets::msp430f5309::Gpio::Port3::instance_;
-
-
-yahal::mcu::targets::msp430f5309::Gpio::Port3&
-yahal::mcu::targets::msp430f5309::Gpio::Port3::getInstance(void)
-{
-	return instance_;
-}
-
 
 bool yahal::mcu::targets::msp430f5309::Gpio::Port3::config(Direction::Type direction,
 							   Resistor::Type resistor,
@@ -263,17 +197,6 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port3::getOutput(uint8_t mask)co
 	PORT 4
 ================================================================================================= */
 
-yahal::mcu::targets::msp430f5309::Gpio::Port4
-yahal::mcu::targets::msp430f5309::Gpio::Port4::instance_;
-
-
-yahal::mcu::targets::msp430f5309::Gpio::Port4&
-yahal::mcu::targets::msp430f5309::Gpio::Port4::getInstance(void)
-{
-	return instance_;
-}
-
-
 bool yahal::mcu::targets::msp430f5309::Gpio::Port4::config(Direction::Type direction,
 							   Resistor::Type resistor,
 							   uint8_t mask)
@@ -316,17 +239,6 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port4::getOutput(uint8_t mask)co
 /* =================================================================================================
 	PORT 5
 ================================================================================================= */
-
-yahal::mcu::targets::msp430f5309::Gpio::Port5
-yahal::mcu::targets::msp430f5309::Gpio::Port5::instance_;
-
-
-yahal::mcu::targets::msp430f5309::Gpio::Port5&
-yahal::mcu::targets::msp430f5309::Gpio::Port5::getInstance(void)
-{
-	return instance_;
-}
-
 
 bool yahal::mcu::targets::msp430f5309::Gpio::Port5::config(Direction::Type direction,
 							   Resistor::Type resistor,
@@ -371,17 +283,6 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port5::getOutput(uint8_t mask)co
 	PORT 6
 ================================================================================================= */
 
-yahal::mcu::targets::msp430f5309::Gpio::Port6
-yahal::mcu::targets::msp430f5309::Gpio::Port6::instance_;
-
-
-yahal::mcu::targets::msp430f5309::Gpio::Port6&
-yahal::mcu::targets::msp430f5309::Gpio::Port6::getInstance(void)
-{
-	return instance_;
-}
-
-
 bool yahal::mcu::targets::msp430f5309::Gpio::Port6::config(Direction::Type direction,
 							   Resistor::Type resistor,
 							   uint8_t mask)
@@ -422,5 +323,4 @@ uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)co
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

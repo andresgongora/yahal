@@ -31,26 +31,22 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+#include "../msp430f5309_namespace.hpp"
+/*
 #include "../../../../rtos/rtos.hpp"
 #include "../../../config/targets/msp430f5309/config.hpp"
 #include "../../../modules/irq/irq_handler.hpp"
 #include "../timer_a1/timer_a1.hpp"
 #include "../usci_b1/usci_b1.hpp"
 #include "../adc_10/adc_10.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class IrqHandler;
-}}}}
+*/
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IrqHandler : public yahal::mcu::modules::details::IrqHandler
+/*class yahal::mcu::targets::msp430f5309::IrqHandler : public yahal::mcu::modules::details::IrqHandler
 {
 public:
 	static IrqHandler&	getInstance(void);
@@ -66,7 +62,7 @@ private:
 
 
 	// ADC_10
-	#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
+	#if YAHAL_MCU_MSP430F5309_ENABLE_ADC_10 == true
 		static void		ADC_10_ISR(void);
 		static Adc10&		handler_adc_10_;
 	#endif
@@ -87,7 +83,7 @@ private:
 	#endif
 };
 
-
+*/
 
 
 /* ---------------------------------------------------------------------------------------------- */

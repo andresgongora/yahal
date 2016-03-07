@@ -23,7 +23,6 @@
 	+-----------------------------------------------------------------------+	*/
 
 
-
 #ifndef __YAHAL_UTILITY_OOP_SINGLETON_HPP_INCLUDED__
 #define __YAHAL_UTILITY_OOP_SINGLETON_HPP_INCLUDED__
 
@@ -43,25 +42,33 @@ namespace yahal{ namespace utility{ namespace oop{
 
 
 /***********************************************************************************************//**
- *
+ * @brief	Singleton base class
+ * @code
+ * 	class myns::MyClass : public Singleton<myns::MyClass>
+ * 	{
+ * 		...
+ * 	};
+ * @endcode
  **************************************************************************************************/
 template <typename T_DERIVED>
 class yahal::utility::oop::Singleton
 {
+protected:
+	// PRIVATE CONSTRUCTOR
+	Singleton(void) {
+		static_assert(IS_BASE_OF(Singleton<T_DERIVED>, T_DERIVED)); // A little extra robustness.
+	}
+
+	// SINGLETON INSTANCE
+	static T_DERIVED instance_;
+
 public:
-	static T_DERIVED&	getInstance(void) { return instance_;}
-
-
-private:
-				Singleton(void) {
-					static_assert(IS_BASE_OF(Singleton<T_DERIVED>, T_DERIVED));
-				}
-				friend class T_DERIVED;
-
-private:
-	static T_DERIVED	instance_;
+	// ACCESSOR
+	static inline T_DERIVED& getInstance(void) { return instance_;}
 };
 
+
+// CREATE INSTANCE
 template <typename T_DERIVED> T_DERIVED yahal::utility::oop::Singleton<T_DERIVED>::instance_;
 
 

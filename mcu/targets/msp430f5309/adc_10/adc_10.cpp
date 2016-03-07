@@ -22,40 +22,21 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#include <mcu/targets/msp430f5309/adc_10/adc_10.hpp>
+#include "adc_10.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 
 #include <msp430f5309.h>
-#include "../../../config/targets/msp430f5309/adc_10.hpp"
 
 
-
-/* =================================================================================================
-	TIMER A1
-================================================================================================= */
-
-yahal::mcu::targets::msp430f5309::Adc10	\
-yahal::mcu::targets::msp430f5309::Adc10::instance_(yahal::mcu::targets::msp430f5309::config::adc_10);
-
-
-yahal::mcu::targets::msp430f5309::Adc10&
-yahal::mcu::targets::msp430f5309::Adc10::getInstance(void)
-{
-	return instance_;
-}
 
 /* ---------------------------------------------------------------------------------------------- */
 
-
-yahal::mcu::targets::msp430f5309::Adc10::Adc10(const Configuration& configuration) :
-	configuration_(configuration)
-{
-}
+yahal::mcu::targets::msp430f5309::Adc10::Adc10(void)
+{}
 
 
 
-
+/*
 bool yahal::mcu::targets::msp430f5309::Adc10::init(void)
 {
 	ADC10CTL0 = 0x00;	///< Disable ADC10ENC while changing configuraiton
@@ -69,6 +50,7 @@ bool yahal::mcu::targets::msp430f5309::Adc10::init(void)
 	ADC10CTL0 |= ADC10ENC;	///< Enable ADC10ENC
 	return true;
 }
+*/
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -230,5 +212,4 @@ void yahal::mcu::targets::msp430f5309::Adc10::isr(Irq::Type irq)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

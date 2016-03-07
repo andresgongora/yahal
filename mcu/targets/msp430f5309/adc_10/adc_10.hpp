@@ -31,23 +31,10 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
-
 #include <stdint.h>
 #include <cstddef>
+#include "../msp430f5309_namespace.hpp"
 #include "../../../../utility/oop/publish_subscribe.hpp"
-
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class Adc10;
-	class IrqHandler;	//Forward declaration
-}}}}
-
-
 
 
 
@@ -178,8 +165,7 @@ public:
 
 				// -----------------------------------------------------------------
 public:
-	static Adc10&		getInstance(void);
-	bool			init(void);
+				Adc10(void);
 
 	bool			setMode(uint8_t mode);
 	bool			setReference(uint8_t reference);
@@ -196,8 +182,6 @@ public:
 
 
 private:
-				Adc10(const Configuration& configuration);	///< Singleton
-
 	friend class		yahal::mcu::targets::msp430f5309::IrqHandler;
 	void			isr(Irq::Type);
 
@@ -209,9 +193,6 @@ private:
 	void			disable(void);
 	void			enable(void);
 
-
-	static Adc10		instance_;
-	const Configuration&	configuration_;
 //	uint16_t		buffer_raw_[16];
 //	uint16_t		buffer_fresh_flag_;
 	AutoscanHandler*	handler_;
@@ -305,6 +286,5 @@ private:
  */
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_ADC_10_HPP_INCLUDED__

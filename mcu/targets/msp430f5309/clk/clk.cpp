@@ -22,15 +22,9 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-
-
 #include "clk.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
-
-#include "../../../config/targets/msp430f5309/clk.hpp"
 #include <msp430f5309.h>
 #include "../power_manager/power_manager.hpp"
 
@@ -38,31 +32,8 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::Clk yahal::mcu::targets::msp430f5309::Clk::instance_(yahal::mcu::targets::msp430f5309::config::clk);
-
-yahal::mcu::targets::msp430f5309::Clk& yahal::mcu::targets::msp430f5309::Clk::getInstance(void)
-{
-
-	return instance_;
-}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-
-yahal::mcu::targets::msp430f5309::Clk::Clk(const Configuration& configuration) :
-	configuration_(configuration)
+yahal::mcu::targets::msp430f5309::Clk::Clk(void)
 {}
-
-bool yahal::mcu::targets::msp430f5309::Clk::init(void)
-{
-	setFrequencyHz(configuration_.frequency);
-	return true;
-}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
 
 
 
@@ -88,8 +59,5 @@ uint32_t yahal::mcu::targets::msp430f5309::Clk::getFrequencyHz(void)
 
 
 
-
-
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
 #endif 	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309

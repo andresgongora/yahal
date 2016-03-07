@@ -56,7 +56,7 @@
 
 
 
-
+#if false ////
 
 namespace yahal{ namespace mcu{
 
@@ -71,12 +71,12 @@ bool init(void)
 
 }}
 
+#endif
 
 
 
 
 
-#if false ////
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Mcu;
@@ -100,14 +100,14 @@ public:
 					return success;
 				}
 
-	static Mcu&		getInstance(void);
+//	static Mcu&		getInstance(void);
 
-private:
+//private:
 				Mcu(void) {}
-	static Mcu		instance_;
+//	static Mcu		instance_;
 
 };
-#endif
+
 
 
 

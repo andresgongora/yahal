@@ -31,95 +31,27 @@
 #include "../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../config/targets/msp430f5309/config.hpp"
+#include "msp430f5309_namespace.hpp"
 
+
+#include "adc_10/adc_10.hpp"
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
 #include "gpio/gpio.hpp"
 #include "usci_b1/i2c/i2c_master.hpp"
 #include "usci_b1/i2c/i2c_slave.hpp"
 #include "usci_b1/i2c/i2c_multimaster.hpp"
-#include "adc_10/adc_10.hpp"
+
 #include "timer_a1/timer_a1.hpp"
 #include "irq/irq_handler.hpp"
 #include "power_manager/power_manager.hpp"
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
-
-// WDT
-#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
-	extern yahal::mcu::targets::msp430f5309::Wdt& wdt;
-#endif
-
-
-// CLK
-#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
-	extern yahal::mcu::targets::msp430f5309::Clk& clk;
-#endif
-
-
-// GPIO
-#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
-	extern yahal::mcu::targets::msp430f5309::Gpio& gpio;
-#endif
-
-
-// USCI_B1
-#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
-	#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
-		extern yahal::mcu::targets::msp430f5309::UsciB1::I2CSlave YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
-	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
-		extern yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
-	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
-		extern yahal::mcu::targets::msp430f5309::UsciB1::I2CMultimaster& YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
-	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SPI
-		extern yahal::mcu::targets::msp430f5309::UsciB1::Spi YAHAL_MCU_MSP430F5309_USCI_B1_NAME;
-	#else
-		#error "USCI_B1_MODE is not valid"
-	#endif
-#endif
-
-
-// TIMER_A0
-#if YAHAL_MCU_MSP430F5309_TIMER_A0_ENABLED == true
-	extern yahal::mcu::targets::msp430f5309::TimerA0& timer_a0;
-#endif
-
-
-// TIMER_A1
-#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
-	extern yahal::mcu::targets::msp430f5309::TimerA1& timer_a1;
-#endif
-
-
-// ADC_10
-#if YAHAL_MCU_MSP430F5309_ADC_10_ENABLED == true
-	extern yahal::mcu::targets::msp430f5309::Adc10& adc_10;
-#endif
-
-
-// IRQ
-#if YAHAL_MCU_MSP430F5309_IRQ_ENABLED == true
-	extern yahal::mcu::targets::msp430f5309::IrqHandler& irq;
-#endif
-
-
-namespace targets {
-	bool init(void);
-}
+#include "../../config/targets/msp430f5309/config.hpp"
 
 
 
-}} // yahal::mcu
-
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#if false ////
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{
 	class Target;
@@ -141,23 +73,23 @@ protected:
 
 public:
 	// WDT
-	#if YAHAL_MCU_MSP430F5309_WDT_ENABLED == true
+	#if YAHAL_MCU_MSP430F5309_ENABLE_WDT == true
 		yahal::mcu::targets::msp430f5309::Wdt& wdt;
 	#endif
 
 
 	// CLK
-	#if YAHAL_MCU_MSP430F5309_CLK_ENABLED == true
+	#if YAHAL_MCU_MSP430F5309_ENABLE_CLK == true
 		yahal::mcu::targets::msp430f5309::Clk& clk;
 	#endif
 
 
 	// GPIO
-	#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
+	#if YAHAL_MCU_MSP430F5309_ENABLE_GPIO == true
 		yahal::mcu::targets::msp430f5309::Gpio& gpio;
 	#endif
 
-
+/*
 	// USCI_B1
 	#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
 		#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
@@ -183,9 +115,9 @@ public:
 	// IRQ
 	#if YAHAL_MCU_MSP430F5309_IRQ_ENABLED == true
 		yahal::mcu::targets::msp430f5309::IrqHandler& irq;
-	#endif
+	#endif*/
 };
-#endif
+
 
 
 /* ---------------------------------------------------------------------------------------------- */

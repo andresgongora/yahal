@@ -32,39 +32,25 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
-
 #include <stdint.h>
+#include "../msp430f5309_namespace.hpp"
 #include "../../../modules/gpio/gpio.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class Gpio;
-}}}}
+#include "../../../../utility/oop/singleton.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Gpio : public yahal::mcu::modules::Gpio
+class yahal::mcu::targets::msp430f5309::Gpio :
+		public yahal::mcu::modules::Gpio,
+		public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::Gpio>
 {
 public:
-				struct Configuration
-				{};
-
-				static const Gpio::Direction Direction;
-				static const Gpio::Resistor Resistor;
-
-				// -----------------------------------------------------------------
-
-				class Port1 : public yahal::mcu::modules::Gpio::Port
+				class Port1 : 	public yahal::mcu::modules::Gpio::Port,
+						public yahal::utility::oop::Singleton<Port1>
 				{
 				public:
-					static Port1&	getInstance(void);
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
 								Resistor::Type resistor = Resistor::DISABLED,
 								uint8_t mask = 0xFF);
@@ -72,17 +58,13 @@ public:
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
-
-				private:
-							Port1(void){}	///< Singleton
-					static Port1	instance_;
 				};
 
 
-				class Port2 : public yahal::mcu::modules::Gpio::Port
+				class Port2 : 	public yahal::mcu::modules::Gpio::Port,
+						public yahal::utility::oop::Singleton<Port2>
 				{
 				public:
-					static Port2&	getInstance(void);
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
 								Resistor::Type resistor = Resistor::DISABLED,
 								uint8_t mask = 0xFF);
@@ -90,17 +72,13 @@ public:
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
-
-				private:
-							Port2(void){}	///< Singleton
-					static Port2	instance_;
 				};
 
 
-				class Port3 : public yahal::mcu::modules::Gpio::Port
+				class Port3 : 	public yahal::mcu::modules::Gpio::Port,
+						public yahal::utility::oop::Singleton<Port3>
 				{
 				public:
-					static Port3&	getInstance(void);
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
 								Resistor::Type resistor = Resistor::DISABLED,
 								uint8_t mask = 0xFF);
@@ -109,16 +87,13 @@ public:
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
 
-				private:
-							Port3(void){}	///< Singleton
-					static Port3	instance_;
 				};
 
 
-				class Port4 : public yahal::mcu::modules::Gpio::Port
+				class Port4 : 	public yahal::mcu::modules::Gpio::Port,
+						public yahal::utility::oop::Singleton<Port4>
 				{
 				public:
-					static Port4&	getInstance(void);
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
 								Resistor::Type resistor = Resistor::DISABLED,
 								uint8_t mask = 0xFF);
@@ -126,17 +101,13 @@ public:
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
-
-				private:
-							Port4(void){}	///< Singleton
-					static Port4	instance_;
 				};
 
 
-				class Port5 : public yahal::mcu::modules::Gpio::Port
+				class Port5 : 	public yahal::mcu::modules::Gpio::Port,
+						public yahal::utility::oop::Singleton<Port5>
 				{
 				public:
-					static Port5&	getInstance(void);
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
 								Resistor::Type resistor = Resistor::DISABLED,
 								uint8_t mask = 0xFF);
@@ -144,17 +115,13 @@ public:
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
-
-				private:
-							Port5(void){}	///< Singleton
-					static Port5	instance_;
 				};
 
 
-				class Port6 : public yahal::mcu::modules::Gpio::Port
+				class Port6 :	public yahal::mcu::modules::Gpio::Port,
+						public yahal::utility::oop::Singleton<Port6>
 				{
 				public:
-					static Port6&	getInstance(void);
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
 								Resistor::Type resistor = Resistor::DISABLED,
 								uint8_t mask = 0xFF);
@@ -162,28 +129,15 @@ public:
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
-
-				private:
-							Port6(void){}	///< Singleton
-					static Port6	instance_;
 				};
 
 				// -----------------------------------------------------------------
 public:
-	static Gpio&		getInstance(void);		///< Get singleton instance
-	bool			init(void);
-	virtual Port& 		port(uint8_t portNumber);	///< Get port
-
-
-private:
-				Gpio(const Configuration& configuration);	///< Singleton
- 	static Gpio		instance_;
- 	const Configuration&	configuration_;
+	virtual Port& 		port(uint8_t portNumber);
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_GPIO_ENABLED == true
 #endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif // __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__
