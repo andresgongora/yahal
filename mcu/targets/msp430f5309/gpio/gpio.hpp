@@ -56,6 +56,7 @@ public:
 								uint8_t mask = 0xFF);
 
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual void	toggle(uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
 				};
@@ -70,6 +71,7 @@ public:
 								uint8_t mask = 0xFF);
 
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual void	toggle(uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
 				};
@@ -84,6 +86,7 @@ public:
 								uint8_t mask = 0xFF);
 
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual void	toggle(uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
 
@@ -99,6 +102,7 @@ public:
 								uint8_t mask = 0xFF);
 
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual void	toggle(uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
 				};
@@ -113,6 +117,7 @@ public:
 								uint8_t mask = 0xFF);
 
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual void	toggle(uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
 				};
@@ -127,6 +132,7 @@ public:
 								uint8_t mask = 0xFF);
 
 					virtual void	set(uint8_t value, uint8_t mask=0xFF);
+					virtual void	toggle(uint8_t mask=0xFF);
 					virtual uint8_t	get(uint8_t mask=0xFF)const;
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
 				};

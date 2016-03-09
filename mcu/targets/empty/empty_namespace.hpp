@@ -22,39 +22,17 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../../../utility/oop/noncopyable.hpp"
-#include "../../../utility/oop/nonheapable.hpp"
+#ifndef __YAHAL_MCU_EMPTY_NAMESPACE_HPP_INCLUDED__
+#define __YAHAL_MCU_EMPTY_NAMESPACE_HPP_INCLUDED__
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class IrqHandler;
-}}}
 
-
-
-/***********************************************************************************************//**
- * @brief	Base class for all IRQ handlers.
- **************************************************************************************************/
-class yahal::mcu::modules::IrqHandler
-{
-protected:
-				IrqHandler(void)	{}
-
-
-public:
-				// CONFIGURATION
-	virtual void		enableGlobalInterrupts(void) = 0;
-	virtual void		disableGlobalInterrupts(void) = 0;
-};
+namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
+	class Gpio;
+}}}}
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_EMPTY__NAMESPACE_HPP_INCLUDED__

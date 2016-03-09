@@ -73,22 +73,22 @@ public:
 
 				// -----------------------------------------------------------------
 public:
-	template <typename T>
+	template<typename T>
 	inline bool 		writeRegister(uint8_t slaveAddr, uint8_t regAddr, T& data){
 					return writeRegister(slaveAddr, regAddr, (uint8_t*)&data, sizeof(T));
 				}
 
-	template <typename T>
+	template<typename T>
 	inline bool 		write(uint8_t slaveAddr, T& data){
 					return write(slaveAddr, (uint8_t*)&data, sizeof(T));
 				}
 
-	template <typename T>
+	template<typename T>
 	inline bool 		readRegister(uint8_t slaveAddr, uint8_t regAddr, T& data){
 					return readRegister(slaveAddr, regAddr, (uint8_t*)&data, sizeof(T));
 				}
 
-	template <typename T>
+	template<typename T>
 	inline bool 		read(uint8_t slaveAddr, T& data){
 					return read(slaveAddr, (uint8_t*)&data, sizeof(T));
 				}

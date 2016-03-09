@@ -28,20 +28,12 @@
 #include <msp430f5309.h>
 #include "../../../../error/assert.hpp"
 #include "../../empty/gpio/gpio.hpp"
+#include "../../../../utility/data/mask.hpp"
 
 
 /* =================================================================================================
 	GPIO
 ================================================================================================= */
-/*
-yahal::mcu::targets::msp430f5309::Gpio yahal::mcu::targets::msp430f5309::Gpio::instance_;
-
-yahal::mcu::targets::msp430f5309::Gpio& yahal::mcu::targets::msp430f5309::Gpio::getInstance(void)
-{
-	return instance_;
-}
-
-/* ---------------------------------------------------------------------------------------------- */
 
 yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
 {
@@ -68,7 +60,6 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 	PORT 1
 ================================================================================================= */
 
-
 bool yahal::mcu::targets::msp430f5309::Gpio::Port1::config(Direction::Type direction,
 							   Resistor::Type resistor,
 							   uint8_t mask) {
@@ -92,18 +83,23 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port1::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port1::set(uint8_t value, uint8_t mask)
 {
-	// AUXILIAR VARIABLES
-	uint8_t oldRegOut = P1OUT;
-	uint8_t andMask = (~mask) | value;
-	uint8_t orMask =  mask & value;
-
-
-	// SET
-	P1OUT = ( oldRegOut & andMask ) | orMask;
+	yahal::utility::data::setMasked(P1OUT, value, mask);
 }
 
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::get(uint8_t mask)const {return P1IN & mask;}
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::getOutput(uint8_t mask)const {return P1OUT & mask;}
+void  yahal::mcu::targets::msp430f5309::Gpio::Port1::toggle(uint8_t mask)
+{
+	P1OUT ^= mask;
+}
+
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::get(uint8_t mask)const
+{
+	return P1IN & mask;
+}
+
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::getOutput(uint8_t mask)const
+{
+	return P1OUT & mask;
+}
 
 
 
@@ -135,18 +131,23 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port2::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port2::set(uint8_t value, uint8_t mask)
 {
-	// AUXILIAR VARIABLES
-	uint8_t oldRegOut = P2OUT;
-	uint8_t andMask = (~mask) | value;
-	uint8_t orMask =  mask & value;
-
-
-	// SET
-	P2OUT = ( oldRegOut & andMask ) | orMask;
+	yahal::utility::data::setMasked(P2OUT, value, mask);
 }
 
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port2::get(uint8_t mask)const {return P2IN & mask;}
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port2::getOutput(uint8_t mask)const {return P2OUT & mask;}
+void  yahal::mcu::targets::msp430f5309::Gpio::Port2::toggle(uint8_t mask)
+{
+	P2OUT ^= mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port2::get(uint8_t mask) const
+{
+	return P2IN & mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port2::getOutput(uint8_t mask) const
+{
+	return P2OUT & mask;
+}
 
 
 
@@ -178,18 +179,23 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port3::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port3::set(uint8_t value, uint8_t mask)
 {
-	// AUXILIAR VARIABLES
-	uint8_t oldRegOut = P3OUT;
-	uint8_t andMask = (~mask) | value;
-	uint8_t orMask =  mask & value;
-
-
-	// SET
-	P3OUT = ( oldRegOut & andMask ) | orMask;
+	yahal::utility::data::setMasked(P3OUT, value, mask);
 }
 
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port3::get(uint8_t mask)const {return P3IN & mask;}
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port3::getOutput(uint8_t mask)const {return P3OUT & mask;}
+void  yahal::mcu::targets::msp430f5309::Gpio::Port3::toggle(uint8_t mask)
+{
+	P3OUT ^= mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port3::get(uint8_t mask) const
+{
+	return P3IN & mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port3::getOutput(uint8_t mask) const
+{
+	return P3OUT & mask;
+}
 
 
 
@@ -221,18 +227,23 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port4::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port4::set(uint8_t value, uint8_t mask)
 {
-	// AUXILIAR VARIABLES
-	uint8_t oldRegOut = P4OUT;
-	uint8_t andMask = (~mask) | value;
-	uint8_t orMask =  mask & value;
-
-
-	// SET
-	P4OUT = ( oldRegOut & andMask ) | orMask;
+	yahal::utility::data::setMasked(P4OUT, value, mask);
 }
 
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port4::get(uint8_t mask)const {return P4IN & mask;}
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port4::getOutput(uint8_t mask)const {return P4OUT & mask;}
+void  yahal::mcu::targets::msp430f5309::Gpio::Port4::toggle(uint8_t mask)
+{
+	P4OUT ^= mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port4::get(uint8_t mask) const
+{
+	return P4IN & mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port4::getOutput(uint8_t mask) const
+{
+	return P4OUT & mask;
+}
 
 
 
@@ -264,18 +275,23 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port5::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port5::set(uint8_t value, uint8_t mask)
 {
-	// AUXILIAR VARIABLES
-	uint8_t oldRegOut = P5OUT;
-	uint8_t andMask = (~mask) | value;
-	uint8_t orMask =  mask & value;
-
-
-	// SET
-	P5OUT = ( oldRegOut & andMask ) | orMask;
+	yahal::utility::data::setMasked(P5OUT, value, mask);
 }
 
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port5::get(uint8_t mask)const {return P5IN & mask;}
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port5::getOutput(uint8_t mask)const {return P5OUT & mask;}
+void  yahal::mcu::targets::msp430f5309::Gpio::Port5::toggle(uint8_t mask)
+{
+	P5OUT ^= mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port5::get(uint8_t mask) const
+{
+	return P5IN & mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port5::getOutput(uint8_t mask) const
+{
+	return P5OUT & mask;
+}
 
 
 
@@ -307,18 +323,23 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port6::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port6::set(uint8_t value, uint8_t mask)
 {
-	// AUXILIAR VARIABLES
-	uint8_t oldRegOut = P6OUT;
-	uint8_t andMask = (~mask) | value;
-	uint8_t orMask =  mask & value;
-
-
-	// SET
-	P6OUT = ( oldRegOut & andMask ) | orMask;
+	yahal::utility::data::setMasked(P6OUT, value, mask);
 }
 
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::get(uint8_t mask)const {return P6IN & mask;}
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask)const {return P6OUT & mask;}
+void  yahal::mcu::targets::msp430f5309::Gpio::Port6::toggle(uint8_t mask)
+{
+	P6OUT ^= mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port6::get(uint8_t mask) const
+{
+	return P6IN & mask;
+}
+
+uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask) const
+{
+	return P6OUT & mask;
+}
 
 
 

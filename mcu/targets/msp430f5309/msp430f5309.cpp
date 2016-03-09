@@ -32,10 +32,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 yahal::mcu::Target::Target(void) :
 
-	// WDT
-	#if YAHAL_MCU_MSP430F5309_ENABLE_WDT == true
-		wdt(yahal::mcu::targets::msp430f5309::Wdt::getInstance()),
-	#endif
+
 
 
 	// CLK
@@ -46,7 +43,17 @@ yahal::mcu::Target::Target(void) :
 
 	// GPIO
 	#if YAHAL_MCU_MSP430F5309_ENABLE_GPIO == true
-		gpio(yahal::mcu::targets::msp430f5309::Gpio::getInstance())
+		gpio(yahal::mcu::targets::msp430f5309::Gpio::getInstance()),
+	#endif
+
+	// ADC_10
+	#if YAHAL_MCU_MSP430F5309_ENABLE_ADC_10 == true
+		adc_10(yahal::mcu::targets::msp430f5309::Adc10::getInstance()),
+	#endif
+
+	// WDT
+	#if YAHAL_MCU_MSP430F5309_ENABLE_WDT == true
+		wdt(yahal::mcu::targets::msp430f5309::Wdt::getInstance())
 	#endif
 
 /*
@@ -77,6 +84,8 @@ yahal::mcu::Target::Target(void) :
 	#if YAHAL_MCU_MSP430F5309_IRQ_ENABLED == true
 		irq(yahal::mcu::targets::msp430f5309::IrqHandler::getInstance())
 	#endif*/
+
+
 {}// Constructor
 
 

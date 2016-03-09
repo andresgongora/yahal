@@ -25,21 +25,14 @@
 #include "i2c_master.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
-
-#include "../../../../config/targets/msp430f5309/usci_b1.hpp"
 #include <msp430f5309.h>
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::I2CMaster(const Configuration& configuration) :
-	configuration_(configuration)
+yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster::I2CMaster(void)
 {}
-
-
 
 /* ---------------------------------------------------------------------------------------------- */
 

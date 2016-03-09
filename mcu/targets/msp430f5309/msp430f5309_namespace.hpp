@@ -38,6 +38,11 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	class Gpio;
 	class Wdt;
 	class IrqHandler;
+
+	class UsciB1;
+//	class I2CMaster;
+//	class I2CSlave;
+//	class I2CMultimaster;
 }}}}
 
 

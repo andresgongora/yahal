@@ -32,6 +32,9 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "../msp430f5309_namespace.hpp"
+#include "../../../modules/irq/irq_handler.hpp"
+#include "../../../config/targets/msp430f5309/config.hpp"
+#include "../../../../utility/oop/singleton.hpp"
 /*
 #include "../../../../rtos/rtos.hpp"
 #include "../../../config/targets/msp430f5309/config.hpp"
@@ -43,30 +46,31 @@
 
 
 
+
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-/*class yahal::mcu::targets::msp430f5309::IrqHandler : public yahal::mcu::modules::details::IrqHandler
+class yahal::mcu::targets::msp430f5309::IrqHandler :
+	public yahal::mcu::modules::IrqHandler,
+	public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::IrqHandler>
 {
 public:
-	static IrqHandler&	getInstance(void);
-
 	virtual void		enableGlobalInterrupts(void);
 	virtual void		disableGlobalInterrupts(void);
 
 
 
 private:
-				IrqHandler(void) {};		///< Singleton
-	static IrqHandler	instance_;
-
 
 	// ADC_10
 	#if YAHAL_MCU_MSP430F5309_ENABLE_ADC_10 == true
 		static void		ADC_10_ISR(void);
-		static Adc10&		handler_adc_10_;
 	#endif
 
+	// USCI_B1
+	#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
+		static void		USCI_B1_ISR(void);
+	#endif
 
 	// TIMER_A1
 	#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
@@ -76,14 +80,10 @@ private:
 	#endif
 
 
-	// USCI_B1
-	#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
-		static void		USCI_B1_ISR(void);
-		static UsciB1&		handler_usci_b1_;
-	#endif
+
 };
 
-*/
+
 
 
 /* ---------------------------------------------------------------------------------------------- */

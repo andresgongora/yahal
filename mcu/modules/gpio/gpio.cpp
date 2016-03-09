@@ -46,22 +46,15 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::modules::Gpio::operator[](uint8_t p
 	PORT
 ================================================================================================= */
 
-void yahal::mcu::modules::Gpio::Port::toggle(uint8_t mask)
+yahal::mcu::modules::Gpio::Port::Pin yahal::mcu::modules::Gpio::Port::pin(uint8_t pin_number)
 {
-	set(~getOutput(), mask);
-}
-
-
-yahal::mcu::modules::Gpio::Port::Pin yahal::mcu::modules::Gpio::Port::pin(uint8_t pinNumber)
-{
-	assert(pinNumber < 8);
-	yahal::mcu::modules::Gpio::Port::Pin pin(*this, pinNumber);
+	yahal::mcu::modules::Gpio::Port::Pin pin(*this, pin_number);
 	return pin;
 }
 
-yahal::mcu::modules::Gpio::Port::Pin yahal::mcu::modules::Gpio::Port::operator[](uint8_t pinNumber)
+yahal::mcu::modules::Gpio::Port::Pin yahal::mcu::modules::Gpio::Port::operator[](uint8_t pin_number)
 {
-	return pin(pinNumber);
+	return pin(pin_number);
 }
 
 
@@ -69,39 +62,39 @@ yahal::mcu::modules::Gpio::Port::Pin yahal::mcu::modules::Gpio::Port::operator[]
 	PIN
 ================================================================================================= */
 
-yahal::mcu::modules::Gpio::Port::Pin::Pin(yahal::mcu::modules::Gpio::Port& port, uint8_t pinNumber) :
+yahal::mcu::modules::Gpio::Port::Pin::Pin(yahal::mcu::modules::Gpio::Port& port, uint8_t pin_number) :
 	port_(port),
-	pin_number_(pinNumber)
+	pin_bit_(1<<pin_number) ///< If pin_number greate than 7, then, pin_bit_ = 0x00
 {}
 
 
 bool yahal::mcu::modules::Gpio::Port::Pin::config(Direction::Type direction, Resistor::Type resistor)
 {
-	return port_.config(direction, resistor, (1<<pin_number_));
+	return port_.config(direction, resistor, pin_bit_);
 }
 
 
 void yahal::mcu::modules::Gpio::Port::Pin::set(bool b)
 {
-	port_.set((b<<pin_number_), (1<<pin_number_));
+	port_.set(pin_bit_ & b, pin_bit_);
 }
 
 
 bool yahal::mcu::modules::Gpio::Port::Pin::get() const
 {
-	return port_.get((1<<pin_number_));
+	return port_.get(pin_bit_);
 }
 
 
 bool yahal::mcu::modules::Gpio::Port::Pin::getOutput() const
 {
-	return port_.getOutput((1<<pin_number_));
+	return port_.getOutput(pin_bit_);
 }
 
 
 void yahal::mcu::modules::Gpio::Port::Pin::toggle(void)
 {
-	port_.toggle((1<<pin_number_));
+	port_.toggle(pin_bit_);
 }
 
 

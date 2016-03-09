@@ -38,9 +38,10 @@
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
 #include "gpio/gpio.hpp"
+/*
 #include "usci_b1/i2c/i2c_master.hpp"
 #include "usci_b1/i2c/i2c_slave.hpp"
-#include "usci_b1/i2c/i2c_multimaster.hpp"
+#include "usci_b1/i2c/i2c_multimaster.hpp"*/
 
 #include "timer_a1/timer_a1.hpp"
 #include "irq/irq_handler.hpp"
@@ -87,6 +88,11 @@ public:
 	// GPIO
 	#if YAHAL_MCU_MSP430F5309_ENABLE_GPIO == true
 		yahal::mcu::targets::msp430f5309::Gpio& gpio;
+	#endif
+
+	// ADC_10
+	#if YAHAL_MCU_MSP430F5309_ENABLE_ADC_10 == true
+		yahal::mcu::targets::msp430f5309::Adc10& adc_10;
 	#endif
 
 /*

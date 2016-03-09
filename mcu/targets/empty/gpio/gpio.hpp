@@ -29,13 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../../../modules/gpio/gpio.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
-	class Gpio;
-}}}}
+#include "../empty_namespace.hpp"
 
 
 
@@ -53,13 +47,14 @@ public:
 								uint8_t mask = 0xFF) {return true;}
 
 					virtual void	set(uint8_t value, uint8_t mask=0xFF) {}
+					virtual void	toggle(uint8_t mask=0xFF) {}
 					virtual uint8_t	get(uint8_t mask=0xFF)const {return false;}
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const {return false;}
 
 				};
 
 
-	virtual Port& 		port(uint8_t portNumber) {return empty_port;}
+	virtual Port& 		port(uint8_t portNumber){return empty_port;}
 
 private:
 	EmptyPort		empty_port;

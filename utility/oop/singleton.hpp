@@ -36,7 +36,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
-	template <typename T_DERIVED> class Singleton;
+	template<typename T_DERIVED> class Singleton;
 }}}
 
 
@@ -50,7 +50,7 @@ namespace yahal{ namespace utility{ namespace oop{
  * 	};
  * @endcode
  **************************************************************************************************/
-template <typename T_DERIVED>
+template<typename T_DERIVED>
 class yahal::utility::oop::Singleton
 {
 protected:
@@ -64,12 +64,12 @@ protected:
 
 public:
 	// ACCESSOR
-	static inline T_DERIVED& getInstance(void) { return instance_;}
+	static T_DERIVED& getInstance(void) { return instance_;}
 };
 
 
 // CREATE INSTANCE
-template <typename T_DERIVED> T_DERIVED yahal::utility::oop::Singleton<T_DERIVED>::instance_;
+template<typename T_DERIVED> T_DERIVED yahal::utility::oop::Singleton<T_DERIVED>::instance_;
 
 
 /* ---------------------------------------------------------------------------------------------- */

@@ -33,14 +33,11 @@
 #include "../../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true && YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
-
 #include <stdint.h>
 #include <cstddef>
 #include "../../../../modules/i2c/manager/i2c_master_manager.hpp"
 #include "../../usci_b1/usci_b1.hpp"
-
+#include "../../../../../utility/oop/singleton.hpp"
 
 
 
@@ -49,17 +46,14 @@
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster :
 	public yahal::mcu::modules::I2CMasterManager,
-	public yahal::mcu::targets::msp430f5309::UsciB1
+	public yahal::mcu::targets::msp430f5309::UsciB1,
+	public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::UsciB1::I2CMaster>
 {
 public:
-				struct Configuration
-				{
-					std::size_t baud_rate_prescale;
-				};
-
-
 				// CONSTRUCTOR
-				I2CMaster(const Configuration& configuration);
+				I2CMaster(void);
+
+	void			configure(uint16_t baud_rate_prescaler)
 
 
 
@@ -77,10 +71,6 @@ private:			// INITIALIZATION
 
 				// ISR
 	virtual void 		isr(UsciB1::Irq::Type irq);
-
-
-				// PRIVATE VARIABLES
-	const Configuration&	configuration_;
 };
 
 

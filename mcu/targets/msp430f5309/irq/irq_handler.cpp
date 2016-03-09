@@ -25,25 +25,9 @@
 
 #include "irq_handler.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-/*
+
 #include <msp430f5309.h>
-#include "../usci_b1/usci_b1.hpp"
-#include "../usci_b1/i2c/i2c_slave.hpp"
-#include "../usci_b1/i2c/i2c_master.hpp"
-#include "../usci_b1/i2c/i2c_multimaster.hpp"
 
-
-
-/* ---------------------------------------------------------------------------------------------- */
-/*
-yahal::mcu::targets::msp430f5309::IrqHandler
-yahal::mcu::targets::msp430f5309::IrqHandler::instance_;
-
-yahal::mcu::targets::msp430f5309::IrqHandler&
-yahal::mcu::targets::msp430f5309::IrqHandler::getInstance(void)
-{
-	return instance_;
-}
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -64,42 +48,39 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 /* =================================================================================================
 	ADC_10
 ================================================================================================= */
-/*#if YAHAL_MCU_MSP430F5309_ENABLE_ADC_10 == true
-
-	yahal::mcu::targets::msp430f5309::Adc10&	\
-		yahal::mcu::targets::msp430f5309::IrqHandler::handler_adc_10_ =	\
-			yahal::mcu::targets::msp430f5309::Adc10::getInstance();
-
+#if YAHAL_MCU_MSP430F5309_ENABLE_ADC_10 == true
 	#pragma vector = ADC10_VECTOR
 	__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::ADC_10_ISR(void)
 	{
+		yahal::mcu::targets::msp430f5309::Adc10& adc_10 = yahal::mcu::targets::msp430f5309::Adc10::getInstance();
+
 		switch(__even_in_range(ADC10IV,12)) {
 		case  0: ///< Vector 00: No interrupts
 			break;
 		case  2: ///< Vector 02: Overflow
-			handler_adc_10_.isr(msp430f5309::Adc10::Irq::OVERFLOW);
+			adc_10.isr(adc_10.IRQ.OVERFLOW);
 			break;
 		case  4: ///< Vector 04: Over sample
-			handler_adc_10_.isr(msp430f5309::Adc10::Irq::OVERSAMPLE);
+			adc_10.isr(adc_10.IRQ.OVERSAMPLE);
 			break;
 		case  6: ///< Vector 06: Signal over threshold high level
-			handler_adc_10_.isr(msp430f5309::Adc10::Irq::THRESHOLD_OVER);
+			adc_10.isr(adc_10.IRQ.THRESHOLD_OVER);
 			break;
 		case  8: ///< Vector 08: Signal below threshold low level
-			handler_adc_10_.isr(msp430f5309::Adc10::Irq::THRESHOLD_BELOW);
+			adc_10.isr(adc_10.IRQ.THRESHOLD_BELOW);
 			break;
 		case 10: ///< Vector 10: Signal inside threshold levels
-			handler_adc_10_.isr(msp430f5309::Adc10::Irq::THRESHOLD_INSIDE);
+			adc_10.isr(adc_10.IRQ.THRESHOLD_INSIDE);
 			break;
 		case 12: ///< Vector 12: ADC convertion end
-			handler_adc_10_.isr(msp430f5309::Adc10::Irq::CONVERTION);
+			adc_10.isr(adc_10.IRQ.CONVERTION);
 			break;
 		default:
 			break;
 		}
 	}
 #endif
-*/
+
 
 
 

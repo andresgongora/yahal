@@ -138,7 +138,7 @@ private:
 	Channel::Type		getChannel(void) const;
 
 	yahal::mcu::modules::I2CMaster& 	i2c_;
-	const uint8_t				ADDRESS = 0x48;
+	const static uint8_t			ADDRESS = 0x48;
 };
 
 

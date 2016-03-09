@@ -34,41 +34,21 @@
 #include "../../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-#include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
+#include "../msp430f5309_namespace.hpp"
+#include "../../../../utility/oop/singleton.hpp"
 
-
-
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class UsciB1;
-	class IrqHandler;	// Forward declaration
-}}}}
 
 
 
 /***********************************************************************************************//**
  * @brief	Base class for the USCI_B1 HW Module, used for I2C and SPI.
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::UsciB1
+class yahal::mcu::targets::msp430f5309::UsciB1 :
+	public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::UsciB1>
 {
 public:
-	#if YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE
-		class I2CSlave;
-	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER
-		class I2CMaster;
-	#elif YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
-		class I2CMultimaster;
-	#elif  YAHAL_MCU_MSP430F5309_USCI_B1_MODE == YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SPI
-		class Spi;
-	#else
-		#error "USCI_B1_MODE is not valid"
-	#endif
+				class I2CMaster;
 
-protected:
 				struct Irq { enum Type {
 					I2C_START,
 					I2C_STOP,
@@ -76,7 +56,7 @@ protected:
 					I2C_RX_BUFFER_FULL,
 					I2C_ARBITRATION_LOST,
 					I2C_NACK,
-				};};
+				};} static const IRQ;
 
 				// -----------------------------------------------------------------
 protected:
@@ -91,7 +71,6 @@ protected:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED == true
 #endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
 #endif	// __YAHAL_MCU_MSP430F5309_USCI_B1_HPP_INCLUDED__
 

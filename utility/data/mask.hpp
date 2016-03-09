@@ -22,39 +22,46 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../../../utility/oop/noncopyable.hpp"
-#include "../../../utility/oop/nonheapable.hpp"
+#ifndef __YAHAL_UTILITY_DATA_MASK_HPP_INCLUDED__
+#define __YAHAL_UTILITY_DATA_MASK_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class IrqHandler;
+namespace yahal{ namespace utility{ namespace data{
+	template<typename T> void setMasked(volatile T& variable, T new_value, T mask);
+	template<typename T> void setBits(volatile T& variable, T mask);
+	template<typename T> void unsetBits(volatile T& variable, T mask);
 }}}
 
 
 
 /***********************************************************************************************//**
- * @brief	Base class for all IRQ handlers.
+ *
  **************************************************************************************************/
-class yahal::mcu::modules::IrqHandler
+template<typename T> void yahal::utility::data::setMasked(volatile T& variable, T new_value, T mask)
 {
-protected:
-				IrqHandler(void)	{}
+	T and_mask = (~mask) | new_value;
+	T or_mask  =   mask  & new_value;
+
+	variable = ((variable & and_mask) | or_mask);
+}
 
 
-public:
-				// CONFIGURATION
-	virtual void		enableGlobalInterrupts(void) = 0;
-	virtual void		disableGlobalInterrupts(void) = 0;
-};
 
+/***********************************************************************************************//**
+ *
+ **************************************************************************************************/
+template<typename T> void setBits(volatile T& variable, T mask)
+{
+	variable |= mask;
+}
+
+template<typename T> void unsetBits(volatile T& variable, T mask)
+{
+	variable &= ~mask;
+}
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
+#endif 	// __YAHAL_UTILITY_DATA_MASK_HPP_INCLUDED__
