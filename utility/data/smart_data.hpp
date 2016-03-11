@@ -42,7 +42,7 @@ class SmartData : public std::numeric_limits<T>
 public:
 			// CONSTRUCTOR
 			SmartData(void) {}
-			SmartData(const T& value) : value_(value) {}
+			SmartData(T value) : value_(value) {}
 
 
 
@@ -112,13 +112,15 @@ public:
 	 * -Clever names for &= and |=
 	 * -Be able to binary overwrite a value but also using a mask
 	 * -Be able to set/unset 1 flag at position X. Such as "value |= (1 << X)"
+	 * - Also get bit at position X. Should return bool.
 	 *
-	 * Normal operations
+	 * Normal operations:
 	 * - Optional increment/decrement operation with overflow/underflow protection
 	 *
 	 * Other:
 	 * - Special type for boolean array -> regardless of array size, optimize the boolean array into a struct that with bitfield access
 	 * - Error minimizin float as seen on hackaday
+	 * - Prohibit all other data types other than specified manually in this file
 	 */
 
 
@@ -138,6 +140,7 @@ typedef SmartData<float> Float;
 typedef SmartData<double> Double;
 
 
+
 /* =================================================================================================
 	Exact-width integer types
 ================================================================================================= */
@@ -155,6 +158,45 @@ typedef SmartData<uint64_t> UInt64;
 
 
 
+/* =================================================================================================
+	Minimum-width integer types
+================================================================================================= */
+typedef SmartData<int_least8_t> IntLeast8;
+typedef SmartData<uint_least8_t> UIntLeast8;
+
+typedef SmartData<int_least16_t> IntLeast16;
+typedef SmartData<uint_least16_t> UIntLeast16;
+
+typedef SmartData<int_least32_t> IntLeast32;
+typedef SmartData<uint_least32_t> UIntLeast32;
+
+typedef SmartData<int_least64_t> IntLeast64;
+typedef SmartData<uint_least64_t> UIntLeast64;
+
+
+
+/* =================================================================================================
+	 Fastest minimum-width integer types
+================================================================================================= */
+typedef SmartData<int_fast8_t> IntFast8;
+typedef SmartData<uint_fast8_t> UIntFast8;
+
+typedef SmartData<int_fast16_t> IntFast16;
+typedef SmartData<uint_fast16_t> UIntFast16;
+
+typedef SmartData<int_fast32_t> IntFast32;
+typedef SmartData<uint_fast32_t> UIntFast32;
+
+typedef SmartData<int_fast64_t> IntFast64;
+typedef SmartData<uint_fast64_t> UIntFast64;
+
+
+
+/* =================================================================================================
+	 Greatest-width integer types
+================================================================================================= */
+typedef SmartData<intmax_t> IntMax;
+typedef SmartData<uintmax_t> UIntMax;
 
 
 
