@@ -32,7 +32,7 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "msp430f5309_namespace.hpp"
-
+#include "../../config/targets/msp430f5309.hpp"
 
 #include "adc_10/adc_10.hpp"
 #include "clk/clk.hpp"
@@ -49,7 +49,7 @@
 
 
 
-#include "../../config/targets/msp430f5309/config.hpp"
+
 
 
 
@@ -74,25 +74,30 @@ protected:
 
 public:
 	// WDT
-	#if YAHAL_MCU_MSP430F5309_ENABLE_WDT == true
-		yahal::mcu::targets::msp430f5309::Wdt& wdt;
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_WDT
+		yahal::mcu::targets::msp430f5309::Wdt wdt;
 	#endif
 
 
 	// CLK
-	#if YAHAL_MCU_MSP430F5309_ENABLE_CLK == true
-		yahal::mcu::targets::msp430f5309::Clk& clk;
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
+		yahal::mcu::targets::msp430f5309::Clk clk;
 	#endif
 
 
 	// GPIO
-	#if YAHAL_MCU_MSP430F5309_ENABLE_GPIO == true
-		yahal::mcu::targets::msp430f5309::Gpio& gpio;
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_GPIO
+		yahal::mcu::targets::msp430f5309::Gpio gpio;
 	#endif
 
 	// ADC_10
-	#if YAHAL_MCU_MSP430F5309_ENABLE_ADC_10 == true
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
 		yahal::mcu::targets::msp430f5309::Adc10& adc_10;
+	#endif
+
+	// TIMER_A1
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
+		yahal::mcu::targets::msp430f5309::TimerA1 timer_a1;
 	#endif
 
 /*
@@ -112,10 +117,7 @@ public:
 	#endif
 
 
-	// TIMER_A0
-	#if YAHAL_MCU_MSP430F5309_TIMER_A0_ENABLED == true
-	//	yahal::mcu::targets::msp430f5309::TimerA0 timer_a0;
-	#endif
+
 
 
 	// IRQ

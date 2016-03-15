@@ -28,21 +28,19 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/mcu_config.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+#include "../../../config/targets/msp430f5309.hpp"
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_WDT
 
-#include "../msp430f5309_namespace.hpp"
+
 #include "../../../modules/wdt/wdt.hpp"
-#include "../../../../utility/oop/singleton.hpp"
+#include "../msp430f5309_namespace.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Wdt :
-	public yahal::mcu::modules::Wdt,
-	public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::Wdt>
+class yahal::mcu::targets::msp430f5309::Wdt : public yahal::mcu::modules::Wdt
 {
 public:
 				Wdt(void);
@@ -54,5 +52,5 @@ public:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // YAHAL_MCU_MSP430F5309_ENABLE_WDT
 #endif // __YAHAL_MCU_MSP430F5309_WDT_HPP_INCLUDED__

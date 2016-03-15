@@ -31,16 +31,9 @@
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
+#include "../modules_namespace.hpp"
 #include "i2c_master.hpp"
 #include "i2c_slave.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class I2CMultimaster;
-}}}
-
 
 
 

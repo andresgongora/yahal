@@ -27,22 +27,19 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/mcu_config.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+#include "../../../config/targets/msp430f5309.hpp"
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
 
-#include "../msp430f5309_namespace.hpp"
+
 #include "../../../modules/clk/clk.hpp"
-#include "../../../../utility/oop/singleton.hpp"
-
+#include "../msp430f5309_namespace.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Clk :
-	public yahal::mcu::modules::Clk,
-	public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::Clk>
+class yahal::mcu::targets::msp430f5309::Clk : public yahal::mcu::modules::Clk
 {
 public:
 				struct Frequency{enum Type{
@@ -54,9 +51,11 @@ public:
 					DCO_32MHz = 32000000
 				};} static const FREQUENCY;
 
+
 				struct ClockSource{ enum Type{
 					VLP,
-				};};
+				};} static const CLOCK_SOURCE;
+
 
 				struct VCore{ enum Type{
 					MILIVOLT_3600,
@@ -70,14 +69,10 @@ public:
 	bool			setFrequencyHz(uint32_t desiredFrequencyHz);
 	uint32_t		getFrequencyHz(void);
 	void			setVCoreLevel(uint8_t level);
-
-
-
-
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // YAHAL_MCU_MSP430F5309_ENABLE_CLK
 #endif // __YAHAL_MCU_MSP430F5309_CLK_HPP_INCLUDED__

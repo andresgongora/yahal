@@ -36,7 +36,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
-	class NonHeapable;
+	template<class T> class NonHeapable;
 }}}
 
 
@@ -45,19 +45,18 @@ namespace yahal{ namespace utility{ namespace oop{
  * Non Heapable base class.
  * Each class that inherits from this class can not be instantiated with new.
  * Also it can not be removed with delete.
+ * Templated to allow for base class optimization.
  **************************************************************************************************/
+template<typename T_DERIVED>
 class yahal::utility::oop::NonHeapable
 {
 protected:
-				NonHeapable(void)			{}
+			NonHeapable(void)			{}
 
-private:
-	inline static void*	operator new(std::size_t)		{return static_cast<void*>(NULL);}
-	inline static void*	operator new(std::size_t,void*)		{return static_cast<void*>(NULL);}
-	inline static void*	operator new[](std::size_t)		{return static_cast<void*>(NULL);}
-	inline static void*	operator new[](std::size_t,void*)	{return static_cast<void*>(NULL);}
-	inline static void 	operator delete(void*)			{}
-	inline static void 	operator delete[](void*)		{}
+	static void*	operator new(std::size_t)		{return static_cast<void*>(NULL);}
+	static void*	operator new(std::size_t,void*)		{return static_cast<void*>(NULL);}
+	static void*	operator new[](std::size_t)		{return static_cast<void*>(NULL);}
+	static void*	operator new[](std::size_t,void*)	{return static_cast<void*>(NULL);}
 };
 
 

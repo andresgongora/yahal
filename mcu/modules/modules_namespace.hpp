@@ -22,36 +22,29 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__
-#define __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_NAMESPACE_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_NAMESPACE_HPP_INCLUDED__
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace utility{ namespace oop{
-	template<class T> class NonCopyable;
+namespace yahal{ namespace mcu{ namespace modules{
+
+	// MODULES
+	class Clk;
+	class Gpio;
+	class Wdt;
+	class I2CMaster;
+	class I2CMultimaster;
+	class I2CSlave;
+
+
+	// DETAILS
+	namespace details{
+		class I2CCommon;
+	}
 }}}
 
 
 
-/***********************************************************************************************//**
- * Non Copyable base class.
- * Each class that inherits from this class can not be copied.
- * Its constructor and asignment operator are protected and private respectively.
- * Templated to allow for base class optimization.
- **************************************************************************************************/
-template<typename T_DERIVED>
-class yahal::utility::oop::NonCopyable
-{
-protected:
-				NonCopyable(void) {}
-
-private:
-	explicit		NonCopyable(const NonCopyable<T_DERIVED>&);
-	NonCopyable<T_DERIVED>& operator=(const NonCopyable<T_DERIVED>&);
-};
-
-
-
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_UTILITY_OOP_NONCOPYABLE_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_MODULES_NAMESPACE_HPP_INCLUDED__

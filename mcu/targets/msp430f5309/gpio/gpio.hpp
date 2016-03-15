@@ -29,22 +29,21 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/mcu_config.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+#include "../../../config/targets/msp430f5309.hpp"
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_GPIO
+
 
 #include <stdint.h>
-#include "../msp430f5309_namespace.hpp"
 #include "../../../modules/gpio/gpio.hpp"
 #include "../../../../utility/oop/singleton.hpp"
+#include "../msp430f5309_namespace.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Gpio :
-		public yahal::mcu::modules::Gpio,
-		public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::Gpio>
+class yahal::mcu::targets::msp430f5309::Gpio : public yahal::mcu::modules::Gpio
 {
 public:
 				class Port1 : 	public yahal::mcu::modules::Gpio::Port,
@@ -139,11 +138,12 @@ public:
 
 				// -----------------------------------------------------------------
 public:
+				Gpio(void);
 	virtual Port& 		port(uint8_t portNumber);
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // YAHAL_MCU_MSP430F5309_ENABLE_GPIO
 #endif // __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__

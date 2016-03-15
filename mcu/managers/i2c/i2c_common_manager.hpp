@@ -24,15 +24,15 @@
 
 
 
-#ifndef __YAHAL_MCU_MODULES_I2C_COMMON_MANAGER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_I2C_COMMON_MANAGER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MANAGERS_I2C_COMMON_MANAGER_HPP_INCLUDED__
+#define __YAHAL_MCU_MANAGERS_I2C_COMMON_MANAGER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
-#include "../../../../rtos/rtos.hpp"
-#include "../i2c_common.hpp"
+#include "../../../rtos/rtos.hpp"
+#include "../../modules/i2c/i2c_common.hpp"
 
 
 
@@ -78,4 +78,4 @@ private:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_MCU_MODULES_I2C_COMMON_MANAGER_HPP_INCLUDED__
+#endif 	// __YAHAL_MCU_MANAGERS_I2C_COMMON_MANAGER_HPP_INCLUDED__

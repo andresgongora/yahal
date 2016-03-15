@@ -1,0 +1,5 @@
+#config		: Configuration related stuff
+#hwemulation	: Emulate modules with software, such as a virtual I2C module
+#managers	: Module helpers that take work away from the target implementations
+#modules	: API for each module
+#targets	: Code for each individual micocontroller target

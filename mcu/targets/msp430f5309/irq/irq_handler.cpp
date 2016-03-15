@@ -24,14 +24,17 @@
 
 
 #include "irq_handler.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_IRQ
 
 #include <msp430f5309.h>
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-/*
+
+yahal::mcu::targets::msp430f5309::IrqHandler::NullIsrHandler yahal::mcu::targets::msp430f5309::IrqHandler::NULL_ISR_HANDLER;
+
+
 void yahal::mcu::targets::msp430f5309::IrqHandler::enableGlobalInterrupts(void)
 {
 	_EINT();
@@ -48,7 +51,7 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 /* =================================================================================================
 	ADC_10
 ================================================================================================= */
-#if YAHAL_MCU_MSP430F5309_ENABLE_ADC_10 == true
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
 	#pragma vector = ADC10_VECTOR
 	__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::ADC_10_ISR(void)
 	{
@@ -85,14 +88,16 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 
 
 
+
+
 /* =================================================================================================
 	TIMER_A1
 ================================================================================================= */
-/*#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 
-	yahal::mcu::targets::msp430f5309::TimerA1&	\
-		yahal::mcu::targets::msp430f5309::IrqHandler::handler_timer_a1_ =	\
-			yahal::mcu::targets::msp430f5309::TimerA1::getInstance();
+	yahal::utility::oop::ServiceLocator<yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler> \
+		yahal::mcu::targets::msp430f5309::IrqHandler::timer_a1_(yahal::mcu::targets::msp430f5309::IrqHandler::NULL_ISR_HANDLER);
+
 
 	#pragma vector = TIMER1_A1_VECTOR
 	__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::TIMER1_A1_ISR(void)
@@ -101,10 +106,10 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 		case  0: ///< Vector 00: No interrupts
 			break;
 		case  2: ///< Vector 02: CCR1
-			handler_timer_a1_.isr(msp430f5309::TimerA1::Irq::CCR1);
+			timer_a1_().isr(TimerA1::Irq::CCR1);
 			break;
 		case  4: ///< Vector 04: CCR2
-			handler_timer_a1_.isr(msp430f5309::TimerA1::Irq::CCR2);
+			timer_a1_().isr(TimerA1::Irq::CCR2);
 			break;
 		case  6: ///< Vector 06: reserved
 			break;
@@ -115,7 +120,7 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 		case 12: ///< Vector 12: reserved
 			break;
 		case 14: ///< Vector 14: TA1
-			handler_timer_a1_.isr(msp430f5309::TimerA1::Irq::TIMER);
+			timer_a1_().isr(TimerA1::Irq::TIMER);
 			break;
 		default:
 			break;
@@ -126,8 +131,9 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 	#pragma vector = TIMER1_A0_VECTOR
 	__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::TIMER1_A0_ISR(void)
 	{
-		handler_timer_a1_.isrCcr0();
+		timer_a1_().isr(TimerA1::Irq::CCR0);
 	}
+
 #endif
 
 
@@ -190,4 +196,4 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // YAHAL_MCU_MSP430F5309_ENABLE_IRQ

@@ -22,32 +22,50 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
-#define __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
+#define __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "config.hpp"
-#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
-
-#include "../../../targets/msp430f5309/timer_a1/timer_a1.hpp"
+#include "../mcu_config.hpp"
+#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 
+//#define	YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
+#define	YAHAL_MCU_MSP430F5309_ENABLE_CLK
+#define	YAHAL_MCU_MSP430F5309_ENABLE_GPIO
+#define	YAHAL_MCU_MSP430F5309_ENABLE_WDT
+#define	YAHAL_MCU_MSP430F5309_ENABLE_IRQ
+#define	YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{ namespace config{
-/* ---------------------------------------------------------------------------------------------- */
-
-
-const yahal::mcu::targets::msp430f5309::TimerA1::Configuration timer_a1 = {
-/* clock_source		*/ TimerA1::ClockSource::SMCLK,
-/* divider		*/ TimerA1::Divider::DIVIDER_1,
-/* mode			*/ TimerA1::Mode::UP_CCR0,
-};
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-}}}}}	// namespace yahal::mcu::targets::msp430f5309::config
-#endif // YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
-#endif // __YAHAL_MCU_CONFIG_TARGETS_MSP430F5309_TIMER_A1_HPP_INCLUDED__
+
+
+
+/* =================================================================================================
+	USCI_B1
+================================================================================================= */
+
+// AVAILABLE MODES
+#define YAHAL_MCU_MSP430F5309_USCI_B1_I2C_SLAVE		0
+#define YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MASTER	1
+#define YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER	2
+//#define YAHAL_MCU_MSP430F5309_USCI_B1_SPI 		3	// Not implemented yet
+
+/* ---------------------------------------------------------------------------------------------- */
+
+//#define	YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED		true
+#define YAHAL_MCU_MSP430F5309_USCI_B1_MODE		YAHAL_MCU_MSP430F5309_USCI_B1_I2C_MULTIMASTER
+#define YAHAL_MCU_MSP430F5309_USCI_B1_NAME		i2c1
+
+
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // __YAHAL_MCU_TARGETS_MSP430F5309_CONFIGHPP_INCLUDED__

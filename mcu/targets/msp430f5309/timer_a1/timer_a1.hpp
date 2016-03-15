@@ -26,66 +26,48 @@
 #define __YAHAL_MCU_MSP430F5309_TIMER_A1_HPP_INCLUDED__
 
 
+#include "../../../config/targets/msp430f5309.hpp"
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 
-/* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/mcu_config.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-
-#include "../../../config/targets/msp430f5309/config.hpp"
-#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
 
 #include <stdint.h>
 #include <cstddef>
 #include "../../../modules/timer/timer_16.hpp"
-//#include "../../../modules/output_compare/output_compare.hpp"
 #include "../../../../utility/oop/publish_subscribe.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class TimerA1;
-	class IrqHandler;	//Forward declaration
-}}}}
+#include "../irq/irq_handler.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::TimerA1 : public yahal::mcu::modules::Timer16
+class yahal::mcu::targets::msp430f5309::TimerA1 :
+	public yahal::mcu::modules::Timer16,
+	private yahal::mcu::targets::msp430f5309::IrqHandler::TimerA1
 {
 public:
 				struct ClockSource{ enum Type{
-					TA1CLK 	= 0,
-					ACLK	= 1,
-					SMCLK	= 2,
-					INCLK	= 3
+					TA1CLK 	= 0x0000,
+					ACLK	= 0x0100,
+					SMCLK	= 0x0200,
+					INCLK	= 0x0300
 				};}static const CLOCK_SOURCE;
 
 
+				struct Prescaler{ enum Type{
+					DIVIDER_1	= 0x0000,
+					DIVIDER_2	= 0x0040,
+					DIVIDER_4	= 0x0080,
+					DIVIDER_8	= 0x00C0
+				};}static const PRESCALER;
+
+
 				struct Mode{ enum Type{
-					STOP		= 0,
-					UP_CCR0 	= 1,
-					CONTINUOUS	= 2,
-					UP_DOWN		= 3,
+					STOP		= 0x0000,
+					UP_CCR0 	= 0x0010,
+					CONTINUOUS	= 0x0020,
+					UP_DOWN		= 0x0030
 				};}static const MODE;
-
-
-				struct Divider{ enum Type{
-					DIVIDER_1	= 0,
-					DIVIDER_2	= 1,
-					DIVIDER_4	= 2,
-					DIVIDER_8	= 3,
-				};}static const DIVIDER;
-
-
-				struct Configuration
-				{
-					ClockSource::Type clock_source;
-					Divider::Type divider;
-					Mode::Type mode;
-				};
 
 
 				struct Event { enum Type {
@@ -93,14 +75,6 @@ public:
 					PERIOD	= Timer16::Event::PERIOD,
 					CCR1	= 1,
 					CCR2	= 2
-				};};
-
-
-private:
-				struct Irq { enum Type {
-					TIMER,
-					CCR1,
-					CCR2
 				};};
 
 				// -----------------------------------------------------------------
@@ -165,25 +139,20 @@ public:
 
 				// -----------------------------------------------------------------
 public:
-				static TimerA1&		getInstance(void);
-				bool			init(void);
+				TimerA1(void);
 
 				Ccr&			ccr(std::size_t module);
 
+	void			configure(ClockSource::Type clock_source,
+					  Prescaler::Type prescaler,
+					  Mode::Type mode);
+
 private:
-				TimerA1(const Configuration& configuration);	///< Singleton
-
-	friend class		yahal::mcu::targets::msp430f5309::IrqHandler;
-	void			isrCcr0(void);
-	void			isr(Irq::Type);
-
-	static TimerA1		instance_;
-	const Configuration&	configuration_;
+	virtual void		isr(uint8_t);
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 #endif // __YAHAL_MCU_MSP430F5309_TIMER_A1_HPP_INCLUDED__

@@ -28,21 +28,14 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../base_module.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class Wdt;
-}}}
-
+#include "../modules_namespace.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief	Base class for all Watch Dog Timers.
  **************************************************************************************************/
-class yahal::mcu::modules::Wdt
+class yahal::mcu::modules::Wdt : public yahal::mcu::modules::details::BaseModule
 {
 public:
 				struct Error {enum Type {

@@ -31,26 +31,28 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
-	template <typename T_SERVICE> class ServiceLocator;
+	template<typename T_SERVICE> class ServiceLocator;
 }}}
 
 
 
 /***********************************************************************************************//**
- *
+ * @warning	service classes may not be pure virtual, they need a default null implementation.
  **************************************************************************************************/
-template <typename T_SERVICE>
+template<typename T_SERVICE>
 class yahal::utility::oop::ServiceLocator
 {
 public:
-	static T_SERVICE&	operator()(void){
-					return service_;
-				}
+//				ServiceLocator(void) 		   : service_(&null_service_) {}
+				ServiceLocator(T_SERVICE& service) : service_(&service) {}
 
+	inline void	 	set(T_SERVICE& new_service) 	   { service_ = &new_service; }
+//	inline void		remove(void)		   	   { setService(null_service_); }
+	inline T_SERVICE&	operator()(void)		   { return *service_; }
 
 private:
-	static T_SERVICE*	service_;
-
+	T_SERVICE*		service_;
+//	T_SERVICE		null_service_;
 };
 
 

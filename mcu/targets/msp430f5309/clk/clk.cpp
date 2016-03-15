@@ -23,7 +23,7 @@
 	+-----------------------------------------------------------------------+	*/
 
 #include "clk.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
 
 #include <msp430f5309.h>
 
@@ -90,4 +90,4 @@ void yahal::mcu::targets::msp430f5309::Clk::setVCoreLevel(uint8_t level)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif 	// YAHAL_MCU_MSP430F5309_ENABLE_CLK

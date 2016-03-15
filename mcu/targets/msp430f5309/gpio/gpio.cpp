@@ -23,7 +23,7 @@
 	+-----------------------------------------------------------------------+	*/
 
 #include "gpio.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_GPIO
 
 #include <msp430f5309.h>
 #include "../../../../error/assert.hpp"
@@ -34,6 +34,10 @@
 /* =================================================================================================
 	GPIO
 ================================================================================================= */
+
+yahal::mcu::targets::msp430f5309::Gpio::Gpio(void)
+{}
+
 
 yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
 {
@@ -344,4 +348,4 @@ uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask) c
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // YAHAL_MCU_MSP430F5309_ENABLE_GPIO

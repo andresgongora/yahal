@@ -32,6 +32,7 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 
+
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 	class Adc10;
 	class Clk;
@@ -43,6 +44,8 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 //	class I2CMaster;
 //	class I2CSlave;
 //	class I2CMultimaster;
+
+	class TimerA1;
 }}}}
 
 

@@ -30,6 +30,10 @@
 #include "base_module.hpp"
 
 
+// LOAD NAMESPACE
+#include "modules_namespace.hpp"
+
+
 // LOAD MODULES
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"

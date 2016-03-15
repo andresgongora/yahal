@@ -29,21 +29,14 @@
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
+#include "../modules_namespace.hpp"
 #include "i2c_common.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class I2CSlave;
-}}}
+#include "../../../utility/oop/service_locator.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief	Base class for all I2C slaves
- *
- *
  **************************************************************************************************/
 class yahal::mcu::modules::I2CSlave : virtual public yahal::mcu::modules::details::I2CCommon
 {
@@ -51,16 +44,11 @@ public:
 				/// This class allows derived classes to be notified of slave events.
 				class EventHandler
 				{
-				protected:
-							EventHandler(void) {}
-
 				public:
-					virtual void	handleStart(Direction::Type)= 0;/// Signal a start has been received
-					virtual void	handleStop(void) = 0; 		/// Signal a stop has been received
-					virtual void	handleRXByte(uint8_t) = 0; 	/// Delivers received byte to handler
-					virtual uint8_t	handleTXByte(void) = 0; 	/// Request next byte to be sent to handler
-
-					virtual		~EventHandler(void) {}
+					virtual void	handleStart(Direction::Type)	{} /// Signal a start has been received
+					virtual void	handleStop(void)		{} /// Signal a stop has been received
+					virtual void	handleRXByte(uint8_t)		{} /// Delivers received byte to handler
+					virtual uint8_t	handleTXByte(void)		{return 0xFF;} /// Request next byte to be sent to handler
 				};
 
 				// -----------------------------------------------------------------
@@ -68,6 +56,7 @@ public:
 				/// Set pointer to class that will handle all slave events.
 	virtual void		setEventHandler(EventHandler* const p_event_handler) = 0;
 };
+
 
 
 /* ---------------------------------------------------------------------------------------------- */

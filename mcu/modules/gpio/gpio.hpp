@@ -29,20 +29,14 @@
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include "../base_module.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class Gpio;
-}}}
+#include "../modules_namespace.hpp"
 
 
 
 /***********************************************************************************************//**
  * Base class for GPIO modules.
  **************************************************************************************************/
-class yahal::mcu::modules::Gpio
+class yahal::mcu::modules::Gpio : public yahal::mcu::modules::details::BaseModule
 {
 public:
 				/// Direction of GPIO pins
@@ -67,7 +61,7 @@ public:
 
 				/// Short wrapper for port(uint8_t portNumber).
 				/// @see port(uint8_t portNumber).
-	Port&			operator[](uint8_t portNumber);
+	inline Port&		operator[](uint8_t portNumber)	{return port(portNumber);}
 };
 
 
@@ -96,10 +90,10 @@ public:				// CONFIGURATION
 	virtual void		toggle(uint8_t mask=0xFF) = 0;
 
 
-public:				// PIN ACCESS
+				// PIN ACCESS
 	class 			Pin;
-	Pin			pin(uint8_t pin_number);
-	Pin			operator[](uint8_t pin_number);
+	inline Pin		pin(uint8_t pin_number);
+	inline Pin		operator[](uint8_t pin_number);
 };
 
 
@@ -111,25 +105,82 @@ public:				// PIN ACCESS
 class yahal::mcu::modules::Gpio::Port::Pin
 {
 public:
-				Pin(yahal::mcu::modules::Gpio::Port& port, uint8_t pin_number);
+	explicit		Pin(yahal::mcu::modules::Gpio::Port& port, uint8_t pin_number):
+					port_(port),
+					pin_bit_(1<<pin_number) ///< If pin_number greate than 7, then, pin_bit_ = 0x00
+				{}
 
 
 				// CONFIGURATION
-	bool			config(	Direction::Type direction = Direction::INPUT,
+	inline bool		config(	Direction::Type direction = Direction::INPUT,
 					Resistor::Type resistor = Resistor::DISABLED);
 
 
 				// CONTROL
-	void			set(bool b);
-	bool			get() const;
-	bool			getOutput() const;
-	void			toggle(void);
+	inline void		set(bool b);
+	inline bool		get(void) const;
+	inline bool		getOutput(void) const;
+	inline void		toggle(void);
 
 private:
 				// PRIVATE VARIABLES
 	Gpio::Port&		port_;
 	const uint8_t		pin_bit_;
 };
+
+
+
+/* =================================================================================================
+	PORT INLINE FUNCTIONS
+================================================================================================= */
+
+inline yahal::mcu::modules::Gpio::Port::Pin yahal::mcu::modules::Gpio::Port::pin(uint8_t pin_number)
+{
+	return yahal::mcu::modules::Gpio::Port::Pin(*this, pin_number);
+}
+
+
+inline  yahal::mcu::modules::Gpio::Port::Pin yahal::mcu::modules::Gpio::Port::operator[](uint8_t pin_number)
+{
+	return pin(pin_number);
+}
+
+
+
+/* =================================================================================================
+	PIN INLINE FUNCTIONS
+================================================================================================= */
+
+inline bool yahal::mcu::modules::Gpio::Port::Pin::config(Direction::Type direction,
+							 Resistor::Type resistor)
+{
+	return port_.config(direction, resistor, pin_bit_);
+}
+
+
+inline void yahal::mcu::modules::Gpio::Port::Pin::set(bool b)
+{
+	port_.set(pin_bit_ & b, pin_bit_);
+}
+
+
+inline bool yahal::mcu::modules::Gpio::Port::Pin::get(void) const
+{
+	return port_.get(pin_bit_);
+}
+
+
+inline bool yahal::mcu::modules::Gpio::Port::Pin::getOutput(void) const
+{
+	return port_.getOutput(pin_bit_);
+}
+
+
+inline void yahal::mcu::modules::Gpio::Port::Pin::toggle(void)
+{
+	port_.toggle(pin_bit_);
+}
+
 
 
 /* ---------------------------------------------------------------------------------------------- */

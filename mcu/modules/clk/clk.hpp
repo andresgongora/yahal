@@ -29,20 +29,14 @@
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include "../base_module.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class Clk;
-}}}
+#include "../modules_namespace.hpp"
 
 
 
 /***********************************************************************************************//**
  * Base class for all system clock handling modules.
  **************************************************************************************************/
-class yahal::mcu::modules::Clk
+class yahal::mcu::modules::Clk : public yahal::mcu::modules::details::BaseModule
 {
 };
 

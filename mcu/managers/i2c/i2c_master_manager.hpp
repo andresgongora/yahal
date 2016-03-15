@@ -22,15 +22,15 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MODULES_I2C_MASTER_MANAGER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_I2C_MASTER_MANAGER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MANAGERS_I2C_MASTER_MANAGER_HPP_INCLUDED__
+#define __YAHAL_MCU_MANAGERS_I2C_MASTER_MANAGER_HPP_INCLUDED__
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
 #include <cstddef>
 #include "i2c_common_manager.hpp"
-#include "../i2c_master.hpp"
+#include "../../modules/i2c/i2c_master.hpp"
 
 
 
@@ -49,29 +49,11 @@ class yahal::mcu::modules::I2CMasterManager :
 	public  yahal::mcu::modules::I2CMaster
 {
 public:
-	virtual bool 		writeRegister(	uint8_t slaveAddress,
-						uint8_t registerAddress,
-						uint8_t* data,
-						std::size_t size);
-
-
-	virtual bool 		write(	uint8_t slaveAddress,
-					uint8_t* data,
-					std::size_t size);
-
-
-	virtual bool 		readRegister(	uint8_t slaveAddress,
-						uint8_t registerAddress,
-						uint8_t* data,
-						std::size_t size);
-
-
-	virtual bool		read(	uint8_t slaveAddress,
-					uint8_t* data,
-					std::size_t size);
-
-
-	virtual bool 		isSlavePresent(uint8_t slaveAddress);
+	virtual bool 		writeRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size);
+	virtual bool		write(uint8_t slaveAddress, uint8_t* data, std::size_t size);
+	virtual bool		readRegister(uint8_t slaveAddress, uint8_t registerAddress, uint8_t* data, std::size_t size);
+	virtual bool		read(uint8_t slaveAddress, uint8_t* data, std::size_t size);
+	virtual bool		isSlavePresent(uint8_t slaveAddress);
 
 				// -----------------------------------------------------------------
 
@@ -123,4 +105,4 @@ private:			// PRIVATE VARIABLES
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	// __YAHAL_MCU_MODULES_I2C_MASTER_MANAGER_HPP_INCLUDED__
+#endif 	// __YAHAL_MCU_MANAGERS_I2C_MASTER_MANAGER_HPP_INCLUDED__

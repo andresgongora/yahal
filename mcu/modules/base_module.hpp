@@ -48,12 +48,11 @@ namespace yahal{ namespace mcu{ namespace modules{ namespace details{
  * @brief	Base class for all MCU modules, it makes modules non-copiable and non-heapeable.
  **************************************************************************************************/
 class yahal::mcu::modules::details::BaseModule :
-	public yahal::utility::oop::NonCopyable,
-	public yahal::utility::oop::NonHeapable
+	private yahal::utility::oop::NonCopyable<yahal::mcu::modules::details::BaseModule>,
+	private yahal::utility::oop::NonHeapable<yahal::mcu::modules::details::BaseModule>
 {
 protected:
 				BaseModule(void)	{}
-
 
 public:
 //	virtual bool		init(void) = 0;

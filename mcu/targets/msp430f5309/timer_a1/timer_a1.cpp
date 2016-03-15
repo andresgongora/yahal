@@ -23,11 +23,9 @@
 	+-----------------------------------------------------------------------+	*/
 
 #include "timer_a1.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-#if YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 
 #include <msp430f5309.h>
-#include "../../../config/targets/msp430f5309/timer_a1.hpp"
 #include "../../../../error/assert.hpp"
 
 
@@ -36,38 +34,42 @@
 	TIMER A1
 ================================================================================================= */
 
-yahal::mcu::targets::msp430f5309::TimerA1	\
-yahal::mcu::targets::msp430f5309::TimerA1::instance_(yahal::mcu::targets::msp430f5309::config::timer_a1);
+yahal::mcu::targets::msp430f5309::TimerA1::TimerA1(void)
+{}
 
 
-yahal::mcu::targets::msp430f5309::TimerA1&
-yahal::mcu::targets::msp430f5309::TimerA1::getInstance(void)
+/*
+void yahal::mcu::targets::msp430f5309::TimerA1::setClockSource(ClockSource::Type clock_source)
 {
-	return instance_;
+	yahal::utility::data::setMasked<uint16_t>(TA1CTL, clock_source, 0x300);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
+
+void yahal::mcu::targets::msp430f5309::TimerA1::setPrescaler(Prescaler::Type prescaler)
+{
+	yahal::utility::data::setMasked<uint16_t>(TA1CTL, prescaler, 0x00C0);
+}
 
 
-yahal::mcu::targets::msp430f5309::TimerA1::TimerA1(const Configuration& configuration) :
-	configuration_(configuration)
-{init();}
+void yahal::mcu::targets::msp430f5309::TimerA1::setMode(Mode::Type mode)
+{
+	yahal::utility::data::setMasked<uint16_t>(TA1CTL, mode, 0x0030);
+}
+*/
 
+void yahal::mcu::targets::msp430f5309::TimerA1::configure(ClockSource::Type clock_source,
+					  	  	  Prescaler::Type prescaler,
+					  	  	  Mode::Type mode)
 
-
-
-bool yahal::mcu::targets::msp430f5309::TimerA1::init(void)
 {
 	uint16_t conf = 0;
 
-	conf |= (configuration_.clock_source << 8);	///< Select clock source
-	conf |= (configuration_.divider << 6);		///< Select clock divider
-	conf |= (configuration_.mode << 4);		///< Select mode
-	conf |= TAIE;					///< Enable IRQ
+	conf |= clock_source;	///< Select clock source
+	conf |= prescaler;	///< Select clock divider
+	conf |= mode;		///< Select mode
+	conf |= TAIE;		///< Enable IRQ
 
 	TA1CTL = conf;
-
-	return true;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -121,18 +123,14 @@ yahal::mcu::targets::msp430f5309::TimerA1::ccr(std::size_t module)
 }
 
 
-void yahal::mcu::targets::msp430f5309::TimerA1::isrCcr0(void)
-{
-	this->publish(Event::PERIOD);
-}
-
-
-void yahal::mcu::targets::msp430f5309::TimerA1::isr(Irq::Type irq)
+void yahal::mcu::targets::msp430f5309::TimerA1::isr(uint8_t irq)
 {
 	switch (irq) {
 	case Irq::TIMER:
 		publish(Event::OVERFLOW);
 		break;
+	case Irq::CCR0:
+		publish(Event::PERIOD);
 	case Irq::CCR1:
 		publish(Event::CCR1); //TODO
 		break;
@@ -259,5 +257,4 @@ void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setComparator(uint16_t val
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_TIMER_A1_ENABLED == true
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif // YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1

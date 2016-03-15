@@ -43,9 +43,14 @@ namespace yahal{ namespace utility{ namespace oop{
 
 /***********************************************************************************************//**
  * @brief	Singleton base class
+ * @warning	All derived classes must befriend with Singleton and use the default private constructor
  * @code
  * 	class myns::MyClass : public Singleton<myns::MyClass>
  * 	{
+ * 		friend class Singleton<myns::MyClass>;
+ * 	private:
+ * 		MyClass(void) {}
+ *
  * 		...
  * 	};
  * @endcode
@@ -55,7 +60,8 @@ class yahal::utility::oop::Singleton
 {
 protected:
 	// PRIVATE CONSTRUCTOR
-	Singleton(void) {
+	Singleton(void)
+	{
 		static_assert(IS_BASE_OF(Singleton<T_DERIVED>, T_DERIVED)); // A little extra robustness.
 	}
 
@@ -64,7 +70,7 @@ protected:
 
 public:
 	// ACCESSOR
-	static T_DERIVED& getInstance(void) { return instance_;}
+	static inline T_DERIVED& getInstance(void) { return instance_;}
 };
 
 

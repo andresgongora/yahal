@@ -52,43 +52,22 @@ public:
 
 
 			// UNDERLYING DATA TYPE OPERATIONS
-	SmartData	operator+(const SmartData& other) const {return SmartData(getValue() + other.getValue());}
-	SmartData	operator-(const SmartData& other) const {return SmartData(getValue() - other.getValue());}
-	SmartData	operator*(const SmartData& other) const {return SmartData(getValue() * other.getValue());}
-	SmartData	operator/(const SmartData& other) const {return SmartData(getValue() / other.getValue());}
-	SmartData	operator%(const SmartData& other) const {return SmartData(getValue() % other.getValue());}
-	SmartData	operator^(const SmartData& other) const {return SmartData(getValue() ^ other.getValue());}
-	SmartData	operator&(const SmartData& other) const {return SmartData(getValue() & other.getValue());}
-	SmartData	operator|(const SmartData& other) const {return SmartData(getValue() | other.getValue());}
-
-	SmartData	operator~ (void) const {return SmartData(~getValue());}
-	SmartData	operator! (void) const {return SmartData(!getValue());}
-	SmartData	operator<<(int bits) {return SmartData(getValue()<<bits);}
-	SmartData	operator>>(int bits) {return SmartData(getValue()>>bits);}
-
-	SmartData&	operator= (const SmartData& other) {setValue(other.getValue()); return *this;}
-	SmartData&	operator+=(const SmartData& other) {*this = *this + other; return *this;}
-	SmartData&	operator-=(const SmartData& other) {*this = *this - other; return *this;}
-	SmartData&	operator*=(const SmartData& other) {*this = *this * other; return *this;}
-	SmartData&	operator/=(const SmartData& other) {*this = *this / other; return *this;}
-	SmartData&	operator%=(const SmartData& other) {*this = *this % other; return *this;}
-	SmartData&	operator^=(const SmartData& other) {*this = *this ^ other; return *this;}
-	SmartData&	operator&=(const SmartData& other) {*this = *this & other; return *this;}
-	SmartData&	operator|=(const SmartData& other) {*this = *this | other; return *this;}
+	SmartData&	operator= (T other) {setValue(other); return *this;}
+	SmartData&	operator+=(T other) {*this = *this + other; return *this;}
+	SmartData&	operator-=(T other) {*this = *this - other; return *this;}
+	SmartData&	operator*=(T other) {*this = *this * other; return *this;}
+	SmartData&	operator/=(T other) {*this = *this / other; return *this;}
+	SmartData&	operator%=(T other) {*this = *this % other; return *this;}
+	SmartData&	operator^=(T other) {*this = *this ^ other; return *this;}
+	SmartData&	operator&=(T other) {*this = *this & other; return *this;}
+	SmartData&	operator|=(T other) {*this = *this | other; return *this;}
 
 	SmartData&	operator<<=(int bits) {return *this = *this << bits;}
 	SmartData&	operator>>=(int bits) {return *this = *this >> bits;}
-	SmartData&	operator++(void) {*this += 1; return *this;}
-	SmartData&	operator--(void) {*this -= 1; return *this;}
 
-	bool		operator==(const SmartData& other) const {return getValue() == other.getValue();}
-	bool		operator!=(const SmartData& other) const {return getValue() != other.getValue();}
-	bool		operator<=(const SmartData& other) const {return getValue() <= other.getValue();}
-	bool		operator>=(const SmartData& other) const {return getValue() >= other.getValue();}
-	bool		operator< (const SmartData& other) const {return getValue() <  other.getValue();}
-	bool		operator> (const SmartData& other) const {return getValue() >  other.getValue();}
-	bool		operator&&(const SmartData& other) const {return getValue() && other.getValue();}
-	bool		operator||(const SmartData& other) const {return getValue() || other.getValue();}
+// THESE ARE PROBLEMATIC, DEPENDING IF THEY ARE BEFORE OR AFTER
+//	SmartData&	operator++(void) {*this += 1; return *this;}
+//	SmartData&	operator--(void) {*this -= 1; return *this;}
 
 
 
@@ -121,6 +100,9 @@ public:
 	 * - Special type for boolean array -> regardless of array size, optimize the boolean array into a struct that with bitfield access
 	 * - Error minimizin float as seen on hackaday
 	 * - Prohibit all other data types other than specified manually in this file
+	 *
+	 * Some operators are not possible with FLOAT and DOUBLE. Specialize them and remove those operators
+	 *
 	 */
 
 
