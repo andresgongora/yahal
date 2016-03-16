@@ -43,14 +43,14 @@ namespace yahal{ namespace utility{ namespace oop{
 
 /***********************************************************************************************//**
  * @brief	Singleton base class
- * @warning	All derived classes must befriend with Singleton and use the default private constructor
+ *
  * @code
  * 	class myns::MyClass : public Singleton<myns::MyClass>
  * 	{
- * 		friend class Singleton<myns::MyClass>;
  * 	private:
  * 		MyClass(void) {}
- *
+ * 		...
+ * 	public:
  * 		...
  * 	};
  * @endcode
@@ -60,22 +60,28 @@ class yahal::utility::oop::Singleton
 {
 protected:
 	// PRIVATE CONSTRUCTOR
-	Singleton(void)
-	{
-		static_assert(IS_BASE_OF(Singleton<T_DERIVED>, T_DERIVED)); // A little extra robustness.
-	}
+	Singleton(void) {}	// This class can only be used as a base class
 
 	// SINGLETON INSTANCE
-	static T_DERIVED instance_;
+	static Singleton<T_DERIVED> instance_;
 
 public:
 	// ACCESSOR
-	static inline T_DERIVED& getInstance(void) { return instance_;}
+	/// Because we have no access to the private constructor of T_DERIVED, a
+	/// Singleton<T_DERIVED> instance is used. This instance shares the same memory
+	/// direction as the derived class, thus it can be casted to that class.
+	/// To avoid that the compiler complains, it is first casted to void*
+	/// @warning: This looks very dangerous to me.
+	static inline T_DERIVED& getInstance(void)
+	{
+		return *static_cast<T_DERIVED*>( static_cast<void*>(&instance_) );
+	}
 };
 
 
 // CREATE INSTANCE
-template<typename T_DERIVED> T_DERIVED yahal::utility::oop::Singleton<T_DERIVED>::instance_;
+template<typename T_DERIVED> yahal::utility::oop::Singleton<T_DERIVED> \
+	yahal::utility::oop::Singleton<T_DERIVED>::instance_;
 
 
 /* ---------------------------------------------------------------------------------------------- */
