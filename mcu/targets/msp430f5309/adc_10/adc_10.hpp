@@ -34,8 +34,9 @@
 
 #include <stdint.h>
 #include <cstddef>
-#include "../../../../utility/oop/singleton.hpp"
 #include "../msp430f5309_namespace.hpp"
+#include "../irq/irq_handler.hpp"
+#include "../../../../utility/oop/service_locator.hpp"
 
 
 
@@ -43,7 +44,7 @@
  * @brief
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::Adc10 :
-	public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::Adc10>
+	public yahal::mcu::targets::msp430f5309::IrqHandler::Adc10
 {
 public:
 				struct Channel{ enum Type{
@@ -83,7 +84,7 @@ public:
 
 
 				struct ClockDivider{ enum Type{
-					// DIVIDER + PREDIVIDER = 1
+					// 4 MSBit = DIVIDER | 4 LSBit PREDIVIDER
 					DIVIDER_1	= 0x00,
 					DIVIDER_2	= 0x01,
 					DIVIDER_3	= 0x02,
@@ -93,7 +94,7 @@ public:
 					DIVIDER_7	= 0x06,
 					DIVIDER_8	= 0x07,
 
-					// DIVIDER + PREDIVIDER = 4
+					// 4 MSBit = DIVIDER | 4 LSBit PREDIVIDER
 					DIVIDER_12	= 0x12,
 					DIVIDER_16	= 0x13,
 					DIVIDER_20	= 0x14,
@@ -101,7 +102,7 @@ public:
 					DIVIDER_28	= 0x16,
 					DIVIDER_32	= 0x17,
 
-					// DIVIDER + PREDIVIDER = 64
+					// 4 MSBit = DIVIDER | 4 LSBit PREDIVIDER
 					DIVIDER_64	= 0x20,
 					DIVIDER_128	= 0x21,
 					DIVIDER_256	= 0x22,
@@ -111,6 +112,7 @@ public:
 					DIVIDER_4096	= 0x26,
 					DIVIDER_8192	= 0x27
 				};} static const CLOCK_DIVIDER;
+
 
 				struct Format{ enum Type{
 					UNSIGNED	= 0,
@@ -135,57 +137,42 @@ public:
 					BIT_10	= 1
 				};} static const RESOLUTION;
 
-
+				// -----------------------------------------------------------------
+public:
 				class AutoscanHandler
 				{
 				protected:
-					friend class yahal::mcu::targets::msp430f5309::Adc10;
-					virtual void handleAdc(uint8_t channel, uint16_t data) = 0;
+					friend class Adc10;
+					virtual void handleAdc(uint8_t channel, uint16_t data) {}
 				};
 
-				// -----------------------------------------------------------------
-private:
-				friend class yahal::mcu::targets::msp430f5309::IrqHandler;
-
-				struct Irq { enum Type {
-					OVERSAMPLE,
-					OVERFLOW,
-					THRESHOLD_OVER,
-					THRESHOLD_INSIDE,
-					THRESHOLD_BELOW,
-					CONVERTION
-				};} static const IRQ;
-
-	void			isr(Irq::Type);
+	yahal::utility::oop::ServiceLocator<AutoscanHandler> autoscan_handler_;
 
 				// -----------------------------------------------------------------
 public:
 				Adc10(void);
 
-	bool			setMode(uint8_t mode);
-	bool			setReference(uint8_t reference);
-	bool			setChannel(std::size_t channel);
+	bool			setMode(Mode::Type mode);
+	bool			setReference(VoltageReference::Type reference);
+	bool			setChannel(uint8_t channel);
 	bool			setSampleRate(uint8_t sample_rate);
+
 	void			startConvertion(void);
 	uint16_t		convertChannel(uint8_t channel);
 
-	void			setAutoscanHandler(AutoscanHandler* handler){
-					handler_ = handler;
-				}
+
 
 
 private:
-	void			readConvertionBuffer(void);
+	void			haltForConfiguration(void);	///< ADC must be halted to change configuration
+	void			resumeFromConfiguration(void);	///< Power ADC module up after configuration has been written
 	uint8_t			getChannel(void);
 	uint8_t			getMode(void);
 	uint16_t		getRawData(void);
 
-	void			disable(void);
-	void			enable(void);
 
-//	uint16_t		buffer_raw_[16];
-//	uint16_t		buffer_fresh_flag_;
-	AutoscanHandler*	handler_;
+	void			handleAutoscan(void);
+	virtual void		isr(uint8_t isr);
 };
 
 

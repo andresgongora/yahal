@@ -37,9 +37,11 @@ namespace yahal{ namespace mcu{ namespace modules{
 	class I2CMultimaster;
 	class I2CSlave;
 
+	template<typename T_SIZE> class Timer;
 
 	// DETAILS
 	namespace details{
+		class GpioConfiguration;
 		class I2CCommon;
 	}
 }}}

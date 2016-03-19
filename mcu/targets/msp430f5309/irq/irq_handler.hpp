@@ -38,7 +38,6 @@
 
 #include "../../../modules/irq/irq_handler.hpp"
 #include "../msp430f5309_namespace.hpp"
-#include "../../../../utility/oop/singleton.hpp"
 #include "../../../../utility/oop/service_locator.hpp"
 #include <stdint.h>
 #include <msp430f5309.h>
@@ -47,20 +46,15 @@
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IrqHandler : public yahal::mcu::modules::IrqHandler
+class yahal::mcu::targets::msp430f5309::IrqHandler :
+	public yahal::mcu::modules::IrqHandler
 {
 public:
 				class IsrHandler
 				{
 				public:
-					virtual void isr(uint8_t) = 0;
-				};
-
-				class NullIsrHandler : public IsrHandler
-				{
-				public:
 					virtual void isr(uint8_t) {}
-				} static NULL_ISR_HANDLER;
+				};
 
 				// -----------------------------------------------------------------
 public:
@@ -70,46 +64,62 @@ public:
 				// -----------------------------------------------------------------
 
 
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
-		static void		ADC_10_ISR(void);
-#endif
-
-
 #ifdef YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED
 		static void		USCI_B1_ISR(void);
 #endif
 
 
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
+public:
+	class Adc10 : protected IsrHandler
+	{
+	public:
+				struct Irq { enum Type {
+					OVERSAMPLE,
+					OVERFLOW,
+					THRESHOLD_OVER,
+					THRESHOLD_INSIDE,
+					THRESHOLD_BELOW,
+					CONVERTION
+				};} static const IRQ;
+
+	protected:
+				Adc10(void) { adc_10_.set(*this); }
+		inline void 	enableIrq(void) { ADC10IE |= ADC10IE0; }
+		inline void 	disableIrq(void) { ADC10IE &= ~ADC10IE0; }
+
+	private:
+		static void	ADC_10_ISR(void);
+
+		static yahal::utility::oop::ServiceLocator<IsrHandler> adc_10_;
+	};
+#endif
 
 
 
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 public:
-				class TimerA1 : IsrHandler
-				{
-				public:
-					struct Irq{ enum Type{
-						TIMER,
-						CCR0,
-						CCR1,
-						CCR2
-					};} static const IRQ;
+	class TimerA1 : protected IsrHandler
+	{
+	public:
+				struct Irq{ enum Type{
+					TIMER,
+					CCR0,
+					CCR1,
+					CCR2
+				};} static const IRQ;
 
-					TimerA1(void)	{ IrqHandler::timer_a1_.set(*this); }
-					enableIrq(void)	{ TA1CTL |= TAIE; }
-				};
+	protected:
+				TimerA1(void) { timer_a1_.set(*this); }
+		inline void 	enableIrq(void) { TA1CTL |= TAIE; }
 
-private:
-	static void		TIMER1_A1_ISR(void);	///< TIMER_A1 IRQ for Overflow, CCR1 & CCR2
-	static void		TIMER1_A0_ISR(void);	///< TIMER_A1 IRQ for CCR0
+	private:
+		static void	TIMER1_A1_ISR(void);	///< TIMER_A1 IRQ for Overflow, CCR1 & CCR2
+		static void	TIMER1_A0_ISR(void);	///< TIMER_A1 IRQ for CCR0
 
-	static yahal::utility::oop::ServiceLocator<IsrHandler> timer_a1_;
+		static yahal::utility::oop::ServiceLocator<IsrHandler> timer_a1_;
+	};
 #endif
-
-
-
-
-
 
 
 };

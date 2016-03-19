@@ -45,9 +45,8 @@
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::Gpio : public yahal::mcu::modules::Gpio
 {
-public:
-				class Port1 : 	public yahal::mcu::modules::Gpio::Port,
-						public yahal::utility::oop::Singleton<Port1>
+private:
+				class Port1 : 	public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
@@ -61,8 +60,7 @@ public:
 				};
 
 
-				class Port2 : 	public yahal::mcu::modules::Gpio::Port,
-						public yahal::utility::oop::Singleton<Port2>
+				class Port2 : 	public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
@@ -76,8 +74,7 @@ public:
 				};
 
 
-				class Port3 : 	public yahal::mcu::modules::Gpio::Port,
-						public yahal::utility::oop::Singleton<Port3>
+				class Port3 : 	public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
@@ -92,8 +89,7 @@ public:
 				};
 
 
-				class Port4 : 	public yahal::mcu::modules::Gpio::Port,
-						public yahal::utility::oop::Singleton<Port4>
+				class Port4 : 	public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
@@ -107,8 +103,7 @@ public:
 				};
 
 
-				class Port5 : 	public yahal::mcu::modules::Gpio::Port,
-						public yahal::utility::oop::Singleton<Port5>
+				class Port5 : 	public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
@@ -122,8 +117,7 @@ public:
 				};
 
 
-				class Port6 :	public yahal::mcu::modules::Gpio::Port,
-						public yahal::utility::oop::Singleton<Port6>
+				class Port6 :	public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
@@ -140,6 +134,14 @@ public:
 public:
 				Gpio(void);
 	virtual Port& 		port(uint8_t portNumber);
+
+private:
+	Port1			port1_;
+	Port1			port2_;
+	Port1			port3_;
+	Port1			port4_;
+	Port1			port5_;
+	Port1			port6_;
 };
 
 

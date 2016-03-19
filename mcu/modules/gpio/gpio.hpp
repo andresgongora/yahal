@@ -32,11 +32,10 @@
 #include "../modules_namespace.hpp"
 
 
-
 /***********************************************************************************************//**
- * Base class for GPIO modules.
+ * GPIO configuration. Common to Gpio, Port and Pin.
  **************************************************************************************************/
-class yahal::mcu::modules::Gpio : public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::details::GpioConfiguration
 {
 public:
 				/// Direction of GPIO pins
@@ -51,8 +50,17 @@ public:
 					PULLUP,
 					PULLDOWN
 				};} static const RESISTOR;
+};
 
-				// -----------------------------------------------------------------
+
+
+/***********************************************************************************************//**
+ * Base class for GPIO modules.
+ **************************************************************************************************/
+class yahal::mcu::modules::Gpio :
+	public yahal::mcu::modules::details::BaseModule,
+	public yahal::mcu::modules::details::GpioConfiguration
+{
 public:
 	class 			Port;
 
@@ -70,7 +78,7 @@ public:
  * Base class for all GPIO Ports.
  * Declared inside Gpio.
  **************************************************************************************************/
-class yahal::mcu::modules::Gpio::Port
+class yahal::mcu::modules::Gpio::Port : public yahal::mcu::modules::details::GpioConfiguration
 {
 protected:
 				/// This is a base class.
@@ -94,6 +102,13 @@ public:				// CONFIGURATION
 	class 			Pin;
 	inline Pin		pin(uint8_t pin_number);
 	inline Pin		operator[](uint8_t pin_number);
+
+
+/*	static const
+	Gpio::Direction 	DIRECTION;
+
+	static const
+	Gpio::Resistor		RESISTOR;*/
 };
 
 
@@ -102,7 +117,7 @@ public:				// CONFIGURATION
  * Base class for all GPIO Pins.
  * Declared inside Gpio::Port
  **************************************************************************************************/
-class yahal::mcu::modules::Gpio::Port::Pin
+class yahal::mcu::modules::Gpio::Port::Pin : public yahal::mcu::modules::details::GpioConfiguration
 {
 public:
 	explicit		Pin(yahal::mcu::modules::Gpio::Port& port, uint8_t pin_number):

@@ -33,12 +33,6 @@
 /* ---------------------------------------------------------------------------------------------- */
 
 yahal::mcu::targets::msp430f5309::Adc10::Adc10(void)
-{}
-
-
-
-/*
-bool yahal::mcu::targets::msp430f5309::Adc10::init(void)
 {
 	ADC10CTL0 = 0x00;	///< Disable ADC10ENC while changing configuraiton
 
@@ -49,11 +43,77 @@ bool yahal::mcu::targets::msp430f5309::Adc10::init(void)
 	setReference(VoltageReference::VEREFP_VEREFN);		///<WARNING_ Enables ENC
 
 	ADC10CTL0 |= ADC10ENC;	///< Enable ADC10ENC
-	return true;
 }
-*/
 
 /* ---------------------------------------------------------------------------------------------- */
+
+bool yahal::mcu::targets::msp430f5309::Adc10::setMode(Mode::Type mode)
+{
+	if (mode <= 3)
+	{
+		haltForConfiguration();
+
+		ADC10CTL1 = (ADC10CTL1 & 0xFFF9) | (mode << 1);
+
+		if (mode == Mode::SINGLE_AUTOSCAN || mode == Mode::SINGLE_CHANNEL) {
+			IrqHandler::Adc10::disableIrq();
+		} else {
+			IrqHandler::Adc10::enableIrq();
+		}
+
+		resumeFromConfiguration();
+		return true;
+	}
+
+	return false;
+}
+
+
+bool yahal::mcu::targets::msp430f5309::Adc10::setReference(VoltageReference::Type reference)
+{
+	if (reference <= 7)
+	{
+		haltForConfiguration();
+		ADC10MCTL0 = (ADC10MCTL0 & 0x8F) | (reference << 4);
+		resumeFromConfiguration();
+		return true;
+	}
+
+	return false;
+}
+
+
+bool yahal::mcu::targets::msp430f5309::Adc10::setChannel(uint8_t channel)
+{
+	if (channel <= 15)
+	{
+		haltForConfiguration();
+		ADC10MCTL0 = (ADC10MCTL0 & 0xF0) | channel;
+		resumeFromConfiguration();
+		return true;
+	}
+
+	return false;
+}
+
+
+bool yahal::mcu::targets::msp430f5309::Adc10::setSampleRate(uint8_t sample_rate)
+{
+	return false;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
 
 /*float yahal::mcu::targets::msp430f5309::Adc10::convert(uint8_t channel)
 {
@@ -77,11 +137,8 @@ void yahal::mcu::targets::msp430f5309::Adc10::startConvertion(void)
 
 uint16_t yahal::mcu::targets::msp430f5309::Adc10::convertChannel(uint8_t channel)
 {
-/*	if (channel > 15) {
-		return 0x0000;
-	} else {
-		return buffer_raw_[channel];
-	}*/
+	if (channel > 15)	{ return 0x0000; }
+	else 			{ return buffer_raw_[channel]; }
 }
 
 
@@ -89,64 +146,18 @@ uint16_t yahal::mcu::targets::msp430f5309::Adc10::convertChannel(uint8_t channel
 
 
 
-bool yahal::mcu::targets::msp430f5309::Adc10::setChannel(std::size_t channel)
+
+
+
+
+
+void yahal::mcu::targets::msp430f5309::Adc10::haltForConfiguration(void)
 {
-	bool success = false;
-
-	if (channel <= 15) {
-		disable();
-		ADC10MCTL0 = (ADC10MCTL0 & 0xF0) | channel;
-		enable();
-		success = true;
-	}
-
-	return success;
+	ADC10CTL0 &= ~ADC10ENC;	///< Disable ADC10ENC
 }
 
 
-bool yahal::mcu::targets::msp430f5309::Adc10::setMode(uint8_t mode)
-{
-	bool success = false;
-
-	if (mode <= 3) {
-		disable();
-
-		ADC10CTL1 = (ADC10CTL1 & 0xFFF9) | (mode << 1);
-
-	//	if (mode == Mode::SINGLE_AUTOSCAN || mode == Mode::SINGLE_CHANNEL) {
-	//		ADC10IE &= ~ADC10IE0;	// IRQ not needed
-	//	} else {
-			ADC10IE |= ADC10IE0;
-	//	}
-
-		enable();
-		success = true;
-	}
-	return success;
-}
-
-
-bool yahal::mcu::targets::msp430f5309::Adc10::setReference(uint8_t reference)
-{
-	bool success = false;
-
-	if (reference <= 7) {
-		disable();
-		ADC10MCTL0 = (ADC10MCTL0 & 0x8F) | (reference << 4);
-		enable();
-		success = true;
-	}
-	return success;
-}
-
-
-void yahal::mcu::targets::msp430f5309::Adc10::disable(void)
-{
-	ADC10CTL0 &= ~ADC10ENC;				///< Disable ADC10ENC
-}
-
-
-void yahal::mcu::targets::msp430f5309::Adc10::enable(void)
+void yahal::mcu::targets::msp430f5309::Adc10::resumeFromConfiguration(void)
 {
 	ADC10CTL0 |= ADC10ENC;
 }
@@ -169,20 +180,17 @@ uint16_t yahal::mcu::targets::msp430f5309::Adc10::getRawData(void)
 	return ADC10MEM0;
 }
 
+/* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::Adc10::readConvertionBuffer(void)
+void yahal::mcu::targets::msp430f5309::Adc10::handleAutoscan(void)
 {
 	uint8_t channel = getChannel();
 	uint16_t raw_data = getRawData();
-
-	handler_->handleAdc(channel, raw_data);
+	autoscan_handler_.get().handleAdc(channel, raw_data);
 }
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
-
-void yahal::mcu::targets::msp430f5309::Adc10::isr(Irq::Type irq)
+void yahal::mcu::targets::msp430f5309::Adc10::isr(uint8_t irq)
 {
 	switch (irq) {
 
@@ -202,7 +210,7 @@ void yahal::mcu::targets::msp430f5309::Adc10::isr(Irq::Type irq)
 		break;
 
 	case Irq::CONVERTION:
-		readConvertionBuffer();
+		handleAutoscan();
 		break;
 
 	default:

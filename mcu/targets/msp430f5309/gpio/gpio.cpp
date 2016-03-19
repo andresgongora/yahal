@@ -45,12 +45,12 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 
 	switch(portNumber)
 	{
-	case 1:	return Port1::getInstance();
-	case 2:	return Port2::getInstance();
-	case 3:	return Port3::getInstance();
-	case 4:	return Port4::getInstance();
-	case 5:	return Port5::getInstance();
-	case 6:	return Port6::getInstance();
+	case 1:	return port1_;
+	case 2:	return port2_;
+	case 3:	return port3_;
+	case 4:	return port4_;
+	case 5:	return port5_;
+	case 6:	return port6_;
 
 	default:
 		static yahal::mcu::targets::empty::Gpio::EmptyPort empty_port;

@@ -43,8 +43,7 @@
 /***********************************************************************************************//**
  * @brief	Base class for the USCI_B1 HW Module, used for I2C and SPI.
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::UsciB1 :
-	public yahal::utility::oop::Singleton<yahal::mcu::targets::msp430f5309::UsciB1>
+class yahal::mcu::targets::msp430f5309::UsciB1
 {
 public:
 				class I2CMaster;

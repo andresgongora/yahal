@@ -22,30 +22,22 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+
 #ifndef __YAHAL_MCU_MODULES_TIMER_16_HPP_INCLUDED__
 #define __YAHAL_MCU_MODULES_TIMER_16_HPP_INCLUDED__
 
 
-/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
-#include "../base_module.hpp"
+#include "../modules_namespace.hpp"
 #include "../../../utility/oop/publish_subscribe.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class Timer16;
-}}}
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::modules::Timer16 :
-	public yahal::mcu::modules::details::BaseModule,
-	public yahal::utility::oop::Publisher<int>
+template<typename T_SIZE>
+class yahal::mcu::modules::Timer : public yahal::utility::oop::Publisher<int>
 {
 public:
 				struct Event { enum Type {
@@ -55,27 +47,24 @@ public:
 
 				// -----------------------------------------------------------------
 protected:
-				class OutputCompare :
-					public yahal::mcu::modules::details::BaseModule
+				class OutputCompare
 				{
 				public:
 					virtual bool 	getOutput(void) = 0;
-					virtual void 	setComparator(uint16_t value) = 0;
+					virtual void 	setComparator(T_SIZE value) = 0;
+//					virtual T_SIZE	getComparator(void) = 0;
 				};
 
-
-
-				class InputCapture :
-					public yahal::mcu::modules::details::BaseModule
+				class InputCapture
 				{
 
 				};
 
 				// -----------------------------------------------------------------
 public:
-	virtual void		setCount(uint16_t count) = 0;
-	virtual uint16_t	getCount(void) const = 0;
-	virtual void		setPeriod(uint16_t period) = 0;
+	virtual void		setCount(T_SIZE count) = 0;
+	virtual T_SIZE		getCount(void) const = 0;
+	virtual void		setPeriod(T_SIZE period) = 0;
 	virtual void		reset(void) = 0;
 };
 

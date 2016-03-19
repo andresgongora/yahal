@@ -32,7 +32,7 @@
 
 #include <stdint.h>
 #include <cstddef>
-#include "../../../modules/timer/timer_16.hpp"
+#include "../../../modules/timer/timer.hpp"
 #include "../../../../utility/oop/publish_subscribe.hpp"
 #include "../irq/irq_handler.hpp"
 
@@ -42,7 +42,7 @@
  * @brief
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::TimerA1 :
-	public yahal::mcu::modules::Timer16,
+	public yahal::mcu::modules::Timer<uint16_t>,
 	private yahal::mcu::targets::msp430f5309::IrqHandler::TimerA1
 {
 public:
@@ -71,8 +71,8 @@ public:
 
 
 				struct Event { enum Type {
-					OVERFLOW= Timer16::Event::OVERFLOW,
-					PERIOD	= Timer16::Event::PERIOD,
+					OVERFLOW= Timer::Event::OVERFLOW,
+					PERIOD	= Timer::Event::PERIOD,
 					CCR1	= 1,
 					CCR2	= 2
 				};};
@@ -80,8 +80,8 @@ public:
 				// -----------------------------------------------------------------
 public:
 				class Ccr  :
-					public yahal::mcu::modules::Timer16::OutputCompare,
-					public yahal::mcu::modules::Timer16::InputCapture
+					public yahal::mcu::modules::Timer<uint16_t>::OutputCompare,
+					public yahal::mcu::modules::Timer<uint16_t>::InputCapture
 				{
 				public:
 					struct Mode{ enum Type{
@@ -132,23 +132,20 @@ private:
 
 				// -----------------------------------------------------------------
 public:
+				TimerA1(void);
+
 	virtual void		setCount(uint16_t count);
 	virtual uint16_t	getCount(void) const;
 	virtual void		setPeriod(uint16_t period);
 	virtual void		reset(void);
 
-				// -----------------------------------------------------------------
-public:
-				TimerA1(void);
+	virtual void		isr(uint8_t);
 
-				Ccr&			ccr(std::size_t module);
+	Ccr&			ccr(std::size_t module);
 
 	void			configure(ClockSource::Type clock_source,
 					  Prescaler::Type prescaler,
 					  Mode::Type mode);
-
-private:
-	virtual void		isr(uint8_t);
 };
 
 

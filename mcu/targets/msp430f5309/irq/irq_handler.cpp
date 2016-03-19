@@ -35,9 +35,6 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::IrqHandler::NullIsrHandler yahal::mcu::targets::msp430f5309::IrqHandler::NULL_ISR_HANDLER;
-
-
 void yahal::mcu::targets::msp430f5309::IrqHandler::enableGlobalInterrupts(void)
 {
 	_EINT();
@@ -55,36 +52,40 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 	ADC_10
 ================================================================================================= */
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
-	#pragma vector = ADC10_VECTOR
-	__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::ADC_10_ISR(void)
-	{
-		yahal::mcu::targets::msp430f5309::Adc10& adc_10 = yahal::mcu::targets::msp430f5309::Adc10::getInstance();
 
-		switch(__even_in_range(ADC10IV,12)) {
-		case  0: ///< Vector 00: No interrupts
-			break;
-		case  2: ///< Vector 02: Overflow
-			adc_10.isr(adc_10.IRQ.OVERFLOW);
-			break;
-		case  4: ///< Vector 04: Over sample
-			adc_10.isr(adc_10.IRQ.OVERSAMPLE);
-			break;
-		case  6: ///< Vector 06: Signal over threshold high level
-			adc_10.isr(adc_10.IRQ.THRESHOLD_OVER);
-			break;
-		case  8: ///< Vector 08: Signal below threshold low level
-			adc_10.isr(adc_10.IRQ.THRESHOLD_BELOW);
-			break;
-		case 10: ///< Vector 10: Signal inside threshold levels
-			adc_10.isr(adc_10.IRQ.THRESHOLD_INSIDE);
-			break;
-		case 12: ///< Vector 12: ADC convertion end
-			adc_10.isr(adc_10.IRQ.CONVERTION);
-			break;
-		default:
-			break;
-		}
+yahal::utility::oop::ServiceLocator<yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler>\
+	yahal::mcu::targets::msp430f5309::IrqHandler::Adc10::adc_10_;
+
+
+#pragma vector = ADC10_VECTOR
+__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::Adc10::ADC_10_ISR(void)
+{
+	switch(__even_in_range(ADC10IV,12)) {
+	case  0: ///< Vector 00: No interrupts
+		break;
+	case  2: ///< Vector 02: Overflow
+		adc_10_.get().isr(Adc10::Irq::OVERFLOW);
+		break;
+	case  4: ///< Vector 04: Over sample
+		adc_10_.get().isr(Adc10::Irq::OVERSAMPLE);
+		break;
+	case  6: ///< Vector 06: Signal over threshold high level
+		adc_10_.get().isr(Adc10::Irq::THRESHOLD_OVER);
+		break;
+	case  8: ///< Vector 08: Signal below threshold low level
+		adc_10_.get().isr(Adc10::Irq::THRESHOLD_BELOW);
+		break;
+	case 10: ///< Vector 10: Signal inside threshold levels
+		adc_10_.get().isr(Adc10::Irq::THRESHOLD_INSIDE);
+		break;
+	case 12: ///< Vector 12: ADC convertion end
+		adc_10_.get().isr(Adc10::Irq::CONVERTION);
+		break;
+	default:
+		break;
 	}
+}
+
 #endif
 
 
@@ -98,44 +99,46 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 ================================================================================================= */
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 
-	yahal::utility::oop::ServiceLocator<yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler> \
-		yahal::mcu::targets::msp430f5309::IrqHandler::timer_a1_(yahal::mcu::targets::msp430f5309::IrqHandler::NULL_ISR_HANDLER);
+
+yahal::utility::oop::ServiceLocator<yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler>\
+	yahal::mcu::targets::msp430f5309::IrqHandler::TimerA1::timer_a1_;
 
 
-	#pragma vector = TIMER1_A1_VECTOR
-	__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::TIMER1_A1_ISR(void)
-	{
-		switch (__even_in_range(TA1IV,14)) {
-		case  0: ///< Vector 00: No interrupts
-			break;
-		case  2: ///< Vector 02: CCR1
-			timer_a1_().isr(TimerA1::Irq::CCR1);
-			break;
-		case  4: ///< Vector 04: CCR2
-			timer_a1_().isr(TimerA1::Irq::CCR2);
-			break;
-		case  6: ///< Vector 06: reserved
-			break;
-		case  8: ///< Vector 08: reserved
-			break;
-		case 10: ///< Vector 10: reserved
-			break;
-		case 12: ///< Vector 12: reserved
-			break;
-		case 14: ///< Vector 14: TA1
-			timer_a1_().isr(TimerA1::Irq::TIMER);
-			break;
-		default:
-			break;
-		}
+#pragma vector = TIMER1_A1_VECTOR
+__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::TimerA1::TIMER1_A1_ISR(void)
+{
+	switch (__even_in_range(TA1IV, 14)) {
+	case 0: ///< Vector 00: No interrupts
+		break;
+	case 2: ///< Vector 02: CCR1
+		timer_a1_.get().isr(TimerA1::Irq::CCR1);
+		break;
+	case 4: ///< Vector 04: CCR2
+		timer_a1_.get().isr(TimerA1::Irq::CCR2);
+		break;
+	case 6: ///< Vector 06: reserved
+		break;
+	case 8: ///< Vector 08: reserved
+		break;
+	case 10: ///< Vector 10: reserved
+		break;
+	case 12: ///< Vector 12: reserved
+		break;
+	case 14: ///< Vector 14: TA1
+		timer_a1_.get().isr(TimerA1::Irq::TIMER);
+		break;
+	default:
+		break;
 	}
+}
 
 
-	#pragma vector = TIMER1_A0_VECTOR
-	__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::TIMER1_A0_ISR(void)
-	{
-		timer_a1_().isr(TimerA1::Irq::CCR0);
-	}
+#pragma vector = TIMER1_A0_VECTOR
+__interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::TimerA1::TIMER1_A0_ISR(void)
+{
+	timer_a1_.get().isr(TimerA1::Irq::CCR0);
+}
+
 
 #endif
 
@@ -195,7 +198,7 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 		#error "USCI_B1_MODE is not valid"
 	#endif
 #endif
-
+*/
 
 
 /* ---------------------------------------------------------------------------------------------- */

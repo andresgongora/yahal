@@ -96,7 +96,7 @@ public:
 
 	// ADC_10
 	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
-		yahal::mcu::targets::msp430f5309::Adc10& adc_10;
+		yahal::mcu::targets::msp430f5309::Adc10 adc_10;
 	#endif
 
 	// TIMER_A1
