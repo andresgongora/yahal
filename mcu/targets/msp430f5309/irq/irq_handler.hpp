@@ -50,23 +50,10 @@ class yahal::mcu::targets::msp430f5309::IrqHandler :
 	public yahal::mcu::modules::IrqHandler
 {
 public:
-				class IsrHandler
-				{
-				public:
-					virtual void isr(uint8_t) {}
-				};
+	virtual void		enableGlobalIrq(void);
+	virtual void		disableGlobalIrq(void);
 
 				// -----------------------------------------------------------------
-public:
-	virtual void		enableGlobalInterrupts(void);
-	virtual void		disableGlobalInterrupts(void);
-
-				// -----------------------------------------------------------------
-
-
-#ifdef YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED
-		static void		USCI_B1_ISR(void);
-#endif
 
 
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
@@ -85,13 +72,13 @@ public:
 
 	protected:
 				Adc10(void) { adc_10_.set(*this); }
-		inline void 	enableIrq(void) { ADC10IE |= ADC10IE0; }
-		inline void 	disableIrq(void) { ADC10IE &= ~ADC10IE0; }
+		virtual void 	enableIrq(void) { ADC10IE |= ADC10IE0; }
+		virtual void 	disableIrq(void) { ADC10IE &= ~ADC10IE0; }
 
 	private:
 		static void	ADC_10_ISR(void);
 
-		static yahal::utility::oop::ServiceLocator<IsrHandler> adc_10_;
+		static yahal::utility::oop::ServiceLocator<IsrHandler,IsrHandler::Empty> adc_10_;
 	};
 #endif
 
@@ -111,14 +98,21 @@ public:
 
 	protected:
 				TimerA1(void) { timer_a1_.set(*this); }
-		inline void 	enableIrq(void) { TA1CTL |= TAIE; }
+		virtual void 	enableIrq(void) { TA1CTL |= TAIE; }
+		virtual void 	disableIrq(void) { TA1CTL &= ~TAIE; }
 
 	private:
 		static void	TIMER1_A1_ISR(void);	///< TIMER_A1 IRQ for Overflow, CCR1 & CCR2
 		static void	TIMER1_A0_ISR(void);	///< TIMER_A1 IRQ for CCR0
 
-		static yahal::utility::oop::ServiceLocator<IsrHandler> timer_a1_;
+		static yahal::utility::oop::ServiceLocator<IsrHandler,IsrHandler::Empty> timer_a1_;
 	};
+#endif
+
+
+
+#ifdef YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED
+		static void		USCI_B1_ISR(void);
 #endif
 
 

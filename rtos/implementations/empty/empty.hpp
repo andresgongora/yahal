@@ -29,10 +29,14 @@
 #define __YAHAL_RTOS_EMPTY_HPP_INCLUDED__
 
 
-/** ---- INCLUDE ------------------------------------------------------------------------------- **/
 #include "../../rtos.hpp"
 #if MCU_RTOS == MCU_RTOS_EMPTY
-/* ---------------------------------------------------------------------------------------------- */
+
+
+namespace yahal{namespace rtos{
+	class Mutex;
+}}
+
 
 #include "empty_mutex.hpp"
 

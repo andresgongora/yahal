@@ -45,10 +45,22 @@ public:
 				class EventHandler
 				{
 				public:
-					virtual void	handleStart(Direction::Type)	{} ///< Signal a start has been received
-					virtual void	handleStop(void)		{} ///< Signal a stop has been received
-					virtual void	handleRXByte(uint8_t)		{} ///< Delivers received byte to handler
-					virtual uint8_t	handleTXByte(void)		{return 0xFF;} ///< Request next byte to be sent to handler
+					virtual void	handleStart(Direction::Type) = 0;	///< Signal a start has been received
+					virtual void	handleStop(void) = 0;			///< Signal a stop has been received
+					virtual void	handleRXByte(uint8_t) = 0;		///< Delivers received byte to handler
+					virtual uint8_t	handleTXByte(void) = 0;			///< Request next byte to be sent to handler
+
+					class NullEventHandler;
+				};
+
+protected:
+				class EventHandler::NullEventHandler : public EventHandler
+				{
+				public:
+					virtual void	handleStart(Direction::Type)	{}
+					virtual void	handleStop(void)		{}
+					virtual void	handleRXByte(uint8_t)		{}
+					virtual uint8_t	handleTXByte(void)		{return 0xFF;}
 				};
 
 				// -----------------------------------------------------------------

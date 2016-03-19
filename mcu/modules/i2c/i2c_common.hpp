@@ -49,19 +49,19 @@ public:
 				struct Direction{ enum Type{
 					READ,
 					WRITE,
-				};}static const Direction;
+				};}static const DIRECTION;
 
 
 				/// Error codes for I2C.
 				struct Error{ enum Type{
-					NO_ERROR = NO_ERROR_CODE,
+					NO_ERROR = ErrorCode::NO_ERROR_CODE,
 					SLAVE_ADDRESS_NOT_7_BIT,
 					SLAVE_NOT_REACHABLE,
 					SLAVE_DATA_NACK,
 					INVALID_MESSAGE_BUFFER,
 					READ_OVERFLOW_ATTEMPT,
 					TRANSMISSION_PREMATURELY_ENDED,
-				};}static const Error;
+				};}static const ERROR;
 };
 
 

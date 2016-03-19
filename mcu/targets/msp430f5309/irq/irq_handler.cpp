@@ -35,13 +35,13 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-void yahal::mcu::targets::msp430f5309::IrqHandler::enableGlobalInterrupts(void)
+void yahal::mcu::targets::msp430f5309::IrqHandler::enableGlobalIrq(void)
 {
 	_EINT();
 }
 
 
-void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
+void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalIrq(void)
 {
 	_DINT();
 }
@@ -53,7 +53,8 @@ void yahal::mcu::targets::msp430f5309::IrqHandler::disableGlobalInterrupts(void)
 ================================================================================================= */
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
 
-yahal::utility::oop::ServiceLocator<yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler>\
+yahal::utility::oop::ServiceLocator<yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler,
+				    yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler::Empty>\
 	yahal::mcu::targets::msp430f5309::IrqHandler::Adc10::adc_10_;
 
 
@@ -100,7 +101,8 @@ __interrupt void yahal::mcu::targets::msp430f5309::IrqHandler::Adc10::ADC_10_ISR
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 
 
-yahal::utility::oop::ServiceLocator<yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler>\
+yahal::utility::oop::ServiceLocator<yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler,
+				    yahal::mcu::targets::msp430f5309::IrqHandler::IsrHandler::Empty>\
 	yahal::mcu::targets::msp430f5309::IrqHandler::TimerA1::timer_a1_;
 
 

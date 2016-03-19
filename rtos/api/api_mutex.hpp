@@ -26,13 +26,8 @@
 #define __YAHAL_RTOS_API_MUTEX_HPP_INCLUDED__
 
 /* ---------------------------------------------------------------------------------------------- */
+#include "api.hpp"
 #include "../../utility/oop/noncopyable.hpp"
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{namespace rtos{ namespace api{
-	class Mutex;
-}}}
 
 
 

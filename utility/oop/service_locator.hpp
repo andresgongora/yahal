@@ -31,35 +31,43 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
-	template<typename T_SERVICE> class ServiceLocator;
-	template<typename T_SERVICE> class GlobalServiceLocator;
+	class Service;
+	template<typename T_SERVICE, typename T_EMPTY_SERVICE> class ServiceLocator;
+	template<typename T_SERVICE, typename T_EMPTY_SERVICE> class GlobalServiceLocator;
 }}}
 
 
+class Service
+{
+protected:
+				Service(void) {}
+public:
+				virtual class Empty = 0;
+};
 
 
 
 /***********************************************************************************************//**
  *
  **************************************************************************************************/
-template<typename T_SERVICE>
+template<typename T_SERVICE, typename T_EMPTY_SERVICE>
 class yahal::utility::oop::ServiceLocator
 {
 public:
 				ServiceLocator(T_SERVICE& service) : service_(&service) {}
-				ServiceLocator(void) : service_(&null_service_)		{}
+				ServiceLocator(void) : service_(&empty_service_)		{}
 
 	inline void	 	set(T_SERVICE& new_service)	{ service_ = &new_service; }
-	inline void		disable(void)			{ service_ = & null_service_; }
+	inline void		disable(void)			{ service_ = & empty_service_; }
 	inline T_SERVICE&	get(void)		 	{ return *service_; }
 
 private:
 	T_SERVICE*		service_;
-	static T_SERVICE	null_service_;
+	static T_EMPTY_SERVICE	empty_service_;
 };
 
-// Static instance of null_service_
-template<typename T_SERVICE> T_SERVICE yahal::utility::oop::ServiceLocator<T_SERVICE>::null_service_;
+// Static instance of empty_service_
+template<typename T_SERVICE, typename T_EMPTY_SERVICE> T_EMPTY_SERVICE yahal::utility::oop::ServiceLocator<T_SERVICE, T_EMPTY_SERVICE>::empty_service_;
 
 
 
@@ -68,25 +76,25 @@ template<typename T_SERVICE> T_SERVICE yahal::utility::oop::ServiceLocator<T_SER
 /***********************************************************************************************//**
  *
  **************************************************************************************************/
-template<typename T_SERVICE>
+template<typename T_SERVICE, typename T_EMPTY_SERVICE>
 class yahal::utility::oop::GlobalServiceLocator
 {
 public:
 	inline static void	set(T_SERVICE& new_service)	{ service_ = &new_service; }
-	inline static void	disable(void)			{ service_ = & null_service_; }
+	inline static void	disable(void)			{ service_ = & empty_service_; }
 	inline T_SERVICE&	get(void)		 	{ return *service_; }
 
 private:
 	static T_SERVICE*	service_;
-	static T_SERVICE	null_service_;
+	static T_EMPTY_SERVICE	empty_service_;
 };
 
-/// Static instance of null_service_
-template<typename T_SERVICE> T_SERVICE yahal::utility::oop::GlobalServiceLocator<T_SERVICE>::null_service_;
+/// Static instance of empty_service_
+template<typename T_SERVICE, typename T_EMPTY_SERVICE> T_EMPTY_SERVICE yahal::utility::oop::GlobalServiceLocator<T_SERVICE, T_EMPTY_SERVICE>::empty_service_;
 
-/// Static instance of service_ initialized to null_service_
-template<typename T_SERVICE> T_SERVICE* yahal::utility::oop::GlobalServiceLocator<T_SERVICE>::service_\
-	= &yahal::utility::oop::GlobalServiceLocator<T_SERVICE>::null_service_;
+/// Static instance of service_ initialized to empty_service_
+template<typename T_SERVICE, typename T_EMPTY_SERVICE> T_SERVICE* yahal::utility::oop::GlobalServiceLocator<T_SERVICE, T_EMPTY_SERVICE>::service_\
+	= &yahal::utility::oop::GlobalServiceLocator<T_SERVICE, T_EMPTY_SERVICE>::empty_service_;
 
 
 

@@ -29,7 +29,7 @@
 /* ---------------------------------------------------------------------------------------------- */
 #include "../../../utility/oop/noncopyable.hpp"
 #include "../../../utility/oop/nonheapable.hpp"
-
+#include <stdint.h>
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -45,13 +45,33 @@ namespace yahal{ namespace mcu{ namespace modules{
 class yahal::mcu::modules::IrqHandler
 {
 protected:
-				IrqHandler(void)	{}
+				class IsrHandler
+				{
+				public:
+					virtual void isr(uint8_t) = 0;
+				protected:
+					virtual void enableIrq(void) = 0;
+					virtual void disableIrq(void) = 0;
 
+				public:
+					class Empty;
+				};
+
+				class IsrHandler::Empty : public IsrHandler
+				{
+				public:
+					virtual void isr(uint8_t) {}
+				private:
+					virtual void enableIrq(void) {}
+					virtual void disableIrq(void) {}
+				};
+
+
+				//------------------------------------------------------------------
 
 public:
-				// CONFIGURATION
-	virtual void		enableGlobalInterrupts(void) = 0;
-	virtual void		disableGlobalInterrupts(void) = 0;
+	virtual void		enableGlobalIrq(void) = 0;
+	virtual void		disableGlobalIrq(void) = 0;
 };
 
 

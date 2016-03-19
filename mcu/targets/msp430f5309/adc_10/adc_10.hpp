@@ -144,9 +144,16 @@ public:
 				protected:
 					friend class Adc10;
 					virtual void handleAdc(uint8_t channel, uint16_t data) {}
+				public:
+					class Null;
 				};
 
-	yahal::utility::oop::ServiceLocator<AutoscanHandler> autoscan_handler_;
+				class AutoscanHandler::Null : public AutoscanHandler
+				{
+
+				};
+
+	yahal::utility::oop::ServiceLocator<AutoscanHandler,AutoscanHandler::Null> autoscan_handler_;
 
 				// -----------------------------------------------------------------
 public:
@@ -159,8 +166,6 @@ public:
 
 	void			startConvertion(void);
 	uint16_t		convertChannel(uint8_t channel);
-
-
 
 
 private:

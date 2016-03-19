@@ -137,8 +137,8 @@ void yahal::mcu::targets::msp430f5309::Adc10::startConvertion(void)
 
 uint16_t yahal::mcu::targets::msp430f5309::Adc10::convertChannel(uint8_t channel)
 {
-	if (channel > 15)	{ return 0x0000; }
-	else 			{ return buffer_raw_[channel]; }
+//	if (channel > 15)	{ return 0x0000; }
+//	else 			{ return buffer_raw_[channel]; }
 }
 
 
