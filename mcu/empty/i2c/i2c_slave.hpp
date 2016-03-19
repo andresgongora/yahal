@@ -22,8 +22,32 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#include "gpio.hpp"
+#ifndef __YAHAL_MCU_EMPTY_I2C_SLAVE_HPP_INCLUDED__
+#define __YAHAL_MCU_EMPTY_I2C_SLAVE_HPP_INCLUDED__
 
-yahal::mcu::targets::empty::Gpio::Port yahal::mcu::targets::empty::Gpio::Port::instance;
+
+#include "../empty_namespace.hpp"
+#include "../../modules/i2c/i2c_slave.hpp"
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
+namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
+	class I2CSlave;
+}}}}
+
+
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::targets::empty::I2CSlave : public yahal::mcu::modules::I2CSlave
+{
+public:
+	virtual void		setEventHandler(EventHandler* const p_event_handler) {}
+};
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+#endif	// __YAHAL_MCU_MSP430F5309_I2C_SLAVE_HPP_INCLUDED__

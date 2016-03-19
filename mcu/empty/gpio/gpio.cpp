@@ -22,44 +22,12 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_EMPTY_GPIO_HPP_INCLUDED__
-#define __YAHAL_MCU_EMPTY_GPIO_HPP_INCLUDED__
+#include "gpio.hpp"
+
+
+yahal::mcu::empty::Gpio		yahal::mcu::empty::Gpio::instance;
+yahal::mcu::empty::Gpio::Port	yahal::mcu::empty::Gpio::Port::instance;
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../modules/gpio/gpio.hpp"
-#include "../empty_namespace.hpp"
-
-
-
-/***********************************************************************************************//**
- * @brief
- **************************************************************************************************/
-class yahal::mcu::targets::empty::Gpio : public yahal::mcu::modules::Gpio
-{
-public:
-				class Port : public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					virtual bool	config(	Direction::Type direction = Direction::INPUT,
-								Resistor::Type resistor = Resistor::DISABLED,
-								uint8_t mask = 0xFF) {return true;}
-
-					virtual void	set(uint8_t value, uint8_t mask=0xFF) {}
-					virtual void	toggle(uint8_t mask=0xFF) {}
-					virtual uint8_t	get(uint8_t mask=0xFF)const {return false;}
-					virtual uint8_t	getOutput(uint8_t mask=0xFF)const {return false;}
-
-					static Port	instance;
-				};
-
-
-	virtual Port& 		port(uint8_t portNumber){return empty::Gpio::Port::instance;}
-};
-
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__

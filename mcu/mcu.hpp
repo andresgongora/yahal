@@ -16,6 +16,12 @@
 	 *	- Añadir patilla a timer A1
 	 *
 	 *	- Access to RTOS with a service locator pattern. The same goes for the MCU. Check how slow it is because it adds a pointer
+	 *
+	 *	- Make all empty classes singletons to avoid unnecesary copies of them
+	 *
+	 *	- Impedir que desde las ISR de mis modulos se puedan llamar funciones del usuario, para evitar que el usuario llame a otra funcion que espere una ISR y se cree un bucle -> tengo que arreglar los publisher subscribers
+	 *
+	 *	- Para que publisher-subscriber NO dependa de un rtos, hacer que el publisher y subscriber utilicen un tipo de dato que no sea un entero, sino un paquete cuyo valor se puede escribir, pero no es leido hasta que no le toca al hilo correspondiente.
 	*/
 
 

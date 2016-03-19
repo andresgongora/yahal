@@ -22,65 +22,48 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_EMPTY_I2C_MASTER_HPP_INCLUDED__
-#define __YAHAL_MCU_EMPTY_I2C_MASTER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_EMPTY_GPIO_HPP_INCLUDED__
+#define __YAHAL_MCU_EMPTY_GPIO_HPP_INCLUDED__
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../../../modules/i2c/i2c_master.hpp"
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
-	class I2CMaster;
-}}}}
+#include "../empty_namespace.hpp"
+#include "../../modules/gpio/gpio.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::empty::I2CMaster : public yahal::mcu::modules::I2CMaster
+class yahal::mcu::empty::Gpio : public yahal::mcu::modules::Gpio
 {
+private:
+				Gpio(void) {}
 public:
-	virtual bool 		writeRegister(	uint8_t slaveAddress,
-						uint8_t registerAddress,
-						uint8_t* data,
-						std::size_t size) {
-					return true;
-				}
+				class Port : public yahal::mcu::modules::Gpio::Port
+				{
+				private:
+							Port(void) {}
+				public:
+					virtual bool	config(	Direction::Type direction = Direction::INPUT,
+								Resistor::Type resistor = Resistor::DISABLED,
+								uint8_t mask = 0xFF) {return true;}
+
+					virtual void	set(uint8_t value, uint8_t mask=0xFF) {}
+					virtual void	toggle(uint8_t mask=0xFF) {}
+					virtual uint8_t	get(uint8_t mask=0xFF)const {return false;}
+					virtual uint8_t	getOutput(uint8_t mask=0xFF)const {return false;}
+
+					static Port	instance;
+				};
 
 
-	virtual bool 		write(	uint8_t slaveAddress,
-					uint8_t* data,
-					std::size_t size) {
-					return true;
-				}
+	virtual Port& 		port(uint8_t portNumber){return empty::Gpio::Port::instance;}
 
-
-	virtual bool 		readRegister(	uint8_t slaveAddress,
-						uint8_t registerAddress,
-						uint8_t* data,
-						std::size_t size) {
-					return true;
-				}
-
-
-	virtual bool		read(	uint8_t slaveAddress,
-					uint8_t* data,
-					std::size_t size) {
-					return true;
-				}
-
-
-	virtual bool 		isSlavePresent(uint8_t slaveAddress) {
-					return true;
-				}
+	static Gpio		instance;
 };
 
 
 
+
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_MSP430F5309_I2C_MASTER_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_MSP430F5309_GPIO_HPP_INCLUDED__

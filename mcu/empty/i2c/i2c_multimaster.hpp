@@ -22,19 +22,18 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_EMPTY_I2C_SLAVE_HPP_INCLUDED__
-#define __YAHAL_MCU_EMPTY_I2C_SLAVE_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_EMPTY_I2C_MULTIMASTER_HPP_INCLUDED__
+#define __YAHAL_MCU_EMPTY_I2C_MULTIMASTER_HPP_INCLUDED__
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../../../modules/i2c/i2c_slave.hpp"
+#include "../empty_namespace.hpp"
+#include "../../modules/i2c/i2c_multimaster.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
-	class I2CSlave;
+	class I2CMultimaster;
 }}}}
 
 
@@ -42,13 +41,48 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::empty::I2CSlave : public yahal::mcu::modules::I2CSlave
+class yahal::mcu::targets::empty::I2CMultimaster : public yahal::mcu::modules::I2CMultimaster
 {
 public:
+	virtual bool 		writeRegister(	uint8_t slaveAddress,
+						uint8_t registerAddress,
+						uint8_t* data,
+						std::size_t size) {
+					return true;
+				}
+
+
+	virtual bool 		write(	uint8_t slaveAddress,
+					uint8_t* data,
+					std::size_t size) {
+					return true;
+				}
+
+
+	virtual bool 		readRegister(	uint8_t slaveAddress,
+						uint8_t registerAddress,
+						uint8_t* data,
+						std::size_t size) {
+					return true;
+				}
+
+
+	virtual bool		read(	uint8_t slaveAddress,
+					uint8_t* data,
+					std::size_t size) {
+					return true;
+				}
+
+
+	virtual bool 		isSlavePresent(uint8_t slaveAddress) {
+					return true;
+				}
+
+
 	virtual void		setEventHandler(EventHandler* const p_event_handler) {}
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_MSP430F5309_I2C_SLAVE_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_MSP430F5309_I2C_MULTIMASTER_HPP_INCLUDED__

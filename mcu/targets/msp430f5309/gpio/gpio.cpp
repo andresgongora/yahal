@@ -27,7 +27,7 @@
 
 #include <msp430f5309.h>
 #include "../../../../error/assert.hpp"
-#include "../../empty/gpio/gpio.hpp"
+#include "../../../empty/gpio/gpio.hpp"
 #include "../../../../utility/data/mask.hpp"
 
 
@@ -53,7 +53,7 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 	case 6:	return port6_;
 
 	default:
-		return yahal::mcu::targets::empty::Gpio::Port::instance;
+		return yahal::mcu::empty::Gpio::Port::instance;
 	}
 }
 

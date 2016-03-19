@@ -22,17 +22,15 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_EMPTY_NAMESPACE_HPP_INCLUDED__
-#define __YAHAL_MCU_EMPTY_NAMESPACE_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_EMPTY_HPP_INCLUDED__
+#define __YAHAL_MCU_EMPTY_HPP_INCLUDED__
 
 
 
-namespace yahal{ namespace mcu{ namespace targets{ namespace empty{
-	class Gpio;
-
-}}}}
+#include "empty_namespace.hpp"
+#include "gpio/gpio.hpp"
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_EMPTY__NAMESPACE_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_EMPTY_HPP_INCLUDED__
