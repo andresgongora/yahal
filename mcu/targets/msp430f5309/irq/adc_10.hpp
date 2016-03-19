@@ -26,45 +26,53 @@
 	+-----------------------------------------------------------------------+ */
 
 
-#ifndef __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MSP430F5309_IRQ_ADC_10_HPP_INCLUDED__
+#define __YAHAL_MCU_MSP430F5309_IRQ_ADC_10_HPP_INCLUDED__
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "../../../config/targets/msp430f5309.hpp"
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_IRQ
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
 
-
-#include "../../../modules/irq/irq_handler.hpp"
 #include "../msp430f5309_namespace.hpp"
+#include "../../../modules/irq/isr_handler.hpp"
 #include "../../../../utility/oop/service_locator.hpp"
 #include <stdint.h>
 #include <msp430f5309.h>
 
 
+
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IrqHandler :
-	public yahal::mcu::modules::IrqHandler
+class yahal::mcu::targets::msp430f5309::irq::Adc10 :
+	protected yahal::mcu::modules::details::IsrHandler
 {
 public:
-	virtual void		enableGlobalIrq(void);
-	virtual void		disableGlobalIrq(void);
+			struct Irq { enum Type {
+				OVERSAMPLE,
+				OVERFLOW,
+				THRESHOLD_OVER,
+				THRESHOLD_INSIDE,
+				THRESHOLD_BELOW,
+				CONVERTION
+			};} static const IRQ;
 
+protected:
+			Adc10(void)	{ adc_10_.set(*this); }
+	virtual void 	enableIrq(void)	{ ADC10IE |= ADC10IE0; }
+	virtual void 	disableIrq(void){ ADC10IE &= ~ADC10IE0; }
 
+private:
+	static void	ADC_10_ISR(void);
 
-#ifdef YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED
-		static void		USCI_B1_ISR(void);
-#endif
-
-
+	static yahal::utility::oop::ServiceLocator<IsrHandler,IsrHandler::Empty> adc_10_;
 };
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_MSP430F5309_ENABLE_IRQ
-#endif 	// __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
 
+/* ---------------------------------------------------------------------------------------------- */
+#endif	// YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
+#endif 	// __YAHAL_MCU_MSP430F5309_IRQ_ADC_10_HPP_INCLUDED__

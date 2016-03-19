@@ -26,45 +26,54 @@
 	+-----------------------------------------------------------------------+ */
 
 
-#ifndef __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#include "timer_a1.hpp"
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/targets/msp430f5309.hpp"
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_IRQ
-
-
-#include "../../../modules/irq/irq_handler.hpp"
-#include "../msp430f5309_namespace.hpp"
-#include "../../../../utility/oop/service_locator.hpp"
-#include <stdint.h>
 #include <msp430f5309.h>
 
 
-/***********************************************************************************************//**
- * @brief
- **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IrqHandler :
-	public yahal::mcu::modules::IrqHandler
+/* ---------------------------------------------------------------------------------------------- */
+
+yahal::utility::oop::ServiceLocator<yahal::mcu::modules::details::IsrHandler,
+				    yahal::mcu::modules::details::IsrHandler::Empty>\
+	yahal::mcu::targets::msp430f5309::irq::TimerA1::timer_a1_;
+
+
+#pragma vector = TIMER1_A1_VECTOR
+__interrupt void yahal::mcu::targets::msp430f5309::irq::TimerA1::TIMER1_A1_ISR(void)
 {
-public:
-	virtual void		enableGlobalIrq(void);
-	virtual void		disableGlobalIrq(void);
+	switch (__even_in_range(TA1IV, 14)) {
+	case 0: ///< Vector 00: No interrupts
+		break;
+	case 2: ///< Vector 02: CCR1
+		timer_a1_.get().isr(TimerA1::Irq::CCR1);
+		break;
+	case 4: ///< Vector 04: CCR2
+		timer_a1_.get().isr(TimerA1::Irq::CCR2);
+		break;
+	case 6: ///< Vector 06: reserved
+		break;
+	case 8: ///< Vector 08: reserved
+		break;
+	case 10: ///< Vector 10: reserved
+		break;
+	case 12: ///< Vector 12: reserved
+		break;
+	case 14: ///< Vector 14: TA1
+		timer_a1_.get().isr(TimerA1::Irq::TIMER);
+		break;
+	default:
+		break;
+	}
+}
 
 
-
-#ifdef YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED
-		static void		USCI_B1_ISR(void);
-#endif
-
-
-};
-
+#pragma vector = TIMER1_A0_VECTOR
+__interrupt void yahal::mcu::targets::msp430f5309::irq::TimerA1::TIMER1_A0_ISR(void)
+{
+	timer_a1_.get().isr(TimerA1::Irq::CCR0);
+}
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_MSP430F5309_ENABLE_IRQ
-#endif 	// __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
-
+#endif // YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1

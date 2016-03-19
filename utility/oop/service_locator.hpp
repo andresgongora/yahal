@@ -31,19 +31,9 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace oop{
-	class Service;
 	template<typename T_SERVICE, typename T_EMPTY_SERVICE> class ServiceLocator;
 	template<typename T_SERVICE, typename T_EMPTY_SERVICE> class GlobalServiceLocator;
 }}}
-
-
-class Service
-{
-protected:
-				Service(void) {}
-public:
-				virtual class Empty = 0;
-};
 
 
 

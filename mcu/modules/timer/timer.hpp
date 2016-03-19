@@ -52,7 +52,7 @@ protected:
 				public:
 					virtual bool 	getOutput(void) = 0;
 					virtual void 	setComparator(T_SIZE value) = 0;
-//					virtual T_SIZE	getComparator(void) = 0;
+					virtual T_SIZE	getComparator(void) = 0;
 				};
 
 				class InputCapture

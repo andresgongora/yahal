@@ -34,7 +34,7 @@
 #include <cstddef>
 #include "../../../modules/timer/timer.hpp"
 #include "../../../../utility/oop/publish_subscribe.hpp"
-#include "../irq/irq_handler.hpp"
+#include "../irq/timer_a1.hpp"
 
 
 
@@ -43,7 +43,7 @@
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::TimerA1 :
 	public yahal::mcu::modules::Timer<uint16_t>,
-	private yahal::mcu::targets::msp430f5309::IrqHandler::TimerA1
+	private yahal::mcu::targets::msp430f5309::irq::TimerA1
 {
 public:
 				struct ClockSource{ enum Type{
@@ -96,8 +96,11 @@ public:
 						OFF		= 0xFF
 					};};
 
-					virtual void	setOutput(bool b) = 0;
 					virtual void	setMode(Mode::Type mode) = 0;
+//					virtual void	setOutput(bool b) = 0;
+
+					class Empty;
+
 				};
 
 				// -----------------------------------------------------------------
@@ -105,29 +108,21 @@ private:
 				class Ccr1 : public Ccr
 				{
 				public:
-					static Ccr1&	getInstance(void);
-					virtual bool	getOutput(void);
-					virtual void	setOutput(bool b);
-					virtual void	setMode(Mode::Type mode);
-					virtual void	setComparator(uint16_t value);
-
-				private:
-							Ccr1(void);	///< Singleton
-					static Ccr1 	instance_;
+					virtual void		setMode(Mode::Type mode);
+					virtual void		setComparator(uint16_t value);
+					virtual uint16_t	getComparator(void);
+					virtual bool		getOutput(void);
+//					virtual void		setOutput(bool b);
 				};
 
 				class Ccr2 : public Ccr
 				{
 				public:
-					static Ccr2&	getInstance(void);
-					virtual bool	getOutput(void);
-					virtual void	setOutput(bool b);
-					virtual void	setMode(Mode::Type mode);
-					virtual void	setComparator(uint16_t value);
-
-				private:
-							Ccr2(void);	///< Singleton
-					static Ccr2 	instance_;
+					virtual void		setMode(Mode::Type mode);
+					virtual void		setComparator(uint16_t value);
+					virtual uint16_t	getComparator(void);
+					virtual bool		getOutput(void);
+//					virtual void		setOutput(bool b);
 				};
 
 				// -----------------------------------------------------------------
@@ -146,6 +141,26 @@ public:
 	void			configure(ClockSource::Type clock_source,
 					  Prescaler::Type prescaler,
 					  Mode::Type mode);
+
+private:
+	Ccr1			ccr1_;
+	Ccr2			ccr2_;
+};
+
+
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+class yahal::mcu::targets::msp430f5309::TimerA1::Ccr::Empty :
+	public yahal::mcu::targets::msp430f5309::TimerA1::Ccr
+{
+public:
+	virtual void		setMode(Mode::Type mode)	{}
+	virtual void		setComparator(uint16_t value)	{}
+	virtual uint16_t	getComparator(void)		{return 0;}
+	virtual bool		getOutput(void)			{return 0;}
+	static Empty		instance;
 };
 
 

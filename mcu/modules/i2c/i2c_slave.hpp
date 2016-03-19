@@ -50,23 +50,28 @@ public:
 					virtual void	handleRXByte(uint8_t) = 0;		///< Delivers received byte to handler
 					virtual uint8_t	handleTXByte(void) = 0;			///< Request next byte to be sent to handler
 
-					class NullEventHandler;
-				};
-
-protected:
-				class EventHandler::NullEventHandler : public EventHandler
-				{
-				public:
-					virtual void	handleStart(Direction::Type)	{}
-					virtual void	handleStop(void)		{}
-					virtual void	handleRXByte(uint8_t)		{}
-					virtual uint8_t	handleTXByte(void)		{return 0xFF;}
+					class Empty;
 				};
 
 				// -----------------------------------------------------------------
 
 				/// Set pointer to class that will handle all slave events.
 	virtual void		setEventHandler(EventHandler* const p_event_handler) = 0;
+};
+
+
+
+/***********************************************************************************************//**
+ * @brief	EventHandler empty class
+ **************************************************************************************************/
+class yahal::mcu::modules::I2CSlave::EventHandler::Empty :
+	public yahal::mcu::modules::I2CSlave::EventHandler
+{
+public:
+	virtual void	handleStart(Direction::Type)	{}
+	virtual void	handleStop(void)		{}
+	virtual void	handleRXByte(uint8_t)		{}
+	virtual uint8_t	handleTXByte(void)		{return 0xFF;}
 };
 
 

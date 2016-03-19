@@ -26,45 +26,49 @@
 	+-----------------------------------------------------------------------+ */
 
 
-#ifndef __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
+#include "adc_10.hpp"
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
 
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../../../config/targets/msp430f5309.hpp"
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_IRQ
-
-
-#include "../../../modules/irq/irq_handler.hpp"
-#include "../msp430f5309_namespace.hpp"
-#include "../../../../utility/oop/service_locator.hpp"
-#include <stdint.h>
 #include <msp430f5309.h>
 
 
-/***********************************************************************************************//**
- * @brief
- **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::IrqHandler :
-	public yahal::mcu::modules::IrqHandler
+/* ---------------------------------------------------------------------------------------------- */
+
+yahal::utility::oop::ServiceLocator<yahal::mcu::modules::details::IsrHandler,
+				    yahal::mcu::modules::details::IsrHandler::Empty>\
+	yahal::mcu::targets::msp430f5309::irq::Adc10::adc_10_;
+
+
+
+#pragma vector = ADC10_VECTOR
+__interrupt void yahal::mcu::targets::msp430f5309::irq::Adc10::ADC_10_ISR(void)
 {
-public:
-	virtual void		enableGlobalIrq(void);
-	virtual void		disableGlobalIrq(void);
-
-
-
-#ifdef YAHAL_MCU_MSP430F5309_USCI_B1_ENABLED
-		static void		USCI_B1_ISR(void);
-#endif
-
-
-};
-
+	switch(__even_in_range(ADC10IV,12)) {
+	case  0: ///< Vector 00: No interrupts
+		break;
+	case  2: ///< Vector 02: Overflow
+		adc_10_.get().isr(Adc10::Irq::OVERFLOW);
+		break;
+	case  4: ///< Vector 04: Over sample
+		adc_10_.get().isr(Adc10::Irq::OVERSAMPLE);
+		break;
+	case  6: ///< Vector 06: Signal over threshold high level
+		adc_10_.get().isr(Adc10::Irq::THRESHOLD_OVER);
+		break;
+	case  8: ///< Vector 08: Signal below threshold low level
+		adc_10_.get().isr(Adc10::Irq::THRESHOLD_BELOW);
+		break;
+	case 10: ///< Vector 10: Signal inside threshold levels
+		adc_10_.get().isr(Adc10::Irq::THRESHOLD_INSIDE);
+		break;
+	case 12: ///< Vector 12: ADC convertion end
+		adc_10_.get().isr(Adc10::Irq::CONVERTION);
+		break;
+	default:
+		break;
+	}
+}
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_MSP430F5309_ENABLE_IRQ
-#endif 	// __YAHAL_MCU_MSP430F5309_IRQ_HANDLER_HPP_INCLUDED__
-
+#endif // YAHAL_MCU_MSP430F5309_ENABLE_ADC_10

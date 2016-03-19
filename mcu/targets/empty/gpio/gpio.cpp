@@ -22,39 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__
-#define __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__
+#include "gpio.hpp"
 
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../../config/mcu_config.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-
-
-
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class Adc10;
-	class Clk;
-	class Gpio;
-	class Wdt;
-	class IrqHandler;
-
-	class UsciB1;
-//	class I2CMaster;
-//	class I2CSlave;
-//	class I2CMultimaster;
-
-	class TimerA1;
-
-	namespace irq{
-		class Adc10;
-		class TimerA1;
-	}
-}}}}
-
-
+yahal::mcu::targets::empty::Gpio::Port yahal::mcu::targets::empty::Gpio::Port::instance;
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif	// __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__

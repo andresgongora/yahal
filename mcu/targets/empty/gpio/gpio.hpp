@@ -39,7 +39,7 @@
 class yahal::mcu::targets::empty::Gpio : public yahal::mcu::modules::Gpio
 {
 public:
-				class EmptyPort : public yahal::mcu::modules::Gpio::Port
+				class Port : public yahal::mcu::modules::Gpio::Port
 				{
 				public:
 					virtual bool	config(	Direction::Type direction = Direction::INPUT,
@@ -51,14 +51,13 @@ public:
 					virtual uint8_t	get(uint8_t mask=0xFF)const {return false;}
 					virtual uint8_t	getOutput(uint8_t mask=0xFF)const {return false;}
 
+					static Port	instance;
 				};
 
 
-	virtual Port& 		port(uint8_t portNumber){return empty_port;}
-
-private:
-	EmptyPort		empty_port;
+	virtual Port& 		port(uint8_t portNumber){return empty::Gpio::Port::instance;}
 };
+
 
 
 

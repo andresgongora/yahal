@@ -102,13 +102,6 @@ public:				// CONFIGURATION
 	class 			Pin;
 	inline Pin		pin(uint8_t pin_number);
 	inline Pin		operator[](uint8_t pin_number);
-
-
-/*	static const
-	Gpio::Direction 	DIRECTION;
-
-	static const
-	Gpio::Resistor		RESISTOR;*/
 };
 
 

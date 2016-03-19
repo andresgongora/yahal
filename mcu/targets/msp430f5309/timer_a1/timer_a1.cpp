@@ -111,14 +111,15 @@ void yahal::mcu::targets::msp430f5309::TimerA1::setMode(Mode::Type mode)
 yahal::mcu::targets::msp430f5309::TimerA1::Ccr& \
 yahal::mcu::targets::msp430f5309::TimerA1::ccr(std::size_t module)
 {
+	assert(module == 1 || module == 2);
+
 	switch (module) {
 	case 1:
-		return Ccr1::getInstance();
+		return ccr1_;
 	case 2:
-		return Ccr2::getInstance();
+		return ccr2_;
 	default:
-		assert(false);
-		return Ccr1::getInstance();;	///< TODO: Better return this than nothing.
+		return Ccr::Empty::instance;
 	}
 }
 
@@ -146,36 +147,8 @@ void yahal::mcu::targets::msp430f5309::TimerA1::isr(uint8_t irq)
 
 
 /* =================================================================================================
-	TIMER A1 CCR1
+	TIMER A1 :: CCR1
 ================================================================================================= */
-
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr1	\
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::instance_;
-
-
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr1&
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getInstance(void)
-{
-	return instance_;
-}
-
-
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::Ccr1(void)
-{}
-
-/* ---------------------------------------------------------------------------------------------- */
-
-void yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setOutput(bool b)
-{
-	b ? TA1CCTL1 |= 0x0001 : TA1CCTL1 &= ~0x0001;
-}
-
-
-bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getOutput(void)
-{
-	return TA1CCTL1 & 0x0001;
-}
-
 
 void yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setMode(Mode::Type mode)
 {
@@ -202,38 +175,31 @@ void yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setComparator(uint16_t val
 }
 
 
+uint16_t yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getComparator(void)
+{
+	return TA1CCR1;
+}
+
+
+/*void yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setOutput(bool b)
+{
+	b ? TA1CCTL1 |= 0x0001 : TA1CCTL1 &= ~0x0001;
+}*/
+
+
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getOutput(void)
+{
+	return TA1CCTL1 & 0x0001;
+}
+
+
+
+
+
 
 /* =================================================================================================
-	TIMER A1 CCR2
+	TIMER A1 :: CCR2
 ================================================================================================= */
-
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr2	\
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::instance_;
-
-
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr2&
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getInstance(void)
-{
-	return instance_;
-}
-
-
-yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::Ccr2(void)
-{}
-
-/* ---------------------------------------------------------------------------------------------- */
-
-void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setOutput(bool b)
-{
-	b ? TA1CCTL2 |= 0x0001 : TA1CCTL2 &= ~0x0001;
-}
-
-
-bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getOutput(void)
-{
-	return TA1CCTL2 & 0x0001;
-}
-
 
 void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setMode(Mode::Type mode)
 {
@@ -252,6 +218,26 @@ void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setComparator(uint16_t val
 {
 	TA1CCR2 = value;
 }
+
+
+uint16_t yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getComparator(void)
+{
+	return TA1CCR2;
+}
+
+
+/*
+void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setOutput(bool b)
+{
+	b ? TA1CCTL2 |= 0x0001 : TA1CCTL2 &= ~0x0001;
+}
+*/
+
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getOutput(void)
+{
+	return TA1CCTL2 & 0x0001;
+}
+
 
 
 

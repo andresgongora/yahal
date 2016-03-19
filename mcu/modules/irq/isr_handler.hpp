@@ -22,39 +22,45 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__
-#define __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
+
+
+#include <stdint.h>
+#include "../modules_namespace.hpp"
+
+
+
+/***********************************************************************************************//**
+ * @brief	Base class for all ISR handlers.
+ **************************************************************************************************/
+class yahal::mcu::modules::details::IsrHandler
+{
+public:
+	virtual void isr(uint8_t) = 0;
+protected:
+	virtual void enableIrq(void) = 0;
+	virtual void disableIrq(void) = 0;
+public:
+	class Empty;
+};
+
+
+
+/***********************************************************************************************//**
+ * @brief	IsrHandler empty derived
+ **************************************************************************************************/
+class yahal::mcu::modules::details::IsrHandler::Empty :
+	public yahal::mcu::modules::details::IsrHandler
+{
+public:
+	virtual void isr(uint8_t)	{}
+private:
+	virtual void enableIrq(void)	{}
+	virtual void disableIrq(void)	{}
+};
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../config/mcu_config.hpp"
-#if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
-
-
-
-namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class Adc10;
-	class Clk;
-	class Gpio;
-	class Wdt;
-	class IrqHandler;
-
-	class UsciB1;
-//	class I2CMaster;
-//	class I2CSlave;
-//	class I2CMultimaster;
-
-	class TimerA1;
-
-	namespace irq{
-		class Adc10;
-		class TimerA1;
-	}
-}}}}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif	// __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__

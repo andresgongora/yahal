@@ -56,9 +56,9 @@ bool yahal::mcu::targets::msp430f5309::Adc10::setMode(Mode::Type mode)
 		ADC10CTL1 = (ADC10CTL1 & 0xFFF9) | (mode << 1);
 
 		if (mode == Mode::SINGLE_AUTOSCAN || mode == Mode::SINGLE_CHANNEL) {
-			IrqHandler::Adc10::disableIrq();
+			irq::Adc10::disableIrq();
 		} else {
-			IrqHandler::Adc10::enableIrq();
+			irq::Adc10::enableIrq();
 		}
 
 		resumeFromConfiguration();

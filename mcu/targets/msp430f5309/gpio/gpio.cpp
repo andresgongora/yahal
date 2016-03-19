@@ -53,8 +53,7 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 	case 6:	return port6_;
 
 	default:
-		static yahal::mcu::targets::empty::Gpio::EmptyPort empty_port;
-		return empty_port;	///< Better return this than nothing.
+		return yahal::mcu::targets::empty::Gpio::Port::instance;
 	}
 }
 

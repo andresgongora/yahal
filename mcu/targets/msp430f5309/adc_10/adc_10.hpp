@@ -35,7 +35,7 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../msp430f5309_namespace.hpp"
-#include "../irq/irq_handler.hpp"
+#include "../irq/adc_10.hpp"
 #include "../../../../utility/oop/service_locator.hpp"
 
 
@@ -44,7 +44,7 @@
  * @brief
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::Adc10 :
-	public yahal::mcu::targets::msp430f5309::IrqHandler::Adc10
+	public yahal::mcu::targets::msp430f5309::irq::Adc10
 {
 public:
 				struct Channel{ enum Type{
