@@ -52,24 +52,20 @@
 
 
 
-
-
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
+//TODO:: move this somewhere else
 namespace yahal{ namespace mcu{
-	class Target;
+	typedef yahal::mcu::targets::msp430f5309::Msp430f5309 Target;
 }}
+
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::Target
+class yahal::mcu::targets::msp430f5309::Msp430f5309
 {
 protected:
-	Target(void);
+	Msp430f5309(void);
 
 
 	/// Initialize all modules.

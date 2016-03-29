@@ -37,28 +37,19 @@
  * @brief
  **************************************************************************************************/
 template<typename T_SIZE>
-class yahal::mcu::modules::Timer : public yahal::utility::oop::Publisher<int>
+class yahal::mcu::modules::Timer :
+	public yahal::utility::oop::Publisher<bool>
 {
 public:
-				struct Event { enum Type {
-					OVERFLOW= -1,
-					PERIOD	= 0,
+				struct Event{ enum Type{
+					OVERFLOW= false,
+					PERIOD	= true
 				};}static const Event;
 
 				// -----------------------------------------------------------------
 protected:
-				class OutputCompare
-				{
-				public:
-					virtual bool 	getOutput(void) = 0;
-					virtual void 	setComparator(T_SIZE value) = 0;
-					virtual T_SIZE	getComparator(void) = 0;
-				};
-
-				class InputCapture
-				{
-
-				};
+				class OutputCompare;
+				class InputCapture;
 
 				// -----------------------------------------------------------------
 public:
@@ -66,6 +57,39 @@ public:
 	virtual T_SIZE		getCount(void) const = 0;
 	virtual void		setPeriod(T_SIZE period) = 0;
 	virtual void		reset(void) = 0;
+};
+
+
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+template<typename T_SIZE>
+class yahal::mcu::modules::Timer<T_SIZE>::OutputCompare :
+	public yahal::utility::oop::Publisher<bool>
+{
+public:
+				struct Event{ enum Type{
+					LOW	= false,
+					HICH	= true
+				};}static const Event;
+
+				//------------------------------------------------------------------
+public:
+				virtual bool 	getOutput(void) const = 0;
+				virtual void 	setComparator(T_SIZE value) = 0;
+				virtual T_SIZE	getComparator(void) const = 0;
+};
+
+
+
+/***********************************************************************************************//**
+ * @brief
+ **************************************************************************************************/
+template<typename T_SIZE>
+class yahal::mcu::modules::Timer<T_SIZE>::InputCapture
+{
+
 };
 
 

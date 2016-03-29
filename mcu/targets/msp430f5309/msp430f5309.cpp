@@ -32,13 +32,13 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-yahal::mcu::Target::Target(void)
+yahal::mcu::targets::msp430f5309::Msp430f5309::Msp430f5309(void)
 {}
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-bool yahal::mcu::Target::init(void)
+bool yahal::mcu::targets::msp430f5309::Msp430f5309::init(void)
 {
 	return true;
 }// init

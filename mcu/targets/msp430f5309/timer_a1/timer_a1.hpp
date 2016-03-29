@@ -64,18 +64,10 @@ public:
 
 				struct Mode{ enum Type{
 					STOP		= 0x0000,
-					UP_CCR0 	= 0x0010,
+					UP 		= 0x0010,
 					CONTINUOUS	= 0x0020,
-					UP_DOWN		= 0x0030
+					DOWN		= 0x0030
 				};}static const MODE;
-
-
-				struct Event { enum Type {
-					OVERFLOW= Timer::Event::OVERFLOW,
-					PERIOD	= Timer::Event::PERIOD,
-					CCR1	= 1,
-					CCR2	= 2
-				};};
 
 				// -----------------------------------------------------------------
 public:
@@ -83,6 +75,7 @@ public:
 					public yahal::mcu::modules::Timer<uint16_t>::OutputCompare,
 					public yahal::mcu::modules::Timer<uint16_t>::InputCapture
 				{
+					friend class TimerA1;
 				public:
 					struct Mode{ enum Type{
 						OUTPUT		= 0,
@@ -94,7 +87,7 @@ public:
 						TOGGLE_SET	= 6,
 						RESET_SET	= 7,
 						OFF		= 0xFF
-					};};
+					};}static const MODE;
 
 					virtual void	setMode(Mode::Type mode) = 0;
 //					virtual void	setOutput(bool b) = 0;
@@ -110,8 +103,8 @@ private:
 				public:
 					virtual void		setMode(Mode::Type mode);
 					virtual void		setComparator(uint16_t value);
-					virtual uint16_t	getComparator(void);
-					virtual bool		getOutput(void);
+					virtual uint16_t	getComparator(void) const;
+					virtual bool		getOutput(void) const;
 //					virtual void		setOutput(bool b);
 				};
 
@@ -120,8 +113,8 @@ private:
 				public:
 					virtual void		setMode(Mode::Type mode);
 					virtual void		setComparator(uint16_t value);
-					virtual uint16_t	getComparator(void);
-					virtual bool		getOutput(void);
+					virtual uint16_t	getComparator(void) const;
+					virtual bool		getOutput(void) const;
 //					virtual void		setOutput(bool b);
 				};
 
@@ -158,8 +151,8 @@ class yahal::mcu::targets::msp430f5309::TimerA1::Ccr::Empty :
 public:
 	virtual void		setMode(Mode::Type mode)	{}
 	virtual void		setComparator(uint16_t value)	{}
-	virtual uint16_t	getComparator(void)		{return 0;}
-	virtual bool		getOutput(void)			{return 0;}
+	virtual uint16_t	getComparator(void) const	{return 0;}
+	virtual bool		getOutput(void)	const		{return 0;}
 	static Empty		instance;
 };
 

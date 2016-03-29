@@ -34,24 +34,27 @@
 
 
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
-	class Adc10;
-	class Clk;
-	class Gpio;
-	class Wdt;
-	class IrqHandler;
 
-	class UsciB1;
-//	class I2CMaster;
-//	class I2CSlave;
-//	class I2CMultimaster;
+		class Msp430f5309;
 
-	class TimerA1;
-
-	namespace irq{
 		class Adc10;
+		class Clk;
+		class Gpio;
+		class Wdt;
+		class IrqHandler;
+
+		class UsciB1;
+	//	class I2CMaster;
+	//	class I2CSlave;
+	//	class I2CMultimaster;
+
 		class TimerA1;
-	}
-}}}}
+
+		namespace irq{
+			class Adc10;
+			class TimerA1;
+		}
+}}}} // namespace yahal::mcu::targets::msp430f5309
 
 
 

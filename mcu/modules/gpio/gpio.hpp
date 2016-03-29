@@ -33,7 +33,7 @@
 
 
 /***********************************************************************************************//**
- * GPIO configuration. Common to Gpio, Port and Pin.
+ * GPIO configuration parameters. Common to Gpio, Port and Pin.
  **************************************************************************************************/
 class yahal::mcu::modules::details::GpioConfiguration
 {

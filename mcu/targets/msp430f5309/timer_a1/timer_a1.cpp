@@ -133,10 +133,10 @@ void yahal::mcu::targets::msp430f5309::TimerA1::isr(uint8_t irq)
 	case Irq::CCR0:
 		publish(Event::PERIOD);
 	case Irq::CCR1:
-		publish(Event::CCR1); //TODO
+		ccr1_.publish(ccr1_.getOutput());
 		break;
 	case Irq::CCR2:
-		publish(Event::CCR2); //TODO
+		ccr2_.publish(ccr2_.getOutput());
 		break;
 	default:
 		break;
@@ -175,7 +175,7 @@ void yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setComparator(uint16_t val
 }
 
 
-uint16_t yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getComparator(void)
+uint16_t yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getComparator(void) const
 {
 	return TA1CCR1;
 }
@@ -187,7 +187,7 @@ uint16_t yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getComparator(void)
 }*/
 
 
-bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getOutput(void)
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getOutput(void) const
 {
 	return TA1CCTL1 & 0x0001;
 }
@@ -220,7 +220,7 @@ void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setComparator(uint16_t val
 }
 
 
-uint16_t yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getComparator(void)
+uint16_t yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getComparator(void) const
 {
 	return TA1CCR2;
 }
@@ -233,11 +233,14 @@ void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setOutput(bool b)
 }
 */
 
-bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getOutput(void)
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getOutput(void) const
 {
 	return TA1CCTL2 & 0x0001;
 }
 
+
+
+yahal::mcu::targets::msp430f5309::TimerA1::Ccr::Empty yahal::mcu::targets::msp430f5309::TimerA1::Ccr::Empty::instance;
 
 
 

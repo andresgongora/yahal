@@ -28,7 +28,9 @@
 
 
 namespace yahal{ namespace mcu{ namespace empty{
+
 	class Gpio;
+
 
 	namespace details
 	{
