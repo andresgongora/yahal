@@ -42,8 +42,8 @@ class yahal::mcu::modules::Timer :
 {
 public:
 				struct Event{ enum Type{
-					OVERFLOW= false,
-					PERIOD	= true
+					TIMER		= false,
+					COMPARATOR	= true
 				};}static const Event;
 
 				// -----------------------------------------------------------------
@@ -71,7 +71,7 @@ class yahal::mcu::modules::Timer<T_SIZE>::OutputCompare :
 public:
 				struct Event{ enum Type{
 					LOW	= false,
-					HICH	= true
+					HIGH	= true
 				};}static const Event;
 
 				//------------------------------------------------------------------

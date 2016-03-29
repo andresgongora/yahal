@@ -64,12 +64,18 @@ void yahal::mcu::targets::msp430f5309::TimerA1::configure(ClockSource::Type cloc
 {
 	uint16_t conf = 0;
 
+	// CONFIGURE TIMER
 	conf |= clock_source;	///< Select clock source
 	conf |= prescaler;	///< Select clock divider
 	conf |= mode;		///< Select mode
 	conf |= TAIE;		///< Enable IRQ
-
 	TA1CTL = conf;
+
+	// CONFIGURE CCR0
+	if(mode == Mode::UP)	{ conf = 0; }	///< When counting up, disable CCR0 to avoid double IRQs separated by only 1 clock cycle.
+	else				{ conf = CCIE; }
+	TA1CCTL0 = conf;
+
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -128,10 +134,10 @@ void yahal::mcu::targets::msp430f5309::TimerA1::isr(uint8_t irq)
 {
 	switch (irq) {
 	case Irq::TIMER:
-		publish(Event::OVERFLOW);
+		publish(Event::TIMER);
 		break;
 	case Irq::CCR0:
-		publish(Event::PERIOD);
+		publish(Event::COMPARATOR);
 	case Irq::CCR1:
 		ccr1_.publish(ccr1_.getOutput());
 		break;
