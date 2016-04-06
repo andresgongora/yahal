@@ -37,8 +37,8 @@ namespace yahal{ namespace utility{ namespace oop{
 	template <typename T_MSG> class Publisher;
 	template <> class Publisher<void>;
 
-	template <typename T_MSG> class Subscriber;
-	template <> class Subscriber<void>;
+//	template <typename T_MSG> class Subscriber;
+//	template <> class Subscriber<void>;
 }}}
 
 
@@ -87,10 +87,13 @@ template <typename T_MSG>
 class yahal::utility::oop::Publisher
 {
 public:
+	class			Subscriber;
+
+
 				/// Used by Subscribers to subscribe.
-	void			subscribe(yahal::utility::oop::Subscriber<T_MSG>* p_new_subscriber)
+	void			subscribe(Subscriber& new_subscriber)
 				{
-					subscribers_.pushBack(p_new_subscriber);
+					subscribers_.pushBack(new_subscriber);
 				}
 
 protected:
@@ -100,7 +103,7 @@ protected:
 
 private:
 				/// Linked list of type Subscribers
-	yahal::utility::oop::LinkedList< yahal::utility::oop::Subscriber<T_MSG> > subscribers_;
+	yahal::utility::oop::LinkedList<Subscriber> subscribers_;
 };
 
 
@@ -112,12 +115,12 @@ private:
  * 	the source of a message.
  **************************************************************************************************/
 template <typename T_MSG>
-class yahal::utility::oop::Subscriber :
-	public yahal::utility::oop::LinkedListNode<yahal::utility::oop::Subscriber<T_MSG> >
+class yahal::utility::oop::Publisher<T_MSG>::Subscriber :
+	public yahal::utility::oop::LinkedListNode<Subscriber>
 {
 protected:
 				// CONSTRUCTOR
-				Subscriber(void)		{}
+				Subscriber(void) {}
 
 
 private:
@@ -131,8 +134,8 @@ private:
 
 public:
 				/// Subscribe to publisher
-	void			subscribeTo(yahal::utility::oop::Publisher<T_MSG>* p_publisher){
-					p_publisher->subscribe(this);
+	void			subscribeTo(Publisher<T_MSG>& publisher){
+					publisher.subscribe(*this);
 				}
 };
 
@@ -153,7 +156,12 @@ inline void yahal::utility::oop::Publisher<T_MSG>::publish(T_MSG message) const
 
 
 
+
+
 /* ---------------------------------------------------------------------------------------------- */
+
+
+
 
 
 
@@ -164,10 +172,13 @@ template<>
 class yahal::utility::oop::Publisher<void>
 {
 public:
+	class			Subscriber;
+
+
 				/// Used by Subscribers to subscribe.
-	void			subscribe(yahal::utility::oop::Subscriber<void>* p_new_subscriber)
+	void			subscribe(Subscriber& new_subscriber)
 				{
-					subscribers_.pushBack(p_new_subscriber);
+					subscribers_.pushBack(new_subscriber);
 				}
 
 protected:
@@ -177,7 +188,7 @@ protected:
 
 private:
 				/// Linked list of type Subscribers
-	yahal::utility::oop::LinkedList< yahal::utility::oop::Subscriber<void> > subscribers_;
+	yahal::utility::oop::LinkedList<Subscriber> subscribers_;
 
 };
 
@@ -187,12 +198,11 @@ private:
 /***********************************************************************************************//**
  * @brief	Subscriber void specialization.
  **************************************************************************************************/
-template <>
-class yahal::utility::oop::Subscriber<void> :
-	public yahal::utility::oop::LinkedListNode<yahal::utility::oop::Subscriber<void> >
+class yahal::utility::oop::Publisher<void>::Subscriber :
+	public yahal::utility::oop::LinkedListNode<Subscriber>
 {
 protected:
-				Subscriber(void);
+				Subscriber(void) {}
 
 private:
 	friend class		yahal::utility::oop::Publisher<void>;
@@ -200,8 +210,8 @@ private:
 
 
 public:
-	void			subscribeTo(yahal::utility::oop::Publisher<void>* p_publisher) {
-					p_publisher->subscribe(this);
+	void			subscribeTo(yahal::utility::oop::Publisher<void>& publisher) {
+					publisher.subscribe(*this);
 				}
 };
 

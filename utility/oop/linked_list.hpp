@@ -46,38 +46,35 @@ namespace yahal{ namespace utility{ namespace oop{
  *	The Curiously Recurring Template Pattern is used to acces the derived class T_NODE.
  *	All methods for LinkedListNode are private and only accesible by LinkedList.
  *
- * @todo	assert((std::is_base_of<LinkedListNode<T_NODE>, T_NODE>::value));
  **************************************************************************************************/
 template <typename T_NODE>
 class yahal::utility::oop::LinkedListNode
 {
 protected:
 				// CONSTRUCTOR
-				 LinkedListNode(void) : p_next_node_(0)	{}
-	virtual			~LinkedListNode(void)			{}
-
+				LinkedListNode(void) : p_previous_node_(0)	{}
 
 private:
 				// FRIEND
 	friend class		yahal::utility::oop::LinkedList<T_NODE>;
 
 
-				/// Set pointer to next node
-	void			setNext(T_NODE* p_next_node)
+				/// Set pointer to previous node
+	inline void		setPrevious(T_NODE* p_previous_node)
 				{
-					p_next_node_ = p_next_node;
+					p_previous_node_ = p_previous_node;
 				}
 
 
-				/// Get pointer to next node
-	T_NODE*			getNext(void) const
+				/// Get pointer to previous node
+	inline T_NODE*		getPrevious(void) const
 				{
-					return p_next_node_;
+					return p_previous_node_;
 				}
 
 
-				/// Pointer to next node of same class
-	T_NODE*			p_next_node_;
+				/// Pointer to previous node of same class
+	T_NODE*			p_previous_node_;
 };
 
 
@@ -86,8 +83,8 @@ private:
 /***********************************************************************************************//**
  * @brief	Linked list of templated type T_NODE.
  *
- *	A LinkedList is composed of a series of classes deroved from LinkedListNodes,
- *	in which each node points to the next node.
+ *	A LinkedList is composed of a series of instances derived from LinkedListNode,
+ *	in which each node points to the previous node.
  *
  *	The function of the LinkedList is to provide methods to navigate to the desired node,
  *	control the total ammount of linked nodes and allow adding new nodes to the list.
@@ -102,8 +99,8 @@ private:
  *	}
  *
  *	// Nodes that will be linked
- *	MyClassNode a;
- *	MyClassNode b;
+ *	MyClass a;
+ *	MyClass b;
  *
  *	// Linked List
  *	LinkedList<MyClass> ll;		// Linked list starts empty
@@ -113,84 +110,70 @@ private:
  *	ll.pushBack(b);			// Add b to list, linked after a;
  *	ll[0];				// Returns pointer to a;
  *	ll[1]->foo();			// Returns pointer to b and runs b.foo();
- *	ll.size();			// Returns linked list size, equal to 2
+ *	ll.size();			// Returns linked list size, equal to 2 in this example
  * @endcode
+ *
  **************************************************************************************************/
 template <typename T_NODE>
 class yahal::utility::oop::LinkedList
 {
 public:
 				/// Constructor.
-				LinkedList()	: p_first_node_(0), size_(0)	{}
+				LinkedList() :	p_last_node_(NULL),
+						size_(0)
+				{}
 
 
 				/// Append node.
-	void			pushBack(T_NODE* p_new_node)
+	void			pushBack(T_NODE& new_node)
 				{
-					if (isEmpty()) {
-						p_first_node_ = p_new_node;
-					} else {
-						lastNode()->setNext(p_new_node);
-					}
-
-					size_++;
+					new_node.setPrevious(p_last_node_);	// New node points to previous node
+					p_last_node_ = &new_node;		// New node becomes last node
+					size_++;				// List has increased by 1
 				}
 
 
-
-public:
-				/// Retrieve node.
+				/// Retrieve node at given position
 	T_NODE*			operator[](std::size_t position) const
 				{
-					T_NODE*	p_current_node = p_first_node_;
+					assert(position < size());
 
-					if (position >= size_) {
-						/// Try to detect this error in debug mode
-						assert(false);
+					if (position < size_)
+					{
+						T_NODE*	p_current_node = p_last_node_;
 
-						/// If trying to access non-existant node,
-						/// point instead to last node instead.
-						/// Its not an optimum solution.
-						position = size_ -1;
+						// Run thorugh the linked list starting at the back
+						for (std::size_t i = size_ -1; i>position; i--)
+						{
+							p_current_node = p_current_node->getPrevious();
+						}
+
+						return p_current_node;
 					}
-
-					for (std::size_t i = position; i; i--) {
-						p_current_node = p_current_node->getNext();
+					else
+					{
+						return NULL;
 					}
-
-					return p_current_node;
 				}
 
-
-
-				/// Check if linked list is empty.
-	bool			isEmpty(void) const
-				{
-					return (p_first_node_ == 0);
-				}
 
 				/// Get size of linked list.
-	std::size_t		size(void) const
+	inline std::size_t	size(void) const
 				{
 					return size_;
 				}
 
 
-private:
-				/// Retrieve last node, even if it is empty.
-	T_NODE*			lastNode(void) const
+				/// Check if linked list is empty.
+	inline bool		isEmpty(void) const
 				{
-					if (isEmpty()) {
-						return p_first_node_;
-					} else {
-						return this->operator[](size_ - 1);
-					}
+					return (size() == 0);
 				}
 
 
-
-private:			// PRIVATE VARIABLES
-	T_NODE*			p_first_node_;	///< Pointer to first node, starts empty.
+private:
+				// PRIVATE VARIABLES
+	T_NODE*			p_last_node_;	///< Pointer to last node, starts being equal to this
 	std::size_t		size_;		///< Store size of linked list.
 };
 

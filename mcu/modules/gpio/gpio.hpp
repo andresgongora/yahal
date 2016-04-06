@@ -168,7 +168,8 @@ inline bool yahal::mcu::modules::Gpio::Port::Pin::config(Direction::Type directi
 
 inline void yahal::mcu::modules::Gpio::Port::Pin::set(bool b)
 {
-	port_.set(pin_bit_ & b, pin_bit_);
+	if (b) 	{ port_.set(pin_bit_, pin_bit_); }
+	else	{ port_.set(0, pin_bit_); }
 }
 
 

@@ -186,11 +186,11 @@ void yahal::mcu::targets::msp430f5309::Adc10::handleAutoscan(void)
 {
 	uint8_t channel = getChannel();
 	uint16_t raw_data = getRawData();
-	autoscan_handler_.get().handleAdc(channel, raw_data);
+//	autoscan_handler_.get().handleAdc(channel, raw_data); //TODO
 }
 
 
-void yahal::mcu::targets::msp430f5309::Adc10::isr(uint8_t irq)
+void yahal::mcu::targets::msp430f5309::Adc10::isr(int irq)
 {
 	switch (irq) {
 

@@ -67,7 +67,7 @@ protected:
 private:
 	static void	ADC_10_ISR(void);
 
-	static yahal::utility::oop::ServiceLocator<IsrHandler,IsrHandler::Empty> adc_10_;
+	static yahal::utility::oop::ServiceLocator<IsrHandler> adc_10_;
 };
 
 

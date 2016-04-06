@@ -50,22 +50,22 @@ class yahal::mcu::targets::msp430f5309::irq::TimerA1 :
 	protected yahal::mcu::modules::details::IsrHandler
 {
 public:
-			struct Irq{ enum Type{
-				TIMER,
-				CCR0,
-				CCR1,
-				CCR2
-			};} static const IRQ;
+				struct Irq{ enum Type{
+					TIMER,
+					CCR0,
+					CCR1,
+					CCR2
+				};} static const IRQ;
 
 protected:
-			TimerA1(void)	{ timer_a1_.set(*this); }
-	virtual void 	enableIrq(void)	{ TA1CTL |= TAIE; }
-	virtual void 	disableIrq(void){ TA1CTL &= ~TAIE; }
+				TimerA1(void)	{ timer_a1_.set(*this); }
+	virtual inline void 	enableIrq(void)	{ TA1CTL |= TAIE; }
+	virtual inline void 	disableIrq(void){ TA1CTL &= ~TAIE; }
 
 private:
-	static void	TIMER1_A1_ISR(void);	///< TIMER_A1 IRQ for Overflow, CCR1 & CCR2
-	static void	TIMER1_A0_ISR(void);	///< TIMER_A1 IRQ for CCR0
-	static yahal::utility::oop::ServiceLocator<IsrHandler,IsrHandler::Empty> timer_a1_;
+	static void		TIMER1_A1_ISR(void);	///< TIMER_A1 IRQ for Overflow, CCR1 & CCR2
+	static void		TIMER1_A0_ISR(void);	///< TIMER_A1 IRQ for CCR0
+	static yahal::utility::oop::ServiceLocator<IsrHandler> timer_a1_;
 };
 
 

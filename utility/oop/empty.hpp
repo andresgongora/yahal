@@ -17,51 +17,54 @@
 	| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		|
 	| GNU General Public License for more details.				|
 	|									|
-	| You should have received a copy of the GNU General Public License	|
+	| You should have received a heap of the GNU General Public License	|
 	| along with this program.  If not, see <http://www.gnu.org/licenses/>. |
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
+
+#ifndef __YAHAL_UTILITY_OOP_SERVICE_HPP_INCLUDED__
+#define __YAHAL_UTILITY_OOP_SERVICE_HPP_INCLUDED__
 
 
-#include "../modules_namespace.hpp"
-#include "../../../utility/oop/singleton.hpp"
+#include "singleton.hpp"
+
+
+namespace yahal{ namespace utility{ namespace oop{
+	template<typename T_DERIVED> class Service;
+}}}
 
 
 
 /***********************************************************************************************//**
- * @brief	Base class for all ISR handlers.
+ * @brief	Service base class
  **************************************************************************************************/
-class yahal::mcu::modules::details::IsrHandler
+template<typename T_DERIVED>
+class yahal::utility::oop::Service
 {
-public:
-	virtual void		isr(int) = 0;
 protected:
-	virtual void 		enableIrq(void) = 0;
-	virtual void 		disableIrq(void) = 0;
+				Service(void)	{}
+
 public:
-	class Empty;
+	class			Empty : public yahal::utility::oop::Singleton<T_DERIVED>
+	{
+
+
+	};
+
+
+
+
+
+
+
+
 };
 
 
-
-/***********************************************************************************************//**
- * @brief	IsrHandler empty derived
- **************************************************************************************************/
-class yahal::mcu::modules::details::IsrHandler::Empty :
-	public yahal::mcu::modules::details::IsrHandler,
-	public yahal::utility::oop::Singleton<Empty>
-{
-public:
-	virtual inline void 	isr(int)	{}
-private:
-	virtual inline void 	enableIrq(void)	{}
-	virtual inline void 	disableIrq(void){}
-};
-
+// CREATE INSTANCE
+template<typename T_DERIVED> T_DERIVED yahal::utility::oop::Service<T_DERIVED>::instance_;
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
+#endif 	// __YAHAL_UTILITY_OOP_SERVICE_HPP_INCLUDED__

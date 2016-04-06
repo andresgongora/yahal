@@ -86,7 +86,7 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port1::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port1::set(uint8_t value, uint8_t mask)
 {
-	yahal::utility::data::setMasked(P1OUT, value, mask);
+	P1OUT = yahal::utility::data::setMasked(P1OUT, value, mask);
 }
 
 void  yahal::mcu::targets::msp430f5309::Gpio::Port1::toggle(uint8_t mask)
@@ -134,7 +134,7 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port2::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port2::set(uint8_t value, uint8_t mask)
 {
-	yahal::utility::data::setMasked(P2OUT, value, mask);
+	P2OUT = yahal::utility::data::setMasked(P2OUT, value, mask);
 }
 
 void  yahal::mcu::targets::msp430f5309::Gpio::Port2::toggle(uint8_t mask)
@@ -182,7 +182,7 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port3::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port3::set(uint8_t value, uint8_t mask)
 {
-	yahal::utility::data::setMasked(P3OUT, value, mask);
+	P3OUT = yahal::utility::data::setMasked(P3OUT, value, mask);
 }
 
 void  yahal::mcu::targets::msp430f5309::Gpio::Port3::toggle(uint8_t mask)
@@ -230,7 +230,7 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port4::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port4::set(uint8_t value, uint8_t mask)
 {
-	yahal::utility::data::setMasked(P4OUT, value, mask);
+	P4OUT = yahal::utility::data::setMasked(P4OUT, value, mask);
 }
 
 void  yahal::mcu::targets::msp430f5309::Gpio::Port4::toggle(uint8_t mask)
@@ -263,7 +263,7 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port5::config(Direction::Type direc
 	P5DIR = (direction == Direction::OUTPUT ? P5DIR | mask : P5DIR & (~mask));
 
 	// RESISTOR
-	if (resistor == Resistor::PULLUP && direction == Direction::INPUT) {
+	if (resistor == Resistor::PULLUP && direction == Direction::INPUT){
 		P5REN |= mask;		// Enable resistor
 		P5OUT |= mask; 		// Configure as pullup
 	} else if (resistor == Resistor::PULLDOWN && direction == Direction::INPUT) {
@@ -278,7 +278,7 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port5::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port5::set(uint8_t value, uint8_t mask)
 {
-	yahal::utility::data::setMasked(P5OUT, value, mask);
+	P5OUT = yahal::utility::data::setMasked(P5OUT, value, mask);
 }
 
 void  yahal::mcu::targets::msp430f5309::Gpio::Port5::toggle(uint8_t mask)
@@ -326,7 +326,7 @@ bool yahal::mcu::targets::msp430f5309::Gpio::Port6::config(Direction::Type direc
 
 void yahal::mcu::targets::msp430f5309::Gpio::Port6::set(uint8_t value, uint8_t mask)
 {
-	yahal::utility::data::setMasked(P6OUT, value, mask);
+	P6OUT = yahal::utility::data::setMasked(P6OUT, value, mask);
 }
 
 void  yahal::mcu::targets::msp430f5309::Gpio::Port6::toggle(uint8_t mask)

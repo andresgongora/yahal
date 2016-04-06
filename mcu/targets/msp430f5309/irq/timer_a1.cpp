@@ -34,9 +34,8 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::utility::oop::ServiceLocator<yahal::mcu::modules::details::IsrHandler,
-				    yahal::mcu::modules::details::IsrHandler::Empty>\
-	yahal::mcu::targets::msp430f5309::irq::TimerA1::timer_a1_;
+yahal::utility::oop::ServiceLocator<yahal::mcu::modules::details::IsrHandler>\
+	yahal::mcu::targets::msp430f5309::irq::TimerA1::timer_a1_(yahal::mcu::modules::details::IsrHandler::Empty::getInstance());
 
 
 #pragma vector = TIMER1_A1_VECTOR

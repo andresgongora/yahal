@@ -26,6 +26,8 @@
 #define __YAHAL_MCU_MODULES_NAMESPACE_HPP_INCLUDED__
 
 
+#include <stdint.h>
+
 
 namespace yahal{ namespace mcu{ namespace modules{
 
@@ -37,13 +39,20 @@ namespace yahal{ namespace mcu{ namespace modules{
 	class I2CMultimaster;
 	class I2CSlave;
 
-	template<typename T_SIZE> class Timer;
+	template<typename T_SIZE = void> class Timer;
+	typedef Timer<uint8_t>	Timer8;
+	typedef Timer<uint16_t>	Timer16;
+	typedef Timer<uint32_t>	Timer32;
+	typedef Timer<uint64_t>	Timer64;
+
 
 	// DETAILS
 	namespace details{
 		class IsrHandler;
 		class GpioConfiguration;
 		class I2CCommon;
+
+
 	}
 }}}
 

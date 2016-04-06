@@ -144,16 +144,11 @@ public:
 				protected:
 					friend class Adc10;
 					virtual void handleAdc(uint8_t channel, uint16_t data) {}
-				public:
-					class Null;
 				};
 
-				class AutoscanHandler::Null : public AutoscanHandler
-				{
+				AutoscanHandler mynull_; //todo
 
-				};
-
-	yahal::utility::oop::ServiceLocator<AutoscanHandler,AutoscanHandler::Null> autoscan_handler_;
+//	yahal::utility::oop::ServiceLocator<AutoscanHandler> autoscan_handler_; //todo
 
 				// -----------------------------------------------------------------
 public:
@@ -177,7 +172,7 @@ private:
 
 
 	void			handleAutoscan(void);
-	virtual void		isr(uint8_t isr);
+	virtual void		isr(int isr);
 };
 
 

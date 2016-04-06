@@ -34,9 +34,8 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::utility::oop::ServiceLocator<yahal::mcu::modules::details::IsrHandler,
-				    yahal::mcu::modules::details::IsrHandler::Empty>\
-	yahal::mcu::targets::msp430f5309::irq::Adc10::adc_10_;
+yahal::utility::oop::ServiceLocator<yahal::mcu::modules::details::IsrHandler>\
+	yahal::mcu::targets::msp430f5309::irq::Adc10::adc_10_(yahal::mcu::modules::details::IsrHandler::Empty::getInstance());
 
 
 

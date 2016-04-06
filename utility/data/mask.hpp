@@ -29,7 +29,7 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 namespace yahal{ namespace utility{ namespace data{
-	template<typename T> void setMasked(volatile T& variable, T new_value, T mask);
+	template<typename T> T setMasked(T variable, T new_value, T mask);
 	template<typename T> void setBits(volatile T& variable, T mask);
 	template<typename T> void unsetBits(volatile T& variable, T mask);
 }}}
@@ -39,12 +39,12 @@ namespace yahal{ namespace utility{ namespace data{
 /***********************************************************************************************//**
  *
  **************************************************************************************************/
-template<typename T> void yahal::utility::data::setMasked(volatile T& variable, T new_value, T mask)
+template<typename T> T yahal::utility::data::setMasked(T variable, T new_value, T mask)
 {
 	T and_mask = (~mask) | new_value;
 	T or_mask  =   mask  & new_value;
 
-	variable = ((variable & and_mask) | or_mask);
+	return ((variable & and_mask) | or_mask);
 }
 
 

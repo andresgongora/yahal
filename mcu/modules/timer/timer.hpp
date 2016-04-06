@@ -27,9 +27,48 @@
 #define __YAHAL_MCU_MODULES_TIMER_16_HPP_INCLUDED__
 
 
-#include <stdint.h>
 #include "../modules_namespace.hpp"
 #include "../../../utility/oop/publish_subscribe.hpp"
+
+
+
+/***********************************************************************************************//**
+ * @brief	Give access to stuff common to all timers regarding of size.
+ **************************************************************************************************/
+template<>
+class yahal::mcu::modules::Timer<void> :
+	public yahal::utility::oop::Publisher<int>
+{
+public:
+				class OutputCompare
+				{
+				public:
+					struct Mode{ enum Type{
+						OFF,
+						SET,
+						RESET,
+						SET_RESET,
+						RESET_SET,
+						TOGGLE,
+						TOGGLE_SET,
+						TOGGLE_RESET
+					};};
+				};
+
+				class InputCapture
+				{
+					struct Mode{ enum Type{
+						OFF
+					};};
+				};
+
+				class Comparator;
+
+				//------------------------------------------------------------------
+
+private:
+				Timer(void) {}	// Allow no instances
+};
 
 
 
@@ -38,26 +77,20 @@
  **************************************************************************************************/
 template<typename T_SIZE>
 class yahal::mcu::modules::Timer :
-	public yahal::utility::oop::Publisher<bool>
+	public yahal::utility::oop::Publisher<int>
 {
 public:
-				struct Event{ enum Type{
-					TIMER		= false,
-					COMPARATOR	= true
-				};}static const Event;
-
-				// -----------------------------------------------------------------
-protected:
 				class OutputCompare;
 				class InputCapture;
+				class Comparator;
 
-				// -----------------------------------------------------------------
+				//------------------------------------------------------------------
 public:
 	virtual void		setCount(T_SIZE count) = 0;
 	virtual T_SIZE		getCount(void) const = 0;
-	virtual void		setPeriod(T_SIZE period) = 0;
-	virtual void		reset(void) = 0;
+	virtual Comparator&	comparator(unsigned int) = 0;
 };
+
 
 
 
@@ -66,30 +99,49 @@ public:
  **************************************************************************************************/
 template<typename T_SIZE>
 class yahal::mcu::modules::Timer<T_SIZE>::OutputCompare :
-	public yahal::utility::oop::Publisher<bool>
+	public yahal::mcu::modules::Timer<void>::OutputCompare
 {
 public:
-				struct Event{ enum Type{
-					LOW	= false,
-					HIGH	= true
-				};}static const Event;
+	virtual bool		setMode(Mode::Type) = 0;
+	virtual void 		setComparator(T_SIZE value) = 0;
+	virtual T_SIZE		getComparator(void) const = 0;
+	virtual bool 		getOutput(void) const = 0;
 
-				//------------------------------------------------------------------
-public:
-				virtual bool 	getOutput(void) const = 0;
-				virtual void 	setComparator(T_SIZE value) = 0;
-				virtual T_SIZE	getComparator(void) const = 0;
 };
 
 
 
 /***********************************************************************************************//**
  * @brief
+ *
+ * Publishes captured counter value on event.
+ *
  **************************************************************************************************/
 template<typename T_SIZE>
-class yahal::mcu::modules::Timer<T_SIZE>::InputCapture
+class yahal::mcu::modules::Timer<T_SIZE>::InputCapture :
+	public yahal::mcu::modules::Timer<void>::InputCapture
+{
+public:
+//	virtual bool		setMode(Mode::Type) = 0;
+};
+
+
+
+/***********************************************************************************************//**
+ * @brief
+ *
+ * Publishes captured counter value on event.
+ *
+ **************************************************************************************************/
+template<typename T_SIZE>
+class yahal::mcu::modules::Timer<T_SIZE>::Comparator :
+	public yahal::mcu::modules::Timer<T_SIZE>::OutputCompare,
+	public yahal::mcu::modules::Timer<T_SIZE>::InputCapture
 {
 
+
+
+//	virtual void		getCount(void) = 0;
 };
 
 
