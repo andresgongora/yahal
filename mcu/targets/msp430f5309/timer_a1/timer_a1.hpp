@@ -85,27 +85,40 @@ public:
 				class Ccr  : public Comparator
 				{
 					friend class TimerA1;
-				public:
-					struct Mode{ enum Type{
-						OC_OFF,
-						OC_SET,
-						OC_TOGGLE_RESET,
-						OC_SET_RESET,
-						OC_TOGGLE,
-						OC_RESET,
-						OC_TOGGLE_SET,
-						OC_RESET_SET,
-
-						IC_OFF,
-					};}static const MODE;
 
 				public:
-					virtual bool	setMode(Mode::Type) = 0;
+					struct Mode
+					{
+						enum Type{
+							OFF,
+							OUTPUT_COMPARE,
+							INPUT_CAPTURE,
+						};
 
+						struct OutputCompare{ enum Type{
+							NONE,
+							SET,
+							RESET,
+							SET_RESET,
+							RESET_SET,
+							TOGGLE,
+							TOGGLE_SET,
+							TOGGLE_RESET
+						};} static const OC;
 
-					virtual bool	setMode(OutputCompare::Mode::Type mode);
+						struct InputCapture{ enum Type{
+							NONE
+						};} static const IC;
+					} static const MODE;
 
-					class Empty;
+				public:
+				//	using Comparator::setMode;
+
+				//	bool	setMode(Ccr::Mode::Type);
+				//	bool	setMode(Ccr::Mode::OutputCompare::Type mode);
+				//	bool	setMode(Ccr::Mode::InputCapture::Type mode);
+
+					class	Empty;
 				protected:
 					bool	writeCctlMode(volatile uint16_t& cctl,
 							      Mode::Type mode);
@@ -116,7 +129,10 @@ private:
 				class Ccr0 : public Ccr
 				{
 				public:
-					virtual bool		setMode(Ccr::Mode::Type mode);
+				//	virtual bool	setMode(Comparator::Mode::Type);
+				//	virtual bool	setMode(Comparator::Mode::OutputCompare::Type);
+				//	virtual bool	setMode(Comparator::Mode::InputCapture::Type);
+
 					virtual void		setComparator(uint16_t value);
 					virtual uint16_t	getComparator(void) const;
 					virtual bool		getOutput(void) const;
@@ -125,7 +141,10 @@ private:
 				class Ccr1 : public Ccr
 				{
 				public:
-					virtual bool		setMode(Ccr::Mode::Type mode);
+				//	virtual bool	setMode(Comparator::Mode::Type);
+				//	virtual bool	setMode(Comparator::Mode::OutputCompare::Type);
+				//	virtual bool	setMode(Comparator::Mode::InputCapture::Type);
+
 					virtual void		setComparator(uint16_t value);
 					virtual uint16_t	getComparator(void) const;
 					virtual bool		getOutput(void) const;
@@ -134,7 +153,10 @@ private:
 				class Ccr2 : public Ccr
 				{
 				public:
-					virtual bool		setMode(Ccr::Mode::Type mode);
+				//	virtual bool	setMode(Comparator::Mode::Type);
+				//	virtual bool	setMode(Comparator::Mode::OutputCompare::Type);
+				//	virtual bool	setMode(Comparator::Mode::InputCapture::Type);
+
 					virtual void		setComparator(uint16_t value);
 					virtual uint16_t	getComparator(void) const;
 					virtual bool		getOutput(void) const;
@@ -151,7 +173,9 @@ public:
 	virtual void		setCount(uint16_t count);
 	virtual uint16_t	getCount(void) const;
 //	virtual void		reset(void);
-	virtual Comparator&	comparator(unsigned int module);
+
+
+	virtual Ccr&		comparator(int ccr);
 
 
 private:
@@ -173,8 +197,12 @@ class yahal::mcu::targets::msp430f5309::TimerA1::Ccr::Empty :
 	public yahal::mcu::targets::msp430f5309::TimerA1::Ccr,
 	public yahal::utility::oop::Singleton<Empty>
 {
+//	using Ccr::setMode;
 public:
-	virtual bool		setMode(Mode::Type mode)	{return false;}
+//	virtual bool		setMode(Comparator::Mode::Type)			{return false;}
+//	virtual bool		setMode(Comparator::Mode::OutputCompare::Type)	{return false;}
+//	virtual bool		setMode(Comparator::Mode::InputCapture::Type)	{return false;}
+
 	virtual void		setComparator(uint16_t value)	{}
 	virtual uint16_t	getComparator(void) const	{return 0;}
 	virtual bool		getOutput(void)	const		{return 0;}

@@ -108,12 +108,12 @@ void yahal::mcu::targets::msp430f5309::TimerA1::setMode(Mode::Type mode)
 
 /* ---------------------------------------------------------------------------------------------- */
 
-yahal::mcu::targets::msp430f5309::TimerA1::Comparator& \
-yahal::mcu::targets::msp430f5309::TimerA1::comparator(unsigned int module)
+yahal::mcu::targets::msp430f5309::TimerA1::Ccr& \
+yahal::mcu::targets::msp430f5309::TimerA1::comparator(int ccr)
 {
-	assert(module <= 2);
+	assert(ccr <= 2);
 
-	switch (module) {
+	switch (ccr) {
 	case 0:
 		return ccr0_;
 	case 1:
@@ -125,6 +125,14 @@ yahal::mcu::targets::msp430f5309::TimerA1::comparator(unsigned int module)
 	}
 }
 
+/*
+yahal::mcu::targets::msp430f5309::TimerA1::Comparator& \
+yahal::mcu::targets::msp430f5309::TimerA1::comparator(int comparator)
+{
+	unsigned int ccr = comparator;
+	return TimerA1::comparator(ccr);
+}
+*/
 
 void yahal::mcu::targets::msp430f5309::TimerA1::isr(int irq)
 {
@@ -152,40 +160,22 @@ void yahal::mcu::targets::msp430f5309::TimerA1::isr(int irq)
 /* =================================================================================================
 	TIMER A1 :: CCR
 ================================================================================================= */
-
-bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr::setMode(OutputCompare::Mode::Type mode)
+/*
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr::setMode(Ccr::Mode::Type mode)
 {
-	switch(mode)
-	{
-	case OutputCompare::Mode::OFF:
-		return setMode(Ccr::Mode::OC_OFF);
-
-	case OutputCompare::Mode::SET:
-		return setMode(Ccr::Mode::OC_SET);
-
-	case OutputCompare::Mode::RESET:
-		return setMode(Ccr::Mode::OC_RESET);
-
-	case OutputCompare::Mode::SET_RESET:
-		return setMode(Ccr::Mode::OC_SET_RESET);
-
-	case OutputCompare::Mode::RESET_SET:
-		return setMode(Ccr::Mode::OC_RESET_SET);
-
-	case OutputCompare::Mode::TOGGLE:
-		return setMode(Ccr::Mode::OC_TOGGLE);
-
-	case OutputCompare::Mode::TOGGLE_SET:
-		return setMode(Ccr::Mode::OC_TOGGLE_SET);
-
-	case OutputCompare::Mode::TOGGLE_RESET:
-		return setMode(Ccr::Mode::OC_TOGGLE_RESET);
-
-	default:
-		return false;
-	}
-
+	return Comparator::setMode(static_cast<Comparator::Mode::Type>(mode));
 }
+
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr::setMode(Ccr::Mode::OutputCompare::Type mode)
+{
+	return Comparator::setMode(static_cast<Comparator::Mode::OutputCompare::Type>(mode));
+}
+
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr::setMode(Ccr::Mode::InputCapture::Type mode)
+{
+	return Comparator::setMode(static_cast<Comparator::Mode::InputCapture::Type>(mode));
+}
+*/
 
 
 bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr::writeCctlMode(volatile uint16_t& cctl,
@@ -196,7 +186,7 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr::writeCctlMode(volatile uint
 
 	switch(mode)
 	{
-	case Mode::OC_OFF:
+/*	case Mode::OC_NONE:
 		config |= OUTMOD_0;
 		break;
 	case Mode::OC_SET:
@@ -219,9 +209,7 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr::writeCctlMode(volatile uint
 		break;
 	case Mode::OC_TOGGLE_RESET:
 		config |= OUTMOD_2;
-		break;
-	case Mode::IC_OFF: //TODO!!!!
-		break;
+		break;*/
 	default:
 		return false;
 	}
@@ -235,11 +223,21 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr::writeCctlMode(volatile uint
 /* =================================================================================================
 	TIMER A1 :: CCR0
 ================================================================================================= */
-
-bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr0::setMode(Ccr::Mode::Type mode)
+/*
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr0::setMode(Comparator::Mode::Type mode)
 {
-	return Ccr::writeCctlMode(TA1CCTL0, mode);
+	return false;
 }
+
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr0::setMode(Comparator::Mode::OutputCompare::Type mode)
+{
+	return false;
+}
+
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr0::setMode(Comparator::Mode::InputCapture::Type mode)
+{
+	return false;
+}*/
 
 
 void yahal::mcu::targets::msp430f5309::TimerA1::Ccr0::setComparator(uint16_t value)
@@ -263,12 +261,12 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr0::getOutput(void) const
 /* =================================================================================================
 	TIMER A1 :: CCR1
 ================================================================================================= */
-
-bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setMode(Ccr::Mode::Type mode)
+/*
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setMode(Comparator::Mode::Type mode)
 {
-	bool config_success = Ccr::writeCctlMode(TA1CCTL1, mode);
+//	bool config_success = Ccr::writeCctlMode(TA1CCTL1, mode);
 
-	if(mode == Mode::OC_OFF || not config_success)
+/*	if(mode == Mode::OC_OFF || not config_success)
 	{
 		/// DISCONNECT GPIO (input & GPIO mode)
 		P2DIR &= ~1;
@@ -279,10 +277,21 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setMode(Ccr::Mode::Type mo
 		/// ENABLE GPIO
 		P2SEL |= 1;
 		P2DIR |= 1;
-	}
+	}*/
 
-	return config_success;
+//	return config_success;
+/*	return false;
 }
+
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setMode(Comparator::Mode::OutputCompare::Type mode)
+{
+	return false;
+}
+
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setMode(Comparator::Mode::InputCapture::Type mode)
+{
+	return false;
+}*/
 
 void yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::setComparator(uint16_t value)
 {
@@ -307,12 +316,23 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getOutput(void) const
 /* =================================================================================================
 	TIMER A1 :: CCR2
 ================================================================================================= */
-
-bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setMode(Ccr::Mode::Type mode)
+/*
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setMode(Comparator::Mode::Type mode)
 {
-	return Ccr::writeCctlMode(TA1CCTL2, mode);
+	//return Ccr::writeCctlMode(TA1CCTL2, mode);
+	return false;
 }
 
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setMode(Comparator::Mode::OutputCompare::Type mode)
+{
+	return false;
+}
+
+bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setMode(Comparator::Mode::InputCapture::Type mode)
+{
+	return false;
+}
+*/
 void yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::setComparator(uint16_t value)
 {
 	TA1CCR2 = value;

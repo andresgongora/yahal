@@ -51,6 +51,7 @@ namespace yahal{ namespace mcu{ namespace modules{
 		class IsrHandler;
 		class GpioConfiguration;
 		class I2CCommon;
+		class Timer;
 
 
 	}

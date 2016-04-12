@@ -22,6 +22,11 @@
 	 *	- Impedir que desde las ISR de mis modulos se puedan llamar funciones del usuario, para evitar que el usuario llame a otra funcion que espere una ISR y se cree un bucle -> tengo que arreglar los publisher subscribers
 	 *
 	 *	- Para que publisher-subscriber NO dependa de un rtos, hacer que el publisher y subscriber utilicen un tipo de dato que no sea un entero, sino un paquete cuyo valor se puede escribir, pero no es leido hasta que no le toca al hilo correspondiente.
+	 *
+	 *	- Subscriber: hacer de dos tipos. Un subscriber variable que dependa del modulo abstracto. Por ejemplo un subscriber de tipo TIMER. Este subscriber puede subscribirse a cualquier timer.
+	 *	hacer tmb un subscriber tipo MSP::TIMERA1, que cualquier clase que derive de este subscriber automaticamente (y const) quede suscrito al timer correcto. Por tanto requiero de singletons.
+	 *
+	 *	- Propuesta para singletons: estudiar la posibilidad de usar singletons, pero no exponer que sea singletons fuera de mi libreria. Usar solo como herramienta interna a la que el usuario final no pueda acceder. "Protected static-singleton con friendship"
 	*/
 
 
