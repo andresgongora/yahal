@@ -184,6 +184,9 @@ template<typename T_SIZE>
 class yahal::mcu::modules::Timer<T_SIZE>::Comparator :
 	public yahal::mcu::modules::details::Timer::Comparator
 {
+protected:
+	//virtual void		config(void) = 0;
+
 public:
 //	virtual bool		setMode(Mode::Type) = 0;
 //	virtual bool		setMode(Mode::OutputCompare::Type) = 0;
