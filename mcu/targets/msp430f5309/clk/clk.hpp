@@ -39,7 +39,9 @@
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Clk : public yahal::mcu::modules::Clk
+class yahal::mcu::targets::msp430f5309::Clk :
+	public yahal::mcu::modules::Clk,
+	public yahal::utility::oop::Singleton<Clk>
 {
 public:
 				struct Frequency{enum Type{
