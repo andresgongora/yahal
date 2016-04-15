@@ -26,13 +26,13 @@
 #define __YAHAL_MCU_MSP430F5309_CLK_HPP_INCLUDED__
 
 
-/* ---------------------------------------------------------------------------------------------- */
 #include "../../../config/targets/msp430f5309.hpp"
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
 
 
 #include "../../../modules/clk/clk.hpp"
 #include "../msp430f5309_namespace.hpp"
+#include "../../../../cool/src/pattern/creational/singleton.hpp"
 
 
 
@@ -41,8 +41,11 @@
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::Clk :
 	public yahal::mcu::modules::Clk,
-	public yahal::utility::oop::Singleton<Clk>
+	public cool::pattern::creational::Singleton<Clk>
 {
+private:
+				Clk(void) {}	// Signelton requires default private constructor
+
 public:
 				struct Frequency{enum Type{
 					DCO_1MHz = 1000000,
