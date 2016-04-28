@@ -30,9 +30,7 @@
 #define __YAHAL_MCU_MODULES_CLK_HPP_INCLUDED__
 
 
-/* ---------------------------------------------------------------------------------------------- */
 #include <stdint.h>
-#include "../base_module.hpp"
 #include "../modules_namespace.hpp"
 
 
@@ -40,7 +38,7 @@
 /***********************************************************************************************//**
  * Base class for all system clock handling modules.
  **************************************************************************************************/
-class yahal::mcu::modules::Clk : public yahal::mcu::modules::details::BaseModule
+class yahal::mcu::modules::Clk
 {
 };
 

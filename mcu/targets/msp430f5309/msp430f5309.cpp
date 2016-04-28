@@ -32,7 +32,39 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-yahal::mcu::targets::msp430f5309::Msp430f5309::Msp430f5309(void)
+yahal::mcu::targets::msp430f5309::Msp430f5309::Msp430f5309(void) :
+
+	// ADC_10
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
+		adc_10(yahal::mcu::targets::msp430f5309::Adc10 adc_10),
+	#endif
+
+
+	// CLK
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
+		clk(yahal::mcu::targets::msp430f5309::Clk::getInstance()),
+	#endif
+
+
+	// GPIO
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_GPIO
+		gpio(yahal::mcu::targets::msp430f5309::Gpio::getInstance()),
+	#endif
+
+
+	// TIMER_A1
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
+		timer_a1(yahal::mcu::targets::msp430f5309::TimerA1::getInstance()),
+	#endif
+
+
+	// WDT
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_WDT
+		wdt(yahal::mcu::targets::msp430f5309::Wdt::getInstance()),
+	#endif
+
+
+	dummy(0)	// dummy is used in case no module is enabled
 {}
 
 

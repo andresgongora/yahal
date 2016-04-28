@@ -26,27 +26,30 @@
 #define __YAHAL_MCU_MSP430F5309_WDT_HPP_INCLUDED__
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
 #include "../../../config/targets/msp430f5309.hpp"
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_WDT
 
 
 #include "../../../modules/wdt/wdt.hpp"
 #include "../msp430f5309_namespace.hpp"
+#include "../../../../cool/src/pattern/creational/singleton.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Wdt : public yahal::mcu::modules::Wdt
+class yahal::mcu::targets::msp430f5309::Wdt :
+	public yahal::mcu::modules::Wdt,
+	public cool::pattern::creational::Singleton<Wdt>
 {
-public:
+private:
+				// SINGLETON
 				Wdt(void);
+	friend class		cool::pattern::creational::Singleton<Wdt>;
+
+public:
 	virtual void		reset(void);		///< Reset WDT counter (if enabled)
-
-
 };
 
 

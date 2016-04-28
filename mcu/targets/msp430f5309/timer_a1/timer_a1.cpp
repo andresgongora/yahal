@@ -57,9 +57,9 @@ void yahal::mcu::targets::msp430f5309::TimerA1::setMode(Mode::Type mode)
 }
 */
 
-void yahal::mcu::targets::msp430f5309::TimerA1::configure(ClockSource::Type clock_source,
-					  	  	  Prescaler::Type prescaler,
-					  	  	  Mode::Type mode)
+void yahal::mcu::targets::msp430f5309::TimerA1::config(ClockSource::Type clock_source,
+					  	       Prescaler::Type prescaler,
+					  	       Mode::Type mode)
 
 {
 	uint16_t conf = 0;
@@ -311,8 +311,6 @@ bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr1::getOutput(void) const
 
 
 
-
-
 /* =================================================================================================
 	TIMER A1 :: CCR2
 ================================================================================================= */
@@ -346,6 +344,48 @@ uint16_t yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getComparator(void) co
 bool yahal::mcu::targets::msp430f5309::TimerA1::Ccr2::getOutput(void) const
 {
 	return TA1CCTL2 & CCI;
+}
+
+
+
+
+/* =================================================================================================
+	TIMER A1 :: IRQ
+================================================================================================= */
+
+#pragma vector = TIMER1_A1_VECTOR
+__interrupt void yahal::mcu::targets::msp430f5309::TimerA1::TIMER1_A1_ISR(void)
+{
+	switch (__even_in_range(TA1IV, 14)) {
+	case 0: ///< Vector 00: No interrupts
+		break;
+	case 2: ///< Vector 02: CCR1
+		TimerA1::getInstance().isr(TimerA1::Irq::CCR1);
+		break;
+	case 4: ///< Vector 04: CCR2
+		TimerA1::getInstance().isr(TimerA1::Irq::CCR2);
+		break;
+	case 6: ///< Vector 06: reserved
+		break;
+	case 8: ///< Vector 08: reserved
+		break;
+	case 10: ///< Vector 10: reserved
+		break;
+	case 12: ///< Vector 12: reserved
+		break;
+	case 14: ///< Vector 14: TA1
+		TimerA1::getInstance().isr(TimerA1::Irq::TIMER);
+		break;
+	default:
+		break;
+	}
+}
+
+
+#pragma vector = TIMER1_A0_VECTOR
+__interrupt void yahal::mcu::targets::msp430f5309::TimerA1::TIMER1_A0_ISR(void)
+{
+	TimerA1::getInstance().isr(TimerA1::Irq::CCR0);
 }
 
 

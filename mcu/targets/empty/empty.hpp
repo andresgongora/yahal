@@ -22,8 +22,8 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_EMPTY_HPP_INCLUDED__
-#define __YAHAL_MCU_EMPTY_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_TARGETS_EMPTY_HPP_INCLUDED__
+#define __YAHAL_MCU_TARGETS_EMPTY_HPP_INCLUDED__
 
 
 
@@ -33,4 +33,4 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_EMPTY_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_TARGETS_EMPTY_HPP_INCLUDED__

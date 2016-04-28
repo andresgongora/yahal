@@ -26,10 +26,6 @@
 #define __YAHAL_MCU_MODULES_HPP_INCLUDED__
 
 
-// LOAD BASE MODULE
-#include "base_module.hpp"
-
-
 // LOAD NAMESPACE
 #include "modules_namespace.hpp"
 

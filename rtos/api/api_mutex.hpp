@@ -27,14 +27,14 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 #include "api.hpp"
-#include "../../utility/oop/noncopyable.hpp"
+//#include "../../utility/oop/noncopyable.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief	Base class for all MUTEX
  **************************************************************************************************/
-class yahal::rtos::api::Mutex : private yahal::utility::oop::NonCopyable<yahal::rtos::api::Mutex>
+class yahal::rtos::api::Mutex// : private yahal::utility::oop::NonCopyable<yahal::rtos::api::Mutex>
 {
 public:
 				// Mutex

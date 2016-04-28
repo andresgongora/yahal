@@ -73,31 +73,30 @@ protected:
 
 
 public:
-	// WDT
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_WDT
-		yahal::mcu::targets::msp430f5309::Wdt wdt;
-	#endif
+	yahal::mcu::targets::msp430f5309::Wdt& wdt;
 
 
 	// CLK
 	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
-		yahal::mcu::targets::msp430f5309::Clk clk;
+		yahal::mcu::targets::msp430f5309::Clk& clk;
 	#endif
 
 
 	// GPIO
 	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_GPIO
-		yahal::mcu::targets::msp430f5309::Gpio gpio;
+		yahal::mcu::targets::msp430f5309::Gpio& gpio;
 	#endif
+
 
 	// ADC_10
 	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
 		yahal::mcu::targets::msp430f5309::Adc10 adc_10;
 	#endif
 
+
 	// TIMER_A1
 	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
-		yahal::mcu::targets::msp430f5309::TimerA1 timer_a1;
+		yahal::mcu::targets::msp430f5309::TimerA1& timer_a1;
 	#endif
 
 /*
@@ -124,6 +123,9 @@ public:
 	#if YAHAL_MCU_MSP430F5309_IRQ_ENABLED == true
 		yahal::mcu::targets::msp430f5309::IrqHandler& irq;
 	#endif*/
+
+private:
+	const int	dummy;
 };
 
 

@@ -32,7 +32,6 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../modules_namespace.hpp"
-#include "../base_module.hpp"
 #include "../../../error/error_code.hpp"
 #include "../../../rtos/rtos.hpp"
 

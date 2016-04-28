@@ -43,9 +43,6 @@ class yahal::mcu::targets::msp430f5309::Clk :
 	public yahal::mcu::modules::Clk,
 	public cool::pattern::creational::Singleton<Clk>
 {
-private:
-				Clk(void) {}	// Signelton requires default private constructor
-
 public:
 				struct Frequency{enum Type{
 					DCO_1MHz = 1000000,
@@ -69,8 +66,12 @@ public:
 				};} static const V_CORE;
 
 				// -----------------------------------------------------------------
-public:
+private:
+				// SINGLETON
 				Clk(void);
+	friend class		cool::pattern::creational::Singleton<Clk>;
+
+public:
 	bool			setFrequencyHz(uint32_t desiredFrequencyHz);
 	uint32_t		getFrequencyHz(void);
 	void			setVCoreLevel(uint8_t level);

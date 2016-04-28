@@ -33,10 +33,9 @@
 #include <stdint.h>
 #include <cstddef>
 #include "../../../modules/timer/timer.hpp"
+#include "../msp430f5309_namespace.hpp"
+#include "../../../../cool/src/pattern/creational/singleton.hpp"
 #include "../../../../utility/oop/publish_subscribe.hpp"
-#include "../../../../utility/oop/singleton.hpp"
-#include "../irq/timer_a1.hpp"
-
 
 
 /***********************************************************************************************//**
@@ -45,9 +44,18 @@
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::TimerA1 :
 	public yahal::mcu::modules::Timer16,
-	private yahal::mcu::targets::msp430f5309::irq::TimerA1
+	public cool::pattern::creational::Singleton<TimerA1>
 {
 public:
+				struct Event{ enum Type{
+					TIMER 		= -1,
+					CCR0		=  0,
+					CCR1		=  1,
+					CCR2		=  2
+				};}static const EVENT;
+
+				//------------------------------------------------------------------
+private:
 				struct ClockSource{ enum Type{
 					TA1CLK 		= 0x0000,
 					ACLK		= 0x0100,
@@ -72,16 +80,52 @@ public:
 				};}static const MODE;
 
 
-				struct Event{ enum Type{
-					TIMER 		= -1,
-					CCR0		=  0,
-					CCR1		=  1,
-					CCR2		=  2
-				};}static const EVENT;
+				struct Irq{ enum Type{
+					TIMER,
+					CCR0,
+					CCR1,
+					CCR2
+				};} static const IRQ;
 
 
 				// -----------------------------------------------------------------
-public:
+private:
+				class Configuration
+				{
+					class ClockSource
+					{
+					public:
+						void ta1clk();
+						void aclk();
+						void smclk();
+						void inclk();
+					};
+
+					class Prescaler
+					{
+					public:
+						void divideBy1();
+						void divideBy2();
+						void divideBy4();
+						void divideBy8();
+					};
+
+					class Mode
+					{
+					public:
+						void off();
+						void upCcr0();
+						void continuos();
+						void upCcr0Down();
+					};
+
+
+				public:
+					ClockSource 	clockSource;
+					Prescaler	prescaler;
+					Mode		mode;
+				};
+
 				class Ccr  : public Comparator
 				{
 					friend class TimerA1;
@@ -163,13 +207,18 @@ private:
 				};
 
 				// -----------------------------------------------------------------
-public:
+private:
+				// SINGLETON
 				TimerA1(void);
+	friend class		TimerA1::Singleton;
 
-	void			configure(ClockSource::Type clock_source,
-					  Prescaler::Type prescaler,
-					  Mode::Type mode);
 
+private:
+	void			config(ClockSource::Type);
+	void			config(Prescaler::Type);
+	void			config(Mode::Type);
+
+public:
 	virtual void		setCount(uint16_t count);
 	virtual uint16_t	getCount(void) const;
 //	virtual void		reset(void);
@@ -180,7 +229,12 @@ public:
 
 private:
 	virtual void		isr(int);
+	static void		TIMER1_A1_ISR(void);	///< TIMER_A1 IRQ for Overflow, CCR1 & CCR2
+	static void		TIMER1_A0_ISR(void);	///< TIMER_A1 IRQ for CCR0
 
+
+public:
+	Configuration		config;
 
 private:
 	Ccr0			ccr0_;
@@ -195,7 +249,7 @@ private:
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::TimerA1::Ccr::Empty :
 	public yahal::mcu::targets::msp430f5309::TimerA1::Ccr,
-	public yahal::utility::oop::Singleton<Empty>
+	public cool::pattern::creational::Singleton<Ccr::Empty>
 {
 //	using Ccr::setMode;
 public:

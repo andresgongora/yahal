@@ -33,7 +33,7 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-
+/*
 yahal::utility::oop::ServiceLocator<yahal::mcu::modules::details::IsrHandler>\
 	yahal::mcu::targets::msp430f5309::irq::TimerA1::timer_a1_(yahal::mcu::modules::details::IsrHandler::Empty::getInstance());
 
@@ -72,7 +72,7 @@ __interrupt void yahal::mcu::targets::msp430f5309::irq::TimerA1::TIMER1_A0_ISR(v
 {
 	timer_a1_.get().isr(TimerA1::Irq::CCR0);
 }
-
+*/
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif // YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1

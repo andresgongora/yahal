@@ -27,7 +27,8 @@
 
 
 #include "../modules_namespace.hpp"
-#include "../../../utility/oop/singleton.hpp"
+#include "../../../cool/src/pattern/creational/singleton.hpp"
+
 
 
 
@@ -52,7 +53,7 @@ public:
  **************************************************************************************************/
 class yahal::mcu::modules::details::IsrHandler::Empty :
 	public yahal::mcu::modules::details::IsrHandler,
-	public yahal::utility::oop::Singleton<Empty>
+	public cool::pattern::creational::Singleton<Empty>
 {
 public:
 	virtual inline void 	isr(int)	{}

@@ -35,114 +35,198 @@
 
 #include <stdint.h>
 #include "../../../modules/gpio/gpio.hpp"
-#include "../../../../utility/oop/singleton.hpp"
 #include "../msp430f5309_namespace.hpp"
+#include "../../../../cool/src/pattern/creational/singleton.hpp"
+#include <msp430f5309.h>
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::Gpio : public yahal::mcu::modules::Gpio
+class yahal::mcu::targets::msp430f5309::Gpio :
+	public yahal::mcu::modules::Gpio,
+	public cool::pattern::creational::Singleton<Gpio>
 {
 private:
-				class Port1 : 	public yahal::mcu::modules::Gpio::Port
+				class Pin : public yahal::mcu::modules::Gpio::Port::Pin
 				{
 				public:
-					virtual bool	config(	Direction::Type direction = Direction::INPUT,
-								Resistor::Type resistor = Resistor::DISABLED,
-								uint8_t mask = 0xFF);
+					explicit		Pin(modules::Gpio::Port& port,
+								    uint8_t pin_number);
 
-					virtual void	set(uint8_t value, uint8_t mask=0xFF);
-					virtual void	toggle(uint8_t mask=0xFF);
-					virtual uint8_t	get(uint8_t mask=0xFF)const;
-					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
+					virtual void		setAsInput(void);
+					virtual void 		setAsOutput(void);
+					virtual void		set(bool b);
+					virtual bool		get(void) const;
+					virtual void		toggle(void);
+
+				private:
+					Gpio::Port&		port_;
+					const uint8_t		pin_bit_;
 				};
 
-
-				class Port2 : 	public yahal::mcu::modules::Gpio::Port
+				//------------------------------------------------------------------
+private:
+				template<volatile uint8_t& T_DIR,
+				volatile uint8_t& T_OUT,
+				volatile uint8_t& T_IN,
+				volatile uint8_t& T_REN>
+				class Port : public yahal::mcu::modules::Gpio::Port
 				{
-				public:
-					virtual bool	config(	Direction::Type direction = Direction::INPUT,
-								Resistor::Type resistor = Resistor::DISABLED,
-								uint8_t mask = 0xFF);
+				private:
+						class Configuration
+						{
+							class PullUpResistor
+							{
+								void disable(uint8_t mask=0xFF);
+								void high(uint8_t mask=0xFF);
+								void low(uint8_t mask=0xFF);
+							};
+						public:
+							PullUpResistor pullup;
+						};
 
-					virtual void	set(uint8_t value, uint8_t mask=0xFF);
-					virtual void	toggle(uint8_t mask=0xFF);
-					virtual uint8_t	get(uint8_t mask=0xFF)const;
-					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
+				public:
+					virtual void		setAsInput(uint8_t mask=0xFF);
+					virtual void		setAsOutput(uint8_t mask=0xFF);
+					virtual void		set(uint8_t value, uint8_t mask=0xFF);
+					virtual void		toggle(uint8_t mask=0xFF);
+					virtual uint8_t		get(uint8_t mask=0xFF)const;
+					virtual Gpio::Pin&	pin(uint8_t pin_number);
+					Configuration 		config;
 				};
 
+				typedef Port<P1DIR,P1OUT,P1IN,P1REN> Port1;
+				typedef Port<P2DIR,P2OUT,P2IN,P2REN> Port2;
+				typedef Port<P3DIR,P3OUT,P3IN,P3REN> Port3;
+				typedef Port<P4DIR,P4OUT,P4IN,P4REN> Port4;
+				typedef Port<P5DIR,P5OUT,P5IN,P5REN> Port5;
+				typedef Port<P6DIR,P6OUT,P6IN,P6REN> Port6;
 
-				class Port3 : 	public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					virtual bool	config(	Direction::Type direction = Direction::INPUT,
-								Resistor::Type resistor = Resistor::DISABLED,
-								uint8_t mask = 0xFF);
-
-					virtual void	set(uint8_t value, uint8_t mask=0xFF);
-					virtual void	toggle(uint8_t mask=0xFF);
-					virtual uint8_t	get(uint8_t mask=0xFF)const;
-					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
-
-				};
-
-
-				class Port4 : 	public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					virtual bool	config(	Direction::Type direction = Direction::INPUT,
-								Resistor::Type resistor = Resistor::DISABLED,
-								uint8_t mask = 0xFF);
-
-					virtual void	set(uint8_t value, uint8_t mask=0xFF);
-					virtual void	toggle(uint8_t mask=0xFF);
-					virtual uint8_t	get(uint8_t mask=0xFF)const;
-					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
-				};
-
-
-				class Port5 : 	public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					virtual bool	config(	Direction::Type direction = Direction::INPUT,
-								Resistor::Type resistor = Resistor::DISABLED,
-								uint8_t mask = 0xFF);
-
-					virtual void	set(uint8_t value, uint8_t mask=0xFF);
-					virtual void	toggle(uint8_t mask=0xFF);
-					virtual uint8_t	get(uint8_t mask=0xFF)const;
-					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
-				};
-
-
-				class Port6 :	public yahal::mcu::modules::Gpio::Port
-				{
-				public:
-					virtual bool	config(	Direction::Type direction = Direction::INPUT,
-								Resistor::Type resistor = Resistor::DISABLED,
-								uint8_t mask = 0xFF);
-
-					virtual void	set(uint8_t value, uint8_t mask=0xFF);
-					virtual void	toggle(uint8_t mask=0xFF);
-					virtual uint8_t	get(uint8_t mask=0xFF)const;
-					virtual uint8_t	getOutput(uint8_t mask=0xFF)const;
-				};
-
-				// -----------------------------------------------------------------
-public:
+				//------------------------------------------------------------------
+private:
 				Gpio(void);
-	virtual Port& 		port(uint8_t portNumber);
+				friend class cool::pattern::creational::Singleton<Gpio>;
+
+public:
+	virtual
+	modules::Gpio::Port& 	port(uint8_t portNumber);
 
 private:
 	Port1			port1_;
-	Port1			port2_;
-	Port1			port3_;
-	Port1			port4_;
-	Port1			port5_;
-	Port1			port6_;
+	Port2			port2_;
+	Port3			port3_;
+	Port4			port4_;
+	Port5			port5_;
+	Port6			port6_;
 };
+
+
+
+
+
+/*
+class Port : public yahal::mcu::modules::Gpio::Port
+				{
+				private:
+						class Configuration
+						{
+							class PullUpResistor
+							{
+								void disable(uint8_t mask=0xFF);
+								void high(uint8_t mask=0xFF);
+								void low(uint8_t mask=0xFF);
+							};
+						public:
+							PullUpResistor pullup;
+						};
+
+						struct Registers
+						{
+							Registers(volatile uint8_t& dir,
+								  volatile uint8_t& out,
+								  volatile uint8_t& in,
+								  volatile uint8_t& ren) :
+								dir(dir),
+								out(out),
+								in(in),
+								ren(ren)
+							{}
+
+							volatile uint8_t& dir;
+							volatile uint8_t& out;
+							volatile uint8_t& in;
+							volatile uint8_t& ren;
+						};
+
+						class Pin : public yahal::mcu::modules::Gpio::Port::Pin
+						{
+							virtual void	setAsInput(void) {}
+							virtual void 	setAsOutput(void) {}
+							virtual void	set(bool b){}
+							virtual bool	get(void) const {}
+							virtual void	toggle(void) {}
+						};
+
+						// -------------------------------------------------
+				public:
+								Port(uint8_t port_number) : port_(port_number-1) {}
+
+					virtual void		setAsInput(uint8_t mask=0xFF);
+					virtual void		setAsOutput(uint8_t mask=0xFF);
+					virtual void		set(uint8_t value, uint8_t mask=0xFF);
+					virtual void		toggle(uint8_t mask=0xFF);
+					virtual uint8_t		get(uint8_t mask=0xFF)const;
+					virtual Pin&		pin(uint8_t pin_number);
+					//Configuration 	config;
+
+				private:
+					static Registers	reg[6];
+					const uint8_t		port_;
+					Pin			pin0_;
+				};
+
+
+				//------------------------------------------------------------------
+private:
+				// SINGLETON
+				Gpio(void);
+	friend class		cool::pattern::creational::Singleton<Gpio>;
+
+public:
+	virtual Port& 		port(uint8_t portNumber);
+
+private:
+	Port			port1_, port2_, port3_, port4_, port5_, port6_;
+ */
+
+
+/*
+ * class yahal::mcu::modules::Gpio::Port::Pin
+{
+public:
+	explicit		Pin(yahal::mcu::modules::Gpio::Port& port, uint8_t pin_number):
+					port_(port),
+					pin_bit_(1<<pin_number) ///< If pin_number greate than 7, then, pin_bit_ = 0x00
+				{}
+
+
+				// CONFIGURATION
+	void			input(void);
+	void 			output(void);
+
+				// CONTROL
+	inline void		set(bool b);
+	inline bool		get(void) const;
+	inline bool		getOutput(void) const;
+	inline void		toggle(void);
+
+private:
+				// PRIVATE VARIABLES
+	Gpio::Port&		port_;
+	const uint8_t		pin_bit_;
+};*/
 
 
 

@@ -27,8 +27,8 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../../utility/oop/noncopyable.hpp"
-#include "../../../utility/oop/nonheapable.hpp"
+//#include "../../../utility/oop/noncopyable.hpp"
+//#include "../../../utility/oop/nonheapable.hpp"
 #include <stdint.h>
 
 

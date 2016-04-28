@@ -30,7 +30,7 @@
 #include <stdint.h>
 #include "../../managers/i2c/i2c_master_manager.hpp"
 #include "../../modules/gpio/gpio.hpp"
-#include "../../../utility/oop/noncopyable.hpp"
+//#include "../../../utility/oop/noncopyable.hpp"
 
 
 
@@ -45,8 +45,8 @@ namespace yahal{ namespace mcu{ namespace hwemulation{
  * @brief
  **************************************************************************************************/
 class yahal::mcu::hwemulation::I2CMaster :
-	public yahal::mcu::modules::I2CMasterManager,
-	public yahal::utility::oop::NonCopyable<yahal::mcu::hwemulation::I2CMaster>
+	public yahal::mcu::modules::I2CMasterManager
+	//public yahal::utility::oop::NonCopyable<yahal::mcu::hwemulation::I2CMaster>
 {
 public:
 				I2CMaster(yahal::mcu::modules::Gpio::Port::Pin& sda,

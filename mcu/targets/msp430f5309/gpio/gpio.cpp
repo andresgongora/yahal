@@ -27,17 +27,16 @@
 
 #include <msp430f5309.h>
 #include "../../../../error/assert.hpp"
-#include "../../../empty/gpio/gpio.hpp"
+#include "../../empty/gpio/gpio.hpp"
 #include "../../../../utility/data/mask.hpp"
+
 
 
 /* =================================================================================================
 	GPIO
 ================================================================================================= */
-
 yahal::mcu::targets::msp430f5309::Gpio::Gpio(void)
 {}
-
 
 yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
 {
@@ -51,300 +50,247 @@ yahal::mcu::modules::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(ui
 	case 4:	return port4_;
 	case 5:	return port5_;
 	case 6:	return port6_;
-
-	default:
-		return yahal::mcu::empty::Gpio::Port::instance;
 	}
 }
 
 
 
 /* =================================================================================================
-	PORT 1
+	GPIO::PORT
 ================================================================================================= */
-
-bool yahal::mcu::targets::msp430f5309::Gpio::Port1::config(Direction::Type direction,
-							   Resistor::Type resistor,
-							   uint8_t mask) {
-	// WRITE CONFIGURATION
-	P1SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P1DIR = (direction == Direction::OUTPUT ? P1DIR | mask : P1DIR & (~mask));
-
-	// RESISTOR
-	if (resistor == Resistor::PULLUP && direction == Direction::INPUT) {
-		P1REN |= mask;		// Enable resistor
-		P1OUT |= mask; 		// Configure as pullup
-	} else if (resistor == Resistor::PULLDOWN && direction == Direction::INPUT) {
-		P1REN |= mask;		// Enable resistor
-		P1OUT &= (~mask);	// Configure as pulldown
-	} else {
-		P1REN &= ~mask;		// Disable resistor
-	}
-
-	return true;
+template<volatile uint8_t& T_DIR,
+	 volatile uint8_t& T_OUT,
+	 volatile uint8_t& T_IN,
+	 volatile uint8_t& T_REN>
+void yahal::mcu::targets::msp430f5309::Gpio::Port<T_DIR,T_OUT,T_IN,T_REN>::setAsInput(uint8_t mask)
+{
+	T_DIR &= ~mask;
 }
 
-void yahal::mcu::targets::msp430f5309::Gpio::Port1::set(uint8_t value, uint8_t mask)
+template<volatile uint8_t& T_DIR,
+	 volatile uint8_t& T_OUT,
+	 volatile uint8_t& T_IN,
+	 volatile uint8_t& T_REN>
+void yahal::mcu::targets::msp430f5309::Gpio::Port<T_DIR,T_OUT,T_IN,T_REN>::setAsOutput(uint8_t mask)
 {
-	P1OUT = yahal::utility::data::setMasked(P1OUT, value, mask);
+	T_DIR |= mask;
 }
 
-void  yahal::mcu::targets::msp430f5309::Gpio::Port1::toggle(uint8_t mask)
+template<volatile uint8_t& T_DIR,
+	 volatile uint8_t& T_OUT,
+	 volatile uint8_t& T_IN,
+	 volatile uint8_t& T_REN>
+void yahal::mcu::targets::msp430f5309::Gpio::Port<T_DIR,T_OUT,T_IN,T_REN>::set(uint8_t value, uint8_t mask)
 {
-	P1OUT ^= mask;
+	T_OUT = yahal::utility::data::setMasked(T_OUT, value, mask);
 }
 
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::get(uint8_t mask)const
+template<volatile uint8_t& T_DIR,
+	 volatile uint8_t& T_OUT,
+	 volatile uint8_t& T_IN,
+	 volatile uint8_t& T_REN>
+void  yahal::mcu::targets::msp430f5309::Gpio::Port<T_DIR,T_OUT,T_IN,T_REN>::toggle(uint8_t mask)
 {
-	return P1IN & mask;
+	T_OUT ^= mask;
 }
 
-uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port1::getOutput(uint8_t mask)const
+template<volatile uint8_t& T_DIR,
+	 volatile uint8_t& T_OUT,
+	 volatile uint8_t& T_IN,
+	 volatile uint8_t& T_REN>
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port<T_DIR,T_OUT,T_IN,T_REN>::get(uint8_t mask)const
 {
-	return P1OUT & mask;
+	return T_IN & mask;
+}
+
+template<volatile uint8_t& T_DIR,
+	 volatile uint8_t& T_OUT,
+	 volatile uint8_t& T_IN,
+	 volatile uint8_t& T_REN>
+yahal::mcu::targets::msp430f5309::Gpio::Pin&
+yahal::mcu::targets::msp430f5309::Gpio::Port<T_DIR,T_OUT,T_IN,T_REN>::pin(uint8_t pin_number)
+{
+	static Gpio::Pin pin(*static_cast<modules::Gpio::Port*>(this), pin_number);
+	return pin;
 }
 
 
 
 /* =================================================================================================
-	PORT 2
+	PORT::CONFIGURATION
 ================================================================================================= */
-
-bool yahal::mcu::targets::msp430f5309::Gpio::Port2::config(Direction::Type direction,
-							   Resistor::Type resistor,
-							   uint8_t mask)
+template<volatile uint8_t& T_DIR,
+	 volatile uint8_t& T_OUT,
+	 volatile uint8_t& T_IN,
+	 volatile uint8_t& T_REN>
+void yahal::mcu::targets::msp430f5309::Gpio::Port<T_DIR,T_OUT,T_IN,T_REN>::Configuration::PullUpResistor::disable(uint8_t mask)
 {
-	// WRITE CONFIGURATION
-	P2SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P2DIR = (direction == Direction::OUTPUT ? P2DIR | mask : P2DIR & (~mask));
-
-	// RESISTOR
-	if (resistor == Resistor::PULLUP && direction == Direction::INPUT) {
-		P2REN |= mask;		// Enable resistor
-		P2OUT |= mask; 		// Configure as pullup
-	} else if (resistor == Resistor::PULLDOWN && direction == Direction::INPUT) {
-		P2REN |= mask;		// Enable resistor
-		P2OUT &= (~mask);	// Configure as pulldown
-	} else {
-		P2REN &= ~mask;		// Disable resistor
-	}
-
-	return true;
+	T_REN &= ~mask;
 }
 
-void yahal::mcu::targets::msp430f5309::Gpio::Port2::set(uint8_t value, uint8_t mask)
+template<volatile uint8_t& T_DIR,
+	 volatile uint8_t& T_OUT,
+	 volatile uint8_t& T_IN,
+	 volatile uint8_t& T_REN>
+void yahal::mcu::targets::msp430f5309::Gpio::Port<T_DIR,T_OUT,T_IN,T_REN>::Configuration::PullUpResistor::high(uint8_t mask)
 {
-	P2OUT = yahal::utility::data::setMasked(P2OUT, value, mask);
+	uint8_t input_pins = ~T_DIR & mask; 	// Enable pullup only on input pins
+	T_REN |= input_pins;			// Enable resistor
+	T_OUT |= input_pins;			// Set as pull-UP
 }
 
-void  yahal::mcu::targets::msp430f5309::Gpio::Port2::toggle(uint8_t mask)
+template<volatile uint8_t& T_DIR,
+	 volatile uint8_t& T_OUT,
+	 volatile uint8_t& T_IN,
+	 volatile uint8_t& T_REN>
+void yahal::mcu::targets::msp430f5309::Gpio::Port<T_DIR,T_OUT,T_IN,T_REN>::Configuration::PullUpResistor::low(uint8_t mask)
 {
-	P2OUT ^= mask;
+	uint8_t input_pins = ~T_DIR & mask; 	// Enable pullup only on input pins
+	T_REN |= input_pins;			// Enable resistor
+	T_OUT &= ~input_pins;			// Set as pull-DOWN
 }
 
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port2::get(uint8_t mask) const
+
+/* =================================================================================================
+	GPIO::PIN
+================================================================================================= */
+yahal::mcu::targets::msp430f5309::Gpio::Pin::Pin(yahal::mcu::modules::Gpio::Port& port,
+						 uint8_t pin_number) :
+	port_(port),
+	pin_bit_(1<<pin_number) ///< If pin_number greate than 7, then, pin_bit_ = 0x00
+{}
+
+void yahal::mcu::targets::msp430f5309::Gpio::Pin::setAsInput(void)
 {
-	return P2IN & mask;
+	port_.setAsInput(pin_bit_);
 }
 
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port2::getOutput(uint8_t mask) const
+void yahal::mcu::targets::msp430f5309::Gpio::Pin::setAsOutput(void)
 {
-	return P2OUT & mask;
+	port_.setAsOutput(pin_bit_);
+}
+
+void yahal::mcu::targets::msp430f5309::Gpio::Pin::set(bool b)
+{
+	if(b)	{ port_.set(pin_bit_,pin_bit_); }
+	else	{ port_.set(0x00,pin_bit_); }
+}
+
+bool yahal::mcu::targets::msp430f5309::Gpio::Pin::get(void) const
+{
+	return port_.get(pin_bit_);
+}
+
+void yahal::mcu::targets::msp430f5309::Gpio::Pin::toggle(void)
+{
+	port_.toggle(pin_bit_);
 }
 
 
 
 /* =================================================================================================
-	PORT 3
+	GPIO
 ================================================================================================= */
+/*
+yahal::mcu::targets::msp430f5309::Gpio::Gpio(void) :
+	port1_(1),
+	port2_(2),
+	port3_(3),
+	port4_(4),
+	port5_(5),
+	port6_(6)
+{}
 
-bool yahal::mcu::targets::msp430f5309::Gpio::Port3::config(Direction::Type direction,
-							   Resistor::Type resistor,
-							   uint8_t mask)
+
+yahal::mcu::targets::msp430f5309::Gpio::Port& yahal::mcu::targets::msp430f5309::Gpio::port(uint8_t portNumber)
 {
-	// WRITE CONFIGURATION
-	P3SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P3DIR = (direction == Direction::OUTPUT ? P3DIR | mask : P3DIR & (~mask));
+	assert(portNumber >= 1 && portNumber <= 6);
 
-	// RESISTOR
-	if (resistor == Resistor::PULLUP && direction == Direction::INPUT) {
-		P3REN |= mask;		// Enable resistor
-		P3OUT |= mask; 		// Configure as pullup
-	} else if (resistor == Resistor::PULLDOWN && direction == Direction::INPUT) {
-		P3REN |= mask;		// Enable resistor
-		P3OUT &= (~mask);	// Configure as pulldown
-	} else {
-		P3REN &= ~mask;		// Disable resistor
+	switch(portNumber)
+	{
+	case 1:	return port1_;
+	case 2:	return port2_;
+	case 3:	return port3_;
+	case 4:	return port4_;
+	case 5:	return port5_;
+	case 6:	return port6_;
 	}
-
-	return true;
 }
 
-void yahal::mcu::targets::msp430f5309::Gpio::Port3::set(uint8_t value, uint8_t mask)
-{
-	P3OUT = yahal::utility::data::setMasked(P3OUT, value, mask);
-}
-
-void  yahal::mcu::targets::msp430f5309::Gpio::Port3::toggle(uint8_t mask)
-{
-	P3OUT ^= mask;
-}
-
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port3::get(uint8_t mask) const
-{
-	return P3IN & mask;
-}
-
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port3::getOutput(uint8_t mask) const
-{
-	return P3OUT & mask;
-}
 
 
 
 /* =================================================================================================
-	PORT 4
+	GPIO::PORT
 ================================================================================================= */
+/*
+yahal::mcu::targets::msp430f5309::Gpio::Port::Registers
+yahal::mcu::targets::msp430f5309::Gpio::Port::reg[] = {
+	Registers(P1DIR,P1OUT,P1IN,P1REN),
+	Registers(P2DIR,P2OUT,P2IN,P2REN),
+	Registers(P3DIR,P3OUT,P3IN,P3REN),
+	Registers(P4DIR,P4OUT,P4IN,P4REN),
+	Registers(P5DIR,P5OUT,P5IN,P5REN),
+	Registers(P6DIR,P6OUT,P6IN,P6REN)
+};
 
-bool yahal::mcu::targets::msp430f5309::Gpio::Port4::config(Direction::Type direction,
-							   Resistor::Type resistor,
-							   uint8_t mask)
+
+void yahal::mcu::targets::msp430f5309::Gpio::Port::setAsInput(uint8_t mask)
 {
-	// WRITE CONFIGURATION
-	P4SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P4DIR = (direction == Direction::OUTPUT ? P4DIR | mask : P4DIR & (~mask));
-
-	// RESISTOR
-	if (resistor == Resistor::PULLUP && direction == Direction::INPUT) {
-		P4REN |= mask;		// Enable resistor
-		P4OUT |= mask; 		// Configure as pullup
-	} else if (resistor == Resistor::PULLDOWN && direction == Direction::INPUT) {
-		P4REN |= mask;		// Enable resistor
-		P4OUT &= (~mask);	// Configure as pulldown
-	} else {
-		P4REN &= ~mask;		// Disable resistor
-	}
-
-	return true;
-}
-
-void yahal::mcu::targets::msp430f5309::Gpio::Port4::set(uint8_t value, uint8_t mask)
-{
-	P4OUT = yahal::utility::data::setMasked(P4OUT, value, mask);
-}
-
-void  yahal::mcu::targets::msp430f5309::Gpio::Port4::toggle(uint8_t mask)
-{
-	P4OUT ^= mask;
-}
-
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port4::get(uint8_t mask) const
-{
-	return P4IN & mask;
-}
-
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port4::getOutput(uint8_t mask) const
-{
-	return P4OUT & mask;
+	reg[port_].dir &= ~mask;
 }
 
 
+void yahal::mcu::targets::msp430f5309::Gpio::Port::setAsOutput(uint8_t mask)
+{
+	reg[port_].dir |= mask;
+}
+
+void yahal::mcu::targets::msp430f5309::Gpio::Port::set(uint8_t value, uint8_t mask)
+{
+	reg[port_].out = yahal::utility::data::setMasked(reg[port_].out, value, mask);
+}
+
+void yahal::mcu::targets::msp430f5309::Gpio::Port::toggle(uint8_t mask)
+{
+	reg[port_].out ^= mask;
+}
+
+uint8_t	yahal::mcu::targets::msp430f5309::Gpio::Port::get(uint8_t mask)const
+{
+	return reg[port_].in & mask;
+}
+
+yahal::mcu::targets::msp430f5309::Gpio::Port::Pin&
+yahal::mcu::targets::msp430f5309::Gpio::Port::pin(uint8_t pin_number)
+{
+	return pin0_;
+}
 
 /* =================================================================================================
-	PORT 5
+	PORT::CONFIGURATION
 ================================================================================================= */
 
-bool yahal::mcu::targets::msp430f5309::Gpio::Port5::config(Direction::Type direction,
-							   Resistor::Type resistor,
-							   uint8_t mask)
+/*
+void yahal::mcu::targets::msp430f5309::Gpio::Port::Configuration::PullUpResistor::disable(uint8_t mask)
 {
-	// WRITE CONFIGURATION
-	P5SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P5DIR = (direction == Direction::OUTPUT ? P5DIR | mask : P5DIR & (~mask));
-
-	// RESISTOR
-	if (resistor == Resistor::PULLUP && direction == Direction::INPUT){
-		P5REN |= mask;		// Enable resistor
-		P5OUT |= mask; 		// Configure as pullup
-	} else if (resistor == Resistor::PULLDOWN && direction == Direction::INPUT) {
-		P5REN |= mask;		// Enable resistor
-		P5OUT &= (~mask);	// Configure as pulldown
-	} else {
-		P5REN &= ~mask;		// Disable resistor
-	}
-
-	return true;
+	reg[port_].ren &= ~mask;
 }
 
-void yahal::mcu::targets::msp430f5309::Gpio::Port5::set(uint8_t value, uint8_t mask)
+void yahal::mcu::targets::msp430f5309::Gpio::Port::Configuration::PullUpResistor::high(uint8_t mask)
 {
-	P5OUT = yahal::utility::data::setMasked(P5OUT, value, mask);
+	uint8_t input_pins = ~reg[port_].dir & mask; 	// Enable pullup only on input pins
+	reg[port_].ren |= input_pins;			// Enable resistor
+	reg[port_].out |= input_pins;			// Set as pull-UP
 }
 
-void  yahal::mcu::targets::msp430f5309::Gpio::Port5::toggle(uint8_t mask)
+void yahal::mcu::targets::msp430f5309::Gpio::Port::Configuration::PullUpResistor::low(uint8_t mask)
 {
-	P5OUT ^= mask;
+	uint8_t input_pins = ~reg[port_].dir & mask; 	// Enable pullup only on input pins
+	reg[port_].ren |= input_pins;			// Enable resistor
+	reg[port_].out &= ~input_pins;			// Set as pull-DOWN
 }
-
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port5::get(uint8_t mask) const
-{
-	return P5IN & mask;
-}
-
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port5::getOutput(uint8_t mask) const
-{
-	return P5OUT & mask;
-}
-
-
-
-/* =================================================================================================
-	PORT 6
-================================================================================================= */
-
-bool yahal::mcu::targets::msp430f5309::Gpio::Port6::config(Direction::Type direction,
-							   Resistor::Type resistor,
-							   uint8_t mask)
-{
-	// WRITE CONFIGURATION
-	P6SEL &= ~mask;		// I/0 function is selected// 0 = IN; 1 = OUT
-	P6DIR = (direction == Direction::OUTPUT ? P6DIR | mask : P6DIR & (~mask));
-
-	// RESISTOR
-	if (resistor == Resistor::PULLUP && direction == Direction::INPUT) {
-		P6REN |= mask;		// Enable resistor
-		P6OUT |= mask; 		// Configure as pullup
-	} else if (resistor == Resistor::PULLDOWN && direction == Direction::INPUT) {
-		P6REN |= mask;		// Enable resistor
-		P6OUT &= (~mask);	// Configure as pulldown
-	} else {
-		P6REN &= ~mask;		// Disable resistor
-	}
-
-	return true;
-}
-
-void yahal::mcu::targets::msp430f5309::Gpio::Port6::set(uint8_t value, uint8_t mask)
-{
-	P6OUT = yahal::utility::data::setMasked(P6OUT, value, mask);
-}
-
-void  yahal::mcu::targets::msp430f5309::Gpio::Port6::toggle(uint8_t mask)
-{
-	P6OUT ^= mask;
-}
-
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port6::get(uint8_t mask) const
-{
-	return P6IN & mask;
-}
-
-uint8_t yahal::mcu::targets::msp430f5309::Gpio::Port6::getOutput(uint8_t mask) const
-{
-	return P6OUT & mask;
-}
-
-
+*/
 
 /* ---------------------------------------------------------------------------------------------- */
 #endif // YAHAL_MCU_MSP430F5309_ENABLE_GPIO
