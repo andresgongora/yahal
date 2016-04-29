@@ -33,7 +33,7 @@
 // LOAD MODULES
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
-#include "gpio/gpio.hpp"
+#include "gpio/port.hpp"
 #include "i2c/i2c_master.hpp"
 #include "i2c/i2c_slave.hpp"
 #include "i2c/i2c_multimaster.hpp"

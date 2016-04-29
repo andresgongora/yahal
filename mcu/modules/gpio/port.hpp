@@ -23,8 +23,8 @@
 	+-----------------------------------------------------------------------+	*/
 
 
-#ifndef __YAHAL_MCU_MODULES_GPIO_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_GPIO_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_PORT_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_PORT_HPP_INCLUDED__
 
 
 #include <stdint.h>
@@ -33,54 +33,36 @@
 
 
 /***********************************************************************************************//**
- * Base class for GPIO modules.
- **************************************************************************************************/
-class yahal::mcu::modules::Gpio
-{
-public:
-	class 			Port;
-
-				/// Return reference to port.
-	virtual Port&		port(uint8_t portNumber) = 0;
-
-				/// Short wrapper for port(uint8_t portNumber).
-				/// @see port(uint8_t portNumber).
-	Port&			operator[](uint8_t portNumber)	{return port(portNumber);}
-};
-
-
-
-/***********************************************************************************************//**
- * Base class for all GPIO Ports.
+ * Base class for all PORT Ports.
  * Declared inside Gpio.
  **************************************************************************************************/
-class yahal::mcu::modules::Gpio::Port
+class yahal::mcu::modules::Port
 {
 public:
 	class 			Pin;
 
-	virtual void		setAsInput(uint8_t mask = 0xFF) = 0;
-	virtual void		setAsOutput(uint8_t mask = 0xFF) = 0;
+	virtual void		setAsInput(uint8_t mask=0xFF) = 0;
+	virtual void		setAsOutput(uint8_t mask=0xFF) = 0;
 
 	virtual void		set(uint8_t value, uint8_t mask=0xFF) = 0;
 	virtual uint8_t		get(uint8_t mask=0xFF)const = 0;
 	virtual void		toggle(uint8_t mask=0xFF) = 0;
 
-	virtual Pin&		pin(uint8_t pin_number) = 0;
-	inline Pin&		operator[](uint8_t pin_number) {return pin(pin_number);}
+//	virtual Pin&		pin(uint8_t pin_number) = 0;
+//	inline Pin&		operator[](uint8_t pin_number) {return pin(pin_number);}
 };
 
 
 
 /***********************************************************************************************//**
- * Base class for all GPIO Pins.
+ * Base class for all PORT Pins.
  * Declared inside Gpio::Port
  **************************************************************************************************/
-class yahal::mcu::modules::Gpio::Port::Pin
+class yahal::mcu::modules::Port::Pin
 {
 public:
 	virtual void		setAsInput(void) = 0;
-	virtual void 		setAsOutput(void) = 0;
+	virtual void		setAsOutput(void) = 0;
 	virtual void		set(bool b) = 0;
 	virtual bool		get(void) const = 0;
 	virtual void		toggle(void) = 0;
@@ -89,4 +71,4 @@ public:
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_GPIO_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_MODULES_PORT_HPP_INCLUDED__

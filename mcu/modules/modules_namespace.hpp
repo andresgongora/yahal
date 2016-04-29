@@ -29,11 +29,12 @@
 #include <stdint.h>
 
 
+
 namespace yahal{ namespace mcu{ namespace modules{
 
 	// MODULES
 	class Clk;
-	class Gpio;
+	class Port;
 	class Wdt;
 	class I2CMaster;
 	class I2CMultimaster;

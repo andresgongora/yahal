@@ -41,7 +41,7 @@
 #include "adc_10/adc_10.hpp"
 #include "clk/clk.hpp"
 #include "wdt/wdt.hpp"
-#include "gpio/gpio.hpp"
+#include "gpio/port.hpp"
 /*
 #include "usci_b1/i2c/i2c_master.hpp"
 #include "usci_b1/i2c/i2c_slave.hpp"
@@ -83,9 +83,26 @@ public:
 
 
 	// GPIO
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_GPIO
-		yahal::mcu::targets::msp430f5309::Gpio& gpio;
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT1
+		yahal::mcu::targets::msp430f5309::Port1	port1;
 	#endif
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
+		yahal::mcu::targets::msp430f5309::Port1	port2;
+	#endif
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT3
+		yahal::mcu::targets::msp430f5309::Port1	port3;
+	#endif
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT4
+		yahal::mcu::targets::msp430f5309::Port1	port4;
+	#endif
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT5
+		yahal::mcu::targets::msp430f5309::Port1	port5;
+	#endif
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT6
+		yahal::mcu::targets::msp430f5309::Port1	port6;
+	#endif
+
+
 
 
 	// ADC_10

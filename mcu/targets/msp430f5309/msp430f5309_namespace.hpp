@@ -31,7 +31,7 @@
 #include "../../config/mcu_config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
-
+#include <stdint.h>
 
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 
@@ -39,9 +39,14 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 
 		class Adc10;
 		class Clk;
-		class Gpio;
 		class Wdt;
 		class IrqHandler;
+
+		template<volatile uint8_t& T_DIR,
+			 volatile uint8_t& T_OUT,
+			 volatile uint8_t& T_IN,
+			 volatile uint8_t& T_REN>
+		class Port;
 
 		class UsciB1;
 	//	class I2CMaster;

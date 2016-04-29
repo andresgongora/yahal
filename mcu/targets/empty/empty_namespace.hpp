@@ -29,7 +29,7 @@
 
 namespace yahal{ namespace mcu{ namespace empty{
 
-	class Gpio;
+	class Port;
 
 
 	namespace details

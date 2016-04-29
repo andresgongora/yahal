@@ -22,12 +22,12 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_TARGETS_EMPTY_GPIO_HPP_INCLUDED__
-#define __YAHAL_MCU_TARGETS_EMPTY_GPIO_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_TARGETS_EMPTY_PORT_HPP_INCLUDED__
+#define __YAHAL_MCU_TARGETS_EMPTY_PORT_HPP_INCLUDED__
 
 
 #include "../empty_namespace.hpp"
-#include "../../../modules/gpio/gpio.hpp"
+#include "../../../modules/gpio/port.hpp"
 #include "../../../../cool/src/pattern/creational/singleton.hpp"
 
 
@@ -35,46 +35,33 @@
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::empty::Gpio : public yahal::mcu::modules::Gpio
+class yahal::mcu::empty::Port : public yahal::mcu::modules::Port
 {
 public:
-				class Port : public yahal::mcu::modules::Gpio::Port
+				class Pin : public yahal::mcu::modules::Port::Pin
 				{
 				public:
-					class Pin : public yahal::mcu::modules::Gpio::Port::Pin
-					{
-					public:
-						virtual void	setAsInput(void) {}
-						virtual void 	setAsOutput(void) {}
-						virtual void	set(bool b) {}
-						virtual bool	get(void) const {return false;}
-						virtual void	toggle(void) {}
-					};
-					//----------------------------------------------------------
-
-				public:
-					virtual void	setAsInput(uint8_t mask = 0xFF) {}
-					virtual void	setAsOutput(uint8_t mask = 0xFF) {}
-					virtual void	set(uint8_t value, uint8_t mask=0xFF) {}
-					virtual void	toggle(uint8_t mask=0xFF) {}
-					virtual uint8_t	get(uint8_t mask=0xFF)const {return false;}
-
-					virtual Pin&	pin(uint8_t pin_number) {return empty_pin_;}
-
-				private:
-					Pin		empty_pin_;
+					virtual void	setAsInput(void) {}
+					virtual void 	setAsOutput(void) {}
+					virtual void	set(bool b) {}
+					virtual bool	get(void) const {return false;}
+					virtual void	toggle(void) {}
 				};
-
-
-				//------------------------------------------------------------------
+				//----------------------------------------------------------
 public:
-	virtual Port& 		port(uint8_t portNumber) {return empty_port_;}
+	virtual void		setAsInput(uint8_t mask = 0xFF) {}
+	virtual void		setAsOutput(uint8_t mask = 0xFF) {}
+	virtual void		set(uint8_t value, uint8_t mask=0xFF) {}
+	virtual void		toggle(uint8_t mask=0xFF) {}
+	virtual uint8_t		get(uint8_t mask=0xFF)const {return false;}
+
+	virtual Pin&		pin(uint8_t pin_number) {return empty_pin_;}
 
 private:
-	Port			empty_port_;
+	Pin			empty_pin_;
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif	// __YAHAL_MCU_TARGETS_EMPTY_GPIO_HPP_INCLUDED__
+#endif	// __YAHAL_MCU_TARGETS_EMPTY_PORT_HPP_INCLUDED__
