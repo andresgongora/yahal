@@ -42,6 +42,7 @@
 #include "../../../../cool/src/pattern/creational/singleton.hpp"
 #include <msp430f5309.h>
 #include "../../../../utility/data/mask.hpp"
+#include "../../../../error/assert.hpp"
 
 
 
@@ -115,6 +116,7 @@ class yahal::mcu::targets::msp430f5309::Port : public yahal::mcu::modules::Port
 
 				//------------------------------------------------------------------
 private:
+				friend class yahal::mcu::targets::msp430f5309::Msp430f5309;
 				Port(void) :
 					pin0(0),
 					pin1(1),
@@ -125,8 +127,6 @@ private:
 					pin6(6),
 					pin7(7)
 				{}
-
-				friend class yahal::mcu::targets::msp430f5309::Msp430f5309;
 
 public:
 	virtual void		setAsInput(uint8_t mask = 0xFF) {
@@ -149,11 +149,25 @@ public:
 					T_OUT ^= mask;
 				}
 
-
 	Configuration		config;
 	Pin			pin0,pin1,pin2,pin3,pin4,pin5,pin6,pin7;
 
+private:
+	virtual Pin&		pin(uint8_t pin_number){
+					assert(pin_number <= 7);
 
+					switch(pin_number)
+					{
+					case 0: return pin0;
+					case 1: return pin1;
+					case 2: return pin2;
+					case 3: return pin3;
+					case 4: return pin4;
+					case 5: return pin5;
+					case 6: return pin6;
+					case 7: return pin7;
+					}
+				}
 };
 
 #endif // YAHAL_MCU_MSP430F5309_ENABLE_PORT#

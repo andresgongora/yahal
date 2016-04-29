@@ -27,7 +27,7 @@
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT1
 
 #include <msp430f5309.h>
-#include "../../../../error/assert.hpp"
+
 //#include "../../empty/gpio/port.hpp"
 #include "../../../../utility/data/mask.hpp"
 

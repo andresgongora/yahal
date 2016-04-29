@@ -48,8 +48,8 @@ public:
 	virtual uint8_t		get(uint8_t mask=0xFF)const = 0;
 	virtual void		toggle(uint8_t mask=0xFF) = 0;
 
-//	virtual Pin&		pin(uint8_t pin_number) = 0;
-//	inline Pin&		operator[](uint8_t pin_number) {return pin(pin_number);}
+	virtual Pin&		pin(uint8_t pin_number) = 0;
+	inline Pin&		operator[](uint8_t pin_number) {return pin(pin_number);}
 };
 
 
