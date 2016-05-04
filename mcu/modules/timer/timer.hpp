@@ -194,9 +194,9 @@ public:
 
 //	operator 		T_SIZE() = 0;
 //	T_SIZE			operator=(T_SIZE) = 0;
-	virtual void 		setComparator(T_SIZE value) = 0;
-	virtual T_SIZE		getComparator(void) const = 0;
-	virtual bool 		getOutput(void) const = 0;
+	virtual void 		set(T_SIZE value) = 0;
+	virtual T_SIZE		get(void) const = 0;
+//	virtual bool 		getOutput(void) const = 0;
 //	virtual bool 		getSignal(void) const = 0;
 
 

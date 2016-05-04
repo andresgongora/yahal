@@ -36,15 +36,14 @@
 #include "../msp430f5309_namespace.hpp"
 #include "../../../../cool/src/pattern/creational/singleton.hpp"
 #include "../../../../utility/oop/publish_subscribe.hpp"
+#include <msp430f5309.h>
 
 
 /***********************************************************************************************//**
  * @brief
- *
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::TimerA1 :
-	public yahal::mcu::modules::Timer16,
-	public cool::pattern::creational::Singleton<TimerA1>
+	public yahal::mcu::modules::Timer16
 {
 public:
 				struct Event{ enum Type{
@@ -52,40 +51,55 @@ public:
 					CCR0		=  0,
 					CCR1		=  1,
 					CCR2		=  2
-				};}static const EVENT;
+				};};
 
-				//------------------------------------------------------------------
+
 private:
 				struct ClockSource{ enum Type{
 					TA1CLK 		= 0x0000,
 					ACLK		= 0x0100,
 					SMCLK		= 0x0200,
 					INCLK		= 0x0300
-				};}static const CLOCK_SOURCE;
-
+				};};
 
 				struct Prescaler{ enum Type{
 					DIVIDER_1	= 0x0000,
 					DIVIDER_2	= 0x0040,
 					DIVIDER_4	= 0x0080,
 					DIVIDER_8	= 0x00C0
-				};}static const PRESCALER;
-
+				};};
 
 				struct Mode{ enum Type{
 					OFF		= 0x0000,
 					UP_CCR0 	= 0x0010,
 					CONTINUOUS	= 0x0020,
 					UP_CCR0_DOWN	= 0x0030
-				};}static const MODE;
-
+				};};
 
 				struct Irq{ enum Type{
 					TIMER,
 					CCR0,
 					CCR1,
 					CCR2
-				};} static const IRQ;
+				};};
+
+				struct CcrMode
+				{
+					struct OC{ enum Type{
+						NONE,
+						SET,
+						RESET,
+						SET_RESET,
+						RESET_SET,
+						TOGGLE,
+						TOGGLE_SET,
+						TOGGLE_RESET
+					};};
+
+					struct IC{ enum Type{
+						NONE
+					};};
+				};
 
 
 				// -----------------------------------------------------------------
@@ -126,140 +140,113 @@ private:
 					Mode		mode;
 				};
 
+				// -----------------------------------------------------------------
+
+				template<volatile uint16_t& T_CCR,
+					 volatile uint16_t& T_CCTL>
 				class Ccr  : public Comparator
 				{
 					friend class TimerA1;
 
-				public:
-					struct Mode
+					class Configuration
 					{
-						enum Type{
-							OFF,
-							OUTPUT_COMPARE,
-							INPUT_CAPTURE,
+						class Mode
+						{
+							class OutputCompare
+							{
+								void set() {
+									configure(CcrMode::OC::SET);
+								}
+								void reset()	{
+									configure(CcrMode::OC::RESET);
+								}
+								void setReset() {
+									configure(CcrMode::OC::SET_RESET);
+								}
+								void resetSet() {
+									configure(CcrMode::OC::RESET_SET);
+								}
+								void toggle() {
+									configure(CcrMode::OC::TOGGLE);
+								}
+								void toggleSet() {
+									configure(CcrMode::OC::TOGGLE_SET);
+								}
+								void toggleReset() {
+									configure(CcrMode::OC::TOGGLE_RESET);
+								}
+							};
+
+							class InputCapture
+							{
+
+							};
+
+						public:
+							OutputCompare	outputCompare;
+							InputCapture	inputCapture;
 						};
+					public:
+						Mode 	mode;
+					};
 
-						struct OutputCompare{ enum Type{
-							NONE,
-							SET,
-							RESET,
-							SET_RESET,
-							RESET_SET,
-							TOGGLE,
-							TOGGLE_SET,
-							TOGGLE_RESET
-						};} static const OC;
-
-						struct InputCapture{ enum Type{
-							NONE
-						};} static const IC;
-					} static const MODE;
 
 				public:
-				//	using Comparator::setMode;
+					void	configure(CcrMode::OC::Type mode) {
 
-				//	bool	setMode(Ccr::Mode::Type);
-				//	bool	setMode(Ccr::Mode::OutputCompare::Type mode);
-				//	bool	setMode(Ccr::Mode::InputCapture::Type mode);
+						switch(mode)
+						{
+						default:	break;
+						}
 
-					class	Empty;
-				protected:
-					bool	writeCctlMode(volatile uint16_t& cctl,
-							      Mode::Type mode);
+					}
+
+					void	configure(CcrMode::IC::Type mode)
+					{
+						switch(mode)
+						{
+						default:	break;
+						}
+					}
+
+					virtual void		set(uint16_t value) {
+									T_CCR = value;
+								}
+
+					virtual uint16_t	get(void) const {
+									return T_CCR;
+								}
 				};
+
+				typedef Ccr<TA1CCR0,TA1CCTL0>	Ccr0;
+				typedef Ccr<TA1CCR1,TA1CCTL1>	Ccr1;
+				typedef Ccr<TA1CCR2,TA1CCTL2>	Ccr2;
+
 
 				// -----------------------------------------------------------------
 private:
-				class Ccr0 : public Ccr
-				{
-				public:
-				//	virtual bool	setMode(Comparator::Mode::Type);
-				//	virtual bool	setMode(Comparator::Mode::OutputCompare::Type);
-				//	virtual bool	setMode(Comparator::Mode::InputCapture::Type);
-
-					virtual void		setComparator(uint16_t value);
-					virtual uint16_t	getComparator(void) const;
-					virtual bool		getOutput(void) const;
-				};
-
-				class Ccr1 : public Ccr
-				{
-				public:
-				//	virtual bool	setMode(Comparator::Mode::Type);
-				//	virtual bool	setMode(Comparator::Mode::OutputCompare::Type);
-				//	virtual bool	setMode(Comparator::Mode::InputCapture::Type);
-
-					virtual void		setComparator(uint16_t value);
-					virtual uint16_t	getComparator(void) const;
-					virtual bool		getOutput(void) const;
-				};
-
-				class Ccr2 : public Ccr
-				{
-				public:
-				//	virtual bool	setMode(Comparator::Mode::Type);
-				//	virtual bool	setMode(Comparator::Mode::OutputCompare::Type);
-				//	virtual bool	setMode(Comparator::Mode::InputCapture::Type);
-
-					virtual void		setComparator(uint16_t value);
-					virtual uint16_t	getComparator(void) const;
-					virtual bool		getOutput(void) const;
-				};
-
-				// -----------------------------------------------------------------
-private:
-				// SINGLETON
 				TimerA1(void);
-	friend class		TimerA1::Singleton;
+				friend class yahal::mcu::targets::msp430f5309::Msp430f5309;
 
-
-private:
-	void			config(ClockSource::Type);
-	void			config(Prescaler::Type);
-	void			config(Mode::Type);
+	virtual Comparator&	comparator(int ccr);
 
 public:
 	virtual void		setCount(uint16_t count);
 	virtual uint16_t	getCount(void) const;
-//	virtual void		reset(void);
 
-
-	virtual Ccr&		comparator(int ccr);
-
+	Configuration		config;
+	Ccr0			ccr0;
+	Ccr1			ccr1;
+	Ccr2			ccr2;
 
 private:
+	void			configure(ClockSource::Type);
+	void			configure(Prescaler::Type);
+	void			configure(Mode::Type);
+
 	virtual void		isr(int);
 	static void		TIMER1_A1_ISR(void);	///< TIMER_A1 IRQ for Overflow, CCR1 & CCR2
 	static void		TIMER1_A0_ISR(void);	///< TIMER_A1 IRQ for CCR0
-
-
-public:
-	Configuration		config;
-
-private:
-	Ccr0			ccr0_;
-	Ccr1			ccr1_;
-	Ccr2			ccr2_;
-};
-
-
-
-/***********************************************************************************************//**
- * @brief
- **************************************************************************************************/
-class yahal::mcu::targets::msp430f5309::TimerA1::Ccr::Empty :
-	public yahal::mcu::targets::msp430f5309::TimerA1::Ccr,
-	public cool::pattern::creational::Singleton<Ccr::Empty>
-{
-//	using Ccr::setMode;
-public:
-//	virtual bool		setMode(Comparator::Mode::Type)			{return false;}
-//	virtual bool		setMode(Comparator::Mode::OutputCompare::Type)	{return false;}
-//	virtual bool		setMode(Comparator::Mode::InputCapture::Type)	{return false;}
-
-	virtual void		setComparator(uint16_t value)	{}
-	virtual uint16_t	getComparator(void) const	{return 0;}
-	virtual bool		getOutput(void)	const		{return 0;}
 };
 
 

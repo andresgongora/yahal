@@ -113,7 +113,7 @@ public:
 
 	// TIMER_A1
 	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
-		yahal::mcu::targets::msp430f5309::TimerA1& timer_a1;
+		yahal::mcu::targets::msp430f5309::TimerA1 timerA1;
 	#endif
 
 /*

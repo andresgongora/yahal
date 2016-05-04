@@ -43,11 +43,23 @@
 #include <msp430f5309.h>
 #include "../../../../utility/data/mask.hpp"
 #include "../../../../error/assert.hpp"
+#include "../../empty/gpio/port.hpp"
+
+
+
+namespace{
+	struct Pullup{ enum Type{
+		HIGH,
+		LOW,
+		DISABLE
+	};};
+}
 
 
 
 /***********************************************************************************************//**
  * @brief
+ * Private functions have access to HW registers and are accesible for port as well as pins.
  **************************************************************************************************/
 template<volatile uint8_t& T_DIR,
 	 volatile uint8_t& T_OUT,
@@ -55,105 +67,112 @@ template<volatile uint8_t& T_DIR,
 	 volatile uint8_t& T_REN>
 class yahal::mcu::targets::msp430f5309::Port : public yahal::mcu::modules::Port
 {
+private:
+				/***************************************************************//**
+				 * @brief
+				 ******************************************************************/
 				class Configuration
 				{
 					class PullupResistor
 					{
 					public:
-						void disable(uint8_t mask =0xFF)
-						{
-							T_REN &= ~mask;
+						void disable(uint8_t mask = 0xFF) {
+							configure(Pullup::DISABLE,mask);
 						}
-
-						void high(uint8_t mask =0xFF)
-						{
-							uint8_t input_pins = ~T_DIR & mask; 	// Enable pullup only on input pins
-							T_REN |= input_pins;			// Enable resistor
-							T_OUT |= input_pins;			// Set as pull-UP
+						void high(uint8_t mask = 0xFF) {
+							configure(Pullup::HIGH,mask);
 						}
-
-						void low(uint8_t mask =0xFF)
-						{
-							uint8_t input_pins = ~T_DIR & mask; 	// Enable pullup only on input pins
-							T_REN |= input_pins;			// Enable resistor
-							T_OUT &= ~input_pins;			// Set as pull-DOWN
+						void low(uint8_t mask = 0xFF) {
+							configure(Pullup::LOW,mask);
 						}
 					};
-				public:
-					PullupResistor	pullup;
-				};
 
+				public:
+					PullupResistor 	pullup;
+				};
+	
+
+				/***************************************************************//**
+				 * @brief
+				 ******************************************************************/
 				class Pin : public yahal::mcu::modules::Port::Pin
 				{
+					class Configuration
+					{
+						class PullupResistor
+						{
+							const uint8_t& 	mask_;
+
+						public:
+							void disable() {
+								configure(Pullup::DISABLE,mask_);
+							}
+							void high() {
+								configure(Pullup::HIGH,mask_);
+							}
+							void low() {
+								configure(Pullup::LOW,mask_);
+							}
+
+							PullupResistor(const uint8_t& mask) :
+								mask_(mask)
+							{}
+						};
+
+					public:
+						Configuration(const uint8_t& mask) : pullup(mask) {}
+						PullupResistor 	pullup;
+					};
+
+
+
 				public:
 							Pin(uint8_t pin_number) :
-								pin_bit_(0x01<<pin_number)
+								pin_bit_(0x01<<pin_number),
+								config(pin_bit_)
 							{}
 
-					virtual void	setAsInput(void) {
-						T_DIR &= ~pin_bit_;
-					}
+					virtual void	setAsInput(void) {setAsInput_(pin_bit_);}
+					virtual void	setAsOutput(void){setAsOutput_(pin_bit_);}
+					virtual void	set(bool b)	 {set_(pin_bit_, pin_bit_);}
+					virtual bool	get(void) const  {return get_(pin_bit_);}
+					virtual void	toggle(void)	 {toggle_(pin_bit_);}
 
-					virtual void	setAsOutput(void) {
-						T_DIR |= pin_bit_;
-					}
+					Configuration	config;
 
-					virtual void	set(bool b) {
-						if(b)	{ T_OUT |= pin_bit_; }
-						else	{ T_OUT &= ~pin_bit_; }
-					}
-
-					virtual bool	get(void) const {
-						return T_IN & pin_bit_;
-					}
-
-					virtual void	toggle(void) {
-						T_OUT ^= pin_bit_;
-					}
-
+				private:
 					const uint8_t 	pin_bit_;
+
+
 				};
+
+
 
 				//------------------------------------------------------------------
 private:
 				friend class yahal::mcu::targets::msp430f5309::Msp430f5309;
+
 				Port(void) :
-					pin0(0),
-					pin1(1),
-					pin2(2),
-					pin3(3),
-					pin4(4),
-					pin5(5),
-					pin6(6),
-					pin7(7)
+					pin0(0), pin1(1), pin2(2), pin3(3),
+					pin4(4), pin5(5), pin6(6), pin7(7)
 				{}
 
+
 public:
-	virtual void		setAsInput(uint8_t mask = 0xFF) {
-					T_DIR &= ~mask;
-				}
+	virtual void		setAsInput(uint8_t mask = 0xFF)		{ setAsInput_(mask); }
+	virtual void 		setAsOutput(uint8_t mask = 0xFF)	{ setAsOutput_(mask); }
+	virtual void 		set(uint8_t value, uint8_t mask = 0xFF) { set_(value,mask); }
+	virtual uint8_t		get(uint8_t mask = 0xFF) const		{ return get_(mask); }
+	virtual void 		toggle(uint8_t mask = 0xFF)		{ toggle_(mask); }
 
-	virtual void 		setAsOutput(uint8_t mask = 0xFF) {
-					T_DIR |= mask;
-				}
 
-	virtual void 		set(uint8_t value, uint8_t mask = 0xFF) {
-					T_OUT = yahal::utility::data::setMasked(T_OUT, value, mask);
-				}
-
-	virtual uint8_t		get(uint8_t mask = 0xFF) const {
-					return T_IN & mask;
-				}
-
-	virtual void 		toggle(uint8_t mask = 0xFF) {
-					T_OUT ^= mask;
-				}
-
+//	inline Configuration	config(uint8_t mask = 0xFF)	{ return Configuration(mask); }
 	Configuration		config;
 	Pin			pin0,pin1,pin2,pin3,pin4,pin5,pin6,pin7;
 
 private:
-	virtual Pin&		pin(uint8_t pin_number){
+	virtual
+	modules::Port::Pin&	pin(uint8_t pin_number){
 					assert(pin_number <= 7);
 
 					switch(pin_number)
@@ -166,18 +185,71 @@ private:
 					case 5: return pin5;
 					case 6: return pin6;
 					case 7: return pin7;
+					default:return pin0; //TODO!!!!!! RETURN EMPTY
+					}
+				}
+
+
+				//------------------------------------------------------------------
+private:
+	static void 		setAsInput_(uint8_t mask)
+				{
+					T_DIR &= ~mask;
+				}
+
+	static void 		setAsOutput_(uint8_t mask)
+				{
+					T_DIR |= mask;
+					configure(Pullup::DISABLE,mask);
+				}
+
+	static void 		set_(uint8_t value, uint8_t mask)
+				{
+					T_OUT = yahal::utility::data::setMasked(T_OUT, value, mask);
+				}
+
+	static uint8_t		get_(uint8_t mask)
+				{
+					uint8_t input = ~T_DIR & T_IN;
+					uint8_t output = T_DIR & T_OUT;
+					return (input|output) & mask;
+				}
+
+	static void 		toggle_(uint8_t mask)
+				{
+					T_OUT ^= mask;
+				}
+
+	static void		configure( Pullup::Type pullup, uint8_t mask)
+				{
+					// Enable pullup only on input pins
+					uint8_t input_pins = ~T_DIR & mask;
+
+					switch(pullup)
+					{
+					case Pullup::HIGH:
+						T_REN |= input_pins;	// Enable resistor
+						T_OUT |= input_pins;	// Set as pull-UP
+						break;
+					case Pullup::LOW:
+						T_REN |= input_pins;	// Enable resistor
+						T_OUT &= ~input_pins;	// Set as pull-DOWN
+						break;
+					default:
+					case Pullup::DISABLE:
+						T_REN &= ~mask;
+						break;
 					}
 				}
 };
 
-#endif // YAHAL_MCU_MSP430F5309_ENABLE_PORT#
 
 
+#endif	// YAHAL_MCU_MSP430F5309_ENABLE_PORT#
 
 /* =================================================================================================
 	PORT TYPEDEFS
 ================================================================================================= */
-
 
 namespace yahal{
 namespace mcu{

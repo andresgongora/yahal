@@ -53,9 +53,9 @@ yahal::mcu::targets::msp430f5309::Msp430f5309::Msp430f5309(void) :
 
 
 	// TIMER_A1
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
-		timer_a1(yahal::mcu::targets::msp430f5309::TimerA1::getInstance()),
-	#endif
+	//#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
+	//	timer_a1(yahal::mcu::targets::msp430f5309::TimerA1::getInstance()),
+	//#endif
 
 
 	// WDT
