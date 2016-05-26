@@ -26,49 +26,30 @@
 #define __YAHAL_MCU_HWEMULATION_HPP_INCLUDED__
 
 
+#include "../config/hwemulation/i2c.hpp"
+#include "../config/hwemulation/uart.hpp"
+#include "../config/hwemulation/etc.hpp"
 
-/* ---------------------------------------------------------------------------------------------- */
-#include "../config/hwemulation/hwemulation_config.hpp"
+
 #include "i2c/i2c_master.hpp"
+#include "uart.hpp" etc etc
+
+
+namespace yahal{
+namespace mcu{
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
+#ifdef yahal_mcu_hwemulation_enable_i2c
+	extern asdasdsad i2c;	-> declarado en el cpp de hwemulation
+#endif
+
+
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
-	class HWEmulation;
-}}
-
-
-
-/***********************************************************************************************//**
- * @brief
- **************************************************************************************************/
-class yahal::mcu::HWEmulation
-{
-protected:
-			HWEmulation(void);
-
-	void 		init(void);
-
-
-
-public:
-	// I2C
-	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
-	&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1)
-		static yahal::mcu::hwemulation::I2CMaster YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME1;
-	#endif
-	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
-	&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2)
-		static yahal::mcu::hwemulation::I2CMaster YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME2;
-	#endif
-	#if	YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED == true	\
-	&&	defined(YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3)
-		static yahal::mcu::hwemulation::I2CMaster YAHAL_MCU_HWEMULATION_I2C_MASTER_NAME3;
-	#endif
-};
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
+} // namespace mcu
+} // namespace yahal
 #endif // __YAHAL_MCU_HWEMULATION_HPP_INCLUDED__

@@ -22,14 +22,14 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+
 #ifndef __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
 #define __YAHAL_MCU_TARGETS_MSP430F5309_CONFIG_HPP_INCLUDED__
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../mcu_config.hpp"
+#include "../config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
+
 
 
 //#define	YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
@@ -42,7 +42,7 @@
 //#define	YAHAL_MCU_MSP430F5309_ENABLE_PORT6
 #define	YAHAL_MCU_MSP430F5309_ENABLE_WDT
 #define	YAHAL_MCU_MSP430F5309_ENABLE_IRQ
-#define	YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
+//#define	YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
 
 
 

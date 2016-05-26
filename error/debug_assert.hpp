@@ -22,35 +22,51 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
-#define __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
+
+#ifndef __YAHAL_ERROR_DEBUG_ASSERT_HPP_INCLUDED__
+#define __YAHAL_ERROR_DEBUG_ASSERT_HPP_INCLUDED__
 
 
-/* ---------------------------------------------------------------------------------------------- */
 #include <cstddef>
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
+/***********************************************************************************************//**
+ * 	If "__DEBUG" is defined and the assert condition fails, the execution is stalled
+ *	in an endless loop.
+ *
+ *	It is highly recommended to set a breakpoint here.
+ *
+ * @param	condition	Must be true to pass assertion.
+ * @param	text		Can store a message for convenience, default to null string.
+ * @param	code		Can store an integer for convenience, default 0.
+ **************************************************************************************************/
 namespace yahal{ namespace error{ namespace details{
-	static void assert(bool condition, const char* file, std::size_t line)
+	static void debug_assert(bool condition, const char* text="", std::size_t code=0)
 	{
 #ifdef __DEBUG
 		while(not condition)
 		{
 			volatile std::size_t i;
-			for(i=line; i>file[0]; i--);
+			for(i=code; i>text[0]; i--);	// Make sure text and code are used to tell the compiler not to ingore them
 		}
 #endif
 	}
 }}}
 
 
+
+/***********************************************************************************************//**
+ * 	Macro to use assert storing __FILE__ as assert description and __LINE__ as code.
+ * 	If __DEBUG is defined, calls debug_assert function.
+ * 	Else does nothing
+ **************************************************************************************************/
 #ifdef __DEBUG
-#define assert(condition)	yahal::error::details::assert(condition, __FILE__, __LINE__)
+#define DEBUG_ASSERT(condition)	yahal::error::details::debug_assert(condition, __FILE__, __LINE__)
 #else
-#define assert(condition)	do{}while(0)
+#define DEBUG_ASSERT(condition)	do{}while(0)
 #endif
 
+
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	 // __YAHAL_ERROR_ASSERT_HPP_INCLUDED__
+#endif 	 // __YAHAL_ERROR_DEBUG_ASSERT_HPP_INCLUDED__

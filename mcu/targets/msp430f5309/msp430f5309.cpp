@@ -30,6 +30,51 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 
+#include "gpio/port.hpp"
+
+
+namespace yahal{
+namespace mcu{
+/* ---------------------------------------------------------------------------------------------- */
+
+
+// GPIO
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT1
+	yahal::mcu::targets::msp430f5309::Port1& port1 =
+			yahal::mcu::targets::msp430f5309::Port1::getInstance();
+#endif
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
+	yahal::mcu::targets::msp430f5309::Port2& port2 =
+			yahal::mcu::targets::msp430f5309::Port2::getInstance();
+#endif
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT3
+	yahal::mcu::targets::msp430f5309::Port3& port3 =
+			yahal::mcu::targets::msp430f5309::Port3::getInstance();
+#endif
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT4
+	yahal::mcu::targets::msp430f5309::Port4& port4 =
+			yahal::mcu::targets::msp430f5309::Port4::getInstance();
+#endif
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT5
+	yahal::mcu::targets::msp430f5309::Port5& port5 =
+			yahal::mcu::targets::msp430f5309::Port5::getInstance();
+#endif
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT6
+	yahal::mcu::targets::msp430f5309::Port6& port6 =
+			yahal::mcu::targets::msp430f5309::Port6::getInstance();
+#endif
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+} //namespace yahal
+} //namespace mcu
+
+
+
+
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
 yahal::mcu::targets::msp430f5309::Msp430f5309::Msp430f5309(void) :
@@ -45,12 +90,12 @@ yahal::mcu::targets::msp430f5309::Msp430f5309::Msp430f5309(void) :
 		clk(yahal::mcu::targets::msp430f5309::Clk::getInstance()),
 	#endif
 
-
+/*
 	// GPIO
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_GPIO
-		gpio(yahal::mcu::targets::msp430f5309::Gpio::getInstance()),
+	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT1
+		port1(yahal::mcu::targets::msp430f5309::Port1::getInstance()),
 	#endif
-
+*/
 
 	// TIMER_A1
 	//#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1

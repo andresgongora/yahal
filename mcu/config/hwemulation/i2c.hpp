@@ -23,40 +23,21 @@
 	+-----------------------------------------------------------------------+	*/
 
 
-
-#ifndef __MSP430F2132_WDT_HPP_INCLUDED__
-#define __MSP430F2132_WDT_HPP_INCLUDED__
-
+#ifndef __YAHAL_MCU_CONFIG_HWEMULATION_I2C_HPP_INCLUDED__
+#define __YAHAL_MCU_CONFIG_HWEMULATION_I2C_HPP_INCLUDED__
 
 
-/* ---------------------------------------------------------------------------------------------- */
-#include "hal/mcu/devices/msp430f2132/msp430f2132.hpp"
-#ifdef __MSP430F2132_WDT_ENABLED__
-
-#include "hal/mcu/virtual/wdt/wdt.hpp"
+#include "../../targets/targets.hpp"		// HW modules
 
 
 
-/* ============================================================================================== */
- *	DECLARATION::WDT
- * ============================================================================================== */
-class hal::uc::msp430f2132::Wdt : public hal::uc::Wdt
-{
-public:
-				// INITIALIZATION
-	bool			init(void);
-	void			reset(void);
-};
+/* =================================================================================================
+	I2C
+================================================================================================= */
+
+#define YAHAL_MCU_HWEMULATION_I2C_MASTER_ENABLED	false
 
 
-/* ============================================================================================== */
- *	hal::uc::msp430f2132::Wdt :: GLOBAL VARIABLE
- * ============================================================================================== */
-
-namespace hal{namespace uc{namespace msp430f2132{
-	extern hal::uc::msp430f2132::Wdt wdt;
-}}}
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // __MSP430F2132_WDT_ENABLED__
-#endif // __MSP430F2132_WDT_HPP_INCLUDED__
+#endif // __YAHAL_MCU_CONFIG_HWEMULATION_I2C_HPP_INCLUDED__

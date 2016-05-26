@@ -27,7 +27,7 @@
 
 
 
-namespace yahal{ namespace mcu{ namespace empty{
+namespace yahal{ namespace mcu{ namespace targets {namespace empty{
 
 	class Port;
 
@@ -37,7 +37,7 @@ namespace yahal{ namespace mcu{ namespace empty{
 		class isrHandler;
 	}
 
-}}}
+}}}}
 
 
 

@@ -62,8 +62,6 @@
 #define __YAHAL_MCU_HPP_INCLUDED__
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
 #include "config/mcu_config.hpp"
 #include "modules/modules.hpp"
 #include "targets/targets.hpp"

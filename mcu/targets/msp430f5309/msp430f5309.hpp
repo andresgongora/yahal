@@ -32,7 +32,7 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#include "../../config/mcu_config.hpp"
+#include "../../config/config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 #include "msp430f5309_namespace.hpp"
@@ -58,6 +58,15 @@ namespace yahal{ namespace mcu{
 }}
 
 
+namespace yahal{
+namespace mcu{
+
+extern yahal::mcu::targets::msp430f5309::Port1& port1;
+
+} //namespace yahal
+} //namespace mcu
+
+
 
 /***********************************************************************************************//**
  * @brief
@@ -81,10 +90,10 @@ public:
 		yahal::mcu::targets::msp430f5309::Clk& clk;
 	#endif
 
-
+/*
 	// GPIO
 	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT1
-		yahal::mcu::targets::msp430f5309::Port1	port1;
+		yahal::mcu::targets::msp430f5309::Port1& port1;
 	#endif
 	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
 		yahal::mcu::targets::msp430f5309::Port1	port2;
@@ -101,7 +110,7 @@ public:
 	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT6
 		yahal::mcu::targets::msp430f5309::Port1	port6;
 	#endif
-
+*/
 
 
 

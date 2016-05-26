@@ -32,33 +32,43 @@
 
 
 
+
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::empty::Port : public yahal::mcu::modules::Port
+class yahal::mcu::targets::empty::Port :
+	public yahal::mcu::modules::Port,
+	public cool::pattern::creational::Singleton<Port>
 {
 public:
-				class Pin : public yahal::mcu::modules::Port::Pin
+				class Pin :
+					public yahal::mcu::modules::Port::Pin
 				{
 				public:
-					virtual void	setAsInput(void) {}
-					virtual void 	setAsOutput(void) {}
-					virtual void	set(bool b) {}
-					virtual bool	get(void) const {return false;}
-					virtual void	toggle(void) {}
+					virtual void	setAsInput(void)	{}
+					virtual void 	setAsOutput(void) 	{}
+					virtual void	set(bool b) 		{}
+					virtual bool	get(void) const 	{ return false; }
+					virtual void	toggle(void) 		{}
 				};
-				//----------------------------------------------------------
-public:
-	virtual void		setAsInput(uint8_t mask = 0xFF) {}
-	virtual void		setAsOutput(uint8_t mask = 0xFF) {}
-	virtual void		set(uint8_t value, uint8_t mask=0xFF) {}
-	virtual void		toggle(uint8_t mask=0xFF) {}
-	virtual uint8_t		get(uint8_t mask=0xFF)const {return false;}
 
-	virtual Pin&		pin(uint8_t pin_number) {return empty_pin_;}
+				//----------------------------------------------------------
+private:
+
+	friend class		cool::pattern::creational::Singleton<Port>;
+				Port(void) {}
+
+
+public:
+	virtual void		setAsInput(uint8_t mask = 0xFF) 	{}
+	virtual void		setAsOutput(uint8_t mask = 0xFF) 	{}
+	virtual void		set(uint8_t value, uint8_t mask=0xFF)	{}
+	virtual void		toggle(uint8_t mask=0xFF) 		{}
+	virtual uint8_t		get(uint8_t mask=0xFF)const		{ return false; }
+	virtual Pin&		pin(uint8_t pin_number)			{ return pin_; }
 
 private:
-	Pin			empty_pin_;
+	Pin			pin_;
 };
 
 
