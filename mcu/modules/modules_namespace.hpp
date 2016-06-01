@@ -33,6 +33,8 @@
 namespace yahal{ namespace mcu{ namespace modules{
 
 	// MODULES
+	class BaseModule;
+
 	class Clk;
 	class Port;
 	class Wdt;
@@ -46,10 +48,15 @@ namespace yahal{ namespace mcu{ namespace modules{
 	typedef Timer<uint32_t>	Timer32;
 	typedef Timer<uint64_t>	Timer64;
 
+	template<typename T_DERIVED> class IrqHandler;
+	template<typename T_CODE> class IsrProvider;
 
 	// DETAILS
 	namespace details{
-		class IsrHandler;
+
+
+
+
 		class GpioConfiguration;
 		class I2CCommon;
 		class Timer;

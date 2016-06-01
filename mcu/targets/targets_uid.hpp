@@ -34,7 +34,7 @@
 	EMPTY
 ================================================================================================= */
 
-#define YAHAL_MCU_EMPTY			0
+#define YAHAL_MCU_EMPTY			EMPTY_TARGET
 
 
 
@@ -42,9 +42,9 @@
 	TEXAS INSTRUMENTS :: MSP430
 ================================================================================================= */
 
-#define YAHAL_MCU_MSP430F2132		102132
-#define YAHAL_MCU_MSP430F2013		102013
-#define YAHAL_MCU_MSP430F5309		105309
+#define YAHAL_MCU_MSP430F2132		MSP430F2132
+#define YAHAL_MCU_MSP430F2013		MSP430F2013
+#define YAHAL_MCU_MSP430F5309		MSP430F5309
 
 
 
@@ -52,7 +52,7 @@
 	MICROCHIP :: PIC
 ================================================================================================= */
 
-#define YAHAL_MCU_PIC24FJ32GB002B	200000
+#define YAHAL_MCU_PIC24FJ32GB002B	PIC24FJ32GB002B
 
 
 

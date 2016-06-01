@@ -30,41 +30,20 @@
 #define __YAHAL_MCU_MSP430F5309_HPP_INCLUDED__
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
 #include "../../config/config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+
+#include <stdint.h>
+#include <msp430f5309.h>
 #include "msp430f5309_namespace.hpp"
 #include "../../config/targets/msp430f5309.hpp"
 
-#include "adc_10/adc_10.hpp"
+
 #include "clk/clk.hpp"
-#include "wdt/wdt.hpp"
 #include "gpio/port.hpp"
-/*
-#include "usci_b1/i2c/i2c_master.hpp"
-#include "usci_b1/i2c/i2c_slave.hpp"
-#include "usci_b1/i2c/i2c_multimaster.hpp"*/
+#include "wdt/wdt.hpp"
 
-#include "timer_a1/timer_a1.hpp"
-#include "irq/irq_handler.hpp"
-
-
-
-//TODO:: move this somewhere else
-namespace yahal{ namespace mcu{
-	typedef yahal::mcu::targets::msp430f5309::Msp430f5309 Target;
-}}
-
-
-namespace yahal{
-namespace mcu{
-
-extern yahal::mcu::targets::msp430f5309::Port1& port1;
-
-} //namespace yahal
-} //namespace mcu
 
 
 
@@ -74,43 +53,48 @@ extern yahal::mcu::targets::msp430f5309::Port1& port1;
 class yahal::mcu::targets::msp430f5309::Msp430f5309
 {
 protected:
-	Msp430f5309(void);
+				// CONSTRUCTOR
+				Msp430f5309(void);
 
 
-	/// Initialize all modules.
-	bool init(void);
-
-
+				//------------------------------------------------------------------
 public:
-	yahal::mcu::targets::msp430f5309::Wdt& wdt;
+
+#ifdef	YAHAL_MCU_MSP430F5309_ENABLE_CLK
+	static Clk YAHAL_MCU_MSP430F5309_NAME_CLK;
+#endif
+
+#ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT1
+	static Port1 YAHAL_MCU_MSP430F5309_NAME_PORT1;
+#endif
+
+#ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT2
+	msp430f5309::Port2	YAHAL_MCU_MSP430F5309_NAME_PORT2;
+#endif
+
+#ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT3
+	msp430f5309::Port3	YAHAL_MCU_MSP430F5309_NAME_PORT3;
+#endif
+
+#ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT4
+	msp430f5309::Port4	YAHAL_MCU_MSP430F5309_NAME_PORT4;
+#endif
+
+#ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT5
+	msp430f5309::Port5	YAHAL_MCU_MSP430F5309_NAME_PORT5;
+#endif
+
+#ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT6
+	msp430f5309::Port6	YAHAL_MCU_MSP430F5309_NAME_PORT6;
+#endif
+
+#ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_WDT
+	static Wdt		YAHAL_MCU_MSP430F5309_NAME_WDT;
+#endif
+
+				//------------------------------------------------------------------
 
 
-	// CLK
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
-		yahal::mcu::targets::msp430f5309::Clk& clk;
-	#endif
-
-/*
-	// GPIO
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT1
-		yahal::mcu::targets::msp430f5309::Port1& port1;
-	#endif
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
-		yahal::mcu::targets::msp430f5309::Port1	port2;
-	#endif
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT3
-		yahal::mcu::targets::msp430f5309::Port1	port3;
-	#endif
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT4
-		yahal::mcu::targets::msp430f5309::Port1	port4;
-	#endif
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT5
-		yahal::mcu::targets::msp430f5309::Port1	port5;
-	#endif
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT6
-		yahal::mcu::targets::msp430f5309::Port1	port6;
-	#endif
-*/
 
 
 
@@ -151,8 +135,17 @@ public:
 	#endif*/
 
 private:
-	const int	dummy;
+	const uint8_t	dummy_;
 };
+
+
+
+
+namespace yahal{
+namespace mcu{
+typedef yahal::mcu::targets::msp430f5309::Msp430f5309 Target;
+}
+}
 
 
 

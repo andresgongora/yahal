@@ -22,8 +22,10 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+
 #include "wdt.hpp"
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_WDT
+
 
 #include <msp430f5309.h>
 
@@ -46,4 +48,4 @@ void yahal::mcu::targets::msp430f5309::Wdt::reset(void)
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_MSP430F5309_ENABLE_WDT
+#endif	// YAHAL_MCU_MSP430F5309_ENABLE_WDT

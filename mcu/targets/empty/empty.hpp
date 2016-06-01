@@ -26,10 +26,8 @@
 #define __YAHAL_MCU_TARGETS_EMPTY_HPP_INCLUDED__
 
 
-
 #include "empty_namespace.hpp"
 #include "gpio/port.hpp"
-
 
 
 /* ---------------------------------------------------------------------------------------------- */

@@ -30,9 +30,8 @@
 #ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
 
 
-#include "../../../modules/clk/clk.hpp"
 #include "../msp430f5309_namespace.hpp"
-#include "../../../../cool/src/pattern/creational/singleton.hpp"
+#include "../../../modules/clk/clk.hpp"
 
 
 
@@ -40,8 +39,7 @@
  * @brief
  **************************************************************************************************/
 class yahal::mcu::targets::msp430f5309::Clk :
-	public yahal::mcu::modules::Clk,
-	public cool::pattern::creational::Singleton<Clk>
+	public yahal::mcu::modules::Clk
 {
 public:
 				struct Frequency{enum Type{
@@ -67,9 +65,9 @@ public:
 
 				// -----------------------------------------------------------------
 private:
-				// SINGLETON
+	friend class		yahal::mcu::targets::msp430f5309::Msp430f5309;
 				Clk(void);
-	friend class		cool::pattern::creational::Singleton<Clk>;
+
 
 public:
 	bool			setFrequencyHz(uint32_t desiredFrequencyHz);

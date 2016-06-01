@@ -22,25 +22,26 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+
 #ifndef __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__
 #define __YAHAL_MCU_MSP430F5309_NAMESPACE_HPP_INCLUDED__
 
 
-
-/* ---------------------------------------------------------------------------------------------- */
-#include "../../config/mcu_config.hpp"
+#include "../../config/config.hpp"
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
+
 #include <stdint.h>
+#include <msp430f5309.h>
+
 
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 
 		class Msp430f5309;
 
-		class Adc10;
 		class Clk;
 		class Wdt;
-		class IrqHandler;
+
 
 		template<volatile uint8_t& T_DIR,
 			 volatile uint8_t& T_OUT,
@@ -48,17 +49,14 @@ namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 			 volatile uint8_t& T_REN>
 		class Port;
 
-		class UsciB1;
-	//	class I2CMaster;
-	//	class I2CSlave;
-	//	class I2CMultimaster;
 
-		class TimerA1;
+		typedef Port<P1DIR, P1OUT, P1IN, P1REN> Port1;
+		typedef Port<P2DIR, P2OUT, P2IN, P2REN> Port2;
+		typedef Port<P3DIR, P3OUT, P3IN, P3REN> Port3;
+		typedef Port<P3DIR, P3OUT, P3IN, P3REN> Port4;
+		typedef Port<P3DIR, P3OUT, P3IN, P3REN> Port5;
+		typedef Port<P3DIR, P3OUT, P3IN, P3REN> Port6;
 
-		namespace irq{
-			class Adc10;
-			class TimerA1;
-		}
 }}}} // namespace yahal::mcu::targets::msp430f5309
 
 

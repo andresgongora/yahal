@@ -26,19 +26,28 @@
 	+-----------------------------------------------------------------------+ */
 
 
-#include "mcu.hpp"
+#ifndef __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__
 
 
-yahal::mcu::Mcu::Mcu(void)
+#include <stdint.h>
+#include "modules_namespace.hpp"
+#include "../../cool/src/idiom/trait/nonheapable.hpp"
+#include "../../cool/src/idiom/trait/noncopyable.hpp"
+
+
+
+/***********************************************************************************************//**
+ * Base class for all modules
+ **************************************************************************************************/
+class yahal::mcu::modules::BaseModule// :
+//	public cool::idiom::trait::NonHeapable,
+//	public cool::idiom::trait::NonCopyable
 {
-}
 
-
-bool yahal::mcu::Mcu::init(void)
-{
-	return true;
-}
+};
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
+#endif 	//__YAHAL_MCU_MODULES_BASE_MODULE_HPP_INCLUDED__

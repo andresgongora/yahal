@@ -22,34 +22,55 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
-#ifndef __YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
+
+#ifndef __YAHAL_MCU_MODULES_ISR_PROVIDER_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_ISR_PROVIDER_HPP_INCLUDED__
 
 
-/* ---------------------------------------------------------------------------------------------- */
-//#include "../../../utility/oop/noncopyable.hpp"
-//#include "../../../utility/oop/nonheapable.hpp"
 #include <stdint.h>
+#include "../modules_namespace.hpp"
+//#include "../../../cool/src/pattern/decoupling/service_locator.hpp"
+#include "../../../error/debug_assert.hpp"
 
 
-/* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{ namespace modules{
-	class IrqHandler;
-}}}
+
+
 
 
 
 /***********************************************************************************************//**
  * @brief	Base class for all IRQ handlers.
  **************************************************************************************************/
+/*template<typename T_DERIVED>
 class yahal::mcu::modules::IrqHandler
 {
 public:
-	virtual void		enableGlobalIrq(void) = 0;
-	virtual void		disableGlobalIrq(void) = 0;
+	//virtual void		enableGlobalIrq(void) = 0;
+	//virtual void		disableGlobalIrq(void) = 0;
+
+
+
+	//cool::pattern::decoupling::ServiceLocator<T_DERIVED> handler_;
+
+				IrqHandler(void) {handler_ = static_cast<T_DERIVED*>(this);}
+
+	static void		irq(uint8_t code)
+				{
+					DEBUG_ASSERT(handler_ != NULL);
+					handler_->isr(code);
+				}
+
+	virtual void		isr(uint8_t code) {for(;;);}
+
+
+	static T_DERIVED*	handler_;
+
 };
 
+template<typename T_DERIVED>
+T_DERIVED* yahal::mcu::modules::IrqHandler<T_DERIVED>::handler_ = NULL;
+*/
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_MODULES_ISR_PROVIDER_HPP_INCLUDED__

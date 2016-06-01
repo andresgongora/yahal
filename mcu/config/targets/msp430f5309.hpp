@@ -32,22 +32,44 @@
 
 
 
-//#define	YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
-#define	YAHAL_MCU_MSP430F5309_ENABLE_CLK
+/* =================================================================================================
+	GPIO
+================================================================================================= */
+
 #define	YAHAL_MCU_MSP430F5309_ENABLE_PORT1
 //#define	YAHAL_MCU_MSP430F5309_ENABLE_PORT2
 //#define	YAHAL_MCU_MSP430F5309_ENABLE_PORT3
 //#define	YAHAL_MCU_MSP430F5309_ENABLE_PORT4
 //#define	YAHAL_MCU_MSP430F5309_ENABLE_PORT5
 //#define	YAHAL_MCU_MSP430F5309_ENABLE_PORT6
+
+#define	YAHAL_MCU_MSP430F5309_NAME_PORT1	port1
+#define	YAHAL_MCU_MSP430F5309_NAME_PORT2	port2
+#define	YAHAL_MCU_MSP430F5309_NAME_PORT3	port3
+#define	YAHAL_MCU_MSP430F5309_NAME_PORT4	port3
+#define	YAHAL_MCU_MSP430F5309_NAME_PORT5	port4
+#define	YAHAL_MCU_MSP430F5309_NAME_PORT6	port5
+
+
+/* =================================================================================================
+	WDT
+================================================================================================= */
 #define	YAHAL_MCU_MSP430F5309_ENABLE_WDT
-#define	YAHAL_MCU_MSP430F5309_ENABLE_IRQ
-//#define	YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
+#define	YAHAL_MCU_MSP430F5309_NAME_WDT		wdt
 
 
+/* =================================================================================================
+	CLK
+================================================================================================= */
+#define	YAHAL_MCU_MSP430F5309_ENABLE_CLK
+#define	YAHAL_MCU_MSP430F5309_NAME_CLK		clk
 
 
 /* ---------------------------------------------------------------------------------------------- */
+//#define	YAHAL_MCU_MSP430F5309_ENABLE_IRQ
+//#define	YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
+
+//#define	YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
 
 
 
@@ -72,5 +94,5 @@
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif // YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
-#endif // __YAHAL_MCU_TARGETS_MSP430F5309_CONFIGHPP_INCLUDED__
+#endif	// YAHAL_MCU_DEVICE == YAHAL_MCU_MSP430F5309
+#endif	// __YAHAL_MCU_TARGETS_MSP430F5309_CONFIGHPP_INCLUDED__

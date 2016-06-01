@@ -26,20 +26,21 @@
 #define __YAHAL_MCU_EMPTY_NAMESPACE_HPP_INCLUDED__
 
 
+namespace yahal{
+namespace mcu{
+namespace targets{
+namespace empty{
+/* ---------------------------------------------------------------------------------------------- */
 
-namespace yahal{ namespace mcu{ namespace targets {namespace empty{
 
-	class Port;
+class Port;
 
-
-	namespace details
-	{
-		class isrHandler;
-	}
-
-}}}}
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
+}	// namespace empty
+}	// namespace targets
+}	// namespace mcu
+}	// namespace yahal
 #endif	// __YAHAL_MCU_EMPTY__NAMESPACE_HPP_INCLUDED__

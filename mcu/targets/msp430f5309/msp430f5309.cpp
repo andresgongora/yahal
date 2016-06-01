@@ -30,47 +30,10 @@
 #if YAHAL_MCU_TARGET == YAHAL_MCU_MSP430F5309
 
 
+#include "adc_10/adc_10.hpp"
+#include "clk/clk.hpp"
 #include "gpio/port.hpp"
-
-
-namespace yahal{
-namespace mcu{
-/* ---------------------------------------------------------------------------------------------- */
-
-
-// GPIO
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT1
-	yahal::mcu::targets::msp430f5309::Port1& port1 =
-			yahal::mcu::targets::msp430f5309::Port1::getInstance();
-#endif
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
-	yahal::mcu::targets::msp430f5309::Port2& port2 =
-			yahal::mcu::targets::msp430f5309::Port2::getInstance();
-#endif
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT3
-	yahal::mcu::targets::msp430f5309::Port3& port3 =
-			yahal::mcu::targets::msp430f5309::Port3::getInstance();
-#endif
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT4
-	yahal::mcu::targets::msp430f5309::Port4& port4 =
-			yahal::mcu::targets::msp430f5309::Port4::getInstance();
-#endif
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT5
-	yahal::mcu::targets::msp430f5309::Port5& port5 =
-			yahal::mcu::targets::msp430f5309::Port5::getInstance();
-#endif
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT6
-	yahal::mcu::targets::msp430f5309::Port6& port6 =
-			yahal::mcu::targets::msp430f5309::Port6::getInstance();
-#endif
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-} //namespace yahal
-} //namespace mcu
-
-
+#include "wdt/wdt.hpp"
 
 
 
@@ -78,48 +41,31 @@ namespace mcu{
 
 /* ---------------------------------------------------------------------------------------------- */
 yahal::mcu::targets::msp430f5309::Msp430f5309::Msp430f5309(void) :
-
-	// ADC_10
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_ADC_10
-		adc_10(yahal::mcu::targets::msp430f5309::Adc10 adc_10),
-	#endif
-
-
-	// CLK
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
-		clk(yahal::mcu::targets::msp430f5309::Clk::getInstance()),
-	#endif
-
-/*
-	// GPIO
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT1
-		port1(yahal::mcu::targets::msp430f5309::Port1::getInstance()),
-	#endif
-*/
-
-	// TIMER_A1
-	//#ifdef YAHAL_MCU_MSP430F5309_ENABLE_TIMER_A1
-	//	timer_a1(yahal::mcu::targets::msp430f5309::TimerA1::getInstance()),
-	//#endif
-
-
-	// WDT
-	#ifdef YAHAL_MCU_MSP430F5309_ENABLE_WDT
-		wdt(yahal::mcu::targets::msp430f5309::Wdt::getInstance()),
-	#endif
-
-
-	dummy(0)	// dummy is used in case no module is enabled
-{}
-
-
-
-/* ---------------------------------------------------------------------------------------------- */
-bool yahal::mcu::targets::msp430f5309::Msp430f5309::init(void)
+	dummy_(0)	// dummy is used in case no module is enabled
 {
-	return true;
-}// init
 
+}
+
+
+#ifdef YAHAL_MCU_MSP430F5309_ENABLE_CLK
+	yahal::mcu::targets::msp430f5309::Clk
+		yahal::mcu::targets::msp430f5309::Msp430f5309::clk;
+#endif
+
+
+#ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT1
+	yahal::mcu::targets::msp430f5309::Port1	yahal::mcu::targets::msp430f5309::Msp430f5309::port1;
+#endif
+
+
+#ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_WDT
+	yahal::mcu::targets::msp430f5309::Wdt
+		yahal::mcu::targets::msp430f5309::Msp430f5309::wdt;
+#endif
+
+/*yahal::mcu::targets::msp430f5309::Port1 yahal::mcu::targets::msp430f5309::Msp430f5309::port1;
+yahal::mcu::targets::msp430f5309::Clk yahal::mcu::targets::msp430f5309::Msp430f5309::clk;
+yahal::mcu::targets::msp430f5309::Wdt yahal::mcu::targets::msp430f5309::Msp430f5309::wdt;*/
 
 
 /* ---------------------------------------------------------------------------------------------- */

@@ -29,6 +29,7 @@
 
 #include <stdint.h>
 #include "../modules_namespace.hpp"
+#include "../base_module.hpp"
 
 
 
@@ -36,7 +37,8 @@
  * Base class for all PORT Ports.
  * Declared inside Gpio.
  **************************************************************************************************/
-class yahal::mcu::modules::Port
+class yahal::mcu::modules::Port :
+	public yahal::mcu::modules::BaseModule
 {
 public:
 	class 			Pin;

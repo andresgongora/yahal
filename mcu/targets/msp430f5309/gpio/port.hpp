@@ -37,20 +37,12 @@
 
 
 #include <stdint.h>
+#include <msp430f5309.h>
+#include "../msp430f5309_namespace.hpp"
 #include "../../../modules/gpio/port.hpp"
-#include "../../../../cool/src/pattern/creational/singleton.hpp"
+#include "../../../modules/irq/isr_provider.hpp"
 #include "../../../../utility/data/mask.hpp"
 #include "../../../../error/debug_assert.hpp"
-#include "../../empty/gpio/port.hpp"
-#include <msp430f5309.h>
-
-
-namespace yahal{
-namespace mcu{
-namespace targets{
-namespace msp430f5309{
-/* ---------------------------------------------------------------------------------------------- */
-
 
 
 namespace{
@@ -72,14 +64,17 @@ namespace{
  * @tparam	T_OUT	output buffer register
  * @tparam	T_IN	input buffer register
  * @tparam	T_REN	pull-up/pull-down control register
+ *
+ * @note	Some functions are static in order to give the Pin class access to them without
+ *		need for a pointer/instance/reference to Port.
  **************************************************************************************************/
 template<volatile uint8_t& T_DIR,
 	 volatile uint8_t& T_OUT,
 	 volatile uint8_t& T_IN,
 	 volatile uint8_t& T_REN>
-class Port :
+class yahal::mcu::targets::msp430f5309::Port :
 	public yahal::mcu::modules::Port,
-	public cool::pattern::creational::Singleton<Port<T_DIR,T_OUT,T_IN,T_REN> >
+	public yahal::mcu::modules::IsrProvider<int>
 {
 	/// This class serves as entry point to access Port's private configuration function.
 	/// By returning a instance of this class to the user configuration can be done with
@@ -136,11 +131,11 @@ class Port :
 					config(pin_bit_)
 				{}
 
-		virtual void	setAsInput(void) {setAsInput_(pin_bit_);}
-		virtual void	setAsOutput(void){setAsOutput_(pin_bit_);}
-		virtual void	set(bool b)	 {set_(pin_bit_, pin_bit_);}
-		virtual bool	get(void) const  {return get_(pin_bit_);}
-		virtual void	toggle(void)	 {toggle_(pin_bit_);}
+		virtual void	setAsInput(void) { setAsInput_(pin_bit_); }
+		virtual void	setAsOutput(void){ setAsOutput_(pin_bit_); }
+		virtual void	set(bool b)	 { set_(pin_bit_, pin_bit_); }
+		virtual bool	get(void) const  { return get_(pin_bit_); }
+		virtual void	toggle(void)	 { toggle_(pin_bit_); }
 
 		Configuration	config;
 
@@ -150,9 +145,11 @@ class Port :
 	};
 
 	//------------------------------------------------------------------------------------------
-private:
+//private:
 
-	friend class 		cool::pattern::creational::Singleton<Port<T_DIR,T_OUT,T_IN,T_REN> >;
+//	friend class 		cool::pattern::creational::Singleton<Port<T_DIR,T_OUT,T_IN,T_REN> >;
+//	friend class		yahal::mcu::targets::msp430f5309::Msp430f5309;
+public:
 				Port(void) :
 					pin0_(0),
 					pin1_(1),
@@ -173,6 +170,9 @@ public:
 	virtual uint8_t		get(uint8_t mask = 0xFF) const		{ return get_(mask); }
 	virtual void 		toggle(uint8_t mask = 0xFF)		{ toggle_(mask); }
 
+	virtual void		isr(int){}
+	virtual void 		enableIrq(void) {}
+	virtual void 		disableIrq(void) {}
 
 				/// Returns reference to specified pin (from 0 - 7).
 				/// Returns empty instance if pin does not exist.
@@ -270,41 +270,10 @@ private:
 
 
 
-#endif	// YAHAL_MCU_MSP430F5309_ENABLE_PORT#
 
-/* =================================================================================================
-	PORT TYPEDEFS
-================================================================================================= */
-
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT1
-	typedef Port<P1DIR,P1OUT,P1IN,P1REN> Port1;
-#endif
-
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
-	typedef Port<P2DIR,P2OUT,P2IN,P2REN> Port2;
-#endif
-
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
-	typedef Port<P3DIR,P3OUT,P3IN,P3REN> Port3;
-#endif
-
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
-	typedef Port<P4DIR,P4OUT,P4IN,P4REN> Port4;
-#endif
-
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
-	typedef Port<P5DIR,P5OUT,P5IN,P5REN> Port5;
-#endif
-
-#ifdef YAHAL_MCU_MSP430F5309_ENABLE_PORT2
-	typedef Port<P6DIR,P6OUT,P6IN,P6REN> Port6;
-#endif
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-}	// namespace msp430f5309
-}	// namespace targets
-}	// namespace mcu
-}	// namespace yahal
-#endif // __YAHAL_MCU_MSP430F5309_PORT_HPP_INCLUDED__
+#endif	// YAHAL_MCU_MSP430F5309_ENABLE_PORT#
+#endif	// __YAHAL_MCU_MSP430F5309_PORT_HPP_INCLUDED__

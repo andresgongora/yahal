@@ -22,44 +22,27 @@
 	|									|
 	+-----------------------------------------------------------------------+	*/
 
+
 #ifndef __YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
 #define __YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
 
 
 #include "../modules_namespace.hpp"
-#include "../../../cool/src/pattern/creational/singleton.hpp"
-
 
 
 
 /***********************************************************************************************//**
- * @brief	Base class for all ISR handlers.
+ * @brief
  **************************************************************************************************/
-class yahal::mcu::modules::details::IsrHandler
+template<typename T_CODE>
+class yahal::mcu::modules::IsrProvider
 {
 public:
-	virtual void		isr(int) = 0;
+	virtual void		isr(T_CODE) = 0;
+
 protected:
 	virtual void 		enableIrq(void) = 0;
 	virtual void 		disableIrq(void) = 0;
-public:
-	class Empty;
-};
-
-
-
-/***********************************************************************************************//**
- * @brief	IsrHandler empty derived
- **************************************************************************************************/
-class yahal::mcu::modules::details::IsrHandler::Empty :
-	public yahal::mcu::modules::details::IsrHandler,
-	public cool::pattern::creational::Singleton<Empty>
-{
-public:
-	virtual inline void 	isr(int)	{}
-private:
-	virtual inline void 	enableIrq(void)	{}
-	virtual inline void 	disableIrq(void){}
 };
 
 

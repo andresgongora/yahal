@@ -62,68 +62,39 @@
 #define __YAHAL_MCU_HPP_INCLUDED__
 
 
-#include "config/mcu_config.hpp"
+#include "config/config.hpp"
 #include "modules/modules.hpp"
 #include "targets/targets.hpp"
 //#include "hwemulation/hwemulation.hpp"
+#include "targets/empty/empty.hpp"
 
 
-
-
-#if false ////
-
-namespace yahal{ namespace mcu{
-
-bool init(void)
-{
-	bool success = true;
-
-	success &= yahal::mcu::targets::init();
-
-	return success;
-}
-
-}}
-
-#endif
-
-
-
-
-
+namespace yahal{
+namespace mcu{
 /* ---------------------------------------------------------------------------------------------- */
-namespace yahal{ namespace mcu{
-	class Mcu;
-}}
 
-extern yahal::mcu::Mcu& mcu;
+
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-class yahal::mcu::Mcu :
-	public yahal::mcu::Target
+class Mcu :
+	public yahal::mcu::Target,
+	public cool::pattern::creational::Singleton<Mcu>
 {
 public:
-	bool			init(void){
-					bool success = true;
+	bool			init(void);
 
-					success &= Target::init();
-					//HWEmulation::init();
 
-					return success;
-				}
 
-//	static Mcu&		getInstance(void);
-
-//private:
-				Mcu(void) {}
-//	static Mcu		instance_;
-
+private:
+	friend class		cool::pattern::creational::Singleton<Mcu>;
+				Mcu(void);
 };
 
 
 
-
 /* ---------------------------------------------------------------------------------------------- */
+}	// namespace mcu
+}	// namespace yahal
 #endif	// __YAHAL_MCU_HPP_INCLUDED__
