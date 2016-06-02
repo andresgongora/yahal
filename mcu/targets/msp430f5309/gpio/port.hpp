@@ -39,6 +39,7 @@
 #include <stdint.h>
 #include <msp430f5309.h>
 #include "../msp430f5309_namespace.hpp"
+#include "../irq/irq_codes.hpp"
 #include "../../../modules/gpio/port.hpp"
 #include "../../../modules/irq/isr_provider.hpp"
 #include "../../../../utility/data/mask.hpp"
@@ -74,7 +75,7 @@ template<volatile uint8_t& T_DIR,
 	 volatile uint8_t& T_REN>
 class yahal::mcu::targets::msp430f5309::Port :
 	public yahal::mcu::modules::Port,
-	public yahal::mcu::modules::IsrProvider<int>
+	public yahal::mcu::modules::IsrProvider<yahal::mcu::targets::msp430f5309::irq::Port::Type>
 {
 	/// This class serves as entry point to access Port's private configuration function.
 	/// By returning a instance of this class to the user configuration can be done with
@@ -147,9 +148,7 @@ class yahal::mcu::targets::msp430f5309::Port :
 	//------------------------------------------------------------------------------------------
 //private:
 
-//	friend class 		cool::pattern::creational::Singleton<Port<T_DIR,T_OUT,T_IN,T_REN> >;
-//	friend class		yahal::mcu::targets::msp430f5309::Msp430f5309;
-public:
+	friend class		yahal::mcu::targets::msp430f5309::Msp430f5309;
 				Port(void) :
 					pin0_(0),
 					pin1_(1),
@@ -170,9 +169,10 @@ public:
 	virtual uint8_t		get(uint8_t mask = 0xFF) const		{ return get_(mask); }
 	virtual void 		toggle(uint8_t mask = 0xFF)		{ toggle_(mask); }
 
-	virtual void		isr(int){}
-	virtual void 		enableIrq(void) {}
-	virtual void 		disableIrq(void) {}
+	virtual void		isr(irq::Port::Type)	{}
+	virtual void 		enableIrq(void)		{}
+	virtual void 		disableIrq(void)	{}
+
 
 				/// Returns reference to specified pin (from 0 - 7).
 				/// Returns empty instance if pin does not exist.
