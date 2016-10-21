@@ -54,7 +54,7 @@ yahal::mcu::targets::msp430f5309::Msp430f5309::Msp430f5309(void) :
 
 
 #ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT1
-	yahal::mcu::targets::msp430f5309::Port1	yahal::mcu::targets::msp430f5309::Msp430f5309::port1;
+//	yahal::mcu::targets::msp430f5309::Port1	yahal::mcu::targets::msp430f5309::Msp430f5309::port1;
 #endif
 
 

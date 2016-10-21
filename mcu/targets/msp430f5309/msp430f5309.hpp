@@ -66,7 +66,9 @@ public:
 #endif
 
 #ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT1
-	static Port1 YAHAL_MCU_MSP430F5309_NAME_PORT1;
+//	static Port1 YAHAL_MCU_MSP430F5309_NAME_PORT1;
+//	PortManager<hw::Port1,8> port1;
+	Portazo1 port1;
 #endif
 
 #ifdef 	YAHAL_MCU_MSP430F5309_ENABLE_PORT2

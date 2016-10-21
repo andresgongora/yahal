@@ -27,6 +27,15 @@
 	 *	hacer tmb un subscriber tipo MSP::TIMERA1, que cualquier clase que derive de este subscriber automaticamente (y const) quede suscrito al timer correcto. Por tanto requiero de singletons.
 	 *
 	 *	- Propuesta para singletons: estudiar la posibilidad de usar singletons, pero no exponer que sea singletons fuera de mi libreria. Usar solo como herramienta interna a la que el usuario final no pueda acceder. "Protected static-singleton con friendship"
+	 *
+	 *	- Los managers no deben aceptar por referencia, deben HEREDAR (private) del modulo que deben controlar. Esto es para que puedan sobreescribir la funcion ISR con al suya propia, y evitarse el overhead de ser un subscriptor. Tambien me ahorra crear una instancia del modulo que de todas formas va a ser managed. Usar CRTP
+	 *
+	 *
+	 *		mcu.port1.pin6 = 1;
+			mcu.port1.pin6 = 0;
+			if(mcu.port1.pin6 == true);  additionally to set and get
+	 *
+	 *
 	*/
 
 

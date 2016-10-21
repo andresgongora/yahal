@@ -37,6 +37,24 @@
 
 namespace yahal{ namespace mcu{ namespace targets{ namespace msp430f5309{
 
+	namespace hw
+	{
+			template<volatile uint8_t& T_DIR,
+				 volatile uint8_t& T_OUT,
+				 volatile uint8_t& T_IN,
+				 volatile uint8_t& T_REN>
+			class Port;
+
+			//typedef Port<P1DIR, P1OUT, P1IN, P1REN> Port1;
+			typedef Port<P2DIR, P2OUT, P2IN, P2REN> Port2;
+			typedef Port<P3DIR, P3OUT, P3IN, P3REN> Port3;
+			typedef Port<P3DIR, P3OUT, P3IN, P3REN> Port4;
+			typedef Port<P3DIR, P3OUT, P3IN, P3REN> Port5;
+			typedef Port<P3DIR, P3OUT, P3IN, P3REN> Port6;
+
+	}
+
+
 		class Msp430f5309;
 
 		class Clk;

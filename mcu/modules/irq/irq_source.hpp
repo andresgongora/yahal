@@ -23,11 +23,14 @@
 	+-----------------------------------------------------------------------+	*/
 
 
-#ifndef __YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_IRQ_SOURCE_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_IRQ_SOURCE_HPP_INCLUDED__
 
 
+#include <stdint.h>
 #include "../modules_namespace.hpp"
+#include "irq_handler.hpp"
+
 
 
 
@@ -35,14 +38,35 @@
  * @brief
  **************************************************************************************************/
 template<typename T_IRQ>
-class yahal::mcu::modules::IrqHandler
+class yahal::mcu::modules::IrqSource
 {
+public:
+				IrqSource(yahal::mcu::modules::IrqHandler& handler) :
+					p_handler_(handler)	{}
+
+				IrqSource(void) :
+					p_handler_(NULL)	{}
+
 protected:
-	friend class		yahal::mcu::modules::IrqSource<T_IRQ>;
-	virtual void 		isr(T_IRQ irq) = 0;
+	void			setHandler(yahal::mcu::modules::IrqHandler& handler)
+				{
+					p_handler_ = handler;
+				}
+
+
+	void			throwIrq(T_IRQ irq)
+				{
+					if(handler) { p_handler_->isr(irq); }
+				}
+
+
+private:
+	yahal::mcu::modules::IrqHandler<T_IRQ>*	p_handler_;
+
 };
 
 
 
+
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_IRQ_HANDLER_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_MODULES_IRQ_SOURCE_HPP_INCLUDED__

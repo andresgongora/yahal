@@ -23,29 +23,30 @@
 	+-----------------------------------------------------------------------+	*/
 
 
-#ifndef __YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
-#define __YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
+#ifndef __YAHAL_MCU_MODULES_IRQ_FORWARDER_HPP_INCLUDED__
+#define __YAHAL_MCU_MODULES_IRQ_FORWARDER_HPP_INCLUDED__
 
 
 #include "../modules_namespace.hpp"
+#include "isr_handler.hpp"
+#include "isr_source.hpp"
 
 
 
 /***********************************************************************************************//**
  * @brief
  **************************************************************************************************/
-template<typename T_CODE>
-class yahal::mcu::modules::IsrProvider
+template<typename T_IRQ>
+class yahal::mcu::modules::IrqForwarder :
+	public yahal::mcu::modules::IrqSource<T_IRQ>,
+	public yahal::mcu::modules::IrqHandler<T_IRQ>
 {
-public:
-	virtual void		isr(T_CODE) = 0;
-
-protected:
-	virtual void 		enableIrq(void) = 0;
-	virtual void 		disableIrq(void) = 0;
+private:
+	friend class		yahal::mcu::modules::IrqSource<T_IRQ>;
+	virtual void		isr(T_IRQ irq)	{ throwIrq(irq); }
 };
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-#endif 	//__YAHAL_MCU_MODULES_ISR_HANDLER_HPP_INCLUDED__
+#endif 	//__YAHAL_MCU_MODULES_IRQ_FORWARDER_HPP_INCLUDED__

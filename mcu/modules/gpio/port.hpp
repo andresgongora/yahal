@@ -43,14 +43,14 @@ class yahal::mcu::modules::Port :
 public:
 	class 			Pin;
 
+	virtual void		set(uint8_t value, uint8_t mask=0xFF) = 0;
+	virtual uint8_t		get(uint8_t mask=0xFF) const = 0;
+	virtual void		toggle(uint8_t mask=0xFF) = 0;
+
 	virtual void		setAsInput(uint8_t mask=0xFF) = 0;
 	virtual void		setAsOutput(uint8_t mask=0xFF) = 0;
 
-	virtual void		set(uint8_t value, uint8_t mask=0xFF) = 0;
-	virtual uint8_t		get(uint8_t mask=0xFF)const = 0;
-	virtual void		toggle(uint8_t mask=0xFF) = 0;
-
-	virtual Pin&		pin(uint8_t pin_number) = 0;
+//	virtual Pin&		pin(uint8_t pin_number) = 0;
 //	inline Pin&		operator[](uint8_t pin_number) {return pin(pin_number);}
 };
 
@@ -63,11 +63,12 @@ public:
 class yahal::mcu::modules::Port::Pin
 {
 public:
-	virtual void		setAsInput(void) = 0;
-	virtual void		setAsOutput(void) = 0;
 	virtual void		set(bool b) = 0;
 	virtual bool		get(void) const = 0;
 	virtual void		toggle(void) = 0;
+
+	virtual void		setAsInput(void) = 0;
+	virtual void		setAsOutput(void) = 0;
 };
 
 

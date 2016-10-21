@@ -48,8 +48,9 @@ namespace yahal{ namespace mcu{ namespace modules{
 	typedef Timer<uint32_t>	Timer32;
 	typedef Timer<uint64_t>	Timer64;
 
-	template<typename T_DERIVED> class IrqHandler;
-	template<typename T_CODE> class IsrProvider;
+	template<typename T_IRQ> class IrqSource;
+	template<typename T_IRQ> class IrqHandler;
+	template<typename T_IRQ> class IrqForwarder;
 
 	// DETAILS
 	namespace details{
